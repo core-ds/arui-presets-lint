@@ -13,14 +13,14 @@
         background: linear-gradient(
             0deg,
             rgba(0, 0, 0, 1) 80%,
-            rgba(0, 0, 0, 0.1) 95%,
-            rgba(255, 255, 255, 0) 100%
+            var(--color-black-10) 95%,
+            var(--color-light-specialbg-nulled) 100%
         );
     }
 
     @media (--small-only) {
         & + & {
-            margin-top: 40px;
+            margin-top: var(--gap-3xl);
         }
     }
 }
