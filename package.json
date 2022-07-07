@@ -6,13 +6,13 @@
     "license": "MIT",
     "dependencies": {
         "@alfalab/stylelint-core-vars": "1.4.0",
-        "@commitlint/cli": "^9.1.2",
-        "@commitlint/config-conventional": "^9.1.2",
+        "@commitlint/cli": "16.3.0",
+        "@commitlint/config-conventional": "16.2.4",
         "arui-cssvars": "1.2.0",
         "babel-eslint": "^10.1.0",
         "case-sensitive-paths-webpack-plugin": "2.3.0",
-        "command-line-args": "5.1.1",
-        "conventional-changelog-cli": "2.1.0",
+        "command-line-args": "5.2.1",
+        "conventional-changelog-cli": "2.2.2",
         "conventional-github-releaser": "3.1.5"
     },
     "peerDependencies": {
@@ -132,5 +132,8 @@
                 }
             ]
         }
+    },
+    "commitlint": {
+        "extends": "./commitlint"
     }
 }
