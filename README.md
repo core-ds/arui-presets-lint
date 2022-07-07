@@ -7,35 +7,25 @@
 [license-img]: https://img.shields.io/badge/License-MIT-brightgreen.svg
 [npm-img]: https://img.shields.io/npm/v/arui-presets-lint.svg
 [npm]: https://www.npmjs.org/package/arui-presets-lint
-[travis]: https://travis-ci.org/alfa-laboratory/arui-presets-lint?branch=master
-[travis-img]: https://img.shields.io/travis/alfa-laboratory/arui-presets-lint/master.svg?label=unix
 
 <br />
 
-Набор конфигурационных файлов для валидации проектов, основанных на [arui-feather](https://github.com/alfa-laboratory/arui-feather).
+Набор общих конфигурационных файлов для валидации react/node/typescript-проектов.
 
 [Как я могу улучшить стандарты?](./.github/CONTRIBUTING.md)
 
 ## Установка
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
 
-```
+```sh
 npx install-peerdeps --dev arui-presets-lint
-```
-
-Если вы используете yarn на данный момент у вас могут возникнуть проблемы при использовании `install-peerdeps`.
-См. этот [issue](https://github.com/nathanhleung/install-peerdeps/issues/70). Временным решением может служить использование
-версии `1.11.0`.
-
-```
-npx install-peerdeps@1.11.0 --dev arui-presets-lint
 ```
 
 Так же вы можете поставить все необходимые peerDependencies вручную. Для этого узнайте требуемые версии
 с помощью команды
 
-```
-npm info "arui-presets-lint@latest" peerDependencies
+```sh
+yarn info arui-presets-lint peerDependencies
 ```
 
 И добавьте их себе в проект как dev зависимости.
@@ -46,13 +36,13 @@ npm info "arui-presets-lint@latest" peerDependencies
 {
     "prettier": "arui-presets-lint/prettier",
     "eslintConfig": {
-        "extends": "./node_modules/arui-presets-lint/eslint/index.js"
+        "extends": "./node_modules/arui-presets-lint/eslint"
     },
     "stylelint": {
         "extends": "arui-presets-lint/stylelint"
     },
     "commitlint": {
-        "extends": ["./node_modules/arui-presets-lint/commitlint"]
+        "extends": "./node_modules/arui-presets-lint/commitlint"
     }
 }
 ```
@@ -65,41 +55,45 @@ npm info "arui-presets-lint@latest" peerDependencies
         "lint:css": "stylelint ./src/**/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
-        "format": "prettier-eslint --write $INIT_CWD/{config,src}/**/*.{ts,tsx,js,jsx,css}"
+        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
+        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\" && yarn lint:fix"
     }
 }
 ```
 
 Если eslint пытается валидировать файлы, над которыми вы не имеете контроль, вы можете исключить
-их с помощью `.eslintignore`
+их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file)
 
-```
-.build
-.idea
-coverage
-```
-
-Для запуска eslint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/2.0.0/user-guide/command-line-interface#-max-warnings), который позволяет ограничить количество возникающих предупреждений.
+Для запуска eslint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
 ## Конфигурация `husky` и `lint-staged`:
 
 ```json
 {
-    "lint-staged": {
-        "{src,config}/**/*.{js,jsx,ts,tsx}": ["prettier-eslint --write", "eslint"],
-        "*.css": ["prettier-eslint --write", "stylelint"]
-    },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
-    }
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "prettier --write",
+            "eslint",
+            "yarn jest --findRelatedTests"
+        ],
+        "*.css": ["prettier --write", "stylelint"],
+        "*.json": ["prettier --write"],
+    },
 }
 ```
-В lint-staged так же рекомендуется добавить запуск юнит-тестов, например, `yarn jest --findRelatedTests`
 
-## Итоговая конфигурация линтеров:
+Рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов в lint-staged для скриптовых файлов `yarn jest --findRelatedTests`.
+
+Также в lint-staged можно добавить флаги `--max-warnings=0` для stylelint и eslint, что не даст сделать коммит при наличии warning-а в коде (по умолчанию блокирует при наличии error).
+
+
+## Итоговая конфигурация линтеров
 
 ```json
 {
@@ -107,11 +101,8 @@ coverage
         "lint:css": "stylelint ./src/**/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
-        "format": "prettier-eslint --write $INIT_CWD/{config,src}/**/*.{ts,tsx,js,jsx,css}"
-    },
-    "lint-staged": {
-        "{src,config}/**/*.{js,jsx,ts,tsx}": ["prettier-eslint --write", "eslint"],
-        "*.css": ["prettier-eslint --write", "stylelint"]
+        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
+        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\" && yarn lint:fix"
     },
     "husky": {
         "hooks": {
@@ -119,34 +110,32 @@ coverage
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     },
-    "prettier": "arui-presets-lint/prettier",
-    "eslintConfig": {
-        "extends": "./node_modules/arui-presets-lint/eslint/index.js"
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "prettier --write",
+            "eslint",
+            "yarn jest --findRelatedTests"
+        ],
+        "*.css": ["prettier --write", "stylelint"],
+        "*.json": ["prettier --write"],
     },
-    "stylelint": {
-        "extends": "arui-presets-lint/stylelint"
-    },
-    "commitlint": {
-        "extends": ["./node_modules/arui-presets-lint/commitlint"]
-    }
 }
 ```
 
-## Настройка для VS Code:
-
-https://github.com/prettier/prettier-vscode
-
-## Настройка для WebStorm:
-
-https://prettier.io/docs/en/webstorm.html#using-prettier-with-eslint
-Вместо `$ProjectFileDir$/node_modules/.bin/prettier` указывать `$ProjectFileDir$/node_modules/arui-presets-lint/node_modules/.bin/prettier-eslint`
+## Настройка IDE:
+1. Включить ESLint
+   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+   - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/eslint.html#ws_js_eslint_activate)
+2. Включить Prettier
+   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+   - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
 
 ## Лицензия
 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2021 Alfa-Bank
+Copyright (c) 2022 Alfa-Bank
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
