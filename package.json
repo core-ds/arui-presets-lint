@@ -16,26 +16,24 @@
         "conventional-github-releaser": "3.1.5"
     },
     "peerDependencies": {
-        "@typescript-eslint/eslint-plugin": "^4.15.2",
-        "@typescript-eslint/parser": "^4.15.2",
-        "eslint": "^7.7.0",
-        "eslint-config-airbnb": "^18.2.0",
-        "eslint-config-airbnb-typescript": "^14.0.1",
-        "eslint-import-resolver-typescript": "^2.5.0",
+        "@typescript-eslint/eslint-plugin": "^5.30.6",
+        "@typescript-eslint/parser": "^5.30.6",
+        "eslint": "^8.19.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-import-resolver-typescript": "^3.2.5",
         "eslint-plugin-cypress": "^2.12.1",
         "eslint-plugin-dirnames": "^1.0.3",
-        "eslint-plugin-import": "^2.22.0",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
-        "eslint-plugin-prettier": "^4.0.0",
-        "eslint-plugin-react": "^7.20.6",
-        "eslint-plugin-react-hooks": "^4.1.0",
-        "eslint-plugin-simple-import-sort": "^5.0.3",
-        "eslint-plugin-unicorn": "^37.0.1",
-        "husky": "^4.2.5",
-        "lint-staged": "^11.2.3",
-        "prettier": "^2.4.1",
-        "prettier-eslint": "^13.0.0",
-        "prettier-eslint-cli": "^5.0.1",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.6.0",
+        "eslint-plugin-react": "^7.30.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "eslint-plugin-unicorn": "^43.0.1",
+        "husky": "^4.3.8",
+        "lint-staged": "^12.5.0",
+        "prettier": "^2.7.1",
         "stylelint": "^14.9.1",
         "stylelint-config-prettier": "^9.0.3"
     },
@@ -47,27 +45,27 @@
         "@semantic-release/github": "7.0.0",
         "@semantic-release/npm": "7.0.5",
         "@semantic-release/release-notes-generator": "9.0.1",
-        "@typescript-eslint/eslint-plugin": "^4.15.2",
-        "@typescript-eslint/parser": "4.15.2",
+        "@typescript-eslint/eslint-plugin": "5.30.6",
+        "@typescript-eslint/parser": "5.30.6",
         "arui-feather": "19.2.2",
-        "eslint": "7.32.0",
-        "eslint-config-airbnb": "18.2.1",
-        "eslint-config-airbnb-typescript": "14.0.1",
-        "eslint-import-resolver-typescript": "2.5.0",
+        "eslint": "8.19.0",
+        "eslint-config-airbnb": "19.0.4",
+        "eslint-config-airbnb-typescript": "17.0.0",
+        "eslint-config-prettier": "8.5.0",
+        "eslint-import-resolver-typescript": "3.2.5",
         "eslint-plugin-cypress": "2.12.1",
         "eslint-plugin-dirnames": "1.0.3",
-        "eslint-plugin-import": "2.25.2",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
-        "eslint-plugin-prettier": "4.0.0",
-        "eslint-plugin-react": "^7.20.6",
-        "eslint-plugin-react-hooks": "^4.1.0",
-        "eslint-plugin-simple-import-sort": "5.0.3",
-        "eslint-plugin-unicorn": "37.0.1",
-        "husky": "4.2.5",
+        "eslint-plugin-import": "2.26.0",
+        "eslint-plugin-jsx-a11y": "6.6.0",
+        "eslint-plugin-react": "7.30.1",
+        "eslint-plugin-react-hooks": "4.6.0",
+        "eslint-plugin-simple-import-sort": "7.0.0",
+        "eslint-plugin-unicorn": "43.0.1",
+        "husky": "4.3.8",
+        "kebab-case": "1.0.0",
         "lint-staged": "11.2.3",
-        "prettier": "2.4.1",
-        "prettier-eslint": "13.0.0",
-        "prettier-eslint-cli": "5.0.1",
+        "prettier": "2.7.1",
+        "react": "17.0.1",
         "semantic-release": "17.1.1",
         "stylelint": "14.9.1",
         "stylelint-config-prettier": "9.0.3",
@@ -78,18 +76,19 @@
         "lint": "eslint ./",
         "precommit": "lint-staged",
         "test": "yarn test:eslint && yarn test:stylelint",
-        "test:eslint": "eslint \"./test/**/*.{ts,tsx,js,jsx}\"",
+        "test:eslint": "yarn eslint:prettier-conflicts-check && eslint \"./test/**/*.{ts,tsx,js,jsx}\"",
         "test:stylelint": "yarn stylelint:prettier-conflicts-check && node ./test/stylelint-test.js",
         "stylelint:prettier-conflicts-check": "stylelint-config-prettier-check",
-        "format": "prettier-eslint --write $INIT_CWD/{eslint,stylelint,test,commitlint}/**/*.{ts,tsx,js,jsx,css}"
+        "eslint:prettier-conflicts-check": "eslint-config-prettier ./eslint/index.js",
+        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
     },
     "lint-staged": {
-        "**/*.{js,jsx,ts,tsx,css}": [
-            "prettier-eslint --write",
-            "eslint"
+        "**/*.{js,jsx,ts,tsx,json}": [
+            "prettier --write",
+            "eslint --fix --max-warnings=0"
         ],
         "stylelint/*.js": [
-            "prettier-eslint --write",
+            "prettier --write",
             "yarn test:stylelint"
         ]
     },
@@ -117,8 +116,21 @@
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     },
-    "prettier": "./prettier.js",
+    "prettier": "./prettier",
     "stylelint": {
         "extends": "./stylelint"
+    },
+    "eslintConfig": {
+        "extends": "./eslint",
+        "rules": {
+            "import/no-extraneous-dependencies": [
+                "error",
+                {
+                    "devDependencies": [
+                        "test/**/*"
+                    ]
+                }
+            ]
+        }
     }
 }
