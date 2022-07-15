@@ -55,6 +55,7 @@ module.exports = {
         'no-negated-condition': 'warn',
         'default-case': 'off',
         'no-use-before-define': 'off',
+        'prefer-regex-literals': 'off',
 
         // code smell detection
         complexity: ['warn', 20],
@@ -96,6 +97,7 @@ module.exports = {
         'react/destructuring-assignment': 'off',
         'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
         'react/jsx-one-expression-per-line': 'off',
+        'react/function-component-definition': 'off',
 
         // A11Y
         'jsx-a11y/anchor-is-valid': ['warn', { aspects: ['invalidHref'] }],
@@ -120,6 +122,7 @@ module.exports = {
             'error',
             { functions: false, classes: true, variables: true },
         ],
+        '@typescript-eslint/default-param-last': 'off',
 
         // Imports, file extensions
         'import/no-extraneous-dependencies': [
@@ -167,6 +170,7 @@ module.exports = {
                 ],
             },
         ],
+        'import/no-import-module-exports': 'off',
     },
     overrides: [
         {
