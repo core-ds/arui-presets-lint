@@ -14,6 +14,8 @@
 
 [Как я могу улучшить стандарты?](./.github/CONTRIBUTING.md)
 
+Переходите с версии ниже чем 6.0.0? [Прочтите](MIGRATION_GUIDE_V6.md)
+
 ## Установка
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
 
