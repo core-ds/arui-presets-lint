@@ -16,6 +16,15 @@
 
 Переходите с версии ниже чем 6.0.0? [Прочтите](MIGRATION_GUIDE_V6.md)
 
+## Релизы
+Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
+
+Релизы публикуются руками. Если вам нужно выпустить новую версию библиотеки - выполните следующие действия (а лучше прикрутите сюда нормальный ci):
+```
+yarn --immutable
+yarn semantic-release --no-ci
+```
+
 ## Установка
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
 
