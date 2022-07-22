@@ -41,7 +41,7 @@ module.exports = {
         },
     },
     rules: {
-        quotes: ['warn', 'single', { avoidEscape: true }],
+        quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
         'padding-line-between-statements': [
             'warn',
             { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
