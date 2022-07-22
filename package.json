@@ -98,10 +98,6 @@
         "kind-of": ">= 6.0.3",
         "minimist": ">= 1.2.3"
     },
-    "repository": {
-        "type": "git",
-        "url": "ssh://git@git.moscow.alfaintra.net/ef/arui-presets-lint.git"
-    },
     "husky": {
         "hooks": {
             "pre-commit": "yarn test",
