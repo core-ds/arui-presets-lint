@@ -2,7 +2,7 @@
 import React from 'react';
 import babelCore from 'stylelint';
 
-import cn from './cn';
+import { cn } from './cn';
 
 const someArray = [
     'hello',
@@ -41,7 +41,7 @@ function definedAfterUsage() {
     console.log('Because it is normal!');
 }
 
-export const element = <div style={ { color: 'black' } } />;
+export const element = <div style={{ color: 'black' }} />;
 
 const it = () => {};
 

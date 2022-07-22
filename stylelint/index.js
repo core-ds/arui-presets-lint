@@ -1,5 +1,4 @@
 module.exports = {
-    extends: [require.resolve('stylelint-prettier/recommended')],
     rules: {
         'arui-cssvars/use-variables': true,
         'block-no-empty': true,
@@ -32,8 +31,6 @@ module.exports = {
         'media-feature-range-operator-space-before': 'always',
         'no-empty-source': true,
         'no-invalid-double-slash-comments': true,
-        'selector-attribute-operator-space-after': 'never',
-        'selector-attribute-operator-space-before': 'never',
         'selector-pseudo-class-no-unknown': true,
         'selector-pseudo-element-colon-notation': 'single',
         'selector-pseudo-element-no-unknown': true,
@@ -43,15 +40,6 @@ module.exports = {
         'string-no-newline': true,
         'unit-no-unknown': true,
 
-        'declaration-bang-space-after': 'never',
-        'declaration-bang-space-before': 'always',
-        'selector-attribute-brackets-space-inside': 'never',
-        'selector-attribute-quotes': 'always',
-        'selector-pseudo-class-parentheses-space-inside': 'never',
-        'media-feature-colon-space-after': 'always',
-        'media-feature-colon-space-before': 'never',
-        'media-feature-parentheses-space-inside': 'never',
-        'at-rule-semicolon-space-before': 'never',
         'stylelint-core-vars/use-vars': true,
         'stylelint-core-vars/use-mixins': true,
         'stylelint-core-vars/use-one-of-vars': [true, { severity: 'warning' }],

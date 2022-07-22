@@ -8,5 +8,5 @@ module.exports = {
         '@semantic-release/git',
     ],
     branches: ['master'],
-    repositoryUrl: 'https://github.com/alfa-laboratory/arui-presets-lint',
+    repositoryUrl: 'ssh://git@git.moscow.alfaintra.net/ef/arui-presets-lint.git',
 };
