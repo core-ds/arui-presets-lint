@@ -1,3 +1,30 @@
+# 6.0.0 (2022-07-25)
+
+
+### Features
+
+* add .yarnrc aac625f
+* bump semantic-release, change repository url e98a7bc
+* update deps a90bac2
+* update lint-staged and husky 1fe7d74
+* **build:** remove github from release config 5c361e4
+* **build:** remove repo from release config c8d28ca
+* **commitlint:** increase body-max-line-length 006ca95
+* **commitlint:** update commitlint libs d7bfec1
+* **eslint:** forbid unnecessary template literals for best prettier compatibility eee9f53
+* **eslint:** remove harmful eslint rules after testing 561115a
+* **gitignore:** add .DS_Store to .gitignore 272ae54
+* **package.json:** remove repo link from package.json 64b8068
+* **stylelint:** update stylelint, remove stylelint-prettier a61f26f
+
+
+* feat(eslint)!: update eslint and plugins, add eslint-config-prettier, remove prettier-eslint 0787329
+
+
+### BREAKING CHANGES
+
+* dropping eslint <8 support, remove prettier-eslint
+
 # [5.10.0](https://github.com/alfa-laboratory/arui-presets-lint/compare/v5.9.0...v5.10.0) (2021-11-01)
 
 
