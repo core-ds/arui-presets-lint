@@ -17,15 +17,18 @@
 Переходите с версии ниже чем 6.0.0? [Прочтите](MIGRATION_GUIDE_V6.md)
 
 ## Релизы
+
 Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
 
 Релизы публикуются руками. Если вам нужно выпустить новую версию библиотеки - выполните следующие действия (а лучше прикрутите сюда нормальный ci):
+
 ```
 yarn --immutable
 yarn semantic-release --no-ci
 ```
 
 ## Установка
+
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
 
 ```sh
@@ -63,19 +66,19 @@ yarn info arui-presets-lint peerDependencies
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint ./src/**/*.css",
+        "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     }
 }
 ```
 
-Если eslint пытается валидировать файлы, над которыми вы не имеете контроль, вы можете исключить
-их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file)
+Если eslint/stylelint/prettier затрагивают файлы, над которыми вы не имеете контроль, вы можете исключить
+их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file) / [.stylelintignore](https://stylelint.io/user-guide/ignore-code/#files-entirely) / [.prettierignore](https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore)
 
-Для запуска eslint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
+Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
 ## Конфигурация `husky` и `lint-staged`:
 
@@ -88,32 +91,25 @@ yarn info arui-presets-lint peerDependencies
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "prettier --write",
-            "eslint",
-            "yarn jest --findRelatedTests"
-        ],
+        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint"],
         "*.css": ["prettier --write", "stylelint"],
-        "*.json": ["prettier --write"],
-    },
+        "*.{json,md}": ["prettier --write"]
+    }
 }
 ```
 
-Рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов в lint-staged для скриптовых файлов `yarn jest --findRelatedTests`.
-
-Также в lint-staged можно добавить флаги `--max-warnings=0` для stylelint и eslint, что не даст сделать коммит при наличии warning-а в коде (по умолчанию блокирует при наличии error).
-
+Также рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов `jest --findRelatedTests` в lint-staged (последним шагом для скриптовых файлов).
 
 ## Итоговая конфигурация линтеров
 
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint ./src/**/*.css",
+        "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     },
     "husky": {
         "hooks": {
@@ -122,27 +118,24 @@ yarn info arui-presets-lint peerDependencies
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "prettier --write",
-            "eslint",
-            "yarn jest --findRelatedTests"
-        ],
+        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint"],
         "*.css": ["prettier --write", "stylelint"],
-        "*.json": ["prettier --write"],
-    },
+        "*.{json,md}": ["prettier --write"]
+    }
 }
 ```
 
 ## Настройка IDE:
+
 1. Включить ESLint
-   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-   - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/eslint.html#ws_js_eslint_activate)
+    - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/eslint.html#ws_js_eslint_activate)
 2. Включить Stylelint
-   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-   - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/using-stylelint-code-quality-tool.html#ws_stylelint_configure)
+    - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+    - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/using-stylelint-code-quality-tool.html#ws_stylelint_configure)
 3. Включить Prettier
-   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-   - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
+    - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
 
 ## Лицензия
 

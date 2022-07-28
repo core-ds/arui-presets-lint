@@ -3,6 +3,7 @@
 1. Проверить, что в проекте стоит версия nodejs не ниже 12.20.0 / 14.13.1.
 
 2. Удалить более неиспользуемые зависимости:
+
 ```sh
     yarn remove prettier-eslint prettier-eslint-cli eslint-plugin-prettier
 ```
@@ -10,8 +11,9 @@
 3. Добавить текущие зависимости [README.md](README.md)(##Установка)
 
 4. Заменить вызовы prettier-eslint на prettier:
-   - в lint-staged [README.md](README.md)(## Конфигурация `husky` и `lint-staged`)
-   - в скриптах package.json [README.md](README.md)(## Конфигурация скриптов для запуска линтеров и форматтера в `package.json`)
+
+    - в lint-staged [README.md](README.md)(## Конфигурация `husky` и `lint-staged`)
+    - в скриптах package.json [README.md](README.md)(## Конфигурация скриптов для запуска линтеров и форматтера в `package.json`)
 
 5. (Опционально) Поменять подключаемый конфиг [README.md](README.md)(## Конфигурация всех линтеров через `package.json`). Что изменилось: в `eslintConfig.extends` больше не нужно писать `/index.js` в конце, а `commitlint.extends` теперь может быть строкой, а не массивом.
 

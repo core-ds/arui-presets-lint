@@ -68,14 +68,16 @@
         "typescript": "4.4.4"
     },
     "scripts": {
-        "lint": "eslint ./",
         "precommit": "lint-staged",
         "test": "yarn test:eslint && yarn test:stylelint",
         "test:eslint": "yarn eslint:prettier-conflicts-check && eslint \"./test/**/*.{ts,tsx,js,jsx}\"",
         "test:stylelint": "yarn stylelint:prettier-conflicts-check && node ./test/stylelint-test.js",
         "stylelint:prettier-conflicts-check": "stylelint-config-prettier-check",
         "eslint:prettier-conflicts-check": "eslint-config-prettier ./eslint/index.js",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
+        "lint:css": "stylelint **/*.css",
+        "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
+        "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix",
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx,json}": [
