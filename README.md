@@ -70,15 +70,15 @@ yarn info arui-presets-lint peerDependencies
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     }
 }
 ```
 
-Если eslint пытается валидировать файлы, над которыми вы не имеете контроль, вы можете исключить
-их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file)
+Если eslint/stylelint/prettier затрагивают файлы, над которыми вы не имеете контроль, вы можете исключить
+их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file) / [.stylelintignore](https://stylelint.io/user-guide/ignore-code/#files-entirely) / [.prettierignore](https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore)
 
-Для запуска eslint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
+Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
 ## Конфигурация `husky` и `lint-staged`:
 
@@ -91,16 +91,14 @@ yarn info arui-presets-lint peerDependencies
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint", "yarn jest --findRelatedTests"],
+        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint"],
         "*.css": ["prettier --write", "stylelint"],
         "*.{json,md}": ["prettier --write"]
     }
 }
 ```
 
-Рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов в lint-staged для скриптовых файлов `yarn jest --findRelatedTests`.
-
-Также в lint-staged можно добавить флаги `--max-warnings=0` для stylelint и eslint, что не даст сделать коммит при наличии warning-а в коде (по умолчанию блокирует при наличии error).
+Также рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов `jest --findRelatedTests` в lint-staged (последним шагом для скриптовых файлов).
 
 ## Итоговая конфигурация линтеров
 
@@ -111,7 +109,7 @@ yarn info arui-presets-lint peerDependencies
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     },
     "husky": {
         "hooks": {
@@ -120,7 +118,7 @@ yarn info arui-presets-lint peerDependencies
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint", "yarn jest --findRelatedTests"],
+        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint"],
         "*.css": ["prettier --write", "stylelint"],
         "*.{json,md}": ["prettier --write"]
     }
