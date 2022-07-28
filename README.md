@@ -63,7 +63,7 @@ yarn info arui-presets-lint peerDependencies
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint ./src/**/*.css",
+        "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
@@ -109,7 +109,7 @@ yarn info arui-presets-lint peerDependencies
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint ./src/**/*.css",
+        "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
