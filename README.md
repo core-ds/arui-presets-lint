@@ -67,7 +67,7 @@ yarn info arui-presets-lint peerDependencies
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\" && yarn lint:fix"
+        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     }
 }
 ```
@@ -94,7 +94,7 @@ yarn info arui-presets-lint peerDependencies
             "yarn jest --findRelatedTests"
         ],
         "*.css": ["prettier --write", "stylelint"],
-        "*.json": ["prettier --write"],
+        "*.{json,md}": ["prettier --write"],
     },
 }
 ```
@@ -113,7 +113,7 @@ yarn info arui-presets-lint peerDependencies
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json}\" && yarn lint:fix"
+        "format": "prettier --ignore-path \"./.gitignore\" --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
     },
     "husky": {
         "hooks": {
@@ -128,7 +128,7 @@ yarn info arui-presets-lint peerDependencies
             "yarn jest --findRelatedTests"
         ],
         "*.css": ["prettier --write", "stylelint"],
-        "*.json": ["prettier --write"],
+        "*.{json,md}": ["prettier --write"],
     },
 }
 ```
