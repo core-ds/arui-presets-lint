@@ -17,15 +17,18 @@
 Переходите с версии ниже чем 6.0.0? [Прочтите](MIGRATION_GUIDE_V6.md)
 
 ## Релизы
+
 Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
 
 Релизы публикуются руками. Если вам нужно выпустить новую версию библиотеки - выполните следующие действия (а лучше прикрутите сюда нормальный ci):
+
 ```
 yarn --immutable
 yarn semantic-release --no-ci
 ```
 
 ## Установка
+
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
 
 ```sh
@@ -88,21 +91,16 @@ yarn info arui-presets-lint peerDependencies
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "prettier --write",
-            "eslint",
-            "yarn jest --findRelatedTests"
-        ],
+        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint", "yarn jest --findRelatedTests"],
         "*.css": ["prettier --write", "stylelint"],
-        "*.{json,md}": ["prettier --write"],
-    },
+        "*.{json,md}": ["prettier --write"]
+    }
 }
 ```
 
 Рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов в lint-staged для скриптовых файлов `yarn jest --findRelatedTests`.
 
 Также в lint-staged можно добавить флаги `--max-warnings=0` для stylelint и eslint, что не даст сделать коммит при наличии warning-а в коде (по умолчанию блокирует при наличии error).
-
 
 ## Итоговая конфигурация линтеров
 
@@ -122,27 +120,24 @@ yarn info arui-presets-lint peerDependencies
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "prettier --write",
-            "eslint",
-            "yarn jest --findRelatedTests"
-        ],
+        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint", "yarn jest --findRelatedTests"],
         "*.css": ["prettier --write", "stylelint"],
-        "*.{json,md}": ["prettier --write"],
-    },
+        "*.{json,md}": ["prettier --write"]
+    }
 }
 ```
 
 ## Настройка IDE:
+
 1. Включить ESLint
-   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-   - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/eslint.html#ws_js_eslint_activate)
+    - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/eslint.html#ws_js_eslint_activate)
 2. Включить Stylelint
-   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-   - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/using-stylelint-code-quality-tool.html#ws_stylelint_configure)
+    - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+    - [Инструкция для Webstorm](https://www.jetbrains.com/help/webstorm/using-stylelint-code-quality-tool.html#ws_stylelint_configure)
 3. Включить Prettier
-   - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-   - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
+    - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
 
 ## Лицензия
 
