@@ -77,7 +77,7 @@
         "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\""
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx,json}": [

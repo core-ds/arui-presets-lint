@@ -70,7 +70,7 @@ yarn info arui-presets-lint peerDependencies
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\""
     }
 }
 ```
@@ -100,7 +100,7 @@ yarn info arui-presets-lint peerDependencies
 }
 ```
 
-Также рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit --incremental false && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов `jest --findRelatedTests` в lint-staged (последним шагом для скриптовых файлов).
+Также рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов `jest --findRelatedTests` в lint-staged (последним шагом для скриптовых файлов).
 
 ## Итоговая конфигурация линтеров
 
@@ -111,7 +111,7 @@ yarn info arui-presets-lint peerDependencies
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\" && yarn lint:fix"
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\""
     },
     "husky": {
         "hooks": {
