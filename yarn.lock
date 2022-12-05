@@ -81,7 +81,12 @@
   resolved "https://registry.yarnpkg.com/@alfalab/icons-logotype/-/icons-logotype-1.29.0.tgz#6e73b1c8734cee3d08a41b9e5e386a478bb0e6ae"
   integrity sha512-ztzcW2jfFtZOkBWrpb6nOyQMvJ6VdtJRR3dEABN0OGYq8n92YH0lNvDy2c+L/iwWPnr3/uaoBu1DAozNjHEgsw==
 
-"@alfalab/stylelint-core-vars@1.4.0", "@alfalab/stylelint-core-vars@^1.4.0":
+"@alfalab/stylelint-core-vars@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@alfalab/stylelint-core-vars/-/stylelint-core-vars-1.5.0.tgz#2eb559978a9835a80afb1bf7d8ba36c7b12b6a49"
+  integrity sha512-3gYD2jZa0Vv/FvoiLVRec/U5JMBpg2AUrIipyUne7ymlnOH9ETM3ecZVPTWAh3K3kPoPFSvVV8vSrKkG/qEliw==
+
+"@alfalab/stylelint-core-vars@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@alfalab/stylelint-core-vars/-/stylelint-core-vars-1.4.0.tgz#d21a0474433985e1b970df42ab0495a280aa029e"
   integrity sha512-6BOJJppFlPTsA/m53zjlBDTm49PF1O+wcrSDL7s3uOdMkChc0F/NXKTq+Oz/k4tI4yG5ZnyACcmD8g7vbjvVag==
