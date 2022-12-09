@@ -1,3 +1,11 @@
+# 6.1.0 (2022-12-09)
+
+
+### Features
+
+* dump stylelint-core-vars fafcdfd
+* separate lint and format, remove incremental false from husky 75d15b9
+
 ## 6.0.1 (2022-07-27)
 
 
