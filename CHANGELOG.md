@@ -1,3 +1,10 @@
+# 6.2.0 (2023-05-24)
+
+
+### Features
+
+* **eslint:** forbid import of lodash 7df02af
+
 # 6.1.0 (2022-12-09)
 
 
