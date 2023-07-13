@@ -1,4 +1,4 @@
-# Alfa Laboratory UI Presets
+# Общая конфигурация линтеров
 
 [![npm][npm-img]][npm]
 [![license][license-img]][license]
@@ -19,8 +19,6 @@
 ## Релизы
 
 Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
-
-Релизы публикуются руками. Если вам нужно выпустить новую версию библиотеки - выполните следующие действия (а лучше прикрутите сюда нормальный ci):
 
 ```
 yarn --immutable
@@ -68,9 +66,9 @@ yarn info arui-presets-lint peerDependencies
     "scripts": {
         "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint": "yarn lint:css && yarn lint:scripts",
+        "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\""
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
     }
 }
 ```
@@ -79,6 +77,8 @@ yarn info arui-presets-lint peerDependencies
 их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file) / [.stylelintignore](https://stylelint.io/user-guide/ignore-code/#files-entirely) / [.prettierignore](https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore)
 
 > ⚠️ Внимание, .eslintignore [по умолчанию не подтягиватся в lint-staged](https://github.com/okonet/lint-staged#how-can-i-ignore-files-from-eslintignore)!
+
+Так же можно добавить к командам аргумент `--ignore-path` со значением `.gitignore`, в этом случае конфиг из дефолтных файлов (.eslintignore, .stylelintignore, .prettierignore) не будет применятся, но можно добавить специфичные правила в конфиг ([eslintConfig.ignorePatterns](https://eslint.org/docs/latest/use/configure/ignore#ignorepatterns-in-config-files), [stylelintConfig.ignoreFiles](https://stylelint.io/user-guide/configure#ignorefiles)).
 
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
@@ -109,9 +109,9 @@ yarn info arui-presets-lint peerDependencies
     "scripts": {
         "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint": "yarn lint:css && yarn lint:scripts",
+        "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
         "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\""
+        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
     },
     "husky": {
         "hooks": {
@@ -144,7 +144,7 @@ yarn info arui-presets-lint peerDependencies
 ```
 The MIT License (MIT)
 
-Copyright (c) 2022 Alfa-Bank
+Copyright (c) 2023 core-ds contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

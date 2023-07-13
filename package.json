@@ -2,7 +2,7 @@
     "name": "arui-presets-lint",
     "version": "6.2.0",
     "description": "Config files for arui-apps",
-    "author": "Good guys from Alfa-Bank",
+    "author": "core-ds contributors",
     "license": "MIT",
     "dependencies": {
         "@alfalab/stylelint-core-vars": "1.5.0",
