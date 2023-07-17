@@ -1,10 +1,15 @@
-name: Create new library package 
+name: Create new library package
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
+    workflow_dispatch:
+      inputs:
+        channel:
+          description: 'NPM channel to use'
+          required: true
+          default: 'next'
+    push:
+      branches:
+        - master
 
 jobs:
   build:
@@ -14,7 +19,7 @@ jobs:
       - name: create new version
         run: yarn --frozen-lockfile && yarn semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.PERMISSION_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           WORK_SPACE: ${{ github.workspace }}
           CI: true
