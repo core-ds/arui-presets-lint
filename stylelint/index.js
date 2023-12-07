@@ -27,8 +27,6 @@ module.exports = {
         'function-name-case': 'lower',
         'keyframe-declaration-no-important': true,
         'length-zero-no-unit': true,
-        'media-feature-range-operator-space-after': 'always',
-        'media-feature-range-operator-space-before': 'always',
         'no-empty-source': true,
         'no-invalid-double-slash-comments': true,
         'selector-pseudo-class-no-unknown': true,
