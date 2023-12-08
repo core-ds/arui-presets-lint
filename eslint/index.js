@@ -173,7 +173,11 @@ module.exports = {
         'import/no-import-module-exports': 'off',
         'no-restricted-imports': [
             'error',
-            { name:'lodash', message: 'Please use single imports of lodash functions, e.g `import isEqual from "lodash/isEqual"` instead of `"import { isEqual } from "lodash"`'},
+            {
+                name: 'lodash',
+                message:
+                    'Please use single imports of lodash functions, e.g `import isEqual from "lodash/isEqual"` instead of `"import { isEqual } from "lodash"`',
+            },
         ],
     },
     overrides: [

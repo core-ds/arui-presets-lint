@@ -8,7 +8,6 @@
         "@alfalab/stylelint-core-vars": "1.5.0",
         "@commitlint/cli": "18.4.3",
         "@commitlint/config-conventional": "18.4.3",
-        "arui-cssvars": "1.2.0",
         "command-line-args": "5.2.1",
         "conventional-changelog-cli": "4.1.0"
     },
@@ -46,7 +45,6 @@
         "@semantic-release/release-notes-generator": "12.1.0",
         "@typescript-eslint/eslint-plugin": "6.13.2",
         "@typescript-eslint/parser": "6.13.2",
-        "arui-feather": "19.2.2",
         "eslint": "8.55.0",
         "eslint-config-airbnb": "19.0.4",
         "eslint-config-airbnb-typescript": "17.1.0",
@@ -71,14 +69,10 @@
     },
     "scripts": {
         "precommit": "lint-staged",
-        "test": "yarn test:eslint && yarn test:stylelint",
-        "test:eslint": "yarn eslint:prettier-conflicts-check && eslint \"./test/**/*.{ts,tsx,js,jsx}\"",
-        "test:stylelint": "node ./test/stylelint-test.js",
-        "eslint:prettier-conflicts-check": "eslint-config-prettier ./eslint/index.js",
+        "test": "yarn lint:scripts && eslint-config-prettier ./eslint/index.js && yarn lint:css && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
         "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json,md}\""
+        "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx,json}": [
@@ -87,7 +81,7 @@
         ],
         "stylelint/*.js": [
             "prettier --write",
-            "yarn test:stylelint"
+            "yarn lint:css"
         ]
     },
     "resolutions": {

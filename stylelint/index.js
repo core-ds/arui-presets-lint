@@ -1,6 +1,5 @@
 module.exports = {
     rules: {
-        'arui-cssvars/use-variables': true,
         'block-no-empty': true,
         'color-hex-length': 'short',
         'color-no-invalid-hex': true,
@@ -44,8 +43,5 @@ module.exports = {
         'stylelint-core-vars/use-one-of-mixins': [true, { severity: 'warning' }],
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
     },
-    plugins: [
-        require.resolve('@alfalab/stylelint-core-vars'),
-        require.resolve('arui-cssvars/lint/stylelint'),
-    ],
+    plugins: [require.resolve('@alfalab/stylelint-core-vars')],
 };
