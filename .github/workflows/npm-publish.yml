@@ -19,7 +19,6 @@ jobs:
       - name: create new version
         run: |
             yarn install --immutable
-            rm -r test
             yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

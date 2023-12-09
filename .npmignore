@@ -4,3 +4,8 @@ test
 yarn-error.log
 .editorconfig
 .github
+.yarn
+.nvmrc
+.yarnrc.yml
+CHANGELOG.md
+.release.config.js
