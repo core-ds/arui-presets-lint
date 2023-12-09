@@ -1,3 +1,5 @@
+import React from 'react';
+
 // This is the same as above, but with an extra parameter.
 // Note: to make this work though, we had to use an any. This
 // can be worked out by using a generic interface.
@@ -40,3 +42,7 @@ export enum STATUS {
     NONE = '0',
     SUCCESS = '1',
 }
+
+const SomeComponent: React.FC<{ title?: string }> = (props) => <div>{props.title}</div>;
+
+export const Component = () => <SomeComponent title='Привет' />;
