@@ -14,16 +14,12 @@
 
 [Как я могу улучшить стандарты?](./.github/CONTRIBUTING.md)
 
-Переходите с версии ниже чем 6.0.0? [Прочтите](MIGRATION_GUIDE_V6.md)
-
 ## Релизы
 
 Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
 
-```
-yarn --immutable
-yarn semantic-release --no-ci
-```
+Выпуск новой версии происходит с помощью Github Actions, используйте джобу `Create new library package`. Для beta-версии используется ветка `beta`, для релизной - master.
+
 
 ## Установка
 
@@ -67,8 +63,7 @@ yarn info arui-presets-lint peerDependencies
         "lint:css": "stylelint **/*.css",
         "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
         "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
+        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\"",
     }
 }
 ```
@@ -88,41 +83,13 @@ yarn info arui-presets-lint peerDependencies
 {
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged",
+            "pre-commit": "tsc --noEmit && lint-staged",
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint"],
+        "*.{js,jsx,ts,tsx,json}": ["prettier --write", "eslint"],
         "*.css": ["prettier --write", "stylelint"],
-        "*.{json,md}": ["prettier --write"]
-    }
-}
-```
-
-Также рекомендуется изменить вызов husky.hooks.pre-commit на `tsc --noEmit && lint-staged` для дополнительной проверки кода на ошибки typescript и добавить запуск юнит-тестов `jest --findRelatedTests` в lint-staged (последним шагом для скриптовых файлов).
-
-## Итоговая конфигурация линтеров
-
-```json
-{
-    "scripts": {
-        "lint:css": "stylelint **/*.css",
-        "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix",
-        "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint"],
-        "*.css": ["prettier --write", "stylelint"],
-        "*.{json,md}": ["prettier --write"]
     }
 }
 ```
@@ -144,7 +111,7 @@ yarn info arui-presets-lint peerDependencies
 ```
 The MIT License (MIT)
 
-Copyright (c) 2023 core-ds contributors
+Copyright (c) 2024 core-ds contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
