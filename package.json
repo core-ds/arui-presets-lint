@@ -33,7 +33,7 @@
         "husky": "^4.3.8",
         "lint-staged": "^15.2.0",
         "prettier": "^3.1.0",
-        "stylelint": "^15.11.0"
+        "stylelint": "^16.0.1"
     },
     "devDependencies": {
         "@alfalab/core-components": "44.3.0",
@@ -64,7 +64,7 @@
         "prettier": "3.1.0",
         "react": "18.2.0",
         "semantic-release": "22.0.9",
-        "stylelint": "15.11.0",
+        "stylelint": "16.0.1",
         "typescript": "5.3.3"
     },
     "scripts": {
