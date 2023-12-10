@@ -59,10 +59,10 @@
         "eslint-plugin-simple-import-sort": "10.0.0",
         "eslint-plugin-unicorn": "49.0.0",
         "husky": "4.3.8",
-        "kebab-case": "1.0.2",
+        "kebab-case": "1.0.0",
         "lint-staged": "15.2.0",
         "prettier": "3.1.0",
-        "react": "18.2.0",
+        "react": "17.0.2",
         "semantic-release": "22.0.9",
         "stylelint": "16.0.1",
         "typescript": "5.3.3"

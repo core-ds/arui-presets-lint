@@ -1908,10 +1908,10 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:10.0.0"
     eslint-plugin-unicorn: "npm:49.0.0"
     husky: "npm:4.3.8"
-    kebab-case: "npm:1.0.2"
+    kebab-case: "npm:1.0.0"
     lint-staged: "npm:15.2.0"
     prettier: "npm:3.1.0"
-    react: "npm:18.2.0"
+    react: "npm:17.0.2"
     semantic-release: "npm:22.0.9"
     stylelint: "npm:16.0.1"
     typescript: "npm:5.3.3"
@@ -5646,13 +5646,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kebab-case@npm:1.0.2":
-  version: 1.0.2
-  resolution: "kebab-case@npm:1.0.2"
-  checksum: 94080c483c4bb88d7a37efe21431271e91a2297d2fb4e9c12167c5a9144a813ffbdd92f7ba7778f553250c83ba8413f4b061e949b0d6c9bada771efe10c220a4
-  languageName: node
-  linkType: hard
-
 "keyv@npm:^4.5.3":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -7948,12 +7941,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
+"react@npm:17.0.2":
+  version: 17.0.2
+  resolution: "react@npm:17.0.2"
   dependencies:
     loose-envify: "npm:^1.1.0"
-  checksum: b562d9b569b0cb315e44b48099f7712283d93df36b19a39a67c254c6686479d3980b7f013dc931f4a5a3ae7645eae6386b4aa5eea933baa54ecd0f9acb0902b8
+    object-assign: "npm:^4.1.1"
+  checksum: 07ae8959acf1596f0550685102fd6097d461a54a4fd46a50f88a0cd7daaa97fdd6415de1dcb4bfe0da6aa43221a6746ce380410fa848acc60f8ac41f6649c148
   languageName: node
   linkType: hard
 
