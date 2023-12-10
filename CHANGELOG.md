@@ -1,3 +1,24 @@
+# [7.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0-beta.1) (2023-12-10)
+
+
+* feat(*)!: remove arui-feather dependencies, fix test runner ([fde224c](https://github.com/core-ds/arui-presets-lint/commit/fde224c2eecfcfa09aad305b878bcbe418c44e96))
+* feat(*)!: bump dependencies ([aa78faa](https://github.com/core-ds/arui-presets-lint/commit/aa78faab6be218592665cbffe1b0b46122eceb48))
+
+
+### Features
+
+* add release config for beta branch ([fb848f8](https://github.com/core-ds/arui-presets-lint/commit/fb848f8e6e982cf7d5ec449c302f167fb2f9d477))
+* bump stylelint to 16 ([4ca3432](https://github.com/core-ds/arui-presets-lint/commit/4ca3432e353b4f42b869242216489d5ffaf33b69))
+* bump yarn ([315c6ef](https://github.com/core-ds/arui-presets-lint/commit/315c6efdb326ac812a99b110427fca781e685d93))
+* cleanup package content ([4697f49](https://github.com/core-ds/arui-presets-lint/commit/4697f492fd6c1b2d7e352cc36ca93ae9df97fc5c))
+* modify tests, remove it form release build ([be3dec7](https://github.com/core-ds/arui-presets-lint/commit/be3dec7262859fadaba89838f02b35b55e3751be))
+
+
+### BREAKING CHANGES
+
+* remove arui-feather support
+* remove support for node <18
+
 # 6.3.0 (2023-12-01)
 
 
