@@ -1,3 +1,10 @@
+# [7.0.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-12-10)
+
+
+### Bug Fixes
+
+* fix peer dependencies versions ([23c4a33](https://github.com/core-ds/arui-presets-lint/commit/23c4a3397b7f65bd29aba3300638b5207b20df7b))
+
 # [7.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0-beta.1) (2023-12-10)
 
 
