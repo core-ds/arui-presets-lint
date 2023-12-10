@@ -15,8 +15,8 @@
         "node": ">=18.12.0"
     },
     "peerDependencies": {
-        "@typescript-eslint/eslint-plugin": "^6.13.2",
-        "@typescript-eslint/parser": "^6.13.2",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
         "eslint": "^8.55.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-airbnb-typescript": "^17.1.0",
@@ -32,8 +32,8 @@
         "eslint-plugin-unicorn": "^49.0.0",
         "husky": "^4.3.8",
         "lint-staged": "^15.2.0",
-        "prettier": "^3.1.0",
-        "stylelint": "^16.0.1"
+        "prettier": "^3.1.1",
+        "stylelint": "^16.0.2"
     },
     "devDependencies": {
         "@alfalab/core-components": "44.3.0",
@@ -43,8 +43,8 @@
         "@semantic-release/github": "9.2.5",
         "@semantic-release/npm": "11.0.2",
         "@semantic-release/release-notes-generator": "12.1.0",
-        "@typescript-eslint/eslint-plugin": "6.13.2",
-        "@typescript-eslint/parser": "6.13.2",
+        "@typescript-eslint/eslint-plugin": "6.14.0",
+        "@typescript-eslint/parser": "6.14.0",
         "eslint": "8.55.0",
         "eslint-config-airbnb": "19.0.4",
         "eslint-config-airbnb-typescript": "17.1.0",
@@ -59,12 +59,12 @@
         "eslint-plugin-simple-import-sort": "10.0.0",
         "eslint-plugin-unicorn": "49.0.0",
         "husky": "4.3.8",
-        "kebab-case": "1.0.2",
+        "kebab-case": "1.0.0",
         "lint-staged": "15.2.0",
-        "prettier": "3.1.0",
-        "react": "18.2.0",
+        "prettier": "3.1.1",
+        "react": "17.0.2",
         "semantic-release": "22.0.9",
-        "stylelint": "16.0.1",
+        "stylelint": "16.0.2",
         "typescript": "5.3.3"
     },
     "scripts": {
