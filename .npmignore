@@ -9,3 +9,4 @@ yarn-error.log
 .yarnrc.yml
 CHANGELOG.md
 release.config.js
+tsconfig.json
