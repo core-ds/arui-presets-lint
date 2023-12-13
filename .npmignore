@@ -8,4 +8,5 @@ yarn-error.log
 .nvmrc
 .yarnrc.yml
 CHANGELOG.md
-.release.config.js
+release.config.js
+tsconfig.json
