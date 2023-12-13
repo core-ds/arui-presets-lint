@@ -1934,7 +1934,7 @@ __metadata:
     husky: ^4.3.8
     lint-staged: ^15.2.0
     prettier: ^3.1.1
-    stylelint: ^16.0.1
+    stylelint: ^16.0.2
   languageName: unknown
   linkType: soft
 
