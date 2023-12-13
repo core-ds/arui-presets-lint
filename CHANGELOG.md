@@ -1,3 +1,19 @@
+# [7.0.0-beta.3](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* fix lockfile ([3af58dd](https://github.com/core-ds/arui-presets-lint/commit/3af58dd4ec151e684a9507841e75bdf040dfe30b))
+* fix misprint ([371434d](https://github.com/core-ds/arui-presets-lint/commit/371434d13cd7f8c1412f9c05ffae5392ed8d7301))
+* re-run yarn ([fb858f8](https://github.com/core-ds/arui-presets-lint/commit/fb858f88b28606f781c0a02194a19057e872bbe1))
+
+
+### Features
+
+* add tsconfig to .npmignore ([24c7752](https://github.com/core-ds/arui-presets-lint/commit/24c77526cf79d5b15c36cb3c83587a6268d69ea2))
+* bump dependencies ([022d607](https://github.com/core-ds/arui-presets-lint/commit/022d6077db49f4cec00c7e80a2e11b9c63c32fcb))
+* bump prettier with bugfix ([60dab2a](https://github.com/core-ds/arui-presets-lint/commit/60dab2a236528bced627328dbcb7b2dea6ce3281))
+
 # [7.0.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-12-10)
 
 
