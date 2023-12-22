@@ -1,6 +1,5 @@
 module.exports = {
     rules: {
-        'arui-cssvars/use-variables': true,
         'block-no-empty': true,
         'color-hex-length': 'short',
         'color-no-invalid-hex': true,
@@ -27,8 +26,6 @@ module.exports = {
         'function-name-case': 'lower',
         'keyframe-declaration-no-important': true,
         'length-zero-no-unit': true,
-        'media-feature-range-operator-space-after': 'always',
-        'media-feature-range-operator-space-before': 'always',
         'no-empty-source': true,
         'no-invalid-double-slash-comments': true,
         'selector-pseudo-class-no-unknown': true,
@@ -46,8 +43,5 @@ module.exports = {
         'stylelint-core-vars/use-one-of-mixins': [true, { severity: 'warning' }],
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
     },
-    plugins: [
-        require.resolve('@alfalab/stylelint-core-vars'),
-        require.resolve('arui-cssvars/lint/stylelint'),
-    ],
+    plugins: [require.resolve('@alfalab/stylelint-core-vars')],
 };
