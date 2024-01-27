@@ -1,3 +1,26 @@
+# [7.1.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0...v7.1.0-beta.1) (2024-01-27)
+
+
+### Bug Fixes
+
+* **ci:** add gh token for checkout ([8455fbf](https://github.com/core-ds/arui-presets-lint/commit/8455fbf5ab33f99552909f9e69a0fc19baa30845))
+* **ci:** add workflow dispatch ([aeadbbb](https://github.com/core-ds/arui-presets-lint/commit/aeadbbb5b198f5fddc037beac2a4aac3cb32584e))
+* **ci:** remove npm channel selector ([e1d7c62](https://github.com/core-ds/arui-presets-lint/commit/e1d7c6253330ecc7f351dd58056c96d624d0915f))
+* fix lockfile ([3af58dd](https://github.com/core-ds/arui-presets-lint/commit/3af58dd4ec151e684a9507841e75bdf040dfe30b))
+* fix misprint ([371434d](https://github.com/core-ds/arui-presets-lint/commit/371434d13cd7f8c1412f9c05ffae5392ed8d7301))
+* fix peer dependencies versions ([23c4a33](https://github.com/core-ds/arui-presets-lint/commit/23c4a3397b7f65bd29aba3300638b5207b20df7b))
+* re-run yarn ([fb858f8](https://github.com/core-ds/arui-presets-lint/commit/fb858f88b28606f781c0a02194a19057e872bbe1))
+
+
+### Features
+
+* add release config for beta branch ([fb848f8](https://github.com/core-ds/arui-presets-lint/commit/fb848f8e6e982cf7d5ec449c302f167fb2f9d477))
+* add tsconfig to .npmignore ([24c7752](https://github.com/core-ds/arui-presets-lint/commit/24c77526cf79d5b15c36cb3c83587a6268d69ea2))
+* bump dependencies ([022d607](https://github.com/core-ds/arui-presets-lint/commit/022d6077db49f4cec00c7e80a2e11b9c63c32fcb))
+* bump prettier with bugfix ([60dab2a](https://github.com/core-ds/arui-presets-lint/commit/60dab2a236528bced627328dbcb7b2dea6ce3281))
+* cleanup package content ([4697f49](https://github.com/core-ds/arui-presets-lint/commit/4697f492fd6c1b2d7e352cc36ca93ae9df97fc5c))
+* modify tests, remove it form release build ([be3dec7](https://github.com/core-ds/arui-presets-lint/commit/be3dec7262859fadaba89838f02b35b55e3751be))
+
 # [7.0.0](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0) (2023-12-22)
 
 
