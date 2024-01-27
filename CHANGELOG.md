@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0...v7.0.1) (2024-01-27)
+
+
+### Bug Fixes
+
+* **ci:** fix new library package job for protected branches ([#4](https://github.com/core-ds/arui-presets-lint/issues/4)) ([f27fce0](https://github.com/core-ds/arui-presets-lint/commit/f27fce011c336cc1b6b8582e8350fb8e2c08b2ca))
+
 # [7.0.0](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0) (2023-12-22)
 
 
