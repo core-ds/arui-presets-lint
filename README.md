@@ -18,6 +18,9 @@
 
 Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
 
+Выпуск новой версии происходит с помощью Github Actions, используйте джобу `Create new library package`. Для beta-версии используется ветка `beta`, для релизной - master.
+
+
 ## Установка
 
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)

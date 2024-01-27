@@ -1,27 +1,4 @@
-# [7.0.0-beta.3](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-12-13)
-
-
-### Bug Fixes
-
-* fix lockfile ([3af58dd](https://github.com/core-ds/arui-presets-lint/commit/3af58dd4ec151e684a9507841e75bdf040dfe30b))
-* fix misprint ([371434d](https://github.com/core-ds/arui-presets-lint/commit/371434d13cd7f8c1412f9c05ffae5392ed8d7301))
-* re-run yarn ([fb858f8](https://github.com/core-ds/arui-presets-lint/commit/fb858f88b28606f781c0a02194a19057e872bbe1))
-
-
-### Features
-
-* add tsconfig to .npmignore ([24c7752](https://github.com/core-ds/arui-presets-lint/commit/24c77526cf79d5b15c36cb3c83587a6268d69ea2))
-* bump dependencies ([022d607](https://github.com/core-ds/arui-presets-lint/commit/022d6077db49f4cec00c7e80a2e11b9c63c32fcb))
-* bump prettier with bugfix ([60dab2a](https://github.com/core-ds/arui-presets-lint/commit/60dab2a236528bced627328dbcb7b2dea6ce3281))
-
-# [7.0.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-12-10)
-
-
-### Bug Fixes
-
-* fix peer dependencies versions ([23c4a33](https://github.com/core-ds/arui-presets-lint/commit/23c4a3397b7f65bd29aba3300638b5207b20df7b))
-
-# [7.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0-beta.1) (2023-12-10)
+# [7.0.0](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0) (2023-12-22)
 
 
 * feat(*)!: remove arui-feather dependencies, fix test runner ([fde224c](https://github.com/core-ds/arui-presets-lint/commit/fde224c2eecfcfa09aad305b878bcbe418c44e96))
@@ -30,11 +7,34 @@
 
 ### Features
 
-* add release config for beta branch ([fb848f8](https://github.com/core-ds/arui-presets-lint/commit/fb848f8e6e982cf7d5ec449c302f167fb2f9d477))
+* add release config for beta branch ([50025ca](https://github.com/core-ds/arui-presets-lint/commit/50025ca3f5b58f0cf1e5aa77ea13e052e08047ad))
+* bump dependencies ([b90a40c](https://github.com/core-ds/arui-presets-lint/commit/b90a40cd2dbc6b1471055cd3b4b724f20ed7460e))
 * bump stylelint to 16 ([4ca3432](https://github.com/core-ds/arui-presets-lint/commit/4ca3432e353b4f42b869242216489d5ffaf33b69))
 * bump yarn ([315c6ef](https://github.com/core-ds/arui-presets-lint/commit/315c6efdb326ac812a99b110427fca781e685d93))
-* cleanup package content ([4697f49](https://github.com/core-ds/arui-presets-lint/commit/4697f492fd6c1b2d7e352cc36ca93ae9df97fc5c))
-* modify tests, remove it form release build ([be3dec7](https://github.com/core-ds/arui-presets-lint/commit/be3dec7262859fadaba89838f02b35b55e3751be))
+* cleanup package content ([e12e8c7](https://github.com/core-ds/arui-presets-lint/commit/e12e8c760f8f4ea5b300508d50eba1fa5af199d5))
+* modify tests ([49f9c06](https://github.com/core-ds/arui-presets-lint/commit/49f9c06be2ba5cdbde27ee4226a86834fd573fb5))
+
+
+### BREAKING CHANGES
+
+* remove arui-feather support
+* remove support for node <18
+
+# [7.0.0](https://github.com/core-ds/arui-presets-lint/compare/v6.3.0...v7.0.0) (2023-12-22)
+
+
+* feat(*)!: remove arui-feather dependencies, fix test runner ([fde224c](https://github.com/core-ds/arui-presets-lint/commit/fde224c2eecfcfa09aad305b878bcbe418c44e96))
+* feat(*)!: bump dependencies ([aa78faa](https://github.com/core-ds/arui-presets-lint/commit/aa78faab6be218592665cbffe1b0b46122eceb48))
+
+
+### Features
+
+* add release config for beta branch ([50025ca](https://github.com/core-ds/arui-presets-lint/commit/50025ca3f5b58f0cf1e5aa77ea13e052e08047ad))
+* bump dependencies ([b90a40c](https://github.com/core-ds/arui-presets-lint/commit/b90a40cd2dbc6b1471055cd3b4b724f20ed7460e))
+* bump stylelint to 16 ([4ca3432](https://github.com/core-ds/arui-presets-lint/commit/4ca3432e353b4f42b869242216489d5ffaf33b69))
+* bump yarn ([315c6ef](https://github.com/core-ds/arui-presets-lint/commit/315c6efdb326ac812a99b110427fca781e685d93))
+* cleanup package content ([e12e8c7](https://github.com/core-ds/arui-presets-lint/commit/e12e8c760f8f4ea5b300508d50eba1fa5af199d5))
+* modify tests ([49f9c06](https://github.com/core-ds/arui-presets-lint/commit/49f9c06be2ba5cdbde27ee4226a86834fd573fb5))
 
 
 ### BREAKING CHANGES
