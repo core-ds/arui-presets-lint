@@ -11,6 +11,19 @@
 
 * bump various dependencies ([065a04f](https://github.com/core-ds/arui-presets-lint/commit/065a04f9ef2f5ba99bc2797c951c09dd822a419f))
 
+# [7.1.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v7.1.0-beta.1...v7.1.0-beta.2) (2024-02-27)
+
+
+### Bug Fixes
+
+* back to 22 semantic-release version ([44622f3](https://github.com/core-ds/arui-presets-lint/commit/44622f3608397057561199a1d3359e3b2eba14d7))
+* **ci:** fix new library package job for protected branches ([#4](https://github.com/core-ds/arui-presets-lint/issues/4)) ([f27fce0](https://github.com/core-ds/arui-presets-lint/commit/f27fce011c336cc1b6b8582e8350fb8e2c08b2ca))
+
+
+### Features
+
+* bump various dependencies ([065a04f](https://github.com/core-ds/arui-presets-lint/commit/065a04f9ef2f5ba99bc2797c951c09dd822a419f))
+
 ## [7.0.1](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0...v7.0.1) (2024-01-27)
 
 
