@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/core-ds/arui-presets-lint/compare/v7.0.1...v7.1.0) (2024-02-27)
+
+
+### Features
+
+* bump various dependencies ([4184a5d](https://github.com/core-ds/arui-presets-lint/commit/4184a5d4b1b4a574564972fbddbdd1db1452ce19))
+
 ## [7.0.1](https://github.com/core-ds/arui-presets-lint/compare/v7.0.0...v7.0.1) (2024-01-27)
 
 
