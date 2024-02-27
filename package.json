@@ -7,9 +7,7 @@
     "dependencies": {
         "@alfalab/stylelint-core-vars": "1.6.0",
         "@commitlint/cli": "18.6.1",
-        "@commitlint/config-conventional": "18.4.3",
-        "command-line-args": "5.2.1",
-        "conventional-changelog-cli": "4.1.0"
+        "@commitlint/config-conventional": "18.6.2"
     },
     "engines": {
         "node": ">=18.12.0"
