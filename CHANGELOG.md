@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/core-ds/arui-presets-lint/compare/v7.1.0...v7.1.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* **commitlint:** downgrade for fix RangeError commitlint issue ([6ef2bfa](https://github.com/core-ds/arui-presets-lint/commit/6ef2bfa41aa0bc6290f8dfbe17a2a0abecc45595))
+
 # [7.1.0](https://github.com/core-ds/arui-presets-lint/compare/v7.0.1...v7.1.0) (2024-02-27)
 
 
