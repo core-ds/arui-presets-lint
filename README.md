@@ -14,14 +14,7 @@
 
 [Как я могу улучшить стандарты?](./.github/CONTRIBUTING.md)
 
-## Релизы
-
-Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
-
-Выпуск новой версии происходит с помощью Github Actions, используйте джобу `Create new library package`. Для beta-версии используется ветка `beta`, для релизной - master.
-
-
-## Установка
+## Установка и обновление
 
 Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
 
@@ -29,14 +22,15 @@
 npx install-peerdeps --dev arui-presets-lint
 ```
 
-Так же вы можете поставить все необходимые peerDependencies вручную. Для этого узнайте требуемые версии
-с помощью команды
+Так же вы можете поставить все необходимые peerDependencies вручную. Для этого узнайте требуемые версии с помощью команды
 
 ```sh
 yarn info arui-presets-lint peerDependencies
 ```
 
 И добавьте их себе в проект как dev зависимости.
+
+> ⚠️ Нужно производить процедуру установки peer dependencies при каждом обновлении библиотеки
 
 ## Конфигурация всех линтеров через `package.json`:
 
@@ -73,8 +67,6 @@ yarn info arui-presets-lint peerDependencies
 
 > ⚠️ Внимание, .eslintignore [по умолчанию не подтягиватся в lint-staged](https://github.com/okonet/lint-staged#how-can-i-ignore-files-from-eslintignore)!
 
-Так же можно добавить к командам аргумент `--ignore-path` со значением `.gitignore`, в этом случае конфиг из дефолтных файлов (.eslintignore, .stylelintignore, .prettierignore) не будет применятся, но можно добавить специфичные правила в конфиг ([eslintConfig.ignorePatterns](https://eslint.org/docs/latest/use/configure/ignore#ignorepatterns-in-config-files), [stylelintConfig.ignoreFiles](https://stylelint.io/user-guide/configure#ignorefiles)).
-
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
 ## Конфигурация `husky` и `lint-staged`:
@@ -105,6 +97,12 @@ yarn info arui-presets-lint peerDependencies
 3. Включить Prettier
     - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
     - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
+
+## Релизы
+
+Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
+
+Выпуск новой версии происходит с помощью Github Actions, используйте джобу `Create new library package`. Для beta-версии используется ветка `beta`, для релизной - `master`.
 
 ## Лицензия
 
