@@ -28,7 +28,6 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-simple-import-sort": "^12.0.0",
         "eslint-plugin-unicorn": "^51.0.1",
-        "husky": "^4.3.8",
         "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
         "stylelint": "^16.3.1"
@@ -56,12 +55,12 @@
         "eslint-plugin-react-hooks": "4.6.0",
         "eslint-plugin-simple-import-sort": "12.0.0",
         "eslint-plugin-unicorn": "51.0.1",
-        "husky": "4.3.8",
         "kebab-case": "1.0.0",
         "lint-staged": "15.2.2",
         "prettier": "3.2.5",
         "react": "17.0.2",
         "semantic-release": "22.0.12",
+        "simple-git-hooks": "2.11.1",
         "stylelint": "16.3.1",
         "typescript": "5.4.4"
     },
@@ -82,11 +81,9 @@
             "yarn lint:css"
         ]
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn test",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
+    "simple-git-hooks": {
+        "pre-commit": "yarn test",
+        "commit-msg": "yarn commitlint --edit $1"
     },
     "prettier": "./prettier",
     "stylelint": {
