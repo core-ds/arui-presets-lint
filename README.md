@@ -69,20 +69,46 @@ yarn info arui-presets-lint peerDependencies
 
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
-## Конфигурация `husky` и `lint-staged`:
+## Конфигурация [lint-staged](https://github.com/lint-staged/lint-staged):
+
+```json
+{
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json}": ["prettier --write", "eslint"],
+        "*.css": ["prettier --write", "stylelint"],
+    }
+}
+```
+
+## Конфигурация [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+
+Для настройки git hooks рекомендуется использовать библиотеки [simple-git-hooks](https://github.com/toplenboren/simple-git-hooks), либо [husky@4](https://github.com/typicode/husky/tree/v4.3.8)
+
+
+### Пример конфигурации для simple-git-hooks:
+
+```json
+{
+    "simple-git-hooks": {
+        "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
+        "commit-msg": "yarn commitlint --edit $1"
+    },
+}
+
+```
+
+
+### Пример конфигурации для husky@4:
 
 ```json
 {
     "husky": {
         "hooks": {
-            "pre-commit": "tsc --noEmit && lint-staged",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+            "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
+            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
         }
     },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,json}": ["prettier --write", "eslint"],
-        "*.css": ["prettier --write", "stylelint"],
-    }
+
 }
 ```
 
