@@ -1,3 +1,14 @@
+# [7.2.0](https://github.com/core-ds/arui-presets-lint/compare/v7.1.1...v7.2.0) (2024-04-10)
+
+
+### Features
+
+* allow 7 version for typescript-eslint in peerdeps ([8f9c0cc](https://github.com/core-ds/arui-presets-lint/commit/8f9c0cca96c4e0771bb529747adeee54d65e3b7b))
+* bump dependencies ([0c86c4e](https://github.com/core-ds/arui-presets-lint/commit/0c86c4e79b9632114b10435fa77cd4fd81bd8b93))
+* bump yarn to 4.1.1 ([2f720c3](https://github.com/core-ds/arui-presets-lint/commit/2f720c3da0534c7ddfea95738ac1cf2bbe02ba7d))
+* **eslint:** set ecma version to 2022 for ts parser ([9ed55d6](https://github.com/core-ds/arui-presets-lint/commit/9ed55d6617b09d0cbb786758de8b4857c8cbac89))
+* replace husky 4 to simple-git-hooks ([91232d8](https://github.com/core-ds/arui-presets-lint/commit/91232d8d9c94733b8d474eef09138c9dd6e76363))
+
 ## [7.1.1](https://github.com/core-ds/arui-presets-lint/compare/v7.1.0...v7.1.1) (2024-02-28)
 
 
