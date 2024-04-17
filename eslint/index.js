@@ -129,7 +129,12 @@ module.exports = {
             'error',
             { devDependencies: ['**/*.{stories,test,tests,spec}.{js,jsx,ts,tsx}'] },
         ],
-        'import/no-cycle': 'off',
+        'import/no-cycle': [
+            'error',
+            {
+                ignoreExternal: true,
+            },
+        ],
         'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
