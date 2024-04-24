@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/core-ds/arui-presets-lint/compare/v7.2.0...v7.3.0) (2024-04-24)
+
+
+### Features
+
+* **no-cycle:** enable rule ([861aa71](https://github.com/core-ds/arui-presets-lint/commit/861aa71ae2b3b804489905c2a15e0619afbb5da3))
+
 # [7.2.0](https://github.com/core-ds/arui-presets-lint/compare/v7.1.1...v7.2.0) (2024-04-10)
 
 
