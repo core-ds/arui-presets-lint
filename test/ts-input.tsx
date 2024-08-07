@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { type FC } from 'react';
+
+import { type Product, SumTestFunc, type User } from './types';
 
 // This is the same as above, but with an extra parameter.
 // Note: to make this work though, we had to use an any. This
 // can be worked out by using a generic interface.
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type CheckImportType = Product & User;
+SumTestFunc();
 
 interface CacheHostGeneric<ContentType> {
     save: (a: ContentType) => void;
@@ -43,6 +49,6 @@ export enum STATUS {
     SUCCESS = '1',
 }
 
-const SomeComponent: React.FC<{ title?: string }> = (props) => <div>{props.title}</div>;
+const SomeComponent: FC<{ title?: string }> = (props) => <div>{props.title}</div>;
 
 export const Component = () => <SomeComponent title='Привет' />;

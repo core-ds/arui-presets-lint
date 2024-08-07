@@ -123,6 +123,19 @@ module.exports = {
             { functions: false, classes: true, variables: true },
         ],
         '@typescript-eslint/default-param-last': 'off',
+        '@typescript-eslint/consistent-type-imports': [
+            'error',
+            {
+                prefer: 'type-imports',
+                fixStyle: 'inline-type-imports',
+            },
+        ],
+        '@typescript-eslint/consistent-type-exports': [
+            'error',
+            {
+                fixMixedExportsWithInlineTypeSpecifier: true,
+            },
+        ],
 
         // Imports, file extensions
         'import/no-extraneous-dependencies': [
@@ -179,11 +192,44 @@ module.exports = {
         'no-restricted-imports': [
             'error',
             {
-                name: 'lodash',
-                message:
-                    'Please use single imports of lodash functions, e.g `import isEqual from "lodash/isEqual"` instead of `"import { isEqual } from "lodash"`',
+                paths: [
+                    {
+                        name: 'lodash',
+                        message:
+                            'Import specific parts of "lodash" explicitly, for example: `import isEqual from "lodash/isEqual"`. This will help ensure greater consistency in builds and make it easier to align versions across projects',
+                    },
+                ],
+                patterns: [
+                    {
+                        group: ['lodash.*'],
+                        message:
+                            'Import specific parts of "lodash" explicitly, for example: `import isEqual from "lodash/isEqual"`. This will help ensure greater consistency in builds and make it easier to align versions across projects',
+                    },
+                ],
             },
         ],
+        'no-restricted-syntax': [
+            'error',
+            {
+                selector: 'TSTypeReference[typeName.name="PropsWithChildren"]',
+                message:
+                    'Do not use "PropsWithChildren". Use explicit children typing instead, for example: "children?: ReactNode";',
+            },
+            {
+                selector: 'Literal[value=/.*(?:[a-zA-Z][а-яА-ЯёЁ]|[а-яА-ЯёЁ][a-zA-Z]).*/]',
+                message:
+                    'Detected mixed language layout within a single word. For example, "case" (first character in ru-encoding)',
+            },
+            {
+                // forbid React.* as they are legacy
+                selector:
+                    ':matches(MemberExpression[object.name="React"], TSQualifiedName[left.name="React"])',
+                message:
+                    'Using default React import is discouraged. Please use named exports directly instead, for example: "import { memo } from "react";',
+            },
+        ],
+        'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
+        'import/no-duplicates': ['error', { 'prefer-inline': true, considerQueryString: true }],
     },
     overrides: [
         {
