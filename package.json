@@ -67,8 +67,8 @@
     "scripts": {
         "precommit": "lint-staged",
         "test": "yarn lint:scripts && eslint-config-prettier ./eslint/index.js && yarn lint:css && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:css": "stylelint **/*.css",
-        "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
+        "lint:css": "stylelint '**/*.css'",
+        "lint:scripts": "eslint '**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
     },
     "lint-staged": {

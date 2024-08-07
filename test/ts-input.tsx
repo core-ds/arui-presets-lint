@@ -52,4 +52,3 @@ export enum STATUS {
 const SomeComponent: FC<{ title?: string }> = (props) => <div>{props.title}</div>;
 
 export const Component = () => <SomeComponent title='Привет' />;
-
