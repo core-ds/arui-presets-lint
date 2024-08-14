@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/core-ds/arui-presets-lint/compare/v7.3.0...v7.4.0) (2024-08-14)
+
+
+### Features
+
+* **eslint:** enabled consistent-type-imports, ban propsWithChildren and atomic lodash ([3b03627](https://github.com/core-ds/arui-presets-lint/commit/3b036274d8535840ce47083495fe90d30ef86d8a))
+
 # [7.3.0](https://github.com/core-ds/arui-presets-lint/compare/v7.2.0...v7.3.0) (2024-04-24)
 
 
