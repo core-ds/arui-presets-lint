@@ -4,7 +4,7 @@
 
 @custom-media --small-only screen and (max-width: 47.9375em);
 
-.superStyle {
+.super-style {
     display: flex;
 
     &__name {
