@@ -38,16 +38,6 @@ module.exports = {
         'unit-no-unknown': true,
         'no-duplicate-selectors': true,
         'declaration-block-no-duplicate-properties': true,
-        'selector-class-pattern': [
-            // '-' вне закона в css-классах
-            '^[^-]+$',
-            {
-                resolveNestedSelectors: true,
-                message:
-                    'Expected class selector to be camelCase (or, for corner cases, snake_case)',
-                severity: 'warning',
-            },
-        ],
 
         'stylelint-core-vars/use-vars': true,
         'stylelint-core-vars/use-mixins': true,
@@ -56,4 +46,21 @@ module.exports = {
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
     },
     plugins: [require.resolve('@alfalab/stylelint-core-vars')],
+    overrides: [
+        {
+            files: ['*.module.css'],
+            rules: {
+                'selector-class-pattern': [
+                    // Запрещаем использовать дефис '-'
+                    '^[^-]+$',
+                    {
+                        resolveNestedSelectors: true,
+                        message:
+                            'Expected class selector to be camelCase (or, for corner cases, snake_case)',
+                        severity: 'warning',
+                    },
+                ],
+            },
+        },
+    ],
 };

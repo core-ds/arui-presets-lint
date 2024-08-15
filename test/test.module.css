@@ -1,0 +1,7 @@
+.testClass {
+    margin: 0;
+
+    &_inner {
+        padding: 0;
+    }
+}
