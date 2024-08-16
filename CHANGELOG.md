@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/core-ds/arui-presets-lint/compare/v7.4.0...v7.5.0) (2024-08-16)
+
+
+### Features
+
+* **stylelint:** add stylelint duplications check ([cb95219](https://github.com/core-ds/arui-presets-lint/commit/cb9521959675c4fb5391cfa16811c134e092b95b))
+
 # [7.4.0](https://github.com/core-ds/arui-presets-lint/compare/v7.3.0...v7.4.0) (2024-08-14)
 
 
