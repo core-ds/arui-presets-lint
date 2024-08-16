@@ -36,6 +36,8 @@ module.exports = {
         'shorthand-property-no-redundant-values': true,
         'string-no-newline': true,
         'unit-no-unknown': true,
+        'no-duplicate-selectors': true,
+        'declaration-block-no-duplicate-properties': true,
 
         'stylelint-core-vars/use-vars': true,
         'stylelint-core-vars/use-mixins': true,
