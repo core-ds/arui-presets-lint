@@ -1,3 +1,15 @@
+# [7.6.0](https://github.com/core-ds/arui-presets-lint/compare/v7.5.0...v7.6.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* **stylelint:** rule for module only; ([1a73b15](https://github.com/core-ds/arui-presets-lint/commit/1a73b151ff0931cc2e0a3b7c806280f63edcbd9b))
+
+
+### Features
+
+* **stylelint:** add rule; selector-class-pattern ([26e3c55](https://github.com/core-ds/arui-presets-lint/commit/26e3c551a1ce68946bf6a6ffbf119c69d64e81b0))
+
 # [7.5.0](https://github.com/core-ds/arui-presets-lint/compare/v7.4.0...v7.5.0) (2024-08-16)
 
 
