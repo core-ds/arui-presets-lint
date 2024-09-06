@@ -37,7 +37,12 @@ module.exports = {
         'string-no-newline': true,
         'unit-no-unknown': true,
         'no-duplicate-selectors': true,
-        'declaration-block-no-duplicate-properties': true,
+        'declaration-block-no-duplicate-properties': [
+            true,
+            {
+                ignore: ['consecutive-duplicates-with-different-syntaxes'],
+            },
+        ],
 
         'stylelint-core-vars/use-vars': true,
         'stylelint-core-vars/use-mixins': true,
