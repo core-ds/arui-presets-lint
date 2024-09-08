@@ -1,3 +1,10 @@
+## [7.6.1](https://github.com/core-ds/arui-presets-lint/compare/v7.6.0...v7.6.1) (2024-09-08)
+
+
+### Bug Fixes
+
+* **stylelint:** allow duplicate properties with different syntaxes ([3e0e5af](https://github.com/core-ds/arui-presets-lint/commit/3e0e5af57c0d470ae3de7052078bb3ca6e67a309))
+
 # [7.6.0](https://github.com/core-ds/arui-presets-lint/compare/v7.5.0...v7.6.0) (2024-08-19)
 
 
