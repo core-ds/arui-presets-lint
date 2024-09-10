@@ -216,7 +216,7 @@ module.exports = {
                     'Do not use "PropsWithChildren". Use explicit children typing instead, for example: "children?: ReactNode";',
             },
             {
-                selector: 'Literal[value=/.*(?:[a-zA-Z][а-яА-ЯёЁ]|[а-яА-ЯёЁ][a-zA-Z]).*/]',
+                selector: 'Literal[value=/(?:[a-z][а-яё]|[а-яё][a-z])/i]',
                 message:
                     'Detected mixed language layout within a single word. For example, "case" (first character in ru-encoding)',
             },

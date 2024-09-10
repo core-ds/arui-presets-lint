@@ -1,3 +1,8 @@
+'нормальный case';
+
+// eslint-disable-next-line no-restricted-syntax
+'mixed сase';
+
 import React from 'react';
 
 definedAfterUsage();
