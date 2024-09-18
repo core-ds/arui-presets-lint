@@ -1,3 +1,10 @@
+## [7.6.2](https://github.com/core-ds/arui-presets-lint/compare/v7.6.1...v7.6.2) (2024-09-18)
+
+
+### Bug Fixes
+
+* **eslint:** optimize regex for mixed language rule ([7f021cb](https://github.com/core-ds/arui-presets-lint/commit/7f021cbd02bc69db9d28f68405edcdbd29abe850))
+
 ## [7.6.1](https://github.com/core-ds/arui-presets-lint/compare/v7.6.0...v7.6.1) (2024-09-08)
 
 
