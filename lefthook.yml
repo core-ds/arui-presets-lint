@@ -1,0 +1,10 @@
+# This configuration is only used for library development,
+# not included to the distribution
+
+extends:
+    - ./lefthook/index.yml
+pre-commit:
+    parallel: true
+    commands:
+        run-tests:
+            run: yarn test
