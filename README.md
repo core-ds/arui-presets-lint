@@ -16,21 +16,15 @@
 
 ## Установка и обновление
 
-Для установки всех зависимостей проекта рекомендуется использовать [install-peerdeps](https://github.com/nathanhleung/install-peerdeps)
+Установить библиотеку в проект нужно как dev dependency:
 
-```sh
-npx install-peerdeps --dev arui-presets-lint
+```bash
+    yarn add -D arui-presets-lint
 ```
 
-Так же вы можете поставить все необходимые peerDependencies вручную. Для этого узнайте требуемые версии с помощью команды
+> ⚠️ С версии 8.0.0 библиотеке более не требуется установка peer dependency [подробнее](./V8_MIGRATION_GUIDE.md)
 
-```sh
-yarn info arui-presets-lint peerDependencies
-```
-
-И добавьте их себе в проект как dev зависимости.
-
-> ⚠️ Нужно производить процедуру установки peer dependencies при каждом обновлении библиотеки
+Далее произвести следующие настройки:
 
 ## Конфигурация всех линтеров через `package.json`:
 
