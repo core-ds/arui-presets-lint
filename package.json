@@ -32,18 +32,17 @@
         "node": ">=18.12.0"
     },
     "devDependencies": {
-        "@alfalab/core-components": "45.0.0",
+        "@alfalab/core-components": "47.20.0",
         "@semantic-release/changelog": "6.0.3",
         "@semantic-release/commit-analyzer": "11.1.0",
         "@semantic-release/git": "10.0.1",
         "@semantic-release/github": "9.2.6",
         "@semantic-release/npm": "11.0.2",
         "@semantic-release/release-notes-generator": "12.1.0",
-        "@types/eslint-plugin-jsx-a11y": "^6",
-        "react": "17.0.2",
+        "react": "18.3.1",
         "semantic-release": "22.0.12",
         "simple-git-hooks": "2.11.1",
-        "typescript": "5.4.4"
+        "typescript": "5.5.4"
     },
     "scripts": {
         "precommit": "lint-staged",
