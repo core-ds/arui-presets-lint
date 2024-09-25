@@ -49,8 +49,36 @@ module.exports = {
         'stylelint-core-vars/use-one-of-vars': [true, { severity: 'warning' }],
         'stylelint-core-vars/use-one-of-mixins': [true, { severity: 'warning' }],
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
+        'order/properties-order': ['position', 'z-index', 'top', 'right', 'bottom', 'left'],
+        'order/order': [
+            'declarations',
+            {
+                type: 'at-rule',
+                name: 'media',
+            },
+            {
+                type: 'rule',
+                selector: '^&::(before|after)',
+            },
+            {
+                type: 'rule',
+                selector: '^&:\\w',
+            },
+            {
+                type: 'rule',
+                selector: '^&_',
+            },
+            {
+                type: 'rule',
+                selector: '^.',
+            },
+        ],
     },
-    plugins: [require.resolve('@alfalab/stylelint-core-vars')],
+    plugins: [
+        require.resolve('@alfalab/stylelint-core-vars'),
+        require.resolve('stylelint-order'),
+        require.resolve('stylelint-prettier'),
+    ],
     overrides: [
         {
             files: ['*.module.css'],
