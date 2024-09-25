@@ -4419,6 +4419,7 @@ __metadata:
     prettier: "npm:3.8.1"
     react: "npm:18.3.1"
     stylelint: "npm:16.26.1"
+    stylelint-order: "npm:7.0.1"
     tsx: "npm:4.21.0"
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.54.0"
@@ -8500,6 +8501,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-sorting@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "postcss-sorting@npm:9.1.0"
+  peerDependencies:
+    postcss: ^8.4.20
+  checksum: 10c0/1faea84bf00d85929228d297587798fa9c384a02966a28a942777b2de553a8186087cfdcd0aca3dd40e4b2793aee050792d807458db8cf4880867c98c7bf22fd
+  languageName: node
+  linkType: hard
+
 "postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
@@ -9546,6 +9556,18 @@ __metadata:
   dependencies:
     inline-style-parser: "npm:0.1.1"
   checksum: 10c0/afe9b96ba077a9068baf8887091870f50298157c0ebf5378151792cf2a2ce084fec9b34fc544da0d9f8e6c22ca0c9e23aa6f075bb8eb051aa1d64363e9987600
+  languageName: node
+  linkType: hard
+
+"stylelint-order@npm:7.0.1":
+  version: 7.0.1
+  resolution: "stylelint-order@npm:7.0.1"
+  dependencies:
+    postcss: "npm:^8.5.6"
+    postcss-sorting: "npm:^9.1.0"
+  peerDependencies:
+    stylelint: ^16.18.0 || ^17.0.0
+  checksum: 10c0/dfe3ab8f18725c9c2fead65f2940a6590208591ca267da6d25ee191c6e5f1df04813a6f6a76791bfe5f6fda33fbf6d81369c17c71831bfbd6802dfed26559845
   languageName: node
   linkType: hard
 
