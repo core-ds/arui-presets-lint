@@ -6,6 +6,17 @@
 
 .super-style {
     display: flex;
+    position: relative;
+    z-index: 1;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+
+    @media (--small-only) {
+        & + & {
+            margin-top: var(--gap-40);
+        }
+    }
 
     &__name {
         color: var(--red);
@@ -18,11 +29,5 @@
             var(--color-black-10) 95%,
             var(--color-light-specialbg-nulled) 100%
         );
-    }
-
-    @media (--small-only) {
-        & + & {
-            margin-top: var(--gap-40);
-        }
     }
 }
