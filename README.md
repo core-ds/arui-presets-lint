@@ -48,10 +48,10 @@
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint **/*.css",
-        "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\"",
+        "lint": "arui-presets-lint lint",
+        "lint:fix": "arui-presets-lint fix",
+        "lint:css": "arui-presets-lint css",
+        "lint:scripts": "arui-presets-lint scripts",
     }
 }
 ```
@@ -65,13 +65,9 @@
 
 ## Конфигурация [lint-staged](https://github.com/lint-staged/lint-staged):
 
-```json
-{
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,json}": ["prettier --write", "eslint"],
-        "*.css": ["prettier --write", "stylelint"],
-    }
-}
+.lintstagedrc.js
+```js
+export default 'arui-presets-lint/lint-staged'
 ```
 
 ## Конфигурация [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
@@ -81,29 +77,17 @@
 
 ### Пример конфигурации для simple-git-hooks:
 
-```json
-{
-    "simple-git-hooks": {
-        "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
-        "commit-msg": "yarn commitlint --edit $1"
-    },
-}
-
+.simple-git-hooks.js
+```js
+module.exports = require('arui-presets-lint/hooks/simple-git-hooks');
 ```
 
 
 ### Пример конфигурации для husky@4:
 
-```json
-{
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
-            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
-
-}
+.huskyrc.js
+```js
+module.exports = require('arui-presets-lint/hooks/husky');
 ```
 
 ## Настройка IDE:
