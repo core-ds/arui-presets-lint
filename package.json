@@ -47,11 +47,11 @@
         "typescript": "5.5.4"
     },
     "scripts": {
-        "precommit": "lint-staged",
+        "precommit": "node ./cli/index.mjs stage",
         "test": "yarn lint:scripts && eslint-config-prettier ./eslint/index.js && yarn lint:css && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
         "lint:css": "node ./cli/index.mjs css",
         "lint:scripts": "node ./cli/index.mjs scripts",
-        "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
+        "lint:fix": "node ./cli/index.mjs fix"
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx,json}": [
