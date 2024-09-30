@@ -1,3 +1,19 @@
+# [8.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v7.6.2...v8.0.0-beta.1) (2024-09-30)
+
+
+### Features
+
+* bump react, typescript and core-components in dev dependency ([33e7f7c](https://github.com/core-ds/arui-presets-lint/commit/33e7f7c3544e72c755a2b2074cd402afaef3cc36))
+* cli ([fc82204](https://github.com/core-ds/arui-presets-lint/commit/fc822047297ac01233f8149b29898f9d5bacaec9))
+* cli2 ([dc6f982](https://github.com/core-ds/arui-presets-lint/commit/dc6f982a1e010f8245aabc995e3c7173e4d5701e))
+* remove all peerdeps ([f84a072](https://github.com/core-ds/arui-presets-lint/commit/f84a07240e2dfd7e161b4d208c5dcd0058043df5))
+* update yarn to 4.5.0 ([feba0f2](https://github.com/core-ds/arui-presets-lint/commit/feba0f25164ca17ec1842573b89d93874ff242c8))
+
+
+### BREAKING CHANGES
+
+* peer dependencies no longer supported
+
 ## [7.6.2](https://github.com/core-ds/arui-presets-lint/compare/v7.6.1...v7.6.2) (2024-09-18)
 
 
