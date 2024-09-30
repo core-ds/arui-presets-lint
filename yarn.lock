@@ -1927,6 +1927,8 @@ __metadata:
     simple-git-hooks: "npm:2.11.1"
     stylelint: "npm:16.9.0"
     typescript: "npm:5.5.4"
+  bin:
+    arui-presets-lint: ./cli/index.mjs
   languageName: unknown
   linkType: soft
 
