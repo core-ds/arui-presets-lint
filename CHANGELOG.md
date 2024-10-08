@@ -1,3 +1,10 @@
+# [8.0.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.1...v8.0.0-beta.2) (2024-10-08)
+
+
+### Features
+
+* cli4 ([556c274](https://github.com/core-ds/arui-presets-lint/commit/556c274d764dc6936d4da5379bc637fe2b04bd9c))
+
 # [8.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v7.6.2...v8.0.0-beta.1) (2024-10-08)
 
 
