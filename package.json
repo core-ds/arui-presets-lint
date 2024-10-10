@@ -30,7 +30,11 @@
         "eslint-plugin-unicorn": "^51.0.1",
         "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
-        "stylelint": "^16.3.1"
+        "stylelint": "^16.3.1",
+        "stylelint-config-prettier": "*",
+        "stylelint-config-recommended": "*",
+        "stylelint-order": "*",
+        "stylelint-prettier": "*"
     },
     "devDependencies": {
         "@alfalab/core-components": "45.0.0",
@@ -62,6 +66,10 @@
         "semantic-release": "22.0.12",
         "simple-git-hooks": "2.11.1",
         "stylelint": "16.3.1",
+        "stylelint-config-prettier": "9.0.5",
+        "stylelint-config-recommended": "14.0.1",
+        "stylelint-order": "6.0.4",
+        "stylelint-prettier": "5.0.2",
         "typescript": "5.4.4"
     },
     "scripts": {
