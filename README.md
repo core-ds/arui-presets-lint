@@ -26,7 +26,7 @@
 
 Далее произвести следующие настройки:
 
-## Конфигурация всех линтеров через `package.json`:
+## Подключение конфигов через `package.json`:
 
 ```json
 {
@@ -43,15 +43,15 @@
 }
 ```
 
-## Конфигурация скриптов для запуска линтеров и форматтера в `package.json`:
+## Конфигурация скриптов для запуска в `package.json`:
 
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint **/*.css",
-        "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\"",
+        "lint:css": "arui-presets-lint css",
+        "lint:scripts": "arui-presets-lint scripts",
+        "lint": "arui-presets-lint lint",
+        "lint:fix": "arui-presets-lint fix",
     }
 }
 ```
@@ -59,51 +59,15 @@
 Если eslint/stylelint/prettier затрагивают файлы, над которыми вы не имеете контроль, вы можете исключить
 их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file) / [.stylelintignore](https://stylelint.io/user-guide/ignore-code/#files-entirely) / [.prettierignore](https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore)
 
-> ⚠️ Внимание, .eslintignore [по умолчанию не подтягиватся в lint-staged](https://github.com/okonet/lint-staged#how-can-i-ignore-files-from-eslintignore)!
-
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
-## Конфигурация [lint-staged](https://github.com/lint-staged/lint-staged):
-
-```json
-{
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,json}": ["prettier --write", "eslint"],
-        "*.css": ["prettier --write", "stylelint"],
-    }
-}
 ```
 
-## Конфигурация [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+## Конфигурация [lefthook](https://github.com/evilmartians/lefthook)
 
-Для настройки git hooks рекомендуется использовать библиотеки [simple-git-hooks](https://github.com/toplenboren/simple-git-hooks), либо [husky@4](https://github.com/typicode/husky/tree/v4.3.8)
-
-
-### Пример конфигурации для simple-git-hooks:
-
-```json
-{
-    "simple-git-hooks": {
-        "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
-        "commit-msg": "yarn commitlint --edit $1"
-    },
-}
-
-```
-
-
-### Пример конфигурации для husky@4:
-
-```json
-{
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
-            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
-
-}
+```yaml
+extends:
+    - arui-presets-lint/lefthook/index.yml
 ```
 
 ## Настройка IDE:
