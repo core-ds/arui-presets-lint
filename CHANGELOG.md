@@ -1,3 +1,10 @@
+# [8.0.0-beta.3](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.2...v8.0.0-beta.3) (2024-10-22)
+
+
+### Features
+
+* skip changelog in BETA 2 ([419d28a](https://github.com/core-ds/arui-presets-lint/commit/419d28a92838a8c652a1c2050516f267fee880ec))
+
 # [8.0.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.1...v8.0.0-beta.2) (2024-10-22)
 
 
