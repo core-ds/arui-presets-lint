@@ -26,7 +26,7 @@
 
 Далее произвести следующие настройки:
 
-## Конфигурация всех линтеров через `package.json`:
+## Подключение конфигов через `package.json`:
 
 ```json
 {
@@ -43,68 +43,56 @@
 }
 ```
 
-## Конфигурация скриптов для запуска линтеров и форматтера в `package.json`:
+## Конфигурация скриптов для запуска в `package.json`:
 
 ```json
 {
     "scripts": {
-        "lint:css": "stylelint **/*.css",
-        "lint:scripts": "eslint \"**/*.{js,jsx,ts,tsx}\" --ext .js,.jsx,.ts,.tsx",
-        "lint": "yarn lint:css && yarn lint:scripts && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:fix": "yarn lint:scripts --fix && yarn lint:css --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\"",
+        "lint:css": "arui-presets-lint css",
+        "lint:scripts": "arui-presets-lint scripts",
+        "lint": "arui-presets-lint lint",
+        "lint:fix": "arui-presets-lint fix",
     }
 }
 ```
 
-Если eslint/stylelint/prettier затрагивают файлы, над которыми вы не имеете контроль, вы можете исключить
-их с помощью [.eslintignore](https://eslint.org/docs/latest/user-guide/configuring/ignoring-code#the-eslintignore-file) / [.stylelintignore](https://stylelint.io/user-guide/ignore-code/#files-entirely) / [.prettierignore](https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore)
+## Конфигурация [lefthook](https://github.com/evilmartians/lefthook)
 
-> ⚠️ Внимание, .eslintignore [по умолчанию не подтягиватся в lint-staged](https://github.com/okonet/lint-staged#how-can-i-ignore-files-from-eslintignore)!
+При установке библиотеки в корне проекта создался файл lefthook.yml,
+он должен содержать следующее:
+
+```yaml
+extends:
+    - ./node_modules/arui-presets-lint/lefthook/index.yml
+```
+
+Чтобы eslint / stylelint / prettier не проверял файлы, которые не находятся в .gitignore, вы можете исключить
+их с помощью .eslintignore / .stylelintignore / prettierignore. Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
-## Конфигурация [lint-staged](https://github.com/lint-staged/lint-staged):
-
+Пример такой конфигурации:
 ```json
 {
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,json}": ["prettier --write", "eslint"],
-        "*.css": ["prettier --write", "stylelint"],
+    "scripts": {
+        "lint:css": "arui-presets-lint css --max-warnings=0",
+        "lint:scripts": "arui-presets-lint scripts --max-warnings=0",
     }
 }
 ```
 
-## Конфигурация [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+## CLI
 
-Для настройки git hooks рекомендуется использовать библиотеки [simple-git-hooks](https://github.com/toplenboren/simple-git-hooks), либо [husky@4](https://github.com/typicode/husky/tree/v4.3.8)
+Так как yarn berry не поддерживает возможность запускать бинарные файлы, которые не установлены как прямые зависимости, существует возможность это сделать через CLI библиотеки, например:
 
+```sh
+yarn arui-presets-lint run lefthook install
 
-### Пример конфигурации для simple-git-hooks:
-
-```json
-{
-    "simple-git-hooks": {
-        "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
-        "commit-msg": "yarn commitlint --edit $1"
-    },
-}
-
+yarn arui-presets-lint run prettier --write
 ```
 
-
-### Пример конфигурации для husky@4:
-
-```json
-{
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn tsc --noEmit && yarn lint-staged",
-            "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
-
-}
-```
+- что примерно равно поведению при запуске бинарника через команду `npx --no-install ...`
+Таким образом можно гибко настраивать поведение линтеров для вашего проекта, если по какой-то причине стандартная конфигурация вам не подходит.
 
 ## Настройка IDE:
 
