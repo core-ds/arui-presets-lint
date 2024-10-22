@@ -9,6 +9,7 @@ yarn-error.log
 coverage/
 test-results.xml
 package-lock.json
+.eslintcache
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -16,3 +17,4 @@ package-lock.json
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+

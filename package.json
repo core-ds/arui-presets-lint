@@ -4,6 +4,7 @@
     "description": "Config files for arui-apps",
     "author": "core-ds contributors",
     "license": "MIT",
+    "bin": "./cli/index.mjs",
     "dependencies": {
         "@alfalab/stylelint-core-vars": "1.6.0",
         "@commitlint/cli": "18.4.4",
@@ -23,6 +24,7 @@
         "eslint-plugin-react-hooks": "4.6.2",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "eslint-plugin-unicorn": "55.0.0",
+        "execa": "9.4.1",
         "kebab-case": "1.0.0",
         "lint-staged": "15.2.10",
         "prettier": "3.3.3",
@@ -45,11 +47,11 @@
         "typescript": "5.5.4"
     },
     "scripts": {
-        "precommit": "lint-staged",
         "test": "yarn lint:scripts && eslint-config-prettier ./eslint/index.js && yarn lint:css && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:css": "stylelint '**/*.css'",
-        "lint:scripts": "eslint '**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx",
-        "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
+        "lint:css": "node ./cli/index.mjs css",
+        "lint:scripts": "node ./cli/index.mjs scripts",
+        "lint": "node ./cli/index.mjs lint",
+        "lint:fix": "node ./cli/index.mjs fix"
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx,json}": [
