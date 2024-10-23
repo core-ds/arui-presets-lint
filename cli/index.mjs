@@ -2,7 +2,7 @@
 
 import { execaCommand } from 'execa';
 
-const prettierParams = '"./**/*.{ts,tsx,js,jsx,css,json}" --no-error-on-unmatched-pattern';
+const prettierParams = '"./**/*.{ts,tsx,js,jsx,css,json}" --no-error-on-unmatched-pattern --cache';
 
 const commandsMap = {
     lint: `yarn lint:css && yarn lint:scripts && prettier --check ${prettierParams}`,
