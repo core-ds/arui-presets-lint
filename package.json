@@ -4,86 +4,53 @@
     "description": "Config files for arui-apps",
     "author": "core-ds contributors",
     "license": "MIT",
+    "bin": "./cli/index.mjs",
     "dependencies": {
         "@alfalab/stylelint-core-vars": "1.6.0",
         "@commitlint/cli": "18.4.4",
-        "@commitlint/config-conventional": "18.4.4"
+        "@commitlint/config-conventional": "18.4.4",
+        "@typescript-eslint/eslint-plugin": "7.18.0",
+        "@typescript-eslint/parser": "7.18.0",
+        "eslint": "8.57.0",
+        "eslint-config-airbnb": "19.0.4",
+        "eslint-config-airbnb-typescript": "18.0.0",
+        "eslint-config-prettier": "9.1.0",
+        "eslint-import-resolver-typescript": "3.6.3",
+        "eslint-plugin-cypress": "3.5.0",
+        "eslint-plugin-dirnames": "1.0.3",
+        "eslint-plugin-import": "2.30.0",
+        "eslint-plugin-jsx-a11y": "6.10.0",
+        "eslint-plugin-react": "7.36.1",
+        "eslint-plugin-react-hooks": "4.6.2",
+        "eslint-plugin-simple-import-sort": "12.1.1",
+        "eslint-plugin-unicorn": "55.0.0",
+        "execa": "9.4.1",
+        "kebab-case": "1.0.0",
+        "lefthook": "1.8.0",
+        "prettier": "3.3.3",
+        "stylelint": "16.10.0"
     },
     "engines": {
         "node": ">=18.12.0"
     },
-    "peerDependencies": {
-        "@typescript-eslint/eslint-plugin": ">=6.21.0",
-        "@typescript-eslint/parser": ">=6.21.0",
-        "eslint": "^8.57.0",
-        "eslint-config-airbnb": "^19.0.4",
-        "eslint-config-airbnb-typescript": ">=17.1.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-import-resolver-typescript": "^3.6.1",
-        "eslint-plugin-cypress": "^2.15.1",
-        "eslint-plugin-dirnames": "^1.0.3",
-        "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-jsx-a11y": "^6.8.0",
-        "eslint-plugin-react": "^7.34.1",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-simple-import-sort": "^12.0.0",
-        "eslint-plugin-unicorn": "^51.0.1",
-        "lint-staged": "^15.2.2",
-        "prettier": "^3.2.5",
-        "stylelint": "^16.3.1"
-    },
     "devDependencies": {
-        "@alfalab/core-components": "45.0.0",
+        "@alfalab/core-components": "47.20.0",
         "@semantic-release/changelog": "6.0.3",
         "@semantic-release/commit-analyzer": "11.1.0",
         "@semantic-release/git": "10.0.1",
         "@semantic-release/github": "9.2.6",
         "@semantic-release/npm": "11.0.2",
         "@semantic-release/release-notes-generator": "12.1.0",
-        "@typescript-eslint/eslint-plugin": "7.4.0",
-        "@typescript-eslint/parser": "7.4.0",
-        "eslint": "8.57.0",
-        "eslint-config-airbnb": "19.0.4",
-        "eslint-config-airbnb-typescript": "18.0.0",
-        "eslint-config-prettier": "9.1.0",
-        "eslint-import-resolver-typescript": "3.6.1",
-        "eslint-plugin-cypress": "2.15.1",
-        "eslint-plugin-dirnames": "1.0.3",
-        "eslint-plugin-import": "2.29.1",
-        "eslint-plugin-jsx-a11y": "6.8.0",
-        "eslint-plugin-react": "7.34.1",
-        "eslint-plugin-react-hooks": "4.6.0",
-        "eslint-plugin-simple-import-sort": "12.0.0",
-        "eslint-plugin-unicorn": "51.0.1",
-        "kebab-case": "1.0.0",
-        "lint-staged": "15.2.2",
-        "prettier": "3.2.5",
-        "react": "17.0.2",
+        "react": "18.3.1",
         "semantic-release": "22.0.12",
-        "simple-git-hooks": "2.11.1",
-        "stylelint": "16.3.1",
-        "typescript": "5.4.4"
+        "typescript": "5.5.4"
     },
     "scripts": {
-        "precommit": "lint-staged",
         "test": "yarn lint:scripts && eslint-config-prettier ./eslint/index.js && yarn lint:css && prettier --check \"./**/*.{ts,tsx,js,jsx,css,json}\"",
-        "lint:css": "stylelint '**/*.css'",
-        "lint:scripts": "eslint '**/*.{js,jsx,ts,tsx}' --ext .js,.jsx,.ts,.tsx",
-        "lint:fix": "yarn lint:css --fix && yarn lint:scripts --fix && prettier --write \"./**/*.{ts,tsx,js,jsx,css,json}\""
-    },
-    "lint-staged": {
-        "**/*.{js,jsx,ts,tsx,json}": [
-            "prettier --write",
-            "eslint --fix --max-warnings=0"
-        ],
-        "stylelint/*.js": [
-            "prettier --write",
-            "yarn lint:css"
-        ]
-    },
-    "simple-git-hooks": {
-        "pre-commit": "yarn test",
-        "commit-msg": "yarn commitlint --edit $1"
+        "lint:css": "node ./cli/index.mjs css",
+        "lint:scripts": "node ./cli/index.mjs scripts",
+        "lint": "node ./cli/index.mjs lint",
+        "lint:fix": "node ./cli/index.mjs fix"
     },
     "prettier": "./prettier",
     "stylelint": {
@@ -105,5 +72,5 @@
     "commitlint": {
         "extends": "./commitlint"
     },
-    "packageManager": "yarn@4.1.1"
+    "packageManager": "yarn@4.5.1"
 }

@@ -1,0 +1,11 @@
+extends:
+    - ./lefthook/index.yml
+pre-commit:
+    parallel: true
+    commands:
+        js:
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts}'
+            run: yarn prettier --write {staged_files} && yarn eslint --fix --max-warnings=0 {staged_files} && git add {staged_files}
+        css:
+            glob: 'stylelint/*.js'
+            run: yarn prettier --write {staged_files} && yarn lint:css && git add {staged_files}
