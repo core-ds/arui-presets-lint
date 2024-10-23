@@ -1,3 +1,10 @@
+# [8.0.0-beta.6](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.5...v8.0.0-beta.6) (2024-10-23)
+
+
+### Features
+
+* move eslint and stylelint caches to node_modules/.cache ([eea13fe](https://github.com/core-ds/arui-presets-lint/commit/eea13feaac527eed678a1e43ebbb232893fa63f8))
+
 # [8.0.0-beta.5](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.4...v8.0.0-beta.5) (2024-10-23)
 
 
