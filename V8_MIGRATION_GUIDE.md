@@ -14,28 +14,23 @@ yarn remove eslint eslint-config-airbnb eslint-config-airbnb-typescript eslint-c
 ```
 -- отмечу, что никаких зависимостей с плагинами stylelint/eslint в проекте быть не должно, кроме тех, которые использует ваш локальный конфиг
 
-2. Добавить в конец .gitignore строчки:
-```
-    .eslintcache
-    .stylelintcache
-```
+2. Удалить конфигурации husky и lint-staged (могут находится в .husky, .huskyrc.js, package.json.husky, .lintstagedrc.js, package.json.lint-staged, итп)
 
-3. Удалить конфигурации husky и lint-staged (могут находится в .husky, .huskyrc.js, package.json.husky, .lintstagedrc.js, package.json.lint-staged, итп)
-
-4. Добавить в lefthook.yml следующее:
+3. Добавить в lefthook.yml следующее:
 ```yaml
 extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 ```
-[документация](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
 
-5. Выполнить следующую команду:
+Те команды которые присутствуют в вашем текущем lint-staged/husky конфиге, но отсутствуют в конфиге, который поставляет библиотека вы можете дописать в lefthook.yml, подробно - в[документации](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
+
+4. Выполнить следующую команду:
 ```
 yarn arui-presets-lint run lefthook install
 ```
 чтобы установить новую конфигурацию githook. Отмечу, что в библиотеке lefthook есть postinstall скрипт, который это делает автоматически.
 
-6. Поменять команды для запуска в package.json.scripts, они должны выглядить следующим образом:
+5. Поменять команды для запуска в package.json.scripts, они должны выглядить следующим образом:
 
 ```json
 {
@@ -49,7 +44,7 @@ yarn arui-presets-lint run lefthook install
 ```
 Команда 'format', если она использовась ранее, больше не нужна - ```lint:fix``` запускает по очереди stylelint, eslint и prettier в режиме автофикса
 
-7. Выполнить команду ```yarn lint:fix```, и исправить возникающие ошибки
+6. Выполнить команду ```yarn lint:fix```, и исправить возникающие ошибки
 
 ## Возможные проблемы и способы их решения:
 
