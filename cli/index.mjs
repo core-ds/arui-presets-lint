@@ -7,9 +7,9 @@ const prettierParams = '"./**/*.{ts,tsx,js,jsx,css,json}" --no-error-on-unmatche
 const commandsMap = {
     lint: `yarn lint:css && yarn lint:scripts && prettier --check ${prettierParams}`,
     fix: `yarn lint:css --fix && yarn lint:scripts --fix && prettier --write ${prettierParams}`,
-    css: 'stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache',
+    css: 'stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"',
     scripts:
-        'eslint "**/*.{js,jsx,ts,tsx}" --ext .js,.jsx,.ts,.tsx --ignore-pattern=.gitignore,.eslintignore --cache',
+        'eslint "**/*.{js,jsx,ts,tsx}" --ext .js,.jsx,.ts,.tsx --ignore-pattern=.gitignore,.eslintignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"',
     run: (...args) => args.join(' '),
 };
 

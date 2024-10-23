@@ -9,8 +9,6 @@ yarn-error.log
 coverage/
 test-results.xml
 package-lock.json
-.eslintcache
-.stylelintcache
 .pnp.*
 .yarn/*
 !.yarn/patches
