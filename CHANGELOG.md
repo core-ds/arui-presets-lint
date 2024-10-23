@@ -1,3 +1,10 @@
+# [8.0.0-beta.5](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.4...v8.0.0-beta.5) (2024-10-23)
+
+
+### Features
+
+* **prettier:** enable cache for prettier ([1fe90e2](https://github.com/core-ds/arui-presets-lint/commit/1fe90e2e1b4596794f6a65f235c9e55a86decd47))
+
 # [8.0.0-beta.4](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.3...v8.0.0-beta.4) (2024-10-23)
 
 
