@@ -1,3 +1,10 @@
+# [8.0.0-beta.4](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.3...v8.0.0-beta.4) (2024-10-23)
+
+
+### Features
+
+* **stylelint:** enable stylelintcache ([8b9a44a](https://github.com/core-ds/arui-presets-lint/commit/8b9a44a3a049de9d3b2073c1b7648c964f377c80))
+
 # [8.0.0-beta.3](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.2...v8.0.0-beta.3) (2024-10-22)
 
 
