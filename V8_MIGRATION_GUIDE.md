@@ -14,9 +14,10 @@ yarn remove eslint eslint-config-airbnb eslint-config-airbnb-typescript eslint-c
 ```
 -- отмечу, что никаких зависимостей с плагинами stylelint/eslint в проекте быть не должно, кроме тех, которые использует ваш локальный конфиг
 
-2. Добавить в конец .gitignore строчку:
+2. Добавить в конец .gitignore строчки:
 ```
     .eslintcache
+    .stylelintcache
 ```
 
 3. Удалить конфигурации husky и lint-staged (могут находится в .husky, .huskyrc.js, package.json.husky, .lintstagedrc.js, package.json.lint-staged, итп)
@@ -34,7 +35,7 @@ yarn arui-presets-lint run lefthook install
 ```
 чтобы установить новую конфигурацию githook. Отмечу, что в библиотеке lefthook есть postinstall скрипт, который это делает автоматически.
 
-1. Поменять команды для запуска в package.json.scripts, они должны выглядить следующим образом:
+6. Поменять команды для запуска в package.json.scripts, они должны выглядить следующим образом:
 
 ```json
 {
