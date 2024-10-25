@@ -1,3 +1,10 @@
+# [8.0.0-beta.8](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.7...v8.0.0-beta.8) (2024-10-25)
+
+
+### Features
+
+* change cli api, enable cache for pre-commit, remove pre-push from common lefthook config ([6761ba1](https://github.com/core-ds/arui-presets-lint/commit/6761ba1b3f6bf81216b66ff5550b6b278bc6a758))
+
 # [8.0.0-beta.7](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.6...v8.0.0-beta.7) (2024-10-25)
 
 
