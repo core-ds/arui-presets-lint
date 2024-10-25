@@ -1,3 +1,10 @@
+# [8.0.0-beta.7](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.6...v8.0.0-beta.7) (2024-10-25)
+
+
+### Features
+
+* change lefthook to prebundled binaries version ([00807c3](https://github.com/core-ds/arui-presets-lint/commit/00807c38e024fd77681d61800b9b9638a07a6478))
+
 # [8.0.0-beta.6](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.5...v8.0.0-beta.6) (2024-10-23)
 
 
