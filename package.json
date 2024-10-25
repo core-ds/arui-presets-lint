@@ -9,6 +9,7 @@
         "@alfalab/stylelint-core-vars": "1.6.0",
         "@commitlint/cli": "18.4.4",
         "@commitlint/config-conventional": "18.4.4",
+        "@evilmartians/lefthook": "1.8.1",
         "@typescript-eslint/eslint-plugin": "7.18.0",
         "@typescript-eslint/parser": "7.18.0",
         "eslint": "8.57.0",
@@ -26,7 +27,6 @@
         "eslint-plugin-unicorn": "55.0.0",
         "execa": "9.4.1",
         "kebab-case": "1.0.0",
-        "lefthook": "1.8.0",
         "prettier": "3.3.3",
         "stylelint": "16.10.0"
     },
