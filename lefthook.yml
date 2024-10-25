@@ -1,5 +1,10 @@
 extends:
     - ./lefthook/index.yml
+pre-push:
+    parallel: true
+    commands:
+        lint:
+            run: yarn lint
 pre-commit:
     parallel: true
     commands:

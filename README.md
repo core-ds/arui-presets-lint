@@ -18,7 +18,7 @@
 
 Установить библиотеку в проект нужно как dev dependency:
 
-```bash
+```sh
     yarn add -D arui-presets-lint
 ```
 
@@ -48,15 +48,17 @@
 ```json
 {
     "scripts": {
-        "lint:css": "arui-presets-lint css",
+        "lint:styles": "arui-presets-lint styles",
         "lint:scripts": "arui-presets-lint scripts",
-        "lint": "arui-presets-lint lint",
-        "lint:fix": "arui-presets-lint fix",
+        "format": "arui-presets-lint format",
+        "format:check": "arui-presets-lint format:check",
+        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts && yarn format"
     }
 }
 ```
 
-## Конфигурация [lefthook](https://github.com/evilmartians/lefthook)
+## Настройка [lefthook](https://github.com/evilmartians/lefthook)
 
 При установке библиотеки в корне проекта создался файл lefthook.yml,
 он должен содержать следующее:
@@ -66,8 +68,9 @@ extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 ```
 
-Чтобы eslint / stylelint / prettier не проверял файлы, которые не находятся в .gitignore, вы можете исключить
-их с помощью .eslintignore / .stylelintignore / prettierignore. Прописывать там файлы, которые уже есть в .gitignore не требуется!
+Этот конфиг можно расширить специфичными для вашего проекта настройками, см. [документацию](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
+
+Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore. Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
@@ -75,24 +78,49 @@ extends:
 ```json
 {
     "scripts": {
-        "lint:css": "arui-presets-lint css --max-warnings=0",
+        "lint:styles": "arui-presets-lint styles --max-warnings=0",
         "lint:scripts": "arui-presets-lint scripts --max-warnings=0",
+        ...
     }
 }
 ```
 
-## CLI
+## Гибкая конфигурация
 
-Так как yarn berry не поддерживает возможность запускать бинарные файлы, которые не установлены как прямые зависимости, существует возможность это сделать через CLI библиотеки, например:
+Так как `yarn run` в yarn 2+ не поддерживает возможность запускать бинарные файлы, которые не установлены как прямые зависимости, а `yarn dlx` не умеет запускать бинарники без скачивания его из npm, существует возможность это сделать через вызов `npx --no-install ...`:
 
 ```sh
-yarn arui-presets-lint run lefthook install
+# Применить конфигурацию lefthook:
+npx --no-install lefthook install
 
-yarn arui-presets-lint run prettier --write
+# Вызов prettier, для того чтобы отформатировать только js и jsx файлы:
+npx --no-install prettier --write "./**/*.{js,jsx}" --no-error-on-unmatched-pattern --cache
+
+# Вызов eslint, для того чтобы проверить только js и jsx файлы:
+npx --no-install eslint "**/*.{js,jsx}" --ext .js,.jsx --ignore-pattern=.gitignore,.eslintignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"
 ```
 
-- что примерно равно поведению при запуске бинарника через команду `npx --no-install ...`
 Таким образом можно гибко настраивать поведение линтеров для вашего проекта, если по какой-то причине стандартная конфигурация вам не подходит.
+
+## Дебаг
+Если нужно увидеть в консоли чему именно соответствует алиас в cli-утилите, нужно запустить arui-presets-lint с флагом --echo, например:
+```sh
+yarn arui-presets-lint --echo format
+# >> prettier --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json}" --no-error-on-unmatched-pattern --cache
+```
+
+Если нужно посмотреть, какой именно конфиг применяется в текущем проекте:
+```sh
+# eslint:
+npx --no-install eslint --print-config file.tsx > eslintconfig.json
+
+# stylelint:
+npx --no-install stylelint --print-config file.css > stylelintconfig.json
+
+# commitlint:
+npx --no-install commitlint --print-config > commitlintconfig.txt
+```
+
 
 ## Настройка IDE:
 

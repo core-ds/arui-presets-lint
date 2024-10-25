@@ -22,27 +22,28 @@ extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 ```
 
-Те команды которые присутствуют в вашем текущем lint-staged/husky конфиге, но отсутствуют в конфиге, который поставляет библиотека вы можете дописать в lefthook.yml, подробно - в[документации](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
+В этот файл нужно дописать конфигурацию, которая присутствует в ваших текущих lint-staged/husky настройках, но отсутствует в `arui-presets-lint/lefthook/index.yml` см. [документацию](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
 
-4. Выполнить следующую команду:
+1. Выполнить следующую команду:
 ```
-yarn arui-presets-lint run lefthook install
+npx --no-install lefthook install
 ```
-чтобы установить новую конфигурацию githook. Отмечу, что в библиотеке lefthook есть postinstall скрипт, который это делает автоматически.
+чтобы установить новую конфигурацию git-hook. Отмечу, что в библиотеке lefthook есть скрипт, который делает это автоматически при каждой установке библиотеки arui-presets-lint.
 
-5. Поменять команды для запуска в package.json.scripts, они должны выглядить следующим образом:
+1. Поменять команды для запуска в package.json.scripts, они должны выглядить следующим образом:
 
 ```json
 {
     "scripts": {
-        "lint:css": "arui-presets-lint css",
+        "lint:styles": "arui-presets-lint styles",
         "lint:scripts": "arui-presets-lint scripts",
-        "lint": "arui-presets-lint lint",
-        "lint:fix": "arui-presets-lint fix",
+        "format": "arui-presets-lint format",
+        "format:check": "arui-presets-lint format:check",
+        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts && yarn format"
     }
 }
 ```
-Команда 'format', если она использовась ранее, больше не нужна - ```lint:fix``` запускает по очереди stylelint, eslint и prettier в режиме автофикса
 
 6. Выполнить команду ```yarn lint:fix```, и исправить возникающие ошибки
 
