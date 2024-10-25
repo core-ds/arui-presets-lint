@@ -2,36 +2,25 @@
 
 import { execaCommand } from 'execa';
 
-const prettierParams = '"./**/*.{ts,tsx,js,jsx,css,json}" --no-error-on-unmatched-pattern --cache';
+const prettierParams =
+    '"./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json}" --no-error-on-unmatched-pattern --cache';
 
 const commandsMap = {
-    lint: `yarn lint:css && yarn lint:scripts && prettier --check ${prettierParams}`,
-    fix: `yarn lint:css --fix && yarn lint:scripts --fix && prettier --write ${prettierParams}`,
-    css: 'stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"',
+    styles: 'stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"',
     scripts:
-        'eslint "**/*.{js,jsx,ts,tsx}" --ext .js,.jsx,.ts,.tsx --ignore-pattern=.gitignore,.eslintignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"',
-    run: (...args) => args.join(' '),
+        'eslint "**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}" --ext .js,.jsx,.ts,.tsx,.mjs,.mts,.cjs,.cts --ignore-pattern=.gitignore,.eslintignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"',
+    format: `prettier --write ${prettierParams}`,
+    'format:check': `prettier --check ${prettierParams}`,
 };
 
 const commands = Object.keys(commandsMap);
 const command = process.argv[2];
-const commandValue = commandsMap[command];
 const args = process.argv.slice(3);
 
-let exec;
-
-if (!command || !commands.includes(command)) {
-    // eslint-disable-next-line no-console
-    console.error(`Please specify one of available commands: ${commands.join(' ')}`);
-
-    process.exit(-1);
-}
-
-if (typeof commandValue === 'function') {
-    exec = commandValue(...args);
-} else {
-    exec = [commandValue, ...args].join(' ');
-}
+const exec =
+    !command || !commands.includes(command)
+        ? `${command} ${args.join(' ')}`
+        : [commandsMap[command], ...args].join(' ');
 
 // eslint-disable-next-line no-console
 console.log(exec);

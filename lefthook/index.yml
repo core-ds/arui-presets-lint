@@ -1,25 +1,20 @@
 #   Refer for explanation to following link:
 #   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 
-pre-push:
-    parallel: true
-    commands:
-        lint:
-            run: yarn lint
 pre-commit:
     parallel: true
     commands:
         js:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts}'
-            run: npx --no-install prettier --write {staged_files} && npx --no-install eslint {staged_files} && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --cache --cache-location="./node_modules/.cache/eslint/.eslintcache" && git add {staged_files}
         css:
             glob: '*.{css}'
-            run: npx --no-install prettier --write {staged_files} && npx --no-install stylelint --fix {staged_files} && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache" && git add {staged_files}
         json:
             glob: '*.{json}'
-            run: npx --no-install prettier --write {staged_files} && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && git add {staged_files}
 commit-msg:
     parallel: true
     commands:
         commitlint:
-            run: npx --no-install commitlint --edit $1
+            run: npx --no-install commitlint --edit {1}
