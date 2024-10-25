@@ -1,3 +1,13 @@
+# [8.0.0-beta.10](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.9...v8.0.0-beta.10) (2024-10-25)
+
+
+### Features
+
+* change cli api, enable cache for pre-commit, remove pre-push from common lefthook config ([4e708bf](https://github.com/core-ds/arui-presets-lint/commit/4e708bfbb5c57a421dbf5ac85ad8c7ea47d971de))
+* move eslint and stylelint caches to node_modules/.cache ([5bed619](https://github.com/core-ds/arui-presets-lint/commit/5bed6194b10ee7df7cfe78644aa28d78c6cae28c))
+* **prettier:** enable cache for prettier ([592992b](https://github.com/core-ds/arui-presets-lint/commit/592992baaa02f06a4484834153ea217a0ae100d4))
+* **stylelint:** enable stylelintcache ([dc2cae9](https://github.com/core-ds/arui-presets-lint/commit/dc2cae9f8ce8c1e69b15678cc41db793fbcff44b))
+
 # [8.0.0-beta.9](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.8...v8.0.0-beta.9) (2024-10-25)
 
 
