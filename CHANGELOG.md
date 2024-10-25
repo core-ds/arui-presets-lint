@@ -1,3 +1,10 @@
+# [8.0.0-beta.9](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.8...v8.0.0-beta.9) (2024-10-25)
+
+
+### Features
+
+* add debug to cli ([e562839](https://github.com/core-ds/arui-presets-lint/commit/e562839ae0cf4b91503ed5c4cf65e5346c035358))
+
 # [8.0.0-beta.8](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.7...v8.0.0-beta.8) (2024-10-25)
 
 
