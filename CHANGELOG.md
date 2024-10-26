@@ -1,3 +1,10 @@
+# [8.0.0-beta.11](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.10...v8.0.0-beta.11) (2024-10-26)
+
+
+### Features
+
+* **lefthook:** add pre-installed binary for linux-x64, remove all binaries package ([71722e9](https://github.com/core-ds/arui-presets-lint/commit/71722e9469af3a4578640ca5fb6b83b9bca0fcd1))
+
 # [8.0.0-beta.10](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.9...v8.0.0-beta.10) (2024-10-25)
 
 
