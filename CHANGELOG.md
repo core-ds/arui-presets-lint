@@ -1,3 +1,10 @@
+# [8.0.0-beta.12](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.11...v8.0.0-beta.12) (2024-10-28)
+
+
+### Features
+
+* remove preinstalled lefthook binary, rename lefthook commands ([a764425](https://github.com/core-ds/arui-presets-lint/commit/a7644253171f2734c1ecbab75d943485f5f85433))
+
 # [8.0.0-beta.11](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0-beta.10...v8.0.0-beta.11) (2024-10-26)
 
 
