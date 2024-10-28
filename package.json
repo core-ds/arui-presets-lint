@@ -27,7 +27,6 @@
         "execa": "9.4.1",
         "kebab-case": "1.0.0",
         "lefthook": "1.8.1",
-        "lefthook-linux-x64": "1.8.1",
         "prettier": "3.3.3",
         "stylelint": "16.10.0"
     },

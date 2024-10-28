@@ -1918,7 +1918,6 @@ __metadata:
     execa: "npm:9.4.1"
     kebab-case: "npm:1.0.0"
     lefthook: "npm:1.8.1"
-    lefthook-linux-x64: "npm:1.8.1"
     prettier: "npm:3.3.3"
     react: "npm:18.3.1"
     semantic-release: "npm:22.0.12"
@@ -5387,7 +5386,6 @@ __metadata:
 "lefthook-linux-x64@npm:1.8.1":
   version: 1.8.1
   resolution: "lefthook-linux-x64@npm:1.8.1"
-  checksum: 10c0/388824f130b34f43c9abfdf78824793b7b63c949c508a55b9767d44510932ef1fb18936cb99a6e6af2b92acd099bbc10ceaa65dda753ed4ec62180ccf7980420
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
