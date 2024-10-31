@@ -10,7 +10,7 @@
 1. Для начала нужно выполнить команду:
 
 ```bash
-yarn remove eslint eslint-config-airbnb eslint-config-airbnb-typescript eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-cypress eslint-plugin-dirnames eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-unicorn lint-staged prettier stylelint @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint-config-prettier husky kebab-case
+yarn remove eslint eslint-config-airbnb eslint-config-airbnb-typescript eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-cypress eslint-plugin-dirnames eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-unicorn lint-staged prettier stylelint @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint-config-prettier husky kebab-case @commitlint/cli @commitlint/config-conventional
 ```
 -- отмечу, что никаких зависимостей с плагинами stylelint/eslint в проекте быть не должно, кроме тех, которые использует ваш локальный конфиг
 
@@ -76,3 +76,8 @@ npx --no-install lefthook install
 
 > A: Это плавающая проблема с установкой библиотеки prettier, которая решается командой: `chmod +x ./node_modules/.bin/prettier`
 Происходит такое только на системах macOS [issue](https://github.com/prettier/prettier/issues/15164)
+
+> Q: Отображается warning при изменении файла, который не должен проверятся eslint:
+`0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning.`
+
+> A: Это ожидаемое поведение, eslint не будет пытаться изменить файл. Warning будет отключен в рамках [issue](https://github.com/core-ds/arui-presets-lint/issues/28), следите за обновлениями
