@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0...v8.0.1) (2024-10-31)
+
+
+### Bug Fixes
+
+* fix grammatical mistakes ([1819ba1](https://github.com/core-ds/arui-presets-lint/commit/1819ba11ae593f2072a98e00fd2425ce231298a4))
+
 # [8.0.0](https://github.com/core-ds/arui-presets-lint/compare/v7.6.2...v8.0.0) (2024-10-29)
 
 
