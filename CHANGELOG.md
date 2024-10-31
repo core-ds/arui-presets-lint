@@ -1,3 +1,16 @@
+# [8.1.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v8.0.0...v8.1.0-beta.1) (2024-10-31)
+
+
+### Bug Fixes
+
+* **prettier:** fix prettier newlines on windows ([c104eb3](https://github.com/core-ds/arui-presets-lint/commit/c104eb3187330614868bd8cf1f057bcfd222d29a))
+
+
+### Features
+
+* bump dependencies ([b9e5ad8](https://github.com/core-ds/arui-presets-lint/commit/b9e5ad88c169cbf1a999cf9229bf4d2eef84bc86))
+* **cli:** add --list-different flag for format command ([f443d46](https://github.com/core-ds/arui-presets-lint/commit/f443d466fba55b03ae9cb16698b84fdaa2d71182))
+
 # [8.0.0](https://github.com/core-ds/arui-presets-lint/compare/v7.6.2...v8.0.0) (2024-10-29)
 
 
