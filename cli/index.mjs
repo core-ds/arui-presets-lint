@@ -18,7 +18,6 @@ const enableEcho = process.argv[2] === '--echo';
 const command = enableEcho ? process.argv[3] : process.argv[2];
 
 if (!command || !commands.includes(command)) {
-    // eslint-disable-next-line no-console
     console.error(`Please specify one of available commands: ${commands.join(' ')}`);
 
     process.exit(-1);
@@ -29,7 +28,6 @@ const args = enableEcho ? process.argv.slice(4) : process.argv.slice(3);
 const exec = [commandsMap[command], ...args].join(' ');
 
 if (enableEcho) {
-    // eslint-disable-next-line no-console
     console.log('>>', exec);
 }
 
@@ -40,7 +38,6 @@ try {
         stdio: ['pipe', 'inherit', 'inherit'],
     });
 } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error.message);
     process.exit(error.exitCode);
 }

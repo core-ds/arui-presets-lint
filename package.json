@@ -68,7 +68,8 @@
                         "test/**/*"
                     ]
                 }
-            ]
+            ],
+            "no-console": "off"
         }
     },
     "commitlint": {
