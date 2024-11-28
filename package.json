@@ -6,7 +6,7 @@
     "license": "MIT",
     "bin": "./cli/index.mjs",
     "dependencies": {
-        "@alfalab/stylelint-core-vars": "1.7.0",
+        "@alfalab/stylelint-core-vars": "1.7.1",
         "@commitlint/cli": "18.4.4",
         "@commitlint/config-conventional": "18.4.4",
         "@typescript-eslint/eslint-plugin": "7.18.0",
@@ -23,18 +23,18 @@
         "eslint-plugin-react": "7.37.2",
         "eslint-plugin-react-hooks": "4.6.2",
         "eslint-plugin-simple-import-sort": "12.1.1",
-        "eslint-plugin-unicorn": "56.0.0",
+        "eslint-plugin-unicorn": "56.0.1",
         "execa": "9.5.1",
         "kebab-case": "1.0.0",
-        "lefthook": "1.8.2",
+        "lefthook": "1.8.4",
         "prettier": "3.3.3",
-        "stylelint": "16.10.0"
+        "stylelint": "16.11.0"
     },
     "engines": {
         "node": ">=18.12.0"
     },
     "devDependencies": {
-        "@alfalab/core-components": "47.25.0",
+        "@alfalab/core-components": "48.3.0",
         "@semantic-release/changelog": "6.0.3",
         "@semantic-release/commit-analyzer": "11.1.0",
         "@semantic-release/git": "10.0.1",
