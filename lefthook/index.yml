@@ -14,7 +14,6 @@ pre-commit:
             glob: '*.{json}'
             run: npx --no-install prettier --write {staged_files} --cache && git add {staged_files}
 commit-msg:
-    parallel: true
     commands:
         commitlint:
             run: npx --no-install commitlint --edit {1}
