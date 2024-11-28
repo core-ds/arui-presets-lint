@@ -1,3 +1,10 @@
+# [8.2.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v8.1.0...v8.2.0-beta.1) (2024-11-28)
+
+
+### Features
+
+* bump dependencies, add stylelint-core-vars with bugfixes ([e3e1e20](https://github.com/core-ds/arui-presets-lint/commit/e3e1e2016265d888517fd3457f0459c57b2f7cc3))
+
 # [8.1.0](https://github.com/core-ds/arui-presets-lint/compare/v8.0.1...v8.1.0) (2024-11-01)
 
 
