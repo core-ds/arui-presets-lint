@@ -14,7 +14,7 @@ yarn remove eslint eslint-config-airbnb eslint-config-airbnb-typescript eslint-c
 ```
 -- отмечу, что никаких зависимостей с плагинами stylelint/eslint в проекте быть не должно, кроме тех, которые использует ваш локальный конфиг
 
-2. Удалить конфигурации husky и lint-staged (могут находится в .husky, .huskyrc.js, package.json.husky, .lintstagedrc.js, package.json.lint-staged, итп)
+2. Удалить конфигурации husky и lint-staged (могут находится в .husky, .huskyrc.js, package.json.husky, .lintstagedrc.js, package.json.lint-staged, итп). Для husky 5+ нужно также удалить настройку .git/config `hooksPath = .husky` из `git/config`.
 
 3. Добавить в lefthook.yml следующее:
 ```yml
@@ -28,9 +28,10 @@ extends:
 extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 
-# Добавить сборку typescript на pre-commit:
 pre-commit:
     commands:
+
+# Добавить сборку typescript на pre-commit:
         check-ts:
             run: npx --no-install tsc --noEmit
 

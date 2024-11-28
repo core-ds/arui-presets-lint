@@ -89,9 +89,11 @@ extends:
 extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 
-# Добавить сборку typescript на pre-commit:
+
 pre-commit:
     commands:
+
+# Добавить сборку typescript на pre-commit:
         check-ts:
             run: npx --no-install tsc --noEmit
 
