@@ -63,6 +63,7 @@
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
 Пример такой конфигурации:
+
 ```json
 {
     "scripts": {
@@ -89,24 +90,23 @@ extends:
 extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 
-# Добавить сборку typescript на pre-commit:
 pre-commit:
     commands:
+        # Добавить сборку typescript на pre-commit:
         check-ts:
             run: npx --no-install tsc --noEmit
 
-# Запустить тесты, относящиеся к измененному файлу:
+        # Запустить тесты, относящиеся к измененному файлу:
         run-tests:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts}'
             run: npx --no-install jest --findRelatedTests --passWithNoTests {staged_files}
 
-# Запустить команду 'lint' на pre-push:
 pre-push:
     commands:
+        # Запустить команду 'lint' на pre-push:
         run-lint:
             run: yarn lint
 ```
-
 
 ## Гибкая конфигурация
 
@@ -126,13 +126,16 @@ npx --no-install eslint "**/*.{js,jsx}" --ext .js,.jsx --ignore-pattern=.gitigno
 Таким образом можно гибко настраивать поведение линтеров для вашего проекта, если по какой-то причине стандартная конфигурация вам не подходит.
 
 ## Дебаг
+
 Если нужно увидеть в консоли чему именно соответствует алиас в cli-утилите, нужно запустить arui-presets-lint с флагом --echo, например:
+
 ```sh
 yarn arui-presets-lint --echo format
 # >> prettier --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json}" --no-error-on-unmatched-pattern --cache
 ```
 
 Если нужно посмотреть, какой именно конфиг применяется в текущем проекте:
+
 ```sh
 # eslint:
 npx --no-install eslint --print-config file.tsx > eslintconfig.json
@@ -143,7 +146,6 @@ npx --no-install stylelint --print-config file.css > stylelintconfig.json
 # commitlint:
 npx --no-install commitlint --print-config > commitlintconfig.txt
 ```
-
 
 ## Настройка IDE:
 
