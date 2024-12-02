@@ -1,3 +1,11 @@
+# [8.2.0](https://github.com/core-ds/arui-presets-lint/compare/v8.1.0...v8.2.0) (2024-12-02)
+
+
+### Features
+
+* bump dependencies, add stylelint-core-vars with bugfixes ([6d36d0a](https://github.com/core-ds/arui-presets-lint/commit/6d36d0a980feaad68146a1f7a50cf2ea7a1c1ad0))
+* **lefthook:** remove unused parallel setting from commit-msg hook ([e8acd61](https://github.com/core-ds/arui-presets-lint/commit/e8acd616013e7a2891fd8614858e861be7e67214))
+
 # [8.1.0](https://github.com/core-ds/arui-presets-lint/compare/v8.0.1...v8.1.0) (2024-11-01)
 
 
