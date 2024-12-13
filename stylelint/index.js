@@ -28,7 +28,12 @@ module.exports = {
         'length-zero-no-unit': true,
         'no-empty-source': true,
         'no-invalid-double-slash-comments': true,
-        'selector-pseudo-class-no-unknown': true,
+        'selector-pseudo-class-no-unknown': [
+            true,
+            {
+                ignorePseudoClasses: ['global'],
+            },
+        ],
         'selector-pseudo-element-colon-notation': 'single',
         'selector-pseudo-element-no-unknown': true,
         'selector-type-case': 'lower',
