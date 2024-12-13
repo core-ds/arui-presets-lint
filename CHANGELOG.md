@@ -1,3 +1,10 @@
+# [8.3.0](https://github.com/core-ds/arui-presets-lint/compare/v8.2.0...v8.3.0) (2024-12-13)
+
+
+### Features
+
+* **stylelint:** add ability to use pseudo class global ([5d220df](https://github.com/core-ds/arui-presets-lint/commit/5d220df9abf47eb8c37ae05d6f8fa0075789d473))
+
 # [8.2.0](https://github.com/core-ds/arui-presets-lint/compare/v8.1.0...v8.2.0) (2024-12-02)
 
 
