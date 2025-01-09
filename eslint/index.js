@@ -118,6 +118,7 @@ module.exports = {
         '@typescript-eslint/no-empty-interface': 'error',
         '@typescript-eslint/no-shadow': 'warn',
         '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
+        '@typescript-eslint/no-unnecessary-type-assertion': 'error',
         '@typescript-eslint/no-use-before-define': [
             'error',
             { functions: false, classes: true, variables: true },

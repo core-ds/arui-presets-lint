@@ -24,7 +24,7 @@
         "eslint-plugin-react-hooks": "4.6.2",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "eslint-plugin-unicorn": "56.0.1",
-        "execa": "9.5.1",
+        "execa": "9.5.2",
         "kebab-case": "1.0.0",
         "lefthook": "1.8.4",
         "prettier": "3.3.3",

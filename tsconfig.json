@@ -5,7 +5,8 @@
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "jsx": "react"
+        "jsx": "react",
+        "moduleResolution": "bundler"
     },
     "include": ["**/*"]
 }
