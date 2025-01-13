@@ -1,3 +1,10 @@
+# [8.4.0](https://github.com/core-ds/arui-presets-lint/compare/v8.3.0...v8.4.0) (2025-01-13)
+
+
+### Features
+
+* added new ts rule ([b66a2dd](https://github.com/core-ds/arui-presets-lint/commit/b66a2ddb123afbdfcc84371f023643f3ee795d46))
+
 # [8.3.0](https://github.com/core-ds/arui-presets-lint/compare/v8.2.0...v8.3.0) (2024-12-13)
 
 
