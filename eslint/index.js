@@ -59,6 +59,8 @@ module.exports = {
 
         // code smell detection
         complexity: ['warn', 20],
+        'max-params': ['warn', 5],
+        'max-lines': ['warn', 300],
         'max-nested-callbacks': 'warn',
         'no-restricted-properties': [
             'error',
