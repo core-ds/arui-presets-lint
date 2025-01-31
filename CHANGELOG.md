@@ -1,3 +1,10 @@
+# [8.5.0](https://github.com/core-ds/arui-presets-lint/compare/v8.4.0...v8.5.0) (2025-01-31)
+
+
+### Features
+
+* add new rules for eslint max-params and max-lines ([e2d4f6a](https://github.com/core-ds/arui-presets-lint/commit/e2d4f6a9acb6a370c0b3f3341288deb3275de18d))
+
 # [8.4.0](https://github.com/core-ds/arui-presets-lint/compare/v8.3.0...v8.4.0) (2025-01-13)
 
 
