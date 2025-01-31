@@ -9,11 +9,11 @@
         "@alfalab/stylelint-core-vars": "1.7.1",
         "@commitlint/cli": "18.4.4",
         "@commitlint/config-conventional": "18.4.4",
-        "@typescript-eslint/eslint-plugin": "7.18.0",
-        "@typescript-eslint/parser": "7.18.0",
+        "@typescript-eslint/eslint-plugin": "8.22.0",
+        "@typescript-eslint/parser": "8.22.0",
         "eslint": "8.57.1",
         "eslint-config-airbnb": "19.0.4",
-        "eslint-config-airbnb-typescript": "18.0.0",
+        "eslint-config-airbnb-base": "15.0.0",
         "eslint-config-prettier": "10.0.1",
         "eslint-import-resolver-typescript": "3.6.3",
         "eslint-plugin-cypress": "3.6.0",
@@ -43,7 +43,7 @@
         "@semantic-release/release-notes-generator": "12.1.0",
         "react": "18.3.1",
         "semantic-release": "22.0.12",
-        "typescript": "5.5.4"
+        "typescript": "5.7.3"
     },
     "scripts": {
         "test": "eslint-config-prettier ./eslint/index.js && yarn lint",
