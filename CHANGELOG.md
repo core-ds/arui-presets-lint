@@ -1,3 +1,18 @@
+# [9.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v8.5.0...v9.0.0-beta.1) (2025-01-31)
+
+
+* feat(eslint)!: upgrade major typescript-eslint, remove deprecated eslint-config-airbnb-typescript ([02b8e06](https://github.com/core-ds/arui-presets-lint/commit/02b8e06d8f55c6ff84389b9552dcb417064baf9f))
+
+
+### Features
+
+* update dependencies with minor changes ([4a508ff](https://github.com/core-ds/arui-presets-lint/commit/4a508ff999156527bb27452859bb91d453350aa6))
+
+
+### BREAKING CHANGES
+
+* replace parserOptions.project with projectService
+
 # [8.5.0](https://github.com/core-ds/arui-presets-lint/compare/v8.4.0...v8.5.0) (2025-01-31)
 
 
