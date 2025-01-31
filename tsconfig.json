@@ -6,7 +6,9 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "jsx": "react",
-        "moduleResolution": "bundler"
+        "moduleResolution": "bundler",
+        "allowJs": true,
+        "outDir": "./build"
     },
     "include": ["**/*"]
 }
