@@ -1,3 +1,10 @@
+# [9.0.0-beta.2](https://github.com/core-ds/arui-presets-lint/compare/v9.0.0-beta.1...v9.0.0-beta.2) (2025-02-03)
+
+
+### Bug Fixes
+
+* add missing dots for import/resolver ([fbb7bd3](https://github.com/core-ds/arui-presets-lint/commit/fbb7bd3ed26e1cf270b701bffcad6ab0c1aaec4b))
+
 # [9.0.0-beta.1](https://github.com/core-ds/arui-presets-lint/compare/v8.5.0...v9.0.0-beta.1) (2025-01-31)
 
 
