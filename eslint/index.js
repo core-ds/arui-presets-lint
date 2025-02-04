@@ -125,7 +125,9 @@ module.exports = {
             'error',
             { functions: false, classes: true, variables: true },
         ],
-        '@typescript-eslint/default-param-last': 'off',
+        // Note: you must disable the base rule as it can report incorrect errors
+        'default-param-last': 'off',
+        '@typescript-eslint/default-param-last': 'error',
         '@typescript-eslint/consistent-type-imports': [
             'error',
             {
@@ -139,6 +141,8 @@ module.exports = {
                 fixMixedExportsWithInlineTypeSpecifier: true,
             },
         ],
+        '@typescript-eslint/no-duplicate-enum-values': 'error',
+        '@typescript-eslint/prefer-optional-chain': 'error',
 
         // Imports, file extensions
         'import/no-extraneous-dependencies': [
@@ -226,6 +230,7 @@ module.exports = {
         ],
         'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-duplicates': ['error', { 'prefer-inline': true, considerQueryString: true }],
+        'no-dupe-keys': 'error',
     },
     overrides: [
         {
