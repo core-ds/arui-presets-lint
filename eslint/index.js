@@ -125,7 +125,7 @@ module.exports = {
             'error',
             { functions: false, classes: true, variables: true },
         ],
-        '@typescript-eslint/default-param-last': 'off',
+        '@typescript-eslint/default-param-last': 'warn',
         '@typescript-eslint/consistent-type-imports': [
             'error',
             {
@@ -139,6 +139,7 @@ module.exports = {
                 fixMixedExportsWithInlineTypeSpecifier: true,
             },
         ],
+        '@typescript-eslint/prefer-optional-chain': 'error',
 
         // Imports, file extensions
         'import/no-extraneous-dependencies': [
