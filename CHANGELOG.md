@@ -1,3 +1,10 @@
+# [8.6.0](https://github.com/core-ds/arui-presets-lint/compare/v8.5.0...v8.6.0) (2025-02-12)
+
+
+### Features
+
+* add new rules for eslint ([8f75cb8](https://github.com/core-ds/arui-presets-lint/commit/8f75cb89e0b5b7ab428378807eb9613c97ba6209))
+
 # [8.5.0](https://github.com/core-ds/arui-presets-lint/compare/v8.4.0...v8.5.0) (2025-01-31)
 
 
