@@ -28,7 +28,8 @@
         "kebab-case": "1.0.0",
         "lefthook": "1.8.4",
         "prettier": "3.3.3",
-        "stylelint": "16.11.0"
+        "stylelint": "16.11.0",
+        "stylelint-order": "6.0.4"
     },
     "engines": {
         "node": ">=18.12.0"
