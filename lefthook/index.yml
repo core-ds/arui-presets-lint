@@ -9,7 +9,7 @@ pre-commit:
             run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --cache --cache-location="./node_modules/.cache/eslint/.eslintcache" && git add {staged_files}
         check-styles:
             glob: '*.{css}'
-            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache" && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache" && git add {staged_files}
         check-json:
             glob: '*.{json}'
             run: npx --no-install prettier --write {staged_files} --cache && git add {staged_files}
