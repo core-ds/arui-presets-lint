@@ -10,7 +10,7 @@
 
 <br />
 
-Набор общих конфигурационных файлов для валидации react/node/typescript-проектов.
+Набор конфигурационных файлов для валидации react/node/typescript-проектов.
 
 [Как я могу улучшить стандарты?](./.github/CONTRIBUTING.md)
 
@@ -31,15 +31,9 @@
 ```json
 {
     "prettier": "arui-presets-lint/prettier",
-    "eslintConfig": {
-        "extends": "./node_modules/arui-presets-lint/eslint"
-    },
-    "stylelint": {
-        "extends": "arui-presets-lint/stylelint"
-    },
-    "commitlint": {
-        "extends": "./node_modules/arui-presets-lint/commitlint"
-    }
+    "eslintConfig": { "extends": "./node_modules/arui-presets-lint/eslint" },
+    "stylelint": { "extends": "arui-presets-lint/stylelint" },
+    "commitlint": { "extends": "./node_modules/arui-presets-lint/commitlint" }
 }
 ```
 
@@ -58,7 +52,9 @@
 }
 ```
 
-Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore. Прописывать там файлы, которые уже есть в .gitignore не требуется!
+Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .stylelintignore / .prettierignore. Прописывать там файлы, которые уже есть в .gitignore не требуется!
+
+> Файл .eslintignore не поддерживается, используйте вместо этого eslintConfig.ignorePatterns
 
 Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
@@ -120,7 +116,7 @@ npx --no-install lefthook install
 npx --no-install prettier --write "./**/*.{js,jsx}" --no-error-on-unmatched-pattern --cache
 
 # Вызов eslint, для того чтобы проверить только js и jsx файлы:
-npx --no-install eslint "**/*.{js,jsx}" --ext .js,.jsx --ignore-pattern=.gitignore,.eslintignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"
+npx --no-install eslint "**/*.{js,jsx}" --ext .js,.jsx --ignore-path .gitignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"
 ```
 
 Таким образом можно гибко настраивать поведение линтеров для вашего проекта, если по какой-то причине стандартная конфигурация вам не подходит.
@@ -170,7 +166,7 @@ npx --no-install commitlint --print-config > commitlintconfig.txt
 ```
 The MIT License (MIT)
 
-Copyright (c) 2024 core-ds contributors
+Copyright (c) 2025 core-ds contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

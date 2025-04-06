@@ -8,7 +8,7 @@ const cacheFolder = './node_modules/.cache';
 
 const commandsMap = {
     styles: `stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="${cacheFolder}/stylelint/.stylelintcache"`,
-    scripts: `eslint "**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}" --ext .js,.jsx,.ts,.tsx,.mjs,.mts,.cjs,.cts --ignore-pattern=.gitignore,.eslintignore --cache --cache-location="${cacheFolder}/eslint/.eslintcache"`,
+    scripts: `eslint "**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}" --ext .js,.jsx,.ts,.tsx,.mjs,.mts,.cjs,.cts --ignore-path .gitignore --cache --cache-location="${cacheFolder}/eslint/.eslintcache"`,
     format: `prettier --write ${prettierParams} --list-different`,
     'format:check': `prettier --check ${prettierParams}`,
 };
