@@ -1,3 +1,16 @@
+# [8.7.0](https://github.com/core-ds/arui-presets-lint/compare/v8.6.0...v8.7.0) (2025-04-17)
+
+
+### Bug Fixes
+
+* **eslint:** set --ignore-path to .gitignore ([32b57e5](https://github.com/core-ds/arui-presets-lint/commit/32b57e5a798d20270287b5803a44dc24b5be5dd9))
+* **lefthook:** add --allow-empty-input to stylelint call ([f8281b6](https://github.com/core-ds/arui-presets-lint/commit/f8281b6622328d7c29e376763af8fafd0432b1a1))
+
+
+### Features
+
+* upgrade dependencies ([7a9465d](https://github.com/core-ds/arui-presets-lint/commit/7a9465d86b7c3bf6fa1ffe27eadbb8cde7154556))
+
 # [8.6.0](https://github.com/core-ds/arui-presets-lint/compare/v8.5.0...v8.6.0) (2025-02-12)
 
 
