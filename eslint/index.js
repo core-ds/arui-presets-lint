@@ -97,7 +97,7 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'react/prefer-stateless-function': 'off',
         'react/destructuring-assignment': 'off',
-        'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
+        'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'], allow: 'as-needed' }],
         'react/jsx-one-expression-per-line': 'off',
         'react/function-component-definition': 'off',
 
