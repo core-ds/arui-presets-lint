@@ -1,3 +1,10 @@
+# [8.8.0](https://github.com/core-ds/arui-presets-lint/compare/v8.7.0...v8.8.0) (2025-06-24)
+
+
+### Features
+
+* update jsx-filename-extension rule ([0b66b5a](https://github.com/core-ds/arui-presets-lint/commit/0b66b5a24d8a6109932deb1039f5fabd567302e8))
+
 # [8.7.0](https://github.com/core-ds/arui-presets-lint/compare/v8.6.0...v8.7.0) (2025-04-17)
 
 
