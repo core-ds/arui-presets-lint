@@ -227,6 +227,18 @@ module.exports = {
         ],
         'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-duplicates': ['error', { 'prefer-inline': true, considerQueryString: true }],
+        'import/no-restricted-paths': [
+            'warn',
+            {
+                zones: [
+                    {
+                        target: './src/client/**',
+                        from: './src/server/**',
+                        message: 'Запрещено импортировать серверный код в клиентской части',
+                    },
+                ],
+            },
+        ],
     },
     overrides: [
         {
