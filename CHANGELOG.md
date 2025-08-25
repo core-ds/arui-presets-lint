@@ -1,3 +1,10 @@
+## [8.8.1](https://github.com/core-ds/arui-presets-lint/compare/v8.8.0...v8.8.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* **a11y:** кнопки из core-components добавлены в настройки a11y ([a58d229](https://github.com/core-ds/arui-presets-lint/commit/a58d2297523d09e899ac49b1638bb2313a20325a))
+
 # [8.8.0](https://github.com/core-ds/arui-presets-lint/compare/v8.7.0...v8.8.0) (2025-06-24)
 
 
