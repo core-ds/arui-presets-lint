@@ -39,6 +39,19 @@ module.exports = {
         react: {
             version: 'detect',
         },
+        'jsx-a11y': {
+            components: {
+                Button: 'button',
+                IconButton: 'button',
+                PickerButton: 'button',
+                PickerButtonMobile: 'button',
+                PickerButtonDesktop: 'button',
+                ActionButton: 'button',
+                CustomButton: 'button',
+                CustomButtonDesktop: 'button',
+                CustomButtonMobile: 'button',
+            },
+        },
     },
     rules: {
         quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
