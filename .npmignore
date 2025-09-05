@@ -11,3 +11,4 @@ CHANGELOG.md
 release.config.js
 tsconfig.json
 lefthook.yml
+._tsbuild

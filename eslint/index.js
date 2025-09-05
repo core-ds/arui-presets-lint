@@ -1,14 +1,26 @@
+const { rules: baseBestPracticesRules } = require('./rules/best-practices');
+const { rules: baseErrorsRules } = require('./rules/errors');
+const { rules: baseES6Rules } = require('./rules/es6');
+
 module.exports = {
     parser: '@typescript-eslint/parser',
     extends: [
-        'airbnb',
-        'airbnb-typescript',
-        'airbnb/hooks',
+        './rules/best-practices',
+        './rules/errors',
+        './rules/node',
+        './rules/style',
+        './rules/variables',
+        './rules/es6',
+        './rules/imports',
+        './rules/strict',
+        './rules/react',
+        './rules/react-a11y',
+        './rules/react-hooks',
         'plugin:@typescript-eslint/recommended',
         'prettier',
     ],
     parserOptions: {
-        project: './tsconfig.json',
+        projectService: true,
         ecmaVersion: 2022,
         sourceType: 'module',
         ecmaFeatures: {
@@ -33,7 +45,18 @@ module.exports = {
     settings: {
         'import/resolver': {
             node: {
-                extensions: ['.ts', '.tsx', '.js', '.jsx'],
+                extensions: [
+                    '.ts',
+                    '.tsx',
+                    '.js',
+                    '.jsx',
+                    '.json',
+                    '.d.ts',
+                    '.mjs',
+                    '.mts',
+                    '.cjs',
+                    '.cts',
+                ],
             },
         },
         react: {
@@ -52,6 +75,23 @@ module.exports = {
                 CustomButtonMobile: 'button',
             },
         },
+        // Apply special parsing for TypeScript files
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts', '.mts', '.cts'],
+        },
+        'import/extensions': [
+            '.js',
+            '.mjs',
+            '.cjs',
+            '.jsx',
+            '.ts',
+            '.tsx',
+            '.d.ts',
+            '.cts',
+            '.mts',
+        ],
+        // Resolve type definition packages
+        'import/external-module-folders': ['node_modules', 'node_modules/@types'],
     },
     rules: {
         quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
@@ -70,7 +110,7 @@ module.exports = {
         'no-use-before-define': 'off',
         'prefer-regex-literals': 'off',
 
-        // code smell detection
+        // Code smell detection
         complexity: ['warn', 20],
         'max-params': ['warn', 5],
         'max-lines': ['warn', 300],
@@ -129,16 +169,19 @@ module.exports = {
             { default: 'array-simple', readonly: 'array-simple' },
         ],
         '@typescript-eslint/consistent-type-assertions': 'error',
+        'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'error',
         '@typescript-eslint/no-empty-interface': 'error',
         '@typescript-eslint/no-shadow': 'warn',
+        'no-unused-vars': 'off',
+        'no-new-func': 'off',
         '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
         '@typescript-eslint/no-unnecessary-type-assertion': 'error',
         '@typescript-eslint/no-use-before-define': [
             'error',
             { functions: false, classes: true, variables: true },
         ],
-        '@typescript-eslint/default-param-last': 'warn',
+        '@typescript-eslint/default-param-last': 'off',
         '@typescript-eslint/consistent-type-imports': [
             'error',
             {
@@ -152,12 +195,51 @@ module.exports = {
                 fixMixedExportsWithInlineTypeSpecifier: true,
             },
         ],
-        '@typescript-eslint/prefer-optional-chain': 'error',
+        'no-return-await': 'off',
+        '@typescript-eslint/return-await': [
+            baseBestPracticesRules['no-return-await'],
+            'in-try-catch',
+        ],
+        'no-redeclare': 'off',
+        '@typescript-eslint/no-redeclare': baseBestPracticesRules['no-redeclare'],
+
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': baseBestPracticesRules['no-unused-expressions'],
+
+        'no-useless-constructor': 'off',
+        '@typescript-eslint/no-useless-constructor': baseES6Rules['no-useless-constructor'],
+
+        'require-await': 'off',
+        '@typescript-eslint/require-await': baseBestPracticesRules['require-await'],
+
+        'no-extra-parens': 'off',
+        '@typescript-eslint/no-extra-parens': baseErrorsRules['no-extra-parens'],
+
+        'no-implied-eval': 'off',
+        '@typescript-eslint/no-implied-eval': baseBestPracticesRules['no-implied-eval'],
+
+        'no-loss-of-precision': 'off',
+        '@typescript-eslint/no-loss-of-precision': baseErrorsRules['no-loss-of-precision'],
+
+        'no-loop-func': 'off',
+        '@typescript-eslint/no-loop-func': baseBestPracticesRules['no-loop-func'],
+
+        'no-magic-numbers': 'off',
+        '@typescript-eslint/no-magic-numbers': baseBestPracticesRules['no-magic-numbers'],
+
+        'dot-notation': 'off',
+        '@typescript-eslint/dot-notation': baseBestPracticesRules['dot-notation'],
+
+        'no-dupe-class-members': 'off',
+        '@typescript-eslint/no-dupe-class-members': baseES6Rules['no-dupe-class-members'],
+
+        'no-empty-function': 'off',
+        '@typescript-eslint/no-empty-function': baseBestPracticesRules['no-empty-function'],
 
         // Imports, file extensions
         'import/no-extraneous-dependencies': [
             'error',
-            { devDependencies: ['**/*.{stories,test,tests,spec}.{js,jsx,ts,tsx}'] },
+            { devDependencies: ['**/*.{stories,test,tests,spec}.{js,jsx,ts,tsx,mts,cts}'] },
         ],
         'import/no-cycle': [
             'error',
@@ -168,6 +250,7 @@ module.exports = {
         'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
+        '@typescript-eslint/no-require-imports': 'off',
         'import/no-useless-path-segments': [
             'error',
             {
@@ -240,10 +323,58 @@ module.exports = {
         ],
         'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
         'import/no-duplicates': ['error', { 'prefer-inline': true, considerQueryString: true }],
+
+        camelcase: 'off',
+        // The `@typescript-eslint/naming-convention` rule allows `leadingUnderscore` and `trailingUnderscore` settings. However, the existing `no-underscore-dangle` rule already takes care of this.
+        '@typescript-eslint/naming-convention': [
+            'error',
+            // Allow camelCase variables (23.2), PascalCase variables (23.8), and UPPER_CASE variables (23.10)
+            {
+                selector: 'variable',
+                format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+            },
+            // Allow camelCase functions (23.2), and PascalCase functions (23.8)
+            {
+                selector: 'function',
+                format: ['camelCase', 'PascalCase'],
+            },
+            // Airbnb recommends PascalCase for classes (23.3), and although Airbnb does not make TypeScript recommendations, we are assuming this rule would similarly apply to anything "type like", including interfaces, type aliases, and enums
+            {
+                selector: 'typeLike',
+                format: ['PascalCase'],
+            },
+        ],
     },
     overrides: [
         {
-            files: ['*.{test,tests,spec}.{js,jsx,ts,tsx}'],
+            files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
+            rules: {
+                // The following rules are enabled in Airbnb config, but are already checked (more thoroughly) by the TypeScript compiler
+                // Some of the rules also fail in TypeScript files, for example: https://github.com/typescript-eslint/typescript-eslint/issues/662#issuecomment-507081586
+                // Rules are inspired by: https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslint-recommended.ts
+                'constructor-super': 'off',
+                'getter-return': 'off',
+                'no-const-assign': 'off',
+                'no-dupe-args': 'off',
+                'no-dupe-keys': 'off',
+                'no-func-assign': 'off',
+                'no-import-assign': 'off',
+                'no-new-symbol': 'off',
+                'no-obj-calls': 'off',
+                'no-setter-return': 'off',
+                'no-this-before-super': 'off',
+                'no-undef': 'off',
+                'no-unreachable': 'off',
+                'no-unsafe-negation': 'off',
+                'valid-typeof': 'off',
+                // The following rules are enabled in Airbnb config, but are recommended to be disabled within TypeScript projects
+                // See: https://github.com/typescript-eslint/typescript-eslint/blob/13583e65f5973da2a7ae8384493c5e00014db51b/docs/linting/TROUBLESHOOTING.md#eslint-plugin-import
+                'import/named': 'off',
+                'import/no-named-as-default-member': 'off',
+            },
+        },
+        {
+            files: ['*.{test,tests,spec}.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
             env: {
                 node: true,
                 jest: true,

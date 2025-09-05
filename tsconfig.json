@@ -5,8 +5,10 @@
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "jsx": "react",
-        "moduleResolution": "bundler"
+        "jsx": "react-jsx",
+        "moduleResolution": "bundler",
+        "allowJs": true,
+        "outDir": "./._tsbuild"
     },
-    "include": ["**/*"]
+    "include": ["**/*", "**/*.mjs"]
 }
