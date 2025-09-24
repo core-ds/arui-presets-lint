@@ -6,7 +6,7 @@ ESlint 9, ESM only и многое другое...
 
 ## Breaking Changes
 
-- полностью удалена поддержка commonJS, минимальная версия node - 18.18.0
+- конфиги поставляются только в esm, минимальная версия node - 18.18.0
 - удален плагин [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) и сопутствующие правила
 - [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) заменен на [eslint-plugin-import-x](https://www.npmjs.com/package/eslint-plugin-import-x)
 - [eslint-plugin-dirnames](https://www.npmjs.com/package/eslint-plugin-dirnames) заменен на [eslint-plugin-check-file](https://www.npmjs.com/package/eslint-plugin-check-file)
