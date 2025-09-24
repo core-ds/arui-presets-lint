@@ -1,12 +1,12 @@
 #   Refer for explanation to following link:
-#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#   https://lefthook.dev/configuration/
 
 pre-commit:
     parallel: true
     commands:
         check-scripts:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts}'
-            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --cache --cache-location="./node_modules/.cache/eslint/.eslintcache" && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored && git add {staged_files}
         check-styles:
             glob: '*.{css}'
             run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache" && git add {staged_files}

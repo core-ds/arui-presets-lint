@@ -12,7 +12,9 @@
 
 Набор конфигурационных файлов для валидации react/node/typescript-проектов.
 
-[Как я могу улучшить стандарты?](./.github/CONTRIBUTING.md)
+[Как я могу внести изменения?](./CONTRIBUTING.md)
+
+🚀 [Миграция на версию 9](./V9_MIGRATION_GUIDE.md)
 
 ## Установка и обновление
 
@@ -22,19 +24,50 @@
     yarn add -D arui-presets-lint
 ```
 
-> ⚠️ С версии 8.0.0 библиотеке более не требуется установка peer dependency [подробнее](./V8_MIGRATION_GUIDE.md)
+> ⚠️ С версии 8.0.0 библиотеке более не требуется установка peer dependency
 
 Далее произвести следующие настройки:
 
-## Подключение конфигов через `package.json`:
+## Подключение конфигов prettier/stylelint/commitlint через `package.json`:
 
 ```json
 {
     "prettier": "arui-presets-lint/prettier",
-    "eslintConfig": { "extends": "./node_modules/arui-presets-lint/eslint" },
     "stylelint": { "extends": "arui-presets-lint/stylelint" },
     "commitlint": { "extends": "./node_modules/arui-presets-lint/commitlint" }
 }
+```
+
+Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
+
+```typescript
+import { defineConfig } from 'arui-presets-lint/config';
+import { eslintConfig } from 'arui-presets-lint/eslint';
+
+export default defineConfig(eslintConfig);
+```
+
+Если нужно расширить конфиг eslint на уровне проекта, дополнить его какими-то плагинами, можно это сделать подобным способом:
+
+```
+import pluginCypress from 'eslint-plugin-cypress'
+import { defineConfig } from 'arui-presets-lint/config';
+import { eslintConfig } from 'arui-presets-lint/eslint';
+
+export default defineConfig(eslintConfig, [
+    {
+        rules: {
+            'no-console': 'off',
+            'max-lines': 'off',
+        },
+    },
+    pluginCypress.configs.recommended,
+    {
+        rules: {
+            'cypress/no-unnecessary-waiting': 'off',
+        },
+    },
+]);
 ```
 
 ## Конфигурация скриптов для запуска в `package.json`:
@@ -52,11 +85,11 @@
 }
 ```
 
-Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .stylelintignore / .prettierignore. Прописывать там файлы, которые уже есть в .gitignore не требуется!
+Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .stylelintignore / .prettierignore / .eslintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
-> Файл .eslintignore не поддерживается, используйте вместо этого eslintConfig.ignorePatterns
+> Вместо файла .eslintignore рекомендуется использовать eslintConfig.ignores, либо globalIgnores в конфиге eslint ([подробнее](https://eslint.org/docs/latest/use/configure/ignore))
 
-Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
+> Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 
 Пример такой конфигурации:
 
@@ -80,7 +113,7 @@ extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 ```
 
-Этот конфиг можно расширить специфичными для вашего проекта настройками, см. [документацию](https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md) Примеры такого расширения:
+Этот конфиг можно расширить специфичными для вашего проекта настройками, см. [документацию](https://lefthook.dev/configuration/) Примеры такого расширения:
 
 ```yml
 extends:
@@ -116,7 +149,7 @@ npx --no-install lefthook install
 npx --no-install prettier --write "./**/*.{js,jsx}" --no-error-on-unmatched-pattern --cache
 
 # Вызов eslint, для того чтобы проверить только js и jsx файлы:
-npx --no-install eslint "**/*.{js,jsx}" --ext .js,.jsx --ignore-path .gitignore --cache --cache-location="./node_modules/.cache/eslint/.eslintcache"
+npx --no-install eslint "**/*.{js,jsx}"
 ```
 
 Таким образом можно гибко настраивать поведение линтеров для вашего проекта, если по какой-то причине стандартная конфигурация вам не подходит.
@@ -154,12 +187,6 @@ npx --no-install commitlint --print-config > commitlintconfig.txt
 3. Включить Prettier
     - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
     - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
-
-## Релизы
-
-Данный проект использует [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
-
-Выпуск новой версии происходит с помощью Github Actions, используйте джобу `Create new library package`. Для beta-версии используется ветка `beta`, для релизной - `master`.
 
 ## Лицензия
 

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     rules: {
         'block-no-empty': true,
         'color-hex-length': 'short',
@@ -55,7 +55,7 @@ module.exports = {
         'stylelint-core-vars/use-one-of-mixins': [true, { severity: 'warning' }],
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
     },
-    plugins: [require.resolve('@alfalab/stylelint-core-vars')],
+    plugins: ['@alfalab/stylelint-core-vars'],
     overrides: [
         {
             files: ['*.module.css'],
