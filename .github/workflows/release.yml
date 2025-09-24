@@ -1,0 +1,39 @@
+name: Release
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v5
+              with:
+                  token: ${{ secrets.GH_TOKEN }}
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 22
+
+            - name: Install dependensies
+              run: |
+                  yarn install --immutable
+
+            - name: Run tests
+              run: |
+                  yarn test
+
+            - name: Create release pull request or publish to npm
+              uses: changesets/action@v1
+              with:
+                  publish: yarn release
+                  version: yarn version-package
+                  commit: 'chore(release): version package'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  CI: true
