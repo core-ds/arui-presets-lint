@@ -10,10 +10,10 @@
         "@alfalab/stylelint-core-vars": "2.0.0",
         "@commitlint/cli": "19.8.1",
         "@commitlint/config-conventional": "19.8.1",
-        "@eslint/js": "9.36.0",
+        "@eslint/js": "9.37.0",
         "@types/eslint-plugin-jsx-a11y": "6.10.0",
-        "@typescript-eslint/utils": "8.44.1",
-        "eslint": "9.36.0",
+        "@typescript-eslint/utils": "8.45.0",
+        "eslint": "9.37.0",
         "eslint-config-flat-gitignore": "2.1.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-import-resolver-typescript": "4.4.4",
@@ -25,25 +25,25 @@
         "eslint-plugin-react-hooks": "5.2.0",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "eslint-plugin-unicorn": "61.0.2",
-        "execa": "9.6.0",
-        "globals": "16.4.0",
-        "jiti": "2.6.0",
-        "lefthook": "1.13.4",
+        "execa": "^9.6.0",
+        "globals": "^16.4.0",
+        "jiti": "^2.6.1",
+        "lefthook": "1.13.6",
         "prettier": "3.6.2",
-        "stylelint": "16.24.0",
-        "typescript-eslint": "8.44.1"
+        "stylelint": "16.25.0",
+        "typescript-eslint": "8.45.0"
     },
     "engines": {
         "node": ">=18.18.0"
     },
     "devDependencies": {
-        "@alfalab/core-components": "49.5.0",
+        "@alfalab/core-components": "49.7.0",
         "@changesets/changelog-github": "0.5.1",
         "@changesets/cli": "2.29.7",
-        "@types/node": "24.5.2",
+        "@types/node": "24.6.2",
         "@types/react": "18.3.24",
         "react": "18.3.1",
-        "typescript": "5.9.2"
+        "typescript": "5.9.3"
     },
     "scripts": {
         "test": "eslint-config-prettier ./eslint/index.ts && yarn lint",
