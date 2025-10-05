@@ -27,9 +27,8 @@ jobs:
             - name: Create release pull request or publish to npm
               uses: changesets/action@v1
               with:
-                  publish: yarn release
-                  version: yarn version-package
-                  commit: 'chore(release): version package'
+                  publish: 'yarn release:snapshot'
+                  version: 'yarn version-package:snapshot'
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
