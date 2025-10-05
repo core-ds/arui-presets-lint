@@ -41,7 +41,7 @@
 Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
 
 ```typescript
-import { defineConfig } from 'arui-presets-lint/config';
+import { defineConfig } from 'arui-presets-lint/eslint/config';
 import { eslintConfig } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig);
@@ -49,9 +49,9 @@ export default defineConfig(eslintConfig);
 
 Если нужно расширить конфиг eslint на уровне проекта, дополнить его какими-то плагинами, можно это сделать подобным способом:
 
-```
-import pluginCypress from 'eslint-plugin-cypress'
-import { defineConfig } from 'arui-presets-lint/config';
+```typescript
+import pluginCypress from 'eslint-plugin-cypress';
+import { defineConfig } from 'arui-presets-lint/eslint/config';
 import { eslintConfig } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [

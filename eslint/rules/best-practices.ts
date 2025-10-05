@@ -1125,5 +1125,9 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // Запрет использования Array reduce
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v61.0.1/docs/rules/no-array-reduce.md
         'unicorn/no-array-reduce': 'off',
+
+        // Запрет использования CommonJS
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v61.0.1/docs/rules/prefer-module.md
+        'unicorn/prefer-module': 'off',
     },
 };
