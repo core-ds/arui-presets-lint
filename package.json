@@ -6,6 +6,10 @@
     "license": "MIT",
     "type": "module",
     "bin": "./cli/index.mjs",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/core-ds/arui-presets-lint.git"
+    },
     "dependencies": {
         "@alfalab/stylelint-core-vars": "2.0.0",
         "@commitlint/cli": "19.8.1",
