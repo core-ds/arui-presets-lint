@@ -27,10 +27,6 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/latest/rules/no-constant-condition
         'no-constant-condition': 'warn',
 
-        // Запрещает объявления функций/переменных во вложенных блоках
-        // https://eslint.org/docs/rules/no-inner-declarations
-        'no-inner-declarations': 'error',
-
         // Запрещает возвращать значения из функций-исполнителей Promise
         // https://eslint.org/docs/rules/no-promise-executor-return
         'no-promise-executor-return': 'error',
@@ -133,11 +129,6 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
                 selector: 'ForInStatement',
                 message:
                     'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
-            },
-            {
-                selector: 'ForOfStatement',
-                message:
-                    'iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.',
             },
             {
                 selector: 'LabeledStatement',
@@ -510,10 +501,6 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/rules/radix
         radix: 'error',
 
-        // Требует объявлять все переменные в начале области видимости
-        // https://eslint.org/docs/rules/vars-on-top
-        'vars-on-top': 'error',
-
         // Требует/запрещает «йода-условия»
         // https://eslint.org/docs/rules/yoda
         yoda: 'error',
@@ -581,16 +568,6 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
             {
                 allowNamedFunctions: false,
                 allowUnboundThis: true,
-            },
-        ],
-
-        // Рекомендует const для переменных, не изменяемых после объявления
-        // https://eslint.org/docs/latest/rules/prefer-const
-        'prefer-const': [
-            'error',
-            {
-                destructuring: 'any',
-                ignoreReadBeforeAssign: true,
             },
         ],
 
@@ -670,5 +647,10 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/rules/no-unexpected-multiline
         // Отключено, так как управляется Prettier
         'no-unexpected-multiline': 'off',
+
+        // Запрещает использование process.exit там, где это не нужно
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-process-exit.md
+        // Отключено, так как не учитывает все возможные варианты где использование допустимо
+        'unicorn/no-process-exit': 'off',
     },
 };

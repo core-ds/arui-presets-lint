@@ -181,7 +181,7 @@ export const typescriptConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/rules/init-declarations
         'init-declarations': 'off',
         // https://typescript-eslint.io/rules/init-declarations
-        '@typescript-eslint/init-declarations': bestPracticesRules['init-declarations'],
+        '@typescript-eslint/init-declarations': variablesRules['init-declarations'],
 
         // Лимит на количество параметров в объявлении функции
         // https://eslint.org/docs/rules/max-params

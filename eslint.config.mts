@@ -7,7 +7,7 @@ export default defineConfig(eslintConfig, [
             'import-x/no-extraneous-dependencies': [
                 'error',
                 {
-                    devDependencies: ['test/**/*'],
+                    devDependencies: ['test/**/*', 'cli/duplicates-checker.ts'],
                 },
             ],
             'no-console': 'off',

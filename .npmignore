@@ -12,3 +12,4 @@ release.config.js
 tsconfig.json
 lefthook.yml
 ._tsbuild
+cli/duplicates-checker.ts
