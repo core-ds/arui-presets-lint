@@ -1,4 +1,5 @@
 import { type TSESLint } from '@typescript-eslint/utils';
+import checkFilePlugin from 'eslint-plugin-check-file';
 import { importX } from 'eslint-plugin-import-x';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 
@@ -9,6 +10,7 @@ export const importsConfig: TSESLint.FlatConfig.Config = {
     plugins: {
         'import-x': importX,
         'simple-import-sort': simpleImportSortPlugin,
+        'check-file': checkFilePlugin,
     },
     settings: {
         ...importX.flatConfigs.typescript.settings,
@@ -73,7 +75,14 @@ export const importsConfig: TSESLint.FlatConfig.Config = {
         // пути рассматриваются как абсолютные и относительные к домашней папке проекта
         'import-x/no-extraneous-dependencies': [
             'error',
-            { devDependencies: ['**/*.{stories,test,tests,spec}.{js,jsx,ts,tsx,mts,cts}'] },
+            {
+                devDependencies: [
+                    // В тестах - разрешаем импорт из devDependencies
+                    '**/*.{stories,test,tests,spec}.{js,jsx,ts,tsx,mts,cts,mtsx,ctsx,mjsx,cjsx}',
+                    // Для всех файлов на первом уровен вложенности проекта - разрешаем импорт из devDependencies
+                    '*.*',
+                ],
+            },
         ],
 
         // Запрещать изменяемые экспорты
@@ -280,5 +289,32 @@ export const importsConfig: TSESLint.FlatConfig.Config = {
         // Сортировка импортов
         // https://eslint.org/docs/rules/sort-imports
         'sort-imports': 'off',
+
+        // Все названия файлов должны быть в kebab-case
+        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
+        'check-file/folder-naming-convention': [
+            'error',
+            { '**/*.*': 'KEBAB_CASE' },
+            { ignoreMiddleExtensions: true },
+        ],
+
+        // Все названия папок должны быть в kebab-case
+        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
+        'check-file/filename-naming-convention': [
+            'error',
+            { '**/*.*': 'KEBAB_CASE' },
+            { ignoreMiddleExtensions: true },
+        ],
+
+        // Список запрещенных названий файлов
+        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-blocklist.md
+        'check-file/filename-blocklist': [
+            'error',
+            { '**/tsconfig.eslint.json': '*tsconfig.json' },
+            {
+                errorMessage:
+                    'Вместо tsconfig.eslint.json используйте languageOptions.parserOptions.projectService.allowDefaultProject в конфиге eslint',
+            },
+        ],
     },
 };

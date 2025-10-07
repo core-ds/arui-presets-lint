@@ -25,10 +25,6 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
 
         ...reactHooksPlugin.configs['recommended-latest'].rules,
 
-        // Указывает, какие кавычки использовать в атрибутах JSX (двойные/одинарные)
-        // https://eslint.org/docs/rules/jsx-quotes
-        'jsx-quotes': ['error', 'prefer-double'],
-
         // Требует, чтобы методы класса использовали this
         // https://eslint.org/docs/latest/rules/class-methods-use-this
         'class-methods-use-this': [
@@ -78,18 +74,6 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
         'react/jsx-boolean-value': ['error', 'always'],
 
-        // Проверяет расположение закрывающей скобки в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md
-        'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-
-        // Проверяет расположение закрывающего тега в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md
-        'react/jsx-closing-tag-location': 'error',
-
-        // Обязывает/запрещает пробелы внутри фигурных скобок в атрибутах JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md
-        'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
-
         // Обязывает соглашения по именованию обработчиков событий в JSX
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
         'react/jsx-handler-names': [
@@ -100,18 +84,10 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
             },
         ],
 
-        // Проверяет отступы пропсов в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
-        'react/jsx-indent-props': ['error', 2],
-
         // Проверяет наличие key при рендере списков/итераторов
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
         // Отключено из-за большого числа ложных срабатываний
         'react/jsx-key': 'off',
-
-        // Ограничивает число пропсов в одной строке JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-props-per-line.md
-        'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
 
         // Запрещает использование .bind() в пропсах JSX
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
@@ -257,33 +233,6 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
         'react/sort-comp': 'off',
 
-        // Предотвращает отсутствие скобок вокруг многострочного JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md
-        'react/jsx-wrap-multilines': [
-            'error',
-            {
-                declaration: 'parens-new-line',
-                assignment: 'parens-new-line',
-                return: 'parens-new-line',
-                arrow: 'parens-new-line',
-                condition: 'parens-new-line',
-                logical: 'parens-new-line',
-                prop: 'parens-new-line',
-            },
-        ],
-
-        // Требует перенос первого пропа на новую строку в многострочном JSX-элементе
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-first-prop-new-line.md
-        'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-
-        // Требует пробелы вокруг знака равенства в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-equals-spacing.md
-        'react/jsx-equals-spacing': ['error', 'never'],
-
-        // Требует корректные отступы в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
-        'react/jsx-indent': ['error', 2],
-
         // Запрещает target="_blank" на ссылках (или требует защиту)
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
         'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
@@ -341,18 +290,6 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
         // Запрещает передачу children через пропсы
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-children-prop.md
         'react/no-children-prop': 'error',
-
-        // Проверяет пробелы в/вокруг открывающих и закрывающих JSX-тегов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-tag-spacing.md
-        'react/jsx-tag-spacing': [
-            'error',
-            {
-                closingSlash: 'never',
-                beforeSelfClosing: 'always',
-                afterOpening: 'never',
-                beforeClosing: 'never',
-            },
-        ],
 
         // Запрещает использование индекса массива в ключах
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
@@ -437,10 +374,6 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-depth.md
         'react/jsx-max-depth': 'off',
 
-        // Запрещает множественные пробелы между инлайновыми JSX-пропсами
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-multi-spaces.md
-        'react/jsx-props-no-multi-spaces': 'error',
-
         // Запрещает использование методов с префиксом UNSAFE_
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unsafe.md
         'react/no-unsafe': 'off',
@@ -448,16 +381,6 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
         // Обязывает использовать краткую или стандартную форму фрагментов React
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
         'react/jsx-fragments': ['warn', 'element'],
-
-        // Обязывает переносы строк в фигурных скобках атрибутов/выражений JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-newline.md
-        'react/jsx-curly-newline': [
-            'error',
-            {
-                multiline: 'consistent',
-                singleline: 'consistent',
-            },
-        ],
 
         // Запрещает распыление пропсов JSX
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
