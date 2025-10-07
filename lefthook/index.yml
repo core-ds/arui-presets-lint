@@ -5,7 +5,7 @@ pre-commit:
     parallel: true
     commands:
         check-scripts:
-            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts}'
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx}'
             run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored && git add {staged_files}
         check-styles:
             glob: '*.{css}'

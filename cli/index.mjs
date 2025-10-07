@@ -3,7 +3,7 @@
 import { execaCommand } from 'execa';
 
 const prettierParams =
-    '"./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json}" --no-error-on-unmatched-pattern --cache';
+    '"./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}" --no-error-on-unmatched-pattern --cache';
 const cacheFolder = './node_modules/.cache';
 
 const commandsMap = {
