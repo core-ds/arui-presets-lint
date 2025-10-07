@@ -193,7 +193,7 @@ npx --no-install commitlint --print-config > commitlintconfig.txt
 ```
 The MIT License (MIT)
 
-Copyright (c) 2025 core-ds contributors
+Copyright (c) 2026 core-ds contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
