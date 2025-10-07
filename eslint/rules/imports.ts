@@ -182,11 +182,11 @@ export const importsConfig: TSESLint.FlatConfig.Config = {
         // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/group-exports.md
         'import-x/group-exports': 'off',
 
-        // запрещать экспорты по умолчанию. это ужасное правило, не используйте его.
+        // Запрещать экспорты по умолчанию
         // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-default-export.md
         'import-x/no-default-export': 'off',
 
-        // запрещать именованные экспорты. это ужасное правило, не используйте его.
+        // Запрещать именованные экспорты
         // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-named-export.md
         'import-x/no-named-export': 'off',
 

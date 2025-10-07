@@ -47,8 +47,22 @@ export const variablesConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/latest/rules/no-plusplus
         'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 
-        // Запрещает использование необъявленных значений, если они не объявлены через комментарий global..
-        // https://eslint.org/docs/latest/rules/no-undef
-        'no-undef': 'off',
+        // Требует объявлять все переменные в начале области видимости
+        // https://eslint.org/docs/rules/vars-on-top
+        'vars-on-top': 'error',
+
+        // Рекомендует const для переменных, не изменяемых после объявления
+        // https://eslint.org/docs/latest/rules/prefer-const
+        'prefer-const': [
+            'error',
+            {
+                destructuring: 'any',
+                ignoreReadBeforeAssign: true,
+            },
+        ],
+
+        // Запрещает объявления функций/переменных во вложенных блоках
+        // https://eslint.org/docs/rules/no-inner-declarations
+        'no-inner-declarations': 'error',
     },
 };
