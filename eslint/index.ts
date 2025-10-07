@@ -1,7 +1,6 @@
 import eslintJS from '@eslint/js';
 import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
-import prettier from 'eslint-config-prettier/flat';
 import globals from 'globals';
 
 import { bestPracticesConfig } from './rules/best-practices';
@@ -20,6 +19,8 @@ export const eslintConfig = [
         files: ['.gitignore', '.eslintignore'],
         strict: false,
     }),
+
+    // ✋ Список игнора для ВСЕХ проектов использующих этот конфиг
     globalIgnores([
         '.yarn/**',
         'node_modules/**',
@@ -37,6 +38,12 @@ export const eslintConfig = [
             sourceType: 'module',
             parserOptions: {
                 ecmaFeatures: { jsx: true },
+                projectService: {
+                    // Разрешаем линтить файлы в корне проекта, даже если они не включены в tsconfig.json
+                    // ⛔️ Внимание, включить '**' тут нельзя, влияет на производительность!
+                    // https://typescript-eslint.io/packages/parser/#allowdefaultproject
+                    allowDefaultProject: ['*.js', '*.ts', '*.mjs', '*.mts', '*.cts', '*.cjs'],
+                },
             },
             globals: {
                 ...globals.es2022,
@@ -49,6 +56,10 @@ export const eslintConfig = [
 
     // https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-recommended.js
     eslintJS.configs.recommended,
+
+    /*
+        ☭ Наши наборы правил ☭
+    */
     bestPracticesConfig,
     nodeRulesConfig,
     reactConfig,
@@ -57,8 +68,14 @@ export const eslintConfig = [
     testsConfig,
     typescriptConfig,
     importsConfig,
+    /*
+        ☭.
+    */
 
-    // Совместимость с Prettier (отключает конфликтующие правила)
-    // https://github.com/prettier/eslint-config-prettier/blob/main/index.js
-    prettier,
+    {
+        // Включаем проверку других расширений файлов в eslint-plugin-check-file
+        // ⚠️ НЕ ДОЛЖНО ПЕРЕСЕКАТЬСЯ С ПАТТЕРНОМ, УКАЗАННЫМ ВЫШЕ
+        files: ['**/*.{yaml,yml,json}'],
+        processor: 'check-file/eslint-processor-check-file',
+    },
 ] as Linter.Config;

@@ -115,10 +115,8 @@ export const typescriptConfig: TSESLint.FlatConfig.Config = {
         '@typescript-eslint/no-unused-expressions': bestPracticesRules['no-unused-expressions'],
 
         // Требует `await` в `async function` (не рекомендуется к использованию)
-        // https://eslint.org/docs/rules/require-await
-        'require-await': 'off',
         // https://typescript-eslint.io/rules/require-await
-        '@typescript-eslint/require-await': bestPracticesRules['require-await'],
+        '@typescript-eslint/require-await': 'off',
 
         // Запрещает ненужный конструктор
         // https://eslint.org/docs/rules/no-useless-constructor
