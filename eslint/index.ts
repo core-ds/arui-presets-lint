@@ -4,7 +4,6 @@ import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
 import { bestPracticesConfig } from './rules/best-practices';
-// Локальные наборы правил
 import { importsConfig } from './rules/imports';
 import { nodeRulesConfig } from './rules/node';
 import { reactConfig } from './rules/react';
@@ -79,3 +78,6 @@ export const eslintConfig = [
         processor: 'check-file/eslint-processor-check-file',
     },
 ] as Linter.Config;
+
+export { type Linter } from 'eslint';
+export { type TSESLint } from '@typescript-eslint/utils';
