@@ -35,7 +35,7 @@ export const nodeRulesConfig: TSESLint.FlatConfig.Config = {
 
         // Запрещает использовать new с функцией require
         // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-new-require.md
-        'no-new-require': 'error',
+        'n/no-new-require': 'error',
 
         // Запрещает конкатенацию строк с __dirname и __filename
         // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-path-concat.md
@@ -44,10 +44,6 @@ export const nodeRulesConfig: TSESLint.FlatConfig.Config = {
         // Запрещает использование process.env
         // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-process-env.md
         'n/no-process-env': 'off',
-
-        // Запрещает process.exit()
-        // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-process-exit.md
-        'no-process-exit': 'off',
 
         // Запрет импорта непубличных модулей
         // https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unpublished-import.md
