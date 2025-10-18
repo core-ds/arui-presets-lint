@@ -14,10 +14,10 @@
         "@alfalab/stylelint-core-vars": "2.0.0",
         "@commitlint/cli": "19.8.1",
         "@commitlint/config-conventional": "19.8.1",
-        "@eslint/js": "9.37.0",
+        "@eslint/js": "9.38.0",
         "@types/eslint-plugin-jsx-a11y": "6.10.0",
-        "@typescript-eslint/utils": "8.45.0",
-        "eslint": "9.37.0",
+        "@typescript-eslint/utils": "8.46.1",
+        "eslint": "9.38.0",
         "eslint-config-flat-gitignore": "2.1.0",
         "eslint-import-resolver-typescript": "4.4.4",
         "eslint-plugin-check-file": "3.3.0",
@@ -34,7 +34,7 @@
         "lefthook": "1.13.6",
         "prettier": "3.6.2",
         "stylelint": "16.25.0",
-        "typescript-eslint": "8.45.0"
+        "typescript-eslint": "8.46.1"
     },
     "engines": {
         "node": ">=18.18.0"
