@@ -169,7 +169,7 @@ yarn arui-presets-lint --echo format
 # eslint:
 npx --no-install eslint --print-config file.tsx > eslintconfig.json
 
-# eslint с в удобном ui-инспекторе:
+# eslint в удобном ui-инспекторе:
 npx @eslint/config-inspector@latest
 
 # stylelint:

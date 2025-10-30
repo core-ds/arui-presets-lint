@@ -40,7 +40,9 @@ export default defineConfig(eslintConfig, [
 
 ^^ Тут мы добавляем eslint-plugin-cypress, и определяем кастомные правила на уровне проекта. Про новый формат конфига - подробности [тут](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-objects)
 
-2. `tsconfig.eslint.json` и правила игнорирования
+> если нужно использовать плагины и правила, которые не поддерживают eslint 9, можно использовать для их подключения утилиты из пакета [@eslint/compat](https://www.npmjs.com/package/@eslint/compat)
+
+1. `tsconfig.eslint.json` и правила игнорирования
 
     Ранее мы использовали кастомный tsconfig.eslint.json, например для того чтобы включить eslint для файлов в корневой директории - с переходом на [typescript-eslint projectService](https://typescript-eslint.io/blog/project-service/#introducing-the-project-service) он больше не нужен. Используйте основной tsconfig.json, а те файлы которые туда нельзя добавить, добавьте с помощью опции languageOptions.parserOptions.projectService.allowDefaultProject. Учтите что папки добавлять нельзя, так как это аффектит на производительность. Пример такого конфига:
 
