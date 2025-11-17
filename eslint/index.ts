@@ -4,6 +4,7 @@ import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
 import { bestPracticesConfig } from './rules/best-practices';
+import { disableCommentsConfig } from './rules/disable-comments';
 import { importsConfig } from './rules/imports';
 import { nodeRulesConfig } from './rules/node';
 import { reactConfig } from './rules/react';
@@ -67,6 +68,7 @@ export const eslintConfig = [
     testsConfig,
     typescriptConfig,
     importsConfig,
+    disableCommentsConfig,
     /*
         ☭.
     */
