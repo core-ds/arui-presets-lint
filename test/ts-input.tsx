@@ -21,13 +21,6 @@ function addTypedObjectToCache<Type, Cache extends CacheHostGeneric<Type>>(
     obj: Type,
     cache: Cache,
 ): Cache {
-    /*
-     * eslint-disable no-unused-vars, no-var -- Используется временно для отладки
-     * будет исправлено в следующем PR
-     *
-     */
-    console.log('d');
-
     cache.save(obj);
 
     return cache;

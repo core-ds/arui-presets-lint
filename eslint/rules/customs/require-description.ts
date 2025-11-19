@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-null -- Требуется использование null */
 import { AST_TOKEN_TYPES, type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
 // Поддерживаемые типы ESLint директив
@@ -21,6 +22,10 @@ type DirectiveData = {
     value: string;
     description?: string;
 };
+
+function isDirectiveKind(value: string): value is DirectiveKind {
+    return SUPPORTED_DIRECTIVES.includes(value as DirectiveKind);
+}
 
 function normalizeToFullLine(location: TSESLint.AST.SourceLocation) {
     return {
@@ -57,16 +62,8 @@ function isValidLineDirective(directiveKind: string, comment: TSESTree.Comment):
     return !isLineComment || isLineDirective;
 }
 
-function isDirectiveKind(value: string): value is DirectiveKind {
-    return SUPPORTED_DIRECTIVES.includes(value as DirectiveKind);
-}
-
 function removeCommentDecorations(line: string): string {
     return line.replace(/^\s*\*\s?/, '').trim();
-}
-
-function cleanCommentLine(line: string): string {
-    return removeCommentDecorations(line).replace(/\s*$/, '');
 }
 
 function parseDirectiveComment(comment: TSESTree.Comment): DirectiveData | undefined {
@@ -121,9 +118,13 @@ function createSuggestionFix(
             return fixBlockComment(fixer, comment, description);
         }
 
-        // eslint-disable-next-line unicorn/no-null -- отключаем из-за `Use `undefined` instead of `null`. unicorn/no-null
         return null;
     };
+}
+
+function formatCommentWithDescription(comment: TSESTree.Comment, description: string): string {
+    const trimmedText = comment.value.trim();
+    return `${trimmedText} -- ${description}`;
 }
 
 function fixSingleLineComment(
@@ -131,82 +132,8 @@ function fixSingleLineComment(
     comment: TSESTree.Comment,
     description: string,
 ): TSESLint.RuleFix {
-    const trimmedText = comment.value.trim();
-    const newCommentText = `${trimmedText} -- ${description}`;
+    const newCommentText = formatCommentWithDescription(comment, description);
     return fixer.replaceText(comment, `// ${newCommentText}`);
-}
-
-function fixSingleLineBlockComment(
-    fixer: TSESLint.RuleFixer,
-    comment: TSESTree.Comment,
-    description: string,
-): TSESLint.RuleFix {
-    const trimmedText = comment.value.trim();
-    const newCommentText = `${trimmedText} -- ${description}`;
-    return fixer.replaceText(comment, `/* ${newCommentText} */`);
-}
-
-function fixMultiLineBlockComment(
-    fixer: TSESLint.RuleFixer,
-    comment: TSESTree.Comment,
-    description: string,
-    lines: string[],
-): TSESLint.RuleFix | null {
-    const cleanedLines = lines.map((line) => cleanCommentLine(line));
-
-    const directiveLineIndex = findDirectiveLineIndex(cleanedLines);
-
-    if (directiveLineIndex === -1) {
-        // eslint-disable-next-line unicorn/no-null -- отключаем из-за `Use `undefined` instead of `null`. unicorn/no-null
-        return null;
-    }
-
-    const updatedLines = updateDirectiveLineWithDescription(
-        cleanedLines,
-        directiveLineIndex,
-        description,
-    );
-    const newCommentText = formatMultiLineComment(updatedLines);
-
-    return fixer.replaceText(comment, `/*${newCommentText}\n */`);
-}
-
-function findDirectiveLineIndex(lines: string[]): number {
-    return lines.findIndex((line) =>
-        SUPPORTED_DIRECTIVES.some((directive) => line.includes(directive)),
-    );
-}
-
-function updateDirectiveLineWithDescription(
-    lines: string[],
-    directiveLineIndex: number,
-    description: string,
-): string[] {
-    const updatedLines = [...lines];
-    updatedLines[directiveLineIndex] = `${updatedLines[directiveLineIndex]} -- ${description}`;
-    return updatedLines;
-}
-
-function formatMultiLineComment(lines: string[]): string {
-    return lines
-        .map((line, index) => {
-            const isFirstLine = index === 0;
-            const isLastLine = index === lines.length - 1;
-            const isEmptyLine = line === '';
-
-            if (isFirstLine && isEmptyLine) {
-                return '';
-            }
-
-            if (isLastLine && isEmptyLine) {
-                return ' *';
-            }
-
-            console.log(line);
-
-            return ` * ${line}`;
-        })
-        .join('\n');
 }
 
 function fixBlockComment(
@@ -218,10 +145,11 @@ function fixBlockComment(
     const lines = commentText?.split('\n');
 
     if (lines.length === 1) {
-        return fixSingleLineBlockComment(fixer, comment, description);
+        const newCommentText = formatCommentWithDescription(comment, description);
+        return fixer.replaceText(comment, `/* ${newCommentText} */`);
     }
 
-    return fixMultiLineBlockComment(fixer, comment, description, lines);
+    return null;
 }
 
 /**
