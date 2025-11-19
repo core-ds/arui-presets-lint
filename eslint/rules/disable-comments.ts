@@ -18,14 +18,5 @@ export const disableCommentsConfig: TSESLint.FlatConfig.Config = {
                 ignore: [],
             },
         ],
-
-        // Дополнительные правила для disable комментариев
-        'no-restricted-syntax': [
-            'error',
-            {
-                selector: 'Program > :not(ExpressionStatement) BlockComment',
-                message: 'Блочные комментарии разрешены только внутри выражений',
-            },
-        ],
     },
 };

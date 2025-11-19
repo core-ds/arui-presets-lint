@@ -13,5 +13,8 @@ export default defineConfig(eslintConfig, [
             'no-console': 'off',
             'max-lines': ['error', 1000],
         },
+        linterOptions: {
+            reportUnusedDisableDirectives: "off",
+        }
     },
 ]);

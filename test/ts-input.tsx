@@ -52,19 +52,3 @@ export enum STATUS {
 const SomeComponent: FC<{ title?: string }> = (props) => <div>{props.title}</div>;
 
 export const Component = () => <SomeComponent title='Привет' />;
-
-export const Component2 = () => {
-    // eslint-disable-next-line no-console -- временное решение для дебага
-    console.log('test'); // true
-
-    /* eslint-disable --
-     * Исключение для эффекта, который должен срабатывать только при монтировании
-     * Добавление deps нарушит ожидаемое поведение
-     */
-    console.log('test'); // true
-
-    // eslint-disable-next-line no-console
-    console.log('test'); // false
-
-    return <div>Test</div>;
-};
