@@ -1,6 +1,6 @@
 import { type TSESLint } from '@typescript-eslint/utils';
 
-import { requireDescriptionRule } from './customs/require-description';
+import { requireDescriptionRule } from './rule';
 
 export const disableCommentsConfig: TSESLint.FlatConfig.Config = {
     name: 'arui-presets-lint/disable-comments',
