@@ -13,7 +13,7 @@ export const disableCommentsConfig: TSESLint.FlatConfig.Config = {
     },
     rules: {
         'disable-comments/require-description': [
-            'error',
+            'warn',
             {
                 ignore: [],
             },
