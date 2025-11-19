@@ -6,7 +6,7 @@ import { type Product, SumTestFunc, type User } from './types';
 // Note: to make this work though, we had to use an any. This
 // can be worked out by using a generic interface.
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Отключаем для тестирования правила
 type CheckImportType = Product & User;
 SumTestFunc();
 
@@ -21,6 +21,13 @@ function addTypedObjectToCache<Type, Cache extends CacheHostGeneric<Type>>(
     obj: Type,
     cache: Cache,
 ): Cache {
+    /*
+     * eslint-disable no-unused-vars, no-var -- Используется временно для отладки
+     * будет исправлено в следующем PR
+     *
+     */
+    console.log('d');
+
     cache.save(obj);
 
     return cache;

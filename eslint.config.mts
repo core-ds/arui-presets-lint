@@ -14,7 +14,7 @@ export default defineConfig(eslintConfig, [
             'max-lines': ['error', 1000],
         },
         linterOptions: {
-            reportUnusedDisableDirectives: "off",
-        }
+            reportUnusedDisableDirectives: 'off',
+        },
     },
 ]);

@@ -61,11 +61,28 @@ function isDirectiveKind(value: string): value is DirectiveKind {
     return SUPPORTED_DIRECTIVES.includes(value as DirectiveKind);
 }
 
+function removeCommentDecorations(line: string): string {
+    return line.replace(/^\s*\*\s?/, '').trim();
+}
+
+function cleanCommentLine(line: string): string {
+    return removeCommentDecorations(line).replace(/\s*$/, '');
+}
+
 function parseDirectiveComment(comment: TSESTree.Comment): DirectiveData | undefined {
     const DIRECTIVE_PATTERN: RegExp =
         /^(eslint(?:-env|-enable|-disable(?:(?:-next)?-line)?)?)(?:\s|$)/u;
 
-    const { text, description } = divideDirectiveComment(comment.value);
+    const commentValue =
+        comment.type === AST_TOKEN_TYPES.Block
+            ? comment.value
+                  .split('\n')
+                  .map((line) => removeCommentDecorations(line))
+                  .join(' ')
+                  .trim()
+            : comment.value;
+
+    const { text, description } = divideDirectiveComment(commentValue);
     const match = DIRECTIVE_PATTERN.exec(text);
 
     if (!match) {
@@ -90,6 +107,130 @@ function parseDirectiveComment(comment: TSESTree.Comment): DirectiveData | undef
         description,
     };
 }
+
+function createSuggestionFix(
+    comment: TSESTree.Comment,
+    description: string,
+): (fixer: TSESLint.RuleFixer) => TSESLint.RuleFix | null {
+    return (fixer: TSESLint.RuleFixer) => {
+        if (comment.type === AST_TOKEN_TYPES.Line) {
+            return fixSingleLineComment(fixer, comment, description);
+        }
+
+        if (comment.type === AST_TOKEN_TYPES.Block) {
+            return fixBlockComment(fixer, comment, description);
+        }
+
+        // eslint-disable-next-line unicorn/no-null -- отключаем из-за `Use `undefined` instead of `null`. unicorn/no-null
+        return null;
+    };
+}
+
+function fixSingleLineComment(
+    fixer: TSESLint.RuleFixer,
+    comment: TSESTree.Comment,
+    description: string,
+): TSESLint.RuleFix {
+    const trimmedText = comment.value.trim();
+    const newCommentText = `${trimmedText} -- ${description}`;
+    return fixer.replaceText(comment, `// ${newCommentText}`);
+}
+
+function fixSingleLineBlockComment(
+    fixer: TSESLint.RuleFixer,
+    comment: TSESTree.Comment,
+    description: string,
+): TSESLint.RuleFix {
+    const trimmedText = comment.value.trim();
+    const newCommentText = `${trimmedText} -- ${description}`;
+    return fixer.replaceText(comment, `/* ${newCommentText} */`);
+}
+
+function fixMultiLineBlockComment(
+    fixer: TSESLint.RuleFixer,
+    comment: TSESTree.Comment,
+    description: string,
+    lines: string[],
+): TSESLint.RuleFix | null {
+    const cleanedLines = lines.map((line) => cleanCommentLine(line));
+
+    const directiveLineIndex = findDirectiveLineIndex(cleanedLines);
+
+    if (directiveLineIndex === -1) {
+        // eslint-disable-next-line unicorn/no-null -- отключаем из-за `Use `undefined` instead of `null`. unicorn/no-null
+        return null;
+    }
+
+    const updatedLines = updateDirectiveLineWithDescription(
+        cleanedLines,
+        directiveLineIndex,
+        description,
+    );
+    const newCommentText = formatMultiLineComment(updatedLines);
+
+    return fixer.replaceText(comment, `/*${newCommentText}\n */`);
+}
+
+function findDirectiveLineIndex(lines: string[]): number {
+    return lines.findIndex((line) =>
+        SUPPORTED_DIRECTIVES.some((directive) => line.includes(directive)),
+    );
+}
+
+function updateDirectiveLineWithDescription(
+    lines: string[],
+    directiveLineIndex: number,
+    description: string,
+): string[] {
+    const updatedLines = [...lines];
+    updatedLines[directiveLineIndex] = `${updatedLines[directiveLineIndex]} -- ${description}`;
+    return updatedLines;
+}
+
+function formatMultiLineComment(lines: string[]): string {
+    return lines
+        .map((line, index) => {
+            const isFirstLine = index === 0;
+            const isLastLine = index === lines.length - 1;
+            const isEmptyLine = line === '';
+
+            if (isFirstLine && isEmptyLine) {
+                return '';
+            }
+
+            if (isLastLine && isEmptyLine) {
+                return ' *';
+            }
+
+            console.log(line);
+
+            return ` * ${line}`;
+        })
+        .join('\n');
+}
+
+function fixBlockComment(
+    fixer: TSESLint.RuleFixer,
+    comment: TSESTree.Comment,
+    description: string,
+): TSESLint.RuleFix | null {
+    const commentText = comment.value;
+    const lines = commentText?.split('\n');
+
+    if (lines.length === 1) {
+        return fixSingleLineBlockComment(fixer, comment, description);
+    }
+
+    return fixMultiLineBlockComment(fixer, comment, description, lines);
+}
+
+/**
+ * Коллекция описаний для автодополнений в правилах ESLint.
+ * Используется для предоставления пользователю готовых вариантов описаний при нарушении правила
+ */
+const SUGGESTS_DESCRIPTION = {
+    DEBUG: 'Используется временно для отладки',
+};
 
 export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> = {
     defaultOptions: [
@@ -130,8 +271,9 @@ export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> 
                 '   * eslint-disable несколько-правил\n' +
                 '   * -- комплексное объяснение причины отключения нескольких правил\n' +
                 '  */',
+            suggestDebug: `Добавить комментарий "${SUGGESTS_DESCRIPTION.DEBUG}"`,
         },
-        hasSuggestions: false,
+        hasSuggestions: true,
     },
     create(context) {
         const { sourceCode } = context;
@@ -151,6 +293,13 @@ export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> 
                 context.report({
                     loc: normalizeToFullLine(comment.loc),
                     messageId: 'missingDescription',
+                    node: comment,
+                    suggest: [
+                        {
+                            messageId: 'suggestDebug',
+                            fix: createSuggestionFix(comment, SUGGESTS_DESCRIPTION.DEBUG),
+                        },
+                    ],
                 });
             }
         }
