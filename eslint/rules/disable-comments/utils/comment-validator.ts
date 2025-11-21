@@ -35,7 +35,7 @@ export class CommentValidator {
         return undefined;
     }
 
-    validate(comment: TSESTree.Comment): {
+    public validate(comment: TSESTree.Comment): {
         needsReport: boolean;
         messageId: string;
         directive?: DirectiveData;
