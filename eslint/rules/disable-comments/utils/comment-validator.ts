@@ -1,7 +1,7 @@
 import { type TSESTree } from '@typescript-eslint/utils';
 
 import { MESSAGE_IDS } from '../constants';
-import { type DirectiveData } from '../types';
+import { type DirectiveData, type DirectiveKind } from '../types';
 
 import {
     getPreviousComment,
@@ -12,10 +12,10 @@ import {
 } from './comment-parser';
 
 export class CommentValidator {
-    private ignoredDirectives: Set<string>;
+    private ignoredDirectives: Set<DirectiveKind>;
     private allComments: TSESTree.Comment[];
 
-    constructor(ignoredDirectives: string[], allComments: TSESTree.Comment[]) {
+    constructor(ignoredDirectives: DirectiveKind[], allComments: TSESTree.Comment[]) {
         this.ignoredDirectives = new Set(ignoredDirectives);
         this.allComments = allComments;
     }
