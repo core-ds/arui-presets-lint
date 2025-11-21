@@ -21,9 +21,6 @@ function addTypedObjectToCache<Type, Cache extends CacheHostGeneric<Type>>(
     obj: Type,
     cache: Cache,
 ): Cache {
-    // eslint-disable-next-line no-console
-    console.log('d');
-
     cache.save(obj);
 
     return cache;

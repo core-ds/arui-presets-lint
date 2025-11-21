@@ -1,6 +1,12 @@
 import { AST_TOKEN_TYPES, type TSESTree } from '@typescript-eslint/utils';
 
-import { SUPPORTED_DIRECTIVES } from '../constants';
+import {
+    DESCRIPTION_SEPARATOR,
+    FORBIDDEN_PATTERNS,
+    MEANINGFUL_PATTERNS,
+    MIN_DESCRIPTION_LENGTH,
+    SUPPORTED_DIRECTIVES,
+} from '../constants';
 import { type DirectiveData, type DirectiveKind } from '../types';
 
 function isDirectiveKind(value: string): value is DirectiveKind {
@@ -8,8 +14,6 @@ function isDirectiveKind(value: string): value is DirectiveKind {
 }
 
 function divideDirectiveComment(value: string) {
-    const DESCRIPTION_SEPARATOR: RegExp = /\s-{2,}\s/u;
-
     const divided = value.split(DESCRIPTION_SEPARATOR);
     const text = divided[0].trim();
 
@@ -89,4 +93,29 @@ export function isAdjacentComment(
     currentComment: TSESTree.Comment,
 ): boolean {
     return previousComment.loc.end.line + 1 === currentComment.loc.start.line;
+}
+
+export function isValidDescription(description: string): boolean {
+    const trimmed = description.trim();
+
+    if (trimmed.length < MIN_DESCRIPTION_LENGTH) {
+        return false;
+    }
+
+    for (const pattern of FORBIDDEN_PATTERNS) {
+        if (pattern.test(trimmed)) {
+            return false;
+        }
+    }
+
+    return MEANINGFUL_PATTERNS.some((pattern) => pattern.test(trimmed));
+}
+
+export function validateAboveComment(comment: TSESTree.Comment): boolean {
+    const commentText =
+        comment.type === AST_TOKEN_TYPES.Line
+            ? comment.value.trim()
+            : comment.value.replaceAll(/\/\*|\*\//g, '').trim();
+
+    return isValidDescription(commentText);
 }

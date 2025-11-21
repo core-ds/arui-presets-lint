@@ -1,9 +1,13 @@
 /* eslint-disable unicorn/no-null -- Требуется использование null */
 import { AST_TOKEN_TYPES, type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
+import { DESCRIPTION_REPLACEMENT } from '../constants';
+
 function formatCommentWithDescription(comment: TSESTree.Comment, description: string): string {
-    const trimmedText = comment.value.trim();
-    return `${trimmedText} -- ${description}`;
+    const commentValue = comment.value.trim();
+    const baseText = commentValue.replace(DESCRIPTION_REPLACEMENT, '').trim();
+
+    return `${baseText} -- ${description}`;
 }
 
 function fixSingleLineComment(

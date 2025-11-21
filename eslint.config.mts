@@ -10,7 +10,7 @@ export default defineConfig(eslintConfig, [
                     devDependencies: ['test/**/*', 'cli/duplicates-checker.ts'],
                 },
             ],
-            'no-console': 'warn',
+            'no-console': 'off',
             'max-lines': ['error', 1000],
         },
     },
