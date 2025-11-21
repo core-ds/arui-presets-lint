@@ -74,3 +74,19 @@ export function parseDirectiveComment(comment: TSESTree.Comment): DirectiveData 
         description,
     };
 }
+
+export function getPreviousComment(
+    allComments: TSESTree.Comment[],
+    currentComment: TSESTree.Comment,
+): TSESTree.Comment | undefined {
+    const currentIndex = allComments.indexOf(currentComment);
+
+    return currentIndex > 0 ? allComments[currentIndex - 1] : undefined;
+}
+
+export function isAdjacentComment(
+    previousComment: TSESTree.Comment,
+    currentComment: TSESTree.Comment,
+): boolean {
+    return previousComment.loc.end.line + 1 === currentComment.loc.start.line;
+}

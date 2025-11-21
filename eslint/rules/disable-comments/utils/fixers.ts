@@ -47,3 +47,22 @@ export function createSuggestionFix(
         return null;
     };
 }
+
+export function createAboveCommentFix(
+    comment: TSESTree.Comment,
+    description: string,
+): (fixer: TSESLint.RuleFixer) => TSESLint.RuleFix | null {
+    return (fixer: TSESLint.RuleFixer) => {
+        const indent = ' '.repeat(comment.loc.start.column);
+
+        if (comment.type === AST_TOKEN_TYPES.Line) {
+            return fixer.insertTextBefore(comment, `// ${description}\n${indent}`);
+        }
+
+        if (comment.type === AST_TOKEN_TYPES.Block) {
+            return fixer.insertTextBefore(comment, `/* ${description} */\n${indent}`);
+        }
+
+        return null;
+    };
+}

@@ -2,7 +2,13 @@ import { type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
 import { MESSAGE_IDS, MESSAGES, SUGGESTS_DESCRIPTION, SUPPORTED_DIRECTIVES } from '../constants';
 import { type RuleOptions } from '../types';
-import { createSuggestionFix, parseDirectiveComment } from '../utils';
+import {
+    createAboveCommentFix,
+    createSuggestionFix,
+    getPreviousComment,
+    isAdjacentComment,
+    parseDirectiveComment,
+} from '../utils';
 
 export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> = {
     defaultOptions: [
@@ -38,6 +44,7 @@ export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> 
     create(context) {
         const { sourceCode } = context;
         const ignoredDirectives = new Set(context.options[0]?.ignore || []);
+        const allComments = sourceCode.getAllComments();
 
         function validateComment(comment: TSESTree.Comment) {
             const directive = parseDirectiveComment(comment);
@@ -47,9 +54,15 @@ export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> 
             }
 
             const shouldIgnore = ignoredDirectives.has(directive.kind);
-            const hasDescription = Boolean(directive.description);
+            const hasInlineDescription = Boolean(directive.description);
 
-            if (!shouldIgnore && !hasDescription) {
+            const previousComment = getPreviousComment(allComments, comment);
+            const hasAboveComment =
+                previousComment &&
+                isAdjacentComment(previousComment, comment) &&
+                !parseDirectiveComment(previousComment);
+
+            if (!shouldIgnore && !hasInlineDescription && !hasAboveComment) {
                 context.report({
                     loc: {
                         start: {
@@ -64,6 +77,10 @@ export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> 
                         {
                             messageId: MESSAGE_IDS.suggestDebug,
                             fix: createSuggestionFix(comment, SUGGESTS_DESCRIPTION.DEBUG),
+                        },
+                        {
+                            messageId: MESSAGE_IDS.suggestAboveComment,
+                            fix: createAboveCommentFix(comment, SUGGESTS_DESCRIPTION.ABOVE_COMMENT),
                         },
                     ],
                 });
