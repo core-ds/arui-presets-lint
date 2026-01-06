@@ -12,43 +12,43 @@
     },
     "dependencies": {
         "@alfalab/stylelint-core-vars": "2.0.0",
-        "@commitlint/cli": "19.8.1",
-        "@commitlint/config-conventional": "19.8.1",
-        "@eslint/js": "9.38.0",
+        "@commitlint/cli": "20.3.0",
+        "@commitlint/config-conventional": "20.3.0",
+        "@eslint/js": "9.39.2",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
-        "@typescript-eslint/utils": "8.46.2",
-        "eslint": "9.38.0",
+        "@typescript-eslint/utils": "8.52.0",
+        "eslint": "9.39.2",
         "eslint-config-flat-gitignore": "2.1.0",
         "eslint-import-resolver-typescript": "4.4.4",
-        "eslint-plugin-check-file": "3.3.0",
+        "eslint-plugin-check-file": "3.3.1",
         "eslint-plugin-import-x": "4.16.1",
         "eslint-plugin-jsx-a11y": "6.10.2",
         "eslint-plugin-n": "17.23.1",
         "eslint-plugin-react": "7.37.5",
-        "eslint-plugin-react-hooks": "5.2.0",
+        "eslint-plugin-react-hooks": "7.0.1",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "eslint-plugin-unicorn": "62.0.0",
-        "execa": "^9.6.0",
-        "globals": "^16.4.0",
+        "execa": "^9.6.1",
+        "globals": "^17.0.0",
         "jiti": "^2.6.1",
-        "lefthook": "2.0.2",
-        "prettier": "3.6.2",
-        "stylelint": "16.25.0",
-        "typescript-eslint": "8.46.2"
+        "lefthook": "2.0.13",
+        "prettier": "3.7.4",
+        "stylelint": "16.26.1",
+        "typescript-eslint": "8.52.0"
     },
     "engines": {
         "node": ">=18.18.0"
     },
     "devDependencies": {
-        "@alfalab/core-components": "49.7.0",
-        "@changesets/changelog-github": "0.5.1",
-        "@changesets/cli": "2.29.7",
+        "@alfalab/core-components": "49.12.0",
+        "@changesets/changelog-github": "0.5.2",
+        "@changesets/cli": "2.29.8",
         "@types/node": "24.6.2",
         "@types/react": "18.3.24",
-        "es-toolkit": "1.41.0",
+        "es-toolkit": "1.43.0",
         "eslint-config-prettier": "10.1.8",
         "react": "18.3.1",
-        "tsx": "4.20.6",
+        "tsx": "4.21.0",
         "typescript": "5.9.3"
     },
     "scripts": {
@@ -86,5 +86,5 @@
     "commitlint": {
         "extends": "./commitlint"
     },
-    "packageManager": "yarn@4.10.3"
+    "packageManager": "yarn@4.12.0"
 }
