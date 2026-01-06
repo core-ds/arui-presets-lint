@@ -4454,7 +4454,7 @@ __metadata:
     typescript: "npm:5.9.3"
     typescript-eslint: "npm:8.52.0"
   bin:
-    arui-presets-lint: ./cli/index.mjs
+    arui-presets-lint: cli/index.mjs
   languageName: unknown
   linkType: soft
 

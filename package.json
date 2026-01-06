@@ -5,9 +5,7 @@
     "author": "core-ds contributors",
     "license": "MIT",
     "type": "module",
-    "bin": {
-        "arui-presets-lint": "cli/index.mjs"
-    },
+    "bin": "cli/index.mjs",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/core-ds/arui-presets-lint.git"
