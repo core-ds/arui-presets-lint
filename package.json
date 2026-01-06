@@ -5,10 +5,12 @@
     "author": "core-ds contributors",
     "license": "MIT",
     "type": "module",
-    "bin": "./cli/index.mjs",
+    "bin": {
+        "arui-presets-lint": "cli/index.mjs"
+    },
     "repository": {
         "type": "git",
-        "url": "https://github.com/core-ds/arui-presets-lint.git"
+        "url": "git+https://github.com/core-ds/arui-presets-lint.git"
     },
     "dependencies": {
         "@alfalab/stylelint-core-vars": "2.0.0",
