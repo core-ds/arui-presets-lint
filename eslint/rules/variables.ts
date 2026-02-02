@@ -64,5 +64,9 @@ export const variablesConfig: TSESLint.FlatConfig.Config = {
         // Запрещает объявления функций/переменных во вложенных блоках
         // https://eslint.org/docs/rules/no-inner-declarations
         'no-inner-declarations': 'error',
+
+        // Запрещает использование оператора void
+        // https://eslint.org/docs/rules/no-void
+        'no-void': ['error', { allowAsStatement: true }],
     },
 };
