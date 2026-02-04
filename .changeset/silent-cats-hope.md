@@ -17,7 +17,7 @@ ESlint 9, ESM only и многое другое...
 
 ## New Features
 
-- добавлен набор правил [eslint-plugin-unicorn-recommended](https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules)
+- добавлен набор правил [eslint-plugin-unicorn-unopinionated](https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules)
 - добавлен набор правил [eslint-plugin-jsx-a11y-recommended](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y?tab=readme-ov-file#supported-rules)
 - добавлены наборы правил [eslint-plugin-react-recommended](https://github.com/jsx-eslint/eslint-plugin-react?tab=readme-ov-file#list-of-supported-rules) и eslint-plugin-react-hooks-recommended. исправляет [этот баг](https://github.com/core-ds/arui-presets-lint/issues/50)
 - добавлен набор правил [typescript-eslint-recommended-type-checked](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslintrc/recommended-type-checked.ts)
