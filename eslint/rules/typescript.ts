@@ -254,5 +254,13 @@ export const typescriptConfig: TSESLint.FlatConfig.Config = {
         // Запрет обращения к значениям с типом any
         // https://typescript-eslint.io/rules/no-unsafe-member-access/
         '@typescript-eslint/no-unsafe-member-access': 'off',
+
+        // Предотвращает использование промисов в местах, где этого делать не нужно
+        // https://typescript-eslint.io/rules/no-misused-promises/
+        '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+
+        // Принуждает правильно обрабатывать Promise-like операторы
+        // https://typescript-eslint.io/rules/no-floating-promises/
+        '@typescript-eslint/no-floating-promises': ['error', { ignoreIIFE: true }],
     },
 };
