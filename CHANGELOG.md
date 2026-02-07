@@ -1,6 +1,6 @@
 ## [8.8.1](https://github.com/core-ds/arui-presets-lint/compare/v8.8.0...v8.8.1) (2025-08-25)
 
-## 9.0.0
+## 9.0.1
 
 ### Major Changes
 
