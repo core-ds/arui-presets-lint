@@ -1,5 +1,3 @@
-## [8.8.1](https://github.com/core-ds/arui-presets-lint/compare/v8.8.0...v8.8.1) (2025-08-25)
-
 ## 9.0.1
 
 ### Major Changes
@@ -29,6 +27,8 @@
 
     ## Bugfixes
     - Исправлено отображение ворнингов на precommit при наличии файла в eslintignore https://github.com/core-ds/arui-presets-lint/issues/28
+
+# [8.8.1](https://github.com/core-ds/arui-presets-lint/compare/v8.8.0...v8.8.1) (2025-08-25)
 
 ### Bug Fixes
 
