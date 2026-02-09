@@ -56,11 +56,7 @@ export default defineConfig(eslintConfig, [
             parserOptions: {
                 projectService: {
                     // Это позволит eslint линтить все файлы в корневой директории проекта, даже если они не указаны в tsconfig.json
-<<<<<<< HEAD
-                    // Эта настройка уже включена в arui-presets-lint
-=======
                     // Эти параметры уже включены по умолчанию
->>>>>>> 81096d806878cea833037b1c6b1945e7f8a5dc78
                     allowDefaultProject: ['*.js', '*.ts', '*.mjs', '*.mts', '*.cts', '*.cjs'],
                 },
             },
@@ -75,11 +71,7 @@ export default defineConfig(eslintConfig, [
     // eslint-disable-next-line import/no-default-export на
     // eslint-disable-next-line import-x/no-default-export
 
-<<<<<<< HEAD
-    Так же все правила в конфиге которые начинаються на `import/` нужно заменить на `import/x`. Других изменений делать не нужно, новый плагин полностью совместим со старым.
-=======
     Так же все правила в конфиге которые начинаються на `import/` нужно заменить на `import-x/`. Других изменений делать не нужно, новый плагин полностью совместим со старым.
->>>>>>> 81096d806878cea833037b1c6b1945e7f8a5dc78
 
 4. Набор правил eslint изменился - но многие правятся с помощью автофикса. Сделаем это!
 
