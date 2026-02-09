@@ -1,6 +1,6 @@
 import { intersection } from 'es-toolkit/array';
 
-import { disableCommentsConfig } from '../eslint/rules/disable-comments';
+import { disableCommentsConfig } from '../eslint/plugins/disable-comments';
 import { importsConfig } from '../eslint/rules/imports';
 import { nodeRulesConfig } from '../eslint/rules/node';
 import { reactConfig } from '../eslint/rules/react';

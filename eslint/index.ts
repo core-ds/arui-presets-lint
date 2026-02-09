@@ -3,8 +3,8 @@ import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
+import { disableCommentsConfig } from './plugins/disable-comments';
 import { bestPracticesConfig } from './rules/best-practices';
-import { disableCommentsConfig } from './rules/disable-comments';
 import { importsConfig } from './rules/imports';
 import { nodeRulesConfig } from './rules/node';
 import { reactConfig } from './rules/react';
