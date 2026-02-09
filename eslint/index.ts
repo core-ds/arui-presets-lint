@@ -31,6 +31,7 @@ export const eslintConfig = [
         '.cache/**',
         '.temp/**',
         '.tmp/**',
+        '!.storybook',
     ]),
     {
         languageOptions: {

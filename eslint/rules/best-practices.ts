@@ -2,14 +2,14 @@ import { type TSESLint } from '@typescript-eslint/utils';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
 export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
-    ...unicornPlugin.configs.recommended,
+    ...unicornPlugin.configs.unopinionated,
     name: 'arui-presets-lint/best-practices',
     plugins: {
         unicorn: unicornPlugin,
     },
     rules: {
         // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
-        ...unicornPlugin.configs.recommended.rules,
+        ...unicornPlugin.configs.unopinionated.rules,
 
         // Требует наличие оператора return в геттерах свойств
         // https://eslint.org/docs/rules/getter-return
@@ -357,27 +357,8 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         'no-octal-escape': 'error',
 
         // Запрещает переназначение параметров функции
-        // Запрещает менять объект параметров (за исключением исключений ниже)
-        // правило: https://eslint.org/docs/rules/no-param-reassign.html
-        'no-param-reassign': [
-            'error',
-            {
-                props: true,
-                ignorePropertyModificationsFor: [
-                    'acc', // для аккумуляторов reduce
-                    'accumulator', // для аккумуляторов reduce
-                    'e', // для e.returnvalue
-                    'ctx', // для роутинга Koa
-                    'context', // для роутинга Koa
-                    'req', // для Express-запросов
-                    'request', // для Express-запросов
-                    'res', // для Express-ответов
-                    'response', // для Express-ответов
-                    '$scope', // для Angular 1 scopes
-                    'staticContext', // для контекста ReactRouter
-                ],
-            },
-        ],
+        // https://eslint.org/docs/rules/no-param-reassign.html
+        'no-param-reassign': ['error', { props: false }],
 
         // Запрещает использование свойства __proto__
         // https://eslint.org/docs/rules/no-proto
@@ -618,25 +599,9 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/latest/rules/init-declarations
         'init-declarations': 'off',
 
-        // Предотвращает использование аббривиатур в названии переменных
-        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prevent-abbreviations.md
-        'unicorn/prevent-abbreviations': 'off',
-
-        // Запрет использования Array reduce
-        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reduce.md
-        'unicorn/no-array-reduce': 'off',
-
         // Запрет использования CommonJS
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-module.md
         'unicorn/prefer-module': 'off',
-
-        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/empty-brace-spaces.md
-        // Отключено, так как управляется Prettier
-        'unicorn/empty-brace-spaces': 'off',
-
-        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-nested-ternary.md
-        // Отключено, так как управляется Prettier
-        'unicorn/no-nested-ternary': 'off',
 
         // Обеспечить правильный регистр для чисел
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/number-literal-case.md
@@ -652,5 +617,17 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-process-exit.md
         // Отключено, так как не учитывает все возможные варианты где использование допустимо
         'unicorn/no-process-exit': 'off',
+
+        // Запрещает использовать 'window', 'self' и 'global'
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-global-this.md
+        'unicorn/prefer-global-this': 'off',
+
+        // Использовать префикс 'node:' для импортов встроенных в nodejs модулей
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-node-protocol.md
+        'unicorn/prefer-node-protocol': 'warn',
+
+        // Предпочитать top-level await вместо верхнеуровневых промисов
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-top-level-await.md
+        'unicorn/prefer-top-level-await': 'off',
     },
 };
