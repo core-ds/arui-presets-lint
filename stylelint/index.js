@@ -54,6 +54,15 @@ export default {
         'stylelint-core-vars/use-one-of-vars': [true, { severity: 'warning' }],
         'stylelint-core-vars/use-one-of-mixins': [true, { severity: 'warning' }],
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
+        'block-opening-brace-newline-after': 'always',
+        'block-opening-brace-newline-before': 'always',
+        'rule-empty-line-before': [
+            'always',
+            {
+                except: ['first-nested'],
+                ignore: ['after-comment'],
+            },
+        ],
     },
     plugins: ['@alfalab/stylelint-core-vars'],
     overrides: [
