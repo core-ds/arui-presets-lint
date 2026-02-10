@@ -79,6 +79,7 @@
         "./eslint/tests": "./eslint/tests.ts",
         "./eslint/typescript": "./eslint/typescript.ts",
         "./eslint/variables": "./eslint/variables.ts",
+        "./eslint/plugins/disable-comments": "./eslint/plugins/disable-comments/index.ts",
         "./prettier": "./prettier/index.js",
         "./commitlint": "./commitlint/index.js",
         "./stylelint": "./stylelint/index.js"
