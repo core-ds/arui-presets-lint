@@ -34,7 +34,7 @@
 {
     "prettier": "arui-presets-lint/prettier",
     "stylelint": { "extends": "arui-presets-lint/stylelint" },
-    "commitlint": { "extends": "./node_modules/arui-presets-lint/commitlint" }
+    "commitlint": { "extends": "arui-presets-lint/commitlint" }
 }
 ```
 
