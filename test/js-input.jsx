@@ -17,6 +17,16 @@ function definedAfterUsage() {
         return dig;
     }
 
+    const someArray = [1, 2, 3, 4];
+
+    for (const i of someArray) {
+        console.log(i);
+
+        if (i > 2) {
+            continue;
+        }
+    }
+
     return dig;
 }
 
