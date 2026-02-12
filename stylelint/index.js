@@ -146,14 +146,6 @@ export default {
         // https://github.com/core-ds/stylelint-core-vars
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
 
-        // Требует перевод строки после открывающей фигурной скобки
-        // https://stylelint.io/user-guide/rules/block-opening-brace-newline-after
-        'block-opening-brace-newline-after': 'always',
-
-        // Требует перевод строки перед открывающей фигурной скобкой
-        // https://stylelint.io/user-guide/rules/block-opening-brace-newline-before
-        'block-opening-brace-newline-before': 'always',
-
         // Требует пустую строку перед правилами
         // https://stylelint.io/user-guide/rules/rule-empty-line-before
         'rule-empty-line-before': [
