@@ -1,5 +1,11 @@
 ## 9.0.1
 
+## 9.0.2
+
+### Patch Changes
+
+- [#82](https://github.com/core-ds/arui-presets-lint/pull/82) [`76c10fe`](https://github.com/core-ds/arui-presets-lint/commit/76c10fe13a175ea89b664c2b727009cfa1638ddf) Thanks [@heymdall-legal](https://github.com/heymdall-legal)! - Выключено правило no-continue
+
 ### Major Changes
 
 - [#53](https://github.com/core-ds/arui-presets-lint/pull/53) [`909ac7d`](https://github.com/core-ds/arui-presets-lint/commit/909ac7d696a0ef2d56993688878e738dbad193db) Thanks [@kiskv](https://github.com/kiskv)! - ESlint 9, ESM only и многое другое...
