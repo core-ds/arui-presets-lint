@@ -6,7 +6,7 @@ import { type Product, SumTestFunc, type User } from './types';
 // Note: to make this work though, we had to use an any. This
 // can be worked out by using a generic interface.
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Отключаем для тестирования правила
 type CheckImportType = Product & User;
 SumTestFunc();
 
