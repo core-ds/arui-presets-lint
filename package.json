@@ -31,7 +31,7 @@
         "execa": "^9.6.1",
         "globals": "^17.0.0",
         "jiti": "^2.6.1",
-        "lefthook": "2.1.0",
+        "lefthook": "2.1.1",
         "prettier": "3.8.1",
         "stylelint": "16.26.1",
         "typescript-eslint": "8.54.0"
@@ -71,14 +71,7 @@
     "exports": {
         "./eslint": "./eslint/index.ts",
         "./eslint/config": "./eslint/config.ts",
-        "./eslint/best-practices": "./eslint/best-practices.ts",
-        "./eslint/imports": "./eslint/imports.ts",
-        "./eslint/node": "./eslint/node.ts",
-        "./eslint/react-a11y": "./eslint/react-a11y.ts",
-        "./eslint/react": "./eslint/react.ts",
-        "./eslint/tests": "./eslint/tests.ts",
-        "./eslint/typescript": "./eslint/typescript.ts",
-        "./eslint/variables": "./eslint/variables.ts",
+        "./eslint/rules": "./eslint/rules/index.ts",
         "./prettier": "./prettier/index.js",
         "./commitlint": "./commitlint/index.js",
         "./stylelint": "./stylelint/index.js"

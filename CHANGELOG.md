@@ -1,10 +1,10 @@
-## 9.0.1
-
 ## 9.0.2
 
 ### Patch Changes
 
 - [#82](https://github.com/core-ds/arui-presets-lint/pull/82) [`76c10fe`](https://github.com/core-ds/arui-presets-lint/commit/76c10fe13a175ea89b664c2b727009cfa1638ddf) Thanks [@heymdall-legal](https://github.com/heymdall-legal)! - Выключено правило no-continue
+
+## 9.0.1
 
 ### Major Changes
 

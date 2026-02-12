@@ -3,15 +3,17 @@ import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
-import { bestPracticesConfig } from './rules/best-practices';
-import { importsConfig } from './rules/imports';
-import { nodeRulesConfig } from './rules/node';
-import { reactConfig } from './rules/react';
-import { reactA11yConfig } from './rules/react-a11y';
-import { testsConfig } from './rules/tests';
-import { typescriptConfig } from './rules/typescript';
-import { variablesConfig } from './rules/variables';
 import { globalIgnores } from './config';
+import {
+    bestPracticesConfig,
+    importsConfig,
+    nodeRulesConfig,
+    reactA11yConfig,
+    reactConfig,
+    testsConfig,
+    typescriptConfig,
+    variablesConfig,
+} from './rules';
 
 export const eslintConfig = [
     gitignore({
