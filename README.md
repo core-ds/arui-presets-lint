@@ -70,6 +70,45 @@ export default defineConfig(eslintConfig, [
 ]);
 ```
 
+Если в проекте есть файлы typescript, которые не добавлены в `tsconfig.json`, или исключены из него принудительно, то eslint выдаст ошибку `<filename> was not found by the project service. Consider either including it in the tsconfig.json or including it in allowDefaultProject`. Есть несколько способов решения этой проблемы:
+
+- (Рекомендуется) Добавить нужные файлы через опцию allowDefaultProject:
+
+```typescript
+import { eslintConfig } from 'arui-presets-lint/eslint';
+import { defineConfig } from 'arui-presets-lint/eslint/config';
+
+export default defineConfig(eslintConfig, [
+    {
+        languageOptions: {
+            parserOptions: {
+                projectService: {
+                    // Это позволит eslint линтить файлы, даже если они не указаны в tsconfig.json
+                    // Обратите внимание, что включить '**' тут нельзя, влияет на производительность!
+                    // https://typescript-eslint.io/packages/parser/#allowdefaultproject
+                    // Конретно тут - разрешаем линтить все файлы с расширениями .ts, .mts и .cts в корневой директории проекта
+                    allowDefaultProject: ['*.ts', '*.mts', '*.cts'],
+                },
+            },
+        },
+        files: ['**/*.{ts,tsx,mts,cts,mtsx,ctsx}'],
+    },
+]);
+```
+
+- (НЕ рекомендуется) Добавить файлы в globalIgnores. В этом случае eslint не будет его проверять:
+
+```typescript
+import { eslintConfig } from 'arui-presets-lint/eslint';
+import { defineConfig } from 'arui-presets-lint/eslint/config';
+
+export default defineConfig(eslintConfig, [
+    {
+        globalIgnores(['eslint.config.mts', 'arui-scripts.config.ts', 'playwright.config.ts']),
+    },
+]);
+```
+
 ## Конфигурация скриптов для запуска в `package.json`:
 
 ```json
@@ -87,7 +126,12 @@ export default defineConfig(eslintConfig, [
 
 Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .stylelintignore / .prettierignore / .eslintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
-> Вместо файла .eslintignore рекомендуется использовать eslintConfig.ignores, либо globalIgnores в конфиге eslint ([подробнее](https://eslint.org/docs/latest/use/configure/ignore))
+> Вместо файла .eslintignore рекомендуется использовать globalIgnores в конфиге eslint ([подробнее](https://eslint.org/docs/latest/use/configure/ignore)). Импортируем функцию globalIgnores из `arui-presets-lint` вот так:
+
+```typescript
+import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint/config';
+...
+```
 
 > Для запуска eslint/stylelint рекомендуется использовать флаг [--max-warnings](https://eslint.org/docs/latest/user-guide/command-line-interface#--max-warnings), который позволяет ограничить количество возникающих предупреждений.
 

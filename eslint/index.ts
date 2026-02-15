@@ -40,12 +40,6 @@ export const eslintConfig = [
             sourceType: 'module',
             parserOptions: {
                 ecmaFeatures: { jsx: true },
-                projectService: {
-                    // Разрешаем линтить файлы в корне проекта, даже если они не включены в tsconfig.json
-                    // ⛔️ Внимание, включить '**' тут нельзя, влияет на производительность!
-                    // https://typescript-eslint.io/packages/parser/#allowdefaultproject
-                    allowDefaultProject: ['*.js', '*.ts', '*.mjs', '*.mts', '*.cts', '*.cjs'],
-                },
             },
             globals: {
                 ...globals.es2022,
