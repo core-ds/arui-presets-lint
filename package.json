@@ -1,6 +1,6 @@
 {
     "name": "arui-presets-lint",
-    "version": "9.0.1",
+    "version": "9.1.0",
     "description": "Config files for arui-apps",
     "author": "core-ds contributors",
     "license": "MIT",
@@ -16,7 +16,7 @@
         "@commitlint/config-conventional": "20.4.1",
         "@eslint/js": "9.39.2",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
-        "@typescript-eslint/utils": "8.54.0",
+        "@typescript-eslint/utils": "8.55.0",
         "eslint": "9.39.2",
         "eslint-config-flat-gitignore": "2.1.0",
         "eslint-import-resolver-typescript": "4.4.4",
@@ -27,14 +27,14 @@
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "7.0.1",
         "eslint-plugin-simple-import-sort": "12.1.1",
-        "eslint-plugin-unicorn": "62.0.0",
+        "eslint-plugin-unicorn": "63.0.0",
         "execa": "^9.6.1",
         "globals": "^17.0.0",
         "jiti": "^2.6.1",
-        "lefthook": "2.1.0",
+        "lefthook": "2.1.1",
         "prettier": "3.8.1",
         "stylelint": "16.26.1",
-        "typescript-eslint": "8.54.0"
+        "typescript-eslint": "8.55.0"
     },
     "engines": {
         "node": ">=18.18.0"
@@ -71,15 +71,7 @@
     "exports": {
         "./eslint": "./eslint/index.ts",
         "./eslint/config": "./eslint/config.ts",
-        "./eslint/best-practices": "./eslint/best-practices.ts",
-        "./eslint/imports": "./eslint/imports.ts",
-        "./eslint/node": "./eslint/node.ts",
-        "./eslint/react-a11y": "./eslint/react-a11y.ts",
-        "./eslint/react": "./eslint/react.ts",
-        "./eslint/tests": "./eslint/tests.ts",
-        "./eslint/typescript": "./eslint/typescript.ts",
-        "./eslint/variables": "./eslint/variables.ts",
-        "./eslint/plugins/disable-comments": "./eslint/plugins/disable-comments/index.ts",
+        "./eslint/rules": "./eslint/rules/index.ts",
         "./prettier": "./prettier/index.js",
         "./commitlint": "./commitlint/index.js",
         "./stylelint": "./stylelint/index.js"

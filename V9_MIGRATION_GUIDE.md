@@ -55,15 +55,20 @@ export default defineConfig(eslintConfig, [
         languageOptions: {
             parserOptions: {
                 projectService: {
-                    // Это позволит eslint линтить все файлы в корневой директории проекта, даже если они не указаны в tsconfig.json
-                    // Эти параметры уже включены по умолчанию
-                    allowDefaultProject: ['*.js', '*.ts', '*.mjs', '*.mts', '*.cts', '*.cjs'],
+                    // Это позволит eslint линтить файлы, даже если они не указаны в tsconfig.json
+                    // Обратите внимание, что включить '**' тут нельзя, влияет на производительность!
+                    // https://typescript-eslint.io/packages/parser/#allowdefaultproject
+                    // Конретно тут - разрешаем линтить все файлы с расширениями .ts, .mts и .cts в корневой директории проекта
+                    allowDefaultProject: ['*.ts', '*.mts', '*.cts'],
                 },
             },
         },
+        files: ['**/*.{ts,tsx,mts,cts,mtsx,ctsx}'],
     },
 ]);
 ```
+
+Так же можно исключить этот файл через globalIgnores (не рекомендуется), подробнее в README.md
 
 3. import >> import-x
 

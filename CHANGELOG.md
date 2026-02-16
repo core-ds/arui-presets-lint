@@ -1,3 +1,21 @@
+## 9.0.2
+
+## 9.1.0
+
+### Minor Changes
+
+- [#80](https://github.com/core-ds/arui-presets-lint/pull/80) [`c9ccabf`](https://github.com/core-ds/arui-presets-lint/commit/c9ccabf609cd672a5d66aab996e323d647aef759) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - добавлены новые правила для stylelint
+
+- [#84](https://github.com/core-ds/arui-presets-lint/pull/84) [`4ae8751`](https://github.com/core-ds/arui-presets-lint/commit/4ae875136c721e6893a4efbc061d0497c763b5b6) Thanks [@kiskv](https://github.com/kiskv)! - - Исправлены пути в экспортах правил eslint
+    - Удалены сломанные deprecated stylelint правила
+    - Добавлен прогон тестов для всех веток
+    - Поднят lefthook до 2.1.1, typescript-eslint до 8.55.0, eslint-plugin-unicorn до 63.0.0
+    - Убрана дефолтная настройка allowDefaultProject, дополнен README.md и V9_MIGRATION_GUIDE.md по этой теме
+
+### Patch Changes
+
+- [#82](https://github.com/core-ds/arui-presets-lint/pull/82) [`76c10fe`](https://github.com/core-ds/arui-presets-lint/commit/76c10fe13a175ea89b664c2b727009cfa1638ddf) Thanks [@heymdall-legal](https://github.com/heymdall-legal)! - Выключено правило no-continue
+
 ## 9.0.1
 
 ### Major Changes

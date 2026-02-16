@@ -93,10 +93,6 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // https://eslint.org/docs/rules/no-bitwise
         'no-bitwise': 'error',
 
-        // Запрещает оператор continue
-        // https://eslint.org/docs/rules/no-continue
-        'no-continue': 'error',
-
         // Запрещает if как единственный оператор в блоке else
         // https://eslint.org/docs/rules/no-lonely-if
         'no-lonely-if': 'error',

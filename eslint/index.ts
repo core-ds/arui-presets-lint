@@ -3,16 +3,18 @@ import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
-import { disableCommentsConfig } from './plugins/disable-comments';
-import { bestPracticesConfig } from './rules/best-practices';
-import { importsConfig } from './rules/imports';
-import { nodeRulesConfig } from './rules/node';
-import { reactConfig } from './rules/react';
-import { reactA11yConfig } from './rules/react-a11y';
-import { testsConfig } from './rules/tests';
-import { typescriptConfig } from './rules/typescript';
-import { variablesConfig } from './rules/variables';
 import { globalIgnores } from './config';
+import { disableCommentsConfig } from './plugins';
+import {
+    bestPracticesConfig,
+    importsConfig,
+    nodeRulesConfig,
+    reactA11yConfig,
+    reactConfig,
+    testsConfig,
+    typescriptConfig,
+    variablesConfig,
+} from './rules';
 
 export const eslintConfig = [
     gitignore({
@@ -39,12 +41,6 @@ export const eslintConfig = [
             sourceType: 'module',
             parserOptions: {
                 ecmaFeatures: { jsx: true },
-                projectService: {
-                    // Разрешаем линтить файлы в корне проекта, даже если они не включены в tsconfig.json
-                    // ⛔️ Внимание, включить '**' тут нельзя, влияет на производительность!
-                    // https://typescript-eslint.io/packages/parser/#allowdefaultproject
-                    allowDefaultProject: ['*.js', '*.ts', '*.mjs', '*.mts', '*.cts', '*.cjs'],
-                },
             },
             globals: {
                 ...globals.es2022,
