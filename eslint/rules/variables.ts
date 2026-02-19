@@ -1,6 +1,6 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 
-export const variablesConfig: TSESLint.FlatConfig.Config = {
+export const variablesConfig: Linter.Config = {
     name: 'arui-presets-lint/variables',
     rules: {
         // Требует/запрещает инициализацию переменных при объявлении

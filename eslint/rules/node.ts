@@ -1,8 +1,8 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import nodePlugin from 'eslint-plugin-n';
 import globals from 'globals';
 
-export const nodeRulesConfig: TSESLint.FlatConfig.Config = {
+export const nodeRulesConfig: Linter.Config = {
     ...nodePlugin.configs['flat/recommended'],
     name: 'arui-presets-lint/node',
     languageOptions: {

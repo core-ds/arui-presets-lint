@@ -1,17 +1,17 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import checkFilePlugin from 'eslint-plugin-check-file';
 import { importX } from 'eslint-plugin-import-x';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 
-export const importsConfig: TSESLint.FlatConfig.Config = {
+export const importsConfig: Linter.Config = {
     // https://github.com/un-ts/eslint-plugin-import-x/blob/master/src/config/flat/typescript.ts
-    ...importX.flatConfigs.typescript,
+    ...(importX.flatConfigs.typescript as Linter.Config),
     name: 'arui-presets-lint/imports',
     plugins: {
         'import-x': importX,
         'simple-import-sort': simpleImportSortPlugin,
         'check-file': checkFilePlugin,
-    },
+    } as unknown as Linter.Config['plugins'],
     settings: {
         ...importX.flatConfigs.typescript.settings,
         // https://github.com/un-ts/eslint-plugin-import-x?tab=readme-ov-file#settings
