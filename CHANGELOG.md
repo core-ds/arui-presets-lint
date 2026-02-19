@@ -1,5 +1,12 @@
 ## 9.0.2
 
+## 9.1.1
+
+### Patch Changes
+
+- [#88](https://github.com/core-ds/arui-presets-lint/pull/88) [`874438f`](https://github.com/core-ds/arui-presets-lint/commit/874438fb01604ed3f992b640bbb5118cfb4f657a) Thanks [@kiskv](https://github.com/kiskv)! - - Исправлена проверка названий css-файлов
+    - Исправлены типы наборов правил eslint
+
 ## 9.1.0
 
 ### Minor Changes
