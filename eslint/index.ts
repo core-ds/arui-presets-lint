@@ -71,7 +71,7 @@ export const eslintConfig = [
     {
         // Включаем проверку других расширений файлов в eslint-plugin-check-file
         // ⚠️ НЕ ДОЛЖНО ПЕРЕСЕКАТЬСЯ С ПАТТЕРНОМ, УКАЗАННЫМ ВЫШЕ
-        files: ['**/*.{yaml,yml,json}'],
+        files: ['**/*.{yaml,yml,json,css}'],
         processor: 'check-file/eslint-processor-check-file',
     },
 ] as Linter.Config;
