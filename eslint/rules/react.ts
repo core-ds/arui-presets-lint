@@ -1,8 +1,8 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 
-export const reactConfig: TSESLint.FlatConfig.Config = {
+export const reactConfig: Linter.Config = {
     ...reactPlugin.configs.flat.recommended,
     ...reactHooksPlugin.configs['recommended-latest'],
 
@@ -10,7 +10,7 @@ export const reactConfig: TSESLint.FlatConfig.Config = {
     plugins: {
         react: reactPlugin,
         'react-hooks': reactHooksPlugin,
-    },
+    } as Linter.Config['plugins'],
 
     settings: {
         react: {

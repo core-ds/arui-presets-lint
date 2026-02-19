@@ -1,7 +1,7 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
-export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
+export const bestPracticesConfig: Linter.Config = {
     ...unicornPlugin.configs.unopinionated,
     name: 'arui-presets-lint/best-practices',
     plugins: {
