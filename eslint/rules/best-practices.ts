@@ -1,4 +1,5 @@
 import { type Linter } from 'eslint';
+import deMorgan from 'eslint-plugin-de-morgan';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
 export const bestPracticesConfig: Linter.Config = {
@@ -6,6 +7,7 @@ export const bestPracticesConfig: Linter.Config = {
     name: 'arui-presets-lint/best-practices',
     plugins: {
         unicorn: unicornPlugin,
+        'de-morgan': deMorgan,
     },
     rules: {
         // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
@@ -619,5 +621,13 @@ export const bestPracticesConfig: Linter.Config = {
         // Предпочитать top-level await вместо верхнеуровневых промисов
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-top-level-await.md
         'unicorn/prefer-top-level-await': 'off',
+
+        // Улучшает логические выражения согласно первому закону де Моргана
+        // https://github.com/azat-io/eslint-plugin-de-morgan/blob/main/docs/no-negated-conjunction.md
+        'de-morgan/no-negated-conjunction': 'warn',
+
+        // Улучшает логические выражения согласно второму закону де Моргана
+        // https://github.com/azat-io/eslint-plugin-de-morgan/blob/main/docs/no-negated-disjunction.md
+        'de-morgan/no-negated-disjunction': 'warn',
     },
 };
