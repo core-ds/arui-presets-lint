@@ -34,12 +34,13 @@ export const typescriptConfig: Linter.Config = {
     },
     rules: {
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslintrc/recommended-type-checked.ts
-        ...(tseslint.configs.recommendedTypeChecked.reduce((acc, obj) => {
-            return {
+        ...(tseslint.configs.recommendedTypeChecked.reduce(
+            (acc, obj) => ({
                 ...acc,
                 ...obj?.rules,
-            };
-        }, {}) as TSESLint.FlatConfig.Rules),
+            }),
+            {},
+        ) as TSESLint.FlatConfig.Rules),
 
         // Требовать явного указания типов возвращаемых данных и аргументов для методов публичных классов экспортируемых функций и классов
         // https://typescript-eslint.io/rules/explicit-module-boundary-types
