@@ -1,5 +1,11 @@
 ## 9.0.2
 
+## 9.1.2
+
+### Patch Changes
+
+- [#94](https://github.com/core-ds/arui-presets-lint/pull/94) [`ca6ab3e`](https://github.com/core-ds/arui-presets-lint/commit/ca6ab3e05039e66b64ddb5d378f6895f7ece2bd5) Thanks [@ValadzkoAliaksei](https://github.com/ValadzkoAliaksei)! - Выключено свойство requireReturnForObjectLiteral для правила eslint arrow-body-style
+
 ## 9.1.1
 
 ### Patch Changes
