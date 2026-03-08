@@ -486,13 +486,7 @@ export const bestPracticesConfig: Linter.Config = {
 
         // Требует не использовать фигурные скобки там, где их можно опустить
         // https://eslint.org/docs/rules/arrow-body-style
-        'arrow-body-style': [
-            'error',
-            'as-needed',
-            {
-                requireReturnForObjectLiteral: true,
-            },
-        ],
+        'arrow-body-style': ['error', 'as-needed'],
 
         // Проверяет вызов super() в конструкторах
         // https://eslint.org/docs/rules/constructor-super
