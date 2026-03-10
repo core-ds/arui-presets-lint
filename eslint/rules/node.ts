@@ -13,7 +13,7 @@ export const nodeRulesConfig: Linter.Config = {
     plugins: {
         n: nodePlugin,
     },
-
+    files: ['**/server/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     rules: {
         // https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#-rules
         ...nodePlugin.configs['flat/recommended'].rules,
