@@ -1,5 +1,11 @@
 ## 9.0.2
 
+## 9.1.4
+
+### Patch Changes
+
+- [#100](https://github.com/core-ds/arui-presets-lint/pull/100) [`5b14c91`](https://github.com/core-ds/arui-presets-lint/commit/5b14c91440f3dbf2a4cabbdf1d6130b47ec7a938) Thanks [@kiskv](https://github.com/kiskv)! - Правила nodejs теперь применяются только для папки server
+
 ## 9.1.3
 
 ### Patch Changes
