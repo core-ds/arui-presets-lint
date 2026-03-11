@@ -1,3 +1,9 @@
+## 9.2.0
+
+### Minor Changes
+
+- [#92](https://github.com/core-ds/arui-presets-lint/pull/92) [`63ab032`](https://github.com/core-ds/arui-presets-lint/commit/63ab032d7576e209765b235a895c9a088d9f366a) Thanks [@kiskv](https://github.com/kiskv)! - Обновлены зависимости, добавлен eslint-plugin-de-morgan
+
 ## 9.0.2
 
 ## 9.1.4
