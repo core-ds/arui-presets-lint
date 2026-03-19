@@ -73,6 +73,7 @@
         "./eslint": "./eslint/index.ts",
         "./eslint/config": "./eslint/config.ts",
         "./eslint/rules": "./eslint/rules/index.ts",
+        "./eslint/plugins": "./eslint/plugins/index.ts",
         "./prettier": "./prettier/index.js",
         "./commitlint": "./commitlint/index.js",
         "./stylelint": "./stylelint/index.js"

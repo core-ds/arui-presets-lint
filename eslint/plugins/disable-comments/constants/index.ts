@@ -14,7 +14,7 @@ export const SUPPORTED_DIRECTIVES = [
  */
 export const SUGGESTS_DESCRIPTION = {
     DEBUG: 'Используется временно для отладки',
-    ABOVE_COMMENT: 'TODO: [https://jira.moscow.alfaintra.net/browse/{TASK}] Описание',
+    ABOVE_COMMENT: 'TODO: [ссылка на задачу] Описание',
 };
 
 export const MESSAGE_IDS = {
@@ -40,8 +40,8 @@ export const MESSAGES = {
         '   // eslint-disable-next-line правило',
     [MESSAGE_IDS.invalidDescription]:
         'Описание слишком общее или неинформативное. Укажите конкретную причину.',
-    [MESSAGE_IDS.suggestDebug]: `Добавить комментарий "${SUGGESTS_DESCRIPTION.DEBUG}"`,
-    [MESSAGE_IDS.suggestAboveComment]: `Добавить задачу (TODO) на исправление "${SUGGESTS_DESCRIPTION.ABOVE_COMMENT}"`,
+    [MESSAGE_IDS.suggestDebug]: `Добавить комментарий - "${SUGGESTS_DESCRIPTION.DEBUG}"`,
+    [MESSAGE_IDS.suggestAboveComment]: `Добавить задачу (TODO) на исправление - "${SUGGESTS_DESCRIPTION.ABOVE_COMMENT}"`,
 } as const;
 
 export const DESCRIPTION_SEPARATOR: RegExp = /\s-{2,}\s/u; // Регулярное выражение для разделения директивы и описания
