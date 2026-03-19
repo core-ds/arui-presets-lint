@@ -1,4 +1,35 @@
+## 9.2.0
+
+### Minor Changes
+
+- [#92](https://github.com/core-ds/arui-presets-lint/pull/92) [`63ab032`](https://github.com/core-ds/arui-presets-lint/commit/63ab032d7576e209765b235a895c9a088d9f366a) Thanks [@kiskv](https://github.com/kiskv)! - Обновлены зависимости, добавлен eslint-plugin-de-morgan
+
 ## 9.0.2
+
+## 9.1.4
+
+### Patch Changes
+
+- [#100](https://github.com/core-ds/arui-presets-lint/pull/100) [`5b14c91`](https://github.com/core-ds/arui-presets-lint/commit/5b14c91440f3dbf2a4cabbdf1d6130b47ec7a938) Thanks [@kiskv](https://github.com/kiskv)! - Правила nodejs теперь применяются только для папки server
+
+## 9.1.3
+
+### Patch Changes
+
+- [#97](https://github.com/core-ds/arui-presets-lint/pull/97) [`b8ccf19`](https://github.com/core-ds/arui-presets-lint/commit/b8ccf19c174645261aee0adadce192051420a788) Thanks [@heymdall-legal](https://github.com/heymdall-legal)! - Исправлена проблема, из-за которой cli мог вызывать некорректные версии инструментов если в дереве зависимостей проекта присутствовали разные версии prettier/eslint/stylelint
+
+## 9.1.2
+
+### Patch Changes
+
+- [#94](https://github.com/core-ds/arui-presets-lint/pull/94) [`ca6ab3e`](https://github.com/core-ds/arui-presets-lint/commit/ca6ab3e05039e66b64ddb5d378f6895f7ece2bd5) Thanks [@ValadzkoAliaksei](https://github.com/ValadzkoAliaksei)! - Выключено свойство requireReturnForObjectLiteral для правила eslint arrow-body-style
+
+## 9.1.1
+
+### Patch Changes
+
+- [#88](https://github.com/core-ds/arui-presets-lint/pull/88) [`874438f`](https://github.com/core-ds/arui-presets-lint/commit/874438fb01604ed3f992b640bbb5118cfb4f657a) Thanks [@kiskv](https://github.com/kiskv)! - - Исправлена проверка названий css-файлов
+    - Исправлены типы наборов правил eslint
 
 ## 9.1.0
 

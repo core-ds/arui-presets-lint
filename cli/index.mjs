@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
 import { execaCommand } from 'execa';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const prettierParams =
     '"./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}" --no-error-on-unmatched-pattern --cache';
@@ -35,6 +39,7 @@ try {
     await execaCommand(exec, {
         shell: true,
         preferLocal: true,
+        localDir: packageRoot,
         stdio: ['pipe', 'inherit', 'inherit'],
     });
 } catch (error) {

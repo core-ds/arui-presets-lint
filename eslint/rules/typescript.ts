@@ -1,4 +1,5 @@
 import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -6,15 +7,12 @@ import { bestPracticesConfig } from './best-practices';
 import { importsConfig } from './imports';
 import { variablesConfig } from './variables';
 
-const bestPracticesRules = bestPracticesConfig.rules as Record<
-    string,
-    TSESLint.FlatConfig.RuleEntry
->;
+const bestPracticesRules = bestPracticesConfig.rules as Record<string, Linter.RuleEntry>;
 
-const importsRules = importsConfig.rules as Record<string, TSESLint.FlatConfig.RuleEntry>;
-const variablesRules = variablesConfig.rules as Record<string, TSESLint.FlatConfig.RuleEntry>;
+const importsRules = importsConfig.rules as Record<string, Linter.RuleEntry>;
+const variablesRules = variablesConfig.rules as Record<string, Linter.RuleEntry>;
 
-export const typescriptConfig: TSESLint.FlatConfig.Config = {
+export const typescriptConfig: Linter.Config = {
     name: 'arui-presets-lint/typescript',
     files: ['**/*.{ts,tsx,mts,cts,mtsx,ctsx}'],
     languageOptions: {
@@ -36,12 +34,13 @@ export const typescriptConfig: TSESLint.FlatConfig.Config = {
     },
     rules: {
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslintrc/recommended-type-checked.ts
-        ...(tseslint.configs.recommendedTypeChecked.reduce((acc, obj) => {
-            return {
+        ...(tseslint.configs.recommendedTypeChecked.reduce(
+            (acc, obj) => ({
                 ...acc,
                 ...obj?.rules,
-            };
-        }, {}) as TSESLint.FlatConfig.Rules),
+            }),
+            {},
+        ) as TSESLint.FlatConfig.Rules),
 
         // Требовать явного указания типов возвращаемых данных и аргументов для методов публичных классов экспортируемых функций и классов
         // https://typescript-eslint.io/rules/explicit-module-boundary-types

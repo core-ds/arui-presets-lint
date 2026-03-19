@@ -1,7 +1,7 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 
-export const reactA11yConfig: TSESLint.FlatConfig.Config = {
+export const reactA11yConfig: Linter.Config = {
     ...jsxA11yPlugin.flatConfigs.recommended,
     name: 'arui-presets-lint/react-a11y',
     plugins: {

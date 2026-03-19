@@ -1,11 +1,13 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
+import deMorgan from 'eslint-plugin-de-morgan';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
-export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
+export const bestPracticesConfig: Linter.Config = {
     ...unicornPlugin.configs.unopinionated,
     name: 'arui-presets-lint/best-practices',
     plugins: {
         unicorn: unicornPlugin,
+        'de-morgan': deMorgan,
     },
     rules: {
         // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
@@ -484,13 +486,7 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
 
         // Требует не использовать фигурные скобки там, где их можно опустить
         // https://eslint.org/docs/rules/arrow-body-style
-        'arrow-body-style': [
-            'error',
-            'as-needed',
-            {
-                requireReturnForObjectLiteral: true,
-            },
-        ],
+        'arrow-body-style': ['error', 'as-needed'],
 
         // Проверяет вызов super() в конструкторах
         // https://eslint.org/docs/rules/constructor-super
@@ -625,5 +621,13 @@ export const bestPracticesConfig: TSESLint.FlatConfig.Config = {
         // Предпочитать top-level await вместо верхнеуровневых промисов
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-top-level-await.md
         'unicorn/prefer-top-level-await': 'off',
+
+        // Улучшает логические выражения согласно первому закону де Моргана
+        // https://github.com/azat-io/eslint-plugin-de-morgan/blob/main/docs/no-negated-conjunction.md
+        'de-morgan/no-negated-conjunction': 'warn',
+
+        // Улучшает логические выражения согласно второму закону де Моргана
+        // https://github.com/azat-io/eslint-plugin-de-morgan/blob/main/docs/no-negated-disjunction.md
+        'de-morgan/no-negated-disjunction': 'warn',
     },
 };

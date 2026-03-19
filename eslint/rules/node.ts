@@ -1,8 +1,8 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import nodePlugin from 'eslint-plugin-n';
 import globals from 'globals';
 
-export const nodeRulesConfig: TSESLint.FlatConfig.Config = {
+export const nodeRulesConfig: Linter.Config = {
     ...nodePlugin.configs['flat/recommended'],
     name: 'arui-presets-lint/node',
     languageOptions: {
@@ -13,7 +13,7 @@ export const nodeRulesConfig: TSESLint.FlatConfig.Config = {
     plugins: {
         n: nodePlugin,
     },
-
+    files: ['**/server/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     rules: {
         // https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#-rules
         ...nodePlugin.configs['flat/recommended'].rules,

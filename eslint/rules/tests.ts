@@ -1,7 +1,7 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 import globals from 'globals';
 
-export const testsConfig: TSESLint.FlatConfig.Config = {
+export const testsConfig: Linter.Config = {
     name: 'arui-presets-lint/tests',
     files: ['**/*.{test,tests,spec}.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
     languageOptions: {
