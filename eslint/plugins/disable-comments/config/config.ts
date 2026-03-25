@@ -3,7 +3,7 @@ import { type TSESLint } from '@typescript-eslint/utils';
 import { disableCommentsPlugin } from './plugin';
 
 /**
- * Полный Flat‑Config, который подключает плагин
+ * Config, который подключает плагин
  * и сразу включает правило с рекомендациями по умолчанию.
  */
 export const disableCommentsConfig: TSESLint.FlatConfig.Config = {

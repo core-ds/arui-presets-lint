@@ -1,1 +1,1 @@
-export { disableCommentsConfig, disableCommentsPlugin } from './flat';
+export { disableCommentsConfig, disableCommentsPlugin } from './config';
