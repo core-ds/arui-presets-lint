@@ -1,6 +1,6 @@
 {
     "name": "arui-presets-lint",
-    "version": "9.2.0",
+    "version": "9.3.0-snapshot-7d455a7f98260a8a4b8e2420bc957c92de012fd9",
     "description": "Config files for arui-apps",
     "author": "core-ds contributors",
     "license": "MIT",
