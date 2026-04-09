@@ -1,3 +1,10 @@
+## 9.3.0-snapshot-0b88a5b1db399386846d105181631ea963c2cb61
+
+### Minor Changes
+
+- [#108](https://github.com/core-ds/arui-presets-lint/pull/108) [`0b88a5b`](https://github.com/core-ds/arui-presets-lint/commit/0b88a5b1db399386846d105181631ea963c2cb61) Thanks [@kiskv](https://github.com/kiskv)! - - Обновлены зависимости
+    - Включена сборка библиотеки через tsc
+
 ## 9.2.0
 
 ### Minor Changes
