@@ -73,20 +73,20 @@
     },
     "exports": {
         "./eslint": {
-            "types": "./dist/eslint/index.d.ts",
-            "import": "./dist/eslint/index.js"
+            "types": "./eslint/index.d.ts",
+            "import": "./eslint/index.js"
         },
         "./eslint/config": {
-            "types": "./dist/eslint/config.d.ts",
-            "import": "./dist/eslint/config.js"
+            "types": "./eslint/config.d.ts",
+            "import": "./eslint/config.js"
         },
         "./eslint/rules": {
-            "types": "./dist/eslint/rules/index.d.ts",
-            "import": "./dist/eslint/rules/index.js"
+            "types": "./eslint/rules/index.d.ts",
+            "import": "./eslint/rules/index.js"
         },
-        "./prettier": "./dist/prettier/index.js",
-        "./commitlint": "./dist/commitlint/index.js",
-        "./stylelint": "./dist/stylelint/index.js"
+        "./prettier": "./prettier/index.js",
+        "./commitlint": "./commitlint/index.js",
+        "./stylelint": "./stylelint/index.js"
     },
     "commitlint": {
         "extends": "./commitlint"
