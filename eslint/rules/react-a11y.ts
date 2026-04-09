@@ -5,7 +5,7 @@ export const reactA11yConfig: Linter.Config = {
     ...jsxA11yPlugin.flatConfigs.recommended,
     name: 'arui-presets-lint/react-a11y',
     plugins: {
-        'jsx-a11y': jsxA11yPlugin,
+        'jsx-a11y': jsxA11yPlugin as unknown as NonNullable<Linter.Config['plugins']>[string],
     },
     settings: {
         'jsx-a11y': {

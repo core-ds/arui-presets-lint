@@ -17,3 +17,4 @@ package-lock.json
 !.yarn/sdks
 !.yarn/versions
 ._tsbuild
+dist

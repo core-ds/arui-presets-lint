@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 
-import { type Product, SumTestFunc, type User } from './types';
+import { type Product, SumTestFunc, type User } from './types/index.js';
 
 // This is the same as above, but with an extra parameter.
 // Note: to make this work though, we had to use an any. This

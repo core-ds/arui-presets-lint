@@ -1,12 +1,12 @@
 import { intersection } from 'es-toolkit/array';
 
-import { importsConfig } from '../eslint/rules/imports';
-import { nodeRulesConfig } from '../eslint/rules/node';
-import { reactConfig } from '../eslint/rules/react';
-import { reactA11yConfig } from '../eslint/rules/react-a11y';
-import { testsConfig } from '../eslint/rules/tests';
-import { typescriptConfig } from '../eslint/rules/typescript';
-import { variablesConfig } from '../eslint/rules/variables';
+import { importsConfig } from '../eslint/rules/imports.js';
+import { nodeRulesConfig } from '../eslint/rules/node.js';
+import { reactConfig } from '../eslint/rules/react.js';
+import { reactA11yConfig } from '../eslint/rules/react-a11y.js';
+import { testsConfig } from '../eslint/rules/tests.js';
+import { typescriptConfig } from '../eslint/rules/typescript.js';
+import { variablesConfig } from '../eslint/rules/variables.js';
 
 const imports = { rules: Object.keys(importsConfig.rules || {}), name: importsConfig.name };
 const node = { rules: Object.keys(nodeRulesConfig.rules || {}), name: nodeRulesConfig.name };

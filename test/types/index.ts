@@ -1,1 +1,1 @@
-export { SumTestFunc, type User, type Product } from './types';
+export { SumTestFunc, type User, type Product } from './types.js';

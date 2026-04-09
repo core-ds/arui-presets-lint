@@ -3,7 +3,7 @@ import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
-import { globalIgnores } from './config';
+import { globalIgnores } from './config.js';
 import {
     bestPracticesConfig,
     importsConfig,
@@ -13,7 +13,7 @@ import {
     testsConfig,
     typescriptConfig,
     variablesConfig,
-} from './rules';
+} from './rules.js';
 
 export const eslintConfig = [
     gitignore({
