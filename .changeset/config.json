@@ -1,6 +1,10 @@
 {
-    "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
-    "changelog": ["@changesets/changelog-github", { "repo": "core-ds/arui-presets-lint" }],
+    "changelog": [
+        "@changesets/changelog-github",
+        {
+            "repo": "core-ds/arui-presets-lint"
+        }
+    ],
     "commit": false,
     "fixed": [],
     "linked": [],

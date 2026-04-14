@@ -1,6 +1,6 @@
 import { type TSESLint } from '@typescript-eslint/utils';
 
-import { requireDescriptionRule } from '../rule';
+import { requireDescriptionRule } from '../rule/index.js';
 
 /**
  * Плагин, который можно импортировать отдельно.

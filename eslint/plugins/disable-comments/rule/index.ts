@@ -1,8 +1,8 @@
 import { type TSESLint } from '@typescript-eslint/utils';
 
-import { MESSAGES, SUPPORTED_DIRECTIVES } from '../constants';
-import { type RuleOptions } from '../types';
-import { buildSuggestions, CommentValidator } from '../utils';
+import { MESSAGES, SUPPORTED_DIRECTIVES } from '../constants/index.js';
+import { type RuleOptions } from '../types/index.js';
+import { buildSuggestions, CommentValidator } from '../utils/index.js';
 
 export const requireDescriptionRule: TSESLint.RuleModule<string, [RuleOptions]> = {
     defaultOptions: [

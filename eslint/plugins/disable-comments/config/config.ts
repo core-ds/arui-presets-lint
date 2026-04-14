@@ -1,6 +1,6 @@
 import { type TSESLint } from '@typescript-eslint/utils';
 
-import { disableCommentsPlugin } from './plugin';
+import { disableCommentsPlugin } from './plugin.js';
 
 /**
  * Config, который подключает плагин

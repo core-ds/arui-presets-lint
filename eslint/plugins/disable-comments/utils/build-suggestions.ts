@@ -1,8 +1,8 @@
 import { type TSESTree } from '@typescript-eslint/utils';
 
-import { MESSAGE_IDS, SUGGESTS_DESCRIPTION } from '../constants';
+import { MESSAGE_IDS, SUGGESTS_DESCRIPTION } from '../constants/index.js';
 
-import { createAboveCommentFix, createSuggestionFix } from './fixers';
+import { createAboveCommentFix, createSuggestionFix } from './fixers.js';
 
 export function buildSuggestions(comment: TSESTree.Comment) {
     return [

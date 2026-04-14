@@ -1,8 +1,8 @@
-export { bestPracticesConfig } from './best-practices';
-export { importsConfig } from './imports';
-export { nodeRulesConfig } from './node';
-export { reactA11yConfig } from './react-a11y';
-export { reactConfig } from './react';
-export { testsConfig } from './tests';
-export { typescriptConfig } from './typescript';
-export { variablesConfig } from './variables';
+export { bestPracticesConfig } from './best-practices.js';
+export { importsConfig } from './imports.js';
+export { nodeRulesConfig } from './node.js';
+export { reactA11yConfig } from './react-a11y.js';
+export { reactConfig } from './react.js';
+export { testsConfig } from './tests.js';
+export { typescriptConfig } from './typescript.js';
+export { variablesConfig } from './variables.js';

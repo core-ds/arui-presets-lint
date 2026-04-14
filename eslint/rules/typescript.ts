@@ -3,9 +3,9 @@ import { type Linter } from 'eslint';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-import { bestPracticesConfig } from './best-practices';
-import { importsConfig } from './imports';
-import { variablesConfig } from './variables';
+import { bestPracticesConfig } from './best-practices.js';
+import { importsConfig } from './imports.js';
+import { variablesConfig } from './variables.js';
 
 const bestPracticesRules = bestPracticesConfig.rules as Record<string, Linter.RuleEntry>;
 

@@ -4,7 +4,7 @@ export {
     isAdjacentComment,
     isValidDescription,
     validateAboveComment,
-} from './comment-parser';
-export { createSuggestionFix, createAboveCommentFix } from './fixers';
-export { CommentValidator } from './comment-validator';
-export { buildSuggestions } from './build-suggestions';
+} from './comment-parser.js';
+export { createSuggestionFix, createAboveCommentFix } from './fixers.js';
+export { CommentValidator } from './comment-validator.js';
+export { buildSuggestions } from './build-suggestions.js';

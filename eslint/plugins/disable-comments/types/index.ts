@@ -1,4 +1,4 @@
-import { type SUPPORTED_DIRECTIVES } from '../constants';
+import { type SUPPORTED_DIRECTIVES } from '../constants/index.js';
 
 export type DirectiveKind = (typeof SUPPORTED_DIRECTIVES)[number];
 

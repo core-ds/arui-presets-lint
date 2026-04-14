@@ -1,1 +1,1 @@
-export { disableCommentsConfig, disableCommentsPlugin } from './config';
+export { disableCommentsConfig, disableCommentsPlugin } from './config/index.js';

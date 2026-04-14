@@ -1,7 +1,7 @@
 import { type TSESTree } from '@typescript-eslint/utils';
 
-import { MESSAGE_IDS } from '../constants';
-import { type DirectiveData, type DirectiveKind } from '../types';
+import { MESSAGE_IDS } from '../constants/index.js';
+import { type DirectiveData, type DirectiveKind } from '../types/index.js';
 
 import {
     getPreviousComment,
@@ -9,7 +9,7 @@ import {
     isValidDescription,
     parseDirectiveComment,
     validateAboveComment,
-} from './comment-parser';
+} from './comment-parser.js';
 
 export class CommentValidator {
     private ignoredDirectives: Set<DirectiveKind>;

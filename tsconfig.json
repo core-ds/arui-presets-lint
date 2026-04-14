@@ -1,15 +1,19 @@
 {
     "compilerOptions": {
         "target": "es2022",
-        "module": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "jsx": "react-jsx",
-        "moduleResolution": "bundler",
         "allowJs": true,
         "types": ["node"],
-        "outDir": "./._tsbuild"
+        "outDir": "./dist",
+        "skipLibCheck": true,
+        "declaration": true,
+        "verbatimModuleSyntax": true,
+        "resolveJsonModule": true
     },
-    "include": ["**/*", "**/*.mjs"]
+    "include": ["**/*", "**/*.mjs", "./package.json"]
 }

@@ -6,8 +6,8 @@ import {
     MEANINGFUL_PATTERNS,
     MIN_DESCRIPTION_LENGTH,
     SUPPORTED_DIRECTIVES,
-} from '../constants';
-import { type DirectiveData, type DirectiveKind } from '../types';
+} from '../constants/index.js';
+import { type DirectiveData, type DirectiveKind } from '../types/index.js';
 
 function isDirectiveKind(value: string): value is DirectiveKind {
     return SUPPORTED_DIRECTIVES.includes(value as DirectiveKind);

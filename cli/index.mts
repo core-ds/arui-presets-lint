@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execaCommand } from 'execa';
+import { execaCommand, ExecaError } from 'execa';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -15,7 +15,7 @@ const commandsMap = {
     scripts: 'eslint .',
     format: `prettier --write ${prettierParams} --list-different`,
     'format:check': `prettier --check ${prettierParams}`,
-};
+} as const;
 
 const commands = Object.keys(commandsMap);
 const enableEcho = process.argv[2] === '--echo';
@@ -29,7 +29,7 @@ if (!command || !commands.includes(command)) {
 
 const args = enableEcho ? process.argv.slice(4) : process.argv.slice(3);
 
-const exec = [commandsMap[command], ...args].join(' ');
+const exec = [commandsMap[command as keyof typeof commandsMap], ...args].join(' ');
 
 if (enableEcho) {
     console.log('>>', exec);
@@ -42,7 +42,12 @@ try {
         localDir: packageRoot,
         stdio: ['pipe', 'inherit', 'inherit'],
     });
-} catch (error) {
-    console.error(error.message);
-    process.exit(error.exitCode);
+} catch (error: unknown) {
+    if (error instanceof ExecaError) {
+        console.error(error.message);
+        process.exit(error.exitCode);
+    } else {
+        console.error('Unknown error');
+        process.exit(1);
+    }
 }
