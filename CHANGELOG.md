@@ -1,3 +1,10 @@
+## 9.3.0
+
+### Minor Changes
+
+- [#113](https://github.com/core-ds/arui-presets-lint/pull/113) [`594d69d`](https://github.com/core-ds/arui-presets-lint/commit/594d69defacfc485d10b23fc0e7c9e586e24149e) Thanks [@KalashnikovTV](https://github.com/KalashnikovTV)! - ## New Features
+    - Добавлено правило **`require-description`**, которое требует указания причины отключения ESLint‑директив. Более подробное описание можно прочитать по пути eslint/plugins/disable-comments/README.md
+
 ## 9.2.0
 
 ### Minor Changes
