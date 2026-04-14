@@ -3,6 +3,7 @@ import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
 import globals from 'globals';
 
+import { disableCommentsConfig } from './plugins/index.js';
 import { globalIgnores } from './config.js';
 import {
     bestPracticesConfig,
@@ -64,6 +65,7 @@ export const eslintConfig = [
     testsConfig,
     typescriptConfig,
     importsConfig,
+    disableCommentsConfig,
     /*
         ☭.
     */

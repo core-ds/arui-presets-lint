@@ -1,5 +1,6 @@
 import { intersection } from 'es-toolkit/array';
 
+import { disableCommentsConfig } from '../eslint/plugins/disable-comments/index.js';
 import { importsConfig } from '../eslint/rules/imports.js';
 import { nodeRulesConfig } from '../eslint/rules/node.js';
 import { reactConfig } from '../eslint/rules/react.js';
@@ -48,14 +49,17 @@ const typescript = {
         'prefer-const',
     ],
 };
-
 const variables = { rules: Object.keys(variablesConfig.rules || {}), name: variablesConfig.name };
+const disableComments = {
+    rules: Object.keys(disableCommentsConfig.rules || {}),
+    name: disableCommentsConfig.name,
+};
 
 const configs: Array<{
     rules: string[];
     name?: string;
     ignore?: string;
-}> = [imports, node, react, reactA11y, tests, typescript, variables];
+}> = [imports, node, react, reactA11y, tests, typescript, variables, disableComments];
 
 const duplicates = [];
 
