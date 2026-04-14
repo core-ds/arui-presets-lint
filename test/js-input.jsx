@@ -1,6 +1,6 @@
 'нормальный case';
 
-// eslint-disable-next-line no-restricted-syntax
+// eslint-disable-next-line no-restricted-syntax -- Отключено для тестирования правила
 'mixed сase';
 
 import React from 'react';
@@ -10,7 +10,7 @@ definedAfterUsage();
 let dig = 3;
 
 function definedAfterUsage() {
-    // eslint-disable-next-line no-constant-condition
+    // eslint-disable-next-line no-constant-condition -- Отключено для тестирования правила
     if (false) {
         dig = 4;
 
@@ -31,3 +31,31 @@ function definedAfterUsage() {
 }
 
 export const element = <div style={{ color: 'black' }} />;
+
+// Кейсы для `require-description`
+
+// Причина отключения правила
+// eslint-disable-next-line no-empty, no-constant-condition
+if (false) {
+}
+
+// eslint-disable-next-line no-empty, no-constant-condition -- объяснение необходимости
+if (false) {
+}
+
+/* Причина отключения правила */
+/* eslint-disable no-empty, no-constant-condition */
+if (false) {
+}
+
+/*
+ * Развернутое объяснение
+ * и причины отключения
+ */
+/* eslint-disable no-empty, no-constant-condition */
+if (false) {
+}
+
+/* eslint-disable no-empty, no-constant-condition -- объяснение необходимости */
+if (false) {
+}
