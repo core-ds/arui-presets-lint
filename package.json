@@ -63,7 +63,7 @@
         "lint:scripts": "tsx ./cli/index.mts scripts",
         "format": "tsx ./cli/index.mts format",
         "format:check": "tsx ./cli/index.mts format:check",
-        "release": "changeset publish ./",
+        "release": "changeset publish",
         "release:snapshot": "changeset publish --tag snapshot --no-git-tag",
         "version-package": "changeset version",
         "version-package:snapshot": "changeset version --snapshot snapshot"
