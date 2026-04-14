@@ -1,3 +1,10 @@
+## 9.4.0
+
+### Minor Changes
+
+- [#108](https://github.com/core-ds/arui-presets-lint/pull/108) [`9234cb2`](https://github.com/core-ds/arui-presets-lint/commit/9234cb201c0bc731a7243b0495757c237539f8cd) Thanks [@kiskv](https://github.com/kiskv)! - - Обновлены зависимости
+    - Включена сборка библиотеки через tsc
+
 ## 9.3.0
 
 ### Minor Changes
