@@ -9,7 +9,7 @@ function formatCommentWithDescription(comment: TSESTree.Comment, description: st
     return `${baseText} -- ${description}`;
 }
 
-function fixSingleLineComment(
+export function fixSingleLineComment(
     fixer: TSESLint.RuleFixer,
     comment: TSESTree.Comment,
     description: string,
@@ -18,7 +18,7 @@ function fixSingleLineComment(
     return fixer.replaceText(comment, `// ${newCommentText}`);
 }
 
-function fixBlockComment(
+export function fixBlockComment(
     fixer: TSESLint.RuleFixer,
     comment: TSESTree.Comment,
     description: string,

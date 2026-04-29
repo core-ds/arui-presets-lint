@@ -12,8 +12,8 @@ import {
 } from './comment-parser.js';
 
 export class CommentValidator {
-    private ignoredDirectives: Set<DirectiveKind>;
-    private allComments: TSESTree.Comment[];
+    private readonly ignoredDirectives: Set<DirectiveKind>;
+    private readonly allComments: TSESTree.Comment[];
 
     constructor(ignoredDirectives: DirectiveKind[], allComments: TSESTree.Comment[]) {
         this.ignoredDirectives = new Set(ignoredDirectives);
