@@ -1,3 +1,9 @@
+## 9.4.1
+
+### Patch Changes
+
+- [#116](https://github.com/core-ds/arui-presets-lint/pull/116) [`2ecbecb`](https://github.com/core-ds/arui-presets-lint/commit/2ecbecb0102403674642d7f39aa027ba99d65895) Thanks [@KalashnikovTV](https://github.com/KalashnikovTV)! - - Добавлены тесты для кастомного правила require-description
+
 ## 9.4.0
 
 ### Minor Changes
