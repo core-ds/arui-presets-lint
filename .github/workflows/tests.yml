@@ -1,6 +1,6 @@
 name: Tests
 
-on: [push]
+on: [pull_request]
 
 jobs:
     release:
@@ -10,13 +10,15 @@ jobs:
               uses: actions/checkout@v6
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
+                  fetch-depth: 0
 
             - name: Setup Node.js
               uses: actions/setup-node@v6
               with:
                   node-version: 24
+                  cache: yarn
 
-            - name: Install dependensies
+            - name: Install dependencies
               run: |
                   yarn install --immutable
 

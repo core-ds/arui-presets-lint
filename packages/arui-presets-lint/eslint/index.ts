@@ -78,5 +78,7 @@ export const eslintConfig = [
     },
 ] as Linter.Config;
 
+export { defineConfig, globalIgnores, globals } from './config.js';
+
 export { type Linter } from 'eslint';
 export { type TSESLint } from '@typescript-eslint/utils';

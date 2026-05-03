@@ -1,3 +1,5 @@
+import { type Config } from 'prettier';
+
 export default {
     printWidth: 100,
     singleQuote: true,
@@ -5,4 +7,4 @@ export default {
     tabWidth: 4,
     trailingComma: 'all',
     endOfLine: 'auto',
-};
+} satisfies Config;
