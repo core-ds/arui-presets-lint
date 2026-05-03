@@ -11,7 +11,7 @@ export const importsConfig: Linter.Config = {
         'import-x': importX,
         'simple-import-sort': simpleImportSortPlugin,
         'check-file': checkFilePlugin,
-    } as unknown as Linter.Config['plugins'],
+    },
     settings: {
         ...importX.flatConfigs.typescript.settings,
         // https://github.com/un-ts/eslint-plugin-import-x?tab=readme-ov-file#settings

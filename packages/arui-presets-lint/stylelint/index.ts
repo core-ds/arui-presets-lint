@@ -1,3 +1,5 @@
+import { type Config } from 'stylelint';
+
 export default {
     rules: {
         // Запрещает пустые блоки
@@ -175,4 +177,4 @@ export default {
             },
         },
     ],
-};
+} satisfies Config;

@@ -1,109 +1,46 @@
 {
-    "name": "arui-presets-lint",
-    "version": "9.4.1",
-    "description": "Config files for arui-apps",
+    "name": "arui-presets-lint-monorepo",
+    "private": true,
+    "description": "Config files for arui-apps (monorepo root)",
     "author": "core-ds contributors",
     "license": "MIT",
     "type": "module",
-    "bin": "cli/index.mjs",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/core-ds/arui-presets-lint.git"
     },
-    "dependencies": {
-        "@alfalab/stylelint-core-vars": "2.0.0",
-        "@commitlint/cli": "20.5.0",
-        "@commitlint/config-conventional": "20.5.0",
-        "@eslint/js": "9.39.4",
-        "@types/eslint-plugin-jsx-a11y": "6.10.1",
-        "@typescript-eslint/utils": "8.58.2",
-        "eslint": "9.39.4",
-        "eslint-config-flat-gitignore": "2.3.0",
-        "eslint-import-resolver-typescript": "4.4.4",
-        "eslint-plugin-check-file": "3.3.1",
-        "eslint-plugin-de-morgan": "1.3.1",
-        "eslint-plugin-import-x": "4.16.2",
-        "eslint-plugin-jsx-a11y": "6.10.2",
-        "eslint-plugin-n": "17.24.0",
-        "eslint-plugin-react": "7.37.5",
-        "eslint-plugin-react-hooks": "7.0.1",
-        "eslint-plugin-simple-import-sort": "13.0.0",
-        "eslint-plugin-unicorn": "64.0.0",
-        "execa": "^9.6.1",
-        "globals": "^17.0.0",
-        "jiti": "^2.6.1",
-        "lefthook": "2.1.5",
-        "prettier": "3.8.2",
-        "stylelint": "16.26.1",
-        "typescript-eslint": "8.58.2"
-    },
+    "workspaces": [
+        "packages/*"
+    ],
     "engines": {
         "node": ">=18.18.0"
     },
     "devDependencies": {
-        "@alfalab/core-components": "50.10.0",
         "@changesets/changelog-github": "0.6.0",
-        "@changesets/cli": "2.30.0",
-        "@types/node": "24.12.2",
-        "@types/react": "19.2.14",
-        "@vitest/coverage-istanbul": "4.1.5",
-        "copyfiles": "2.4.1",
-        "es-toolkit": "1.45.1",
-        "eslint-config-prettier": "10.1.8",
-        "eslint-vitest-rule-tester": "3.1.0",
-        "react": "19.2.5",
-        "rimraf": "6.1.3",
-        "tsx": "4.21.0",
-        "typescript": "6.0.2",
-        "vite": "8.0.10",
-        "vitest": "4.1.5"
+        "@changesets/cli": "2.31.0",
+        "arui-presets-lint": "workspace:*",
+        "eslint-config-turbo": "2.9.7",
+        "turbo": "2.9.7"
     },
     "scripts": {
-        "build": "rimraf dist && tsc -p tsconfig.build.json && copyfiles 'README.md' 'CHANGELOG.md' 'lefthook/*.yml' 'eslint/**/*.md' dist",
-        "test": "tsc --noEmit && eslint-config-prettier ./eslint/index.ts && tsx ./cli/duplicates-checker.ts && yarn lint && yarn test:unit",
-        "test:unit": "vitest --run --coverage",
-        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format",
-        "lint:styles": "tsx ./cli/index.mts styles",
-        "lint:scripts": "tsx ./cli/index.mts scripts",
-        "format": "tsx ./cli/index.mts format",
-        "format:check": "tsx ./cli/index.mts format:check",
-        "release": "changeset publish",
-        "release:snapshot": "changeset publish --tag snapshot --no-git-tag",
+        "build": "turbo run build",
+        "test": "turbo run test",
+        "test:unit": "turbo run test:unit",
+        "lint": "turbo run lint",
+        "lint:fix": "turbo run lint:fix",
+        "format": "turbo run format",
+        "format:check": "turbo run format:check",
+        "release": "turbo run build && changeset publish",
+        "release:snapshot": "turbo run build && changeset publish --tag snapshot --no-git-tag",
         "version-package": "changeset version",
         "version-package:snapshot": "changeset version --snapshot snapshot"
     },
-    "prettier": "./prettier",
-    "stylelint": {
-        "extends": "./stylelint"
-    },
-    "exports": {
-        "./eslint": {
-            "types": "./eslint/index.d.ts",
-            "import": "./eslint/index.js"
-        },
-        "./eslint/config": {
-            "types": "./eslint/config.d.ts",
-            "import": "./eslint/config.js"
-        },
-        "./eslint/rules": {
-            "types": "./eslint/rules/index.d.ts",
-            "import": "./eslint/rules/index.js"
-        },
-        "./prettier": "./prettier/index.js",
-        "./commitlint": "./commitlint/index.js",
-        "./stylelint": "./stylelint/index.js",
-        "./eslint/plugins": {
-            "types": "./eslint/plugins/index.d.ts",
-            "import": "./eslint/plugins/index.js"
-        }
-    },
+    "packageManager": "yarn@4.14.1",
     "commitlint": {
-        "extends": "./commitlint"
+        "extends": "./packages/arui-presets-lint/commitlint/index.ts"
     },
-    "packageManager": "yarn@4.13.0",
-    "publishConfig": {
-        "directory": "dist",
-        "access": "public"
-    }
+    "stylelint": {
+        "extends": "./packages/arui-presets-lint/stylelint/index.ts"
+    },
+    "prettier": "./packages/arui-presets-lint/prettier/index.ts"
 }

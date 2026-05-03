@@ -9,11 +9,9 @@
         "jsx": "react-jsx",
         "allowJs": true,
         "types": ["node"],
-        "outDir": "./dist",
         "skipLibCheck": true,
         "declaration": true,
         "verbatimModuleSyntax": true,
         "resolveJsonModule": true
-    },
-    "include": ["**/*", "**/*.mjs", "./package.json"]
+    }
 }

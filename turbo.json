@@ -1,0 +1,35 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "ui": "stream",
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": ["dist/**"],
+            "inputs": ["$TURBO_DEFAULT$", "!**/*.test.ts", "!**/*.test.tsx", "!test/**"]
+        },
+        "@alfalab/stylelint-core-vars#build": {
+            "dependsOn": []
+        },
+        "test": {
+            "dependsOn": [],
+            "outputs": ["coverage/**"]
+        },
+        "arui-presets-lint#test": {
+            "dependsOn": ["@alfalab/stylelint-core-vars#build"],
+            "outputs": ["coverage/**"]
+        },
+        "test:unit": {
+            "outputs": ["coverage/**"]
+        },
+        "lint": {
+            "dependsOn": []
+        },
+        "lint:fix": {
+            "cache": false
+        },
+        "format": {
+            "cache": false
+        },
+        "format:check": {}
+    }
+}
