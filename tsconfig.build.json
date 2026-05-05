@@ -1,4 +1,0 @@
-{
-    "extends": "./tsconfig.json",
-    "exclude": ["dist", "node_modules", "test", "eslint.config.mts", "./cli/duplicates-checker.ts"]
-}

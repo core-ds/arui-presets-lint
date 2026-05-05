@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+        "dist",
+        "node_modules",
+        "coverage",
+        "test",
+        "scripts",
+        "eslint.config.mts",
+        "vitest.config.ts",
+        "./cli/duplicates-checker.ts",
+        "./cli/build-dist-package.ts"
+    ]
+}

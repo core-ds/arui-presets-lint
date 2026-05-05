@@ -10,23 +10,21 @@ jobs:
               uses: actions/checkout@v6
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
+                  fetch-depth: 0
 
             - name: Setup Node.js
               uses: actions/setup-node@v6
               with:
                   node-version: 24
+                  cache: yarn
 
-            - name: Install dependensies
+            - name: Install dependencies
               run: |
                   yarn install --immutable
 
             - name: Run tests
               run: |
                   yarn test
-
-            - name: Run build
-              run: |
-                  yarn build
 
             - name: Create release pull request or publish to npm
               uses: changesets/action@v1

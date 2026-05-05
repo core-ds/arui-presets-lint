@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+        "dist",
+        "node_modules",
+        "coverage",
+        "test",
+        "eslint.config.mts",
+        "vitest.config.ts",
+        "vitest.setup.ts",
+        "package.json"
+    ]
+}

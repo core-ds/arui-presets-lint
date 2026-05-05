@@ -1,18 +1,20 @@
-import { defineConfig } from './eslint/config.js';
-import { eslintConfig } from './eslint/index.js';
+import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
+import turboConfig from 'eslint-config-turbo/flat';
 
-export default defineConfig(eslintConfig, [
+export default defineConfig(
+    [globalIgnores(['**/test-data/**', '.publish', 'turbo', 'coverage', '.yarn'])],
+    turboConfig,
     {
-        rules: {
-            'import-x/no-extraneous-dependencies': [
-                'error',
-                {
-                    devDependencies: ['test/**/*', 'cli/duplicates-checker.ts', 'vitest.config.ts'],
-                },
-            ],
-            'import-x/no-useless-path-segments': 'off',
-            'no-console': 'off',
-            'max-lines': ['error', 1000],
+        languageOptions: {
+            parserOptions: {
+                tsconfigRootDir: import.meta.dirname,
+            },
         },
     },
-]);
+    {
+        rules: {
+            'import-x/no-unused-modules': 'off',
+            'no-console': 'off',
+        },
+    },
+);

@@ -1,0 +1,57 @@
+{
+    "name": "@alfalab/stylelint-core-vars",
+    "version": "2.0.0",
+    "description": "core-components css linter",
+    "license": "MIT",
+    "author": "core-ds contributors",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "CHANGELOG.md"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/core-ds/arui-presets-lint.git"
+    },
+    "scripts": {
+        "build": "rimraf dist && tsc -p tsconfig.build.json",
+        "test": "tsc --noEmit && yarn lint && yarn test:unit",
+        "test:unit": "vitest --run",
+        "lint": "yarn lint:scripts && yarn format:check",
+        "lint:fix": "yarn lint:scripts --fix && yarn format",
+        "lint:scripts": "tsx ../arui-presets-lint/cli/index.mts scripts",
+        "format": "tsx ../arui-presets-lint/cli/index.mts format",
+        "format:check": "tsx ../arui-presets-lint/cli/index.mts format:check"
+    },
+    "dependencies": {
+        "@manypkg/get-packages": "^3.1.0",
+        "postcss": "^8.5.6"
+    },
+    "devDependencies": {
+        "@alfalab/core-components-vars": "7.0.0",
+        "@vitest/coverage-istanbul": "4.1.5",
+        "arui-presets-lint": "workspace:*",
+        "jest-preset-stylelint": "^8.0.0",
+        "rimraf": "6.1.3",
+        "stylelint": "16.23.1",
+        "tsx": "4.21.0",
+        "typescript": "6.0.3",
+        "vitest": "4.1.5"
+    },
+    "peerDependencies": {
+        "stylelint": "^16.0.0"
+    },
+    "engines": {
+        "node": ">=18.12.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
