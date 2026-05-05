@@ -1,5 +1,11 @@
 # stylelint-core-vars
 
+## 2.1.0
+
+### Minor Changes
+
+- [#118](https://github.com/core-ds/arui-presets-lint/pull/118) [`1057d60`](https://github.com/core-ds/arui-presets-lint/commit/1057d601f36fb1f06f70741f0f15b49aa1ed3c98) Thanks [@kiskv](https://github.com/kiskv)! - Библиотека переписана на typescript и перенесена в монорепозиторий
+
 ## 2.0.0
 
 ### Major Changes
