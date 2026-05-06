@@ -1,4 +1,4 @@
-arui-presets-lint
+# arui-presets-lint
 
 [Пользовательская документация](./packages/arui-presets-lint/README.md)
 
