@@ -1,0 +1,57 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "ui": "stream",
+    "tasks": {
+        // arui-presets-lint зависит от @alfalab/stylelint-core-vars (dependencies),
+        // а @alfalab/stylelint-core-vars зависит от arui-presets-lint (devDependencies).
+        // Из-за этой циклической зависимости turbo не может использовать ^build / ^test
+        // для обоих пакетов одновременно — приходится вручную разрывать цикл,
+        // убирая dependsOn у одного из пакетов.
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "dist/**"
+            ],
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                "!**/*.test.ts",
+                "!**/*.test.tsx",
+                "!test/**"
+            ]
+        },
+        "@alfalab/stylelint-core-vars#build": {
+            "dependsOn": []
+        },
+        "test": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "coverage/**"
+            ]
+        },
+        "@alfalab/stylelint-core-vars#test": {
+            "dependsOn": [],
+            "outputs": [
+                "coverage/**"
+            ]
+        },
+        "test:unit": {
+            "outputs": [
+                "coverage/**"
+            ]
+        },
+        "lint": {
+            "dependsOn": []
+        },
+        "lint:fix": {
+            "cache": false
+        },
+        "format": {
+            "cache": false
+        },
+        "format:check": {}
+    }
+}

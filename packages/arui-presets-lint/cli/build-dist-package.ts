@@ -53,6 +53,8 @@ const distPkg: PackageJson = {
     ...sourcePkg,
     exports: distExports,
     dependencies: await resolveWorkspaceDeps(sourcePkg.dependencies as Deps),
+    // devDeps в релизной версии не нужны
+    devDependencies: {},
 };
 
 await writeFile('dist/package.json', `${JSON.stringify(distPkg, null, 4)}\n`);
