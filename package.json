@@ -1,7 +1,7 @@
 {
     "name": "arui-presets-lint-monorepo",
     "private": true,
-    "description": "Config files for arui-apps (monorepo root)",
+    "description": "Монорепозиторий с инструментами для разработки и валидации TypeScript/JavaScript проектов",
     "author": "core-ds contributors",
     "license": "MIT",
     "type": "module",

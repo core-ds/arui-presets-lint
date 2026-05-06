@@ -22,6 +22,7 @@
     },
     "scripts": {
         "build": "rimraf dist && tsc -p tsconfig.build.json",
+        "prepack": "tsx scripts/strip-dev-deps.ts",
         "test": "tsc --noEmit && yarn lint && yarn test:unit",
         "test:unit": "vitest --run",
         "lint": "yarn lint:scripts && yarn format:check",
