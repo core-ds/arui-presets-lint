@@ -119,8 +119,7 @@ const checkVars = (
         );
 
         if (shouldReport(substitution.fixable, fixed)) {
-            const index =
-                originalValueIndex + prop.length + (raws.between?.length ?? 0) + substitution.index;
+            const index = originalValueIndex + prop.length + (raws.between?.length ?? 0);
             const endIndex = index + substitution.value.length;
 
             const messageFn = messages[ruleName].expected as (...args: unknown[]) => string;

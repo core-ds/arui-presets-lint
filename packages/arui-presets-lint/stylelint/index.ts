@@ -168,7 +168,6 @@ export default {
                 'selector-class-pattern': [
                     '^[^-]+$',
                     {
-                        resolveNestedSelectors: true,
                         message:
                             'Expected class selector to be camelCase (or, for corner cases, snake_case)',
                         severity: 'warning',

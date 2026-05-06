@@ -24,7 +24,7 @@ export const typescriptConfig: Linter.Config = {
             ecmaFeatures: { jsx: true },
         },
         globals: {
-            ...globals.es2022,
+            ...globals.es2023,
             ...globals.browser,
             ...globals.node,
         },

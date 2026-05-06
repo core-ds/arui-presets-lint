@@ -34,11 +34,11 @@
         "jiti": "^2.6.1",
         "lefthook": "2.1.6",
         "prettier": "3.8.3",
-        "stylelint": "16.26.1",
+        "stylelint": "17.11.0",
         "typescript-eslint": "8.59.1"
     },
     "engines": {
-        "node": ">=18.18.0"
+        "node": ">=20.19.0"
     },
     "devDependencies": {
         "@alfalab/core-components": "50.12.1",
