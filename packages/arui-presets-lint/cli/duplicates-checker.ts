@@ -49,7 +49,10 @@ const typescript = {
         'prefer-const',
     ],
 };
-const variables = { rules: Object.keys(variablesConfig.rules || {}), name: variablesConfig.name };
+const variables = {
+    rules: [...new Set(variablesConfig.flatMap((c) => Object.keys(c.rules ?? {})))],
+    name: variablesConfig.map((c) => c.name).join(', '),
+};
 const disableComments = {
     rules: Object.keys(disableCommentsConfig.rules || {}),
     name: disableCommentsConfig.name,

@@ -61,7 +61,7 @@ export const eslintConfig = [
     nodeRulesConfig,
     reactConfig,
     reactA11yConfig,
-    variablesConfig,
+    ...variablesConfig,
     testsConfig,
     typescriptConfig,
     importsConfig,

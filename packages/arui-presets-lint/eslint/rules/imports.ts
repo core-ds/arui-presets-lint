@@ -290,16 +290,16 @@ export const importsConfig: Linter.Config = {
         // https://eslint.org/docs/rules/sort-imports
         'sort-imports': 'off',
 
-        // Все названия файлов должны быть в kebab-case
-        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
+        // Все названия папок должны быть в kebab-case (только латиница/цифры/дефис в сегментах micromatch [a-z])
+        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
         'check-file/folder-naming-convention': [
             'error',
             { '**/*.*': 'KEBAB_CASE' },
             { ignoreMiddleExtensions: true },
         ],
 
-        // Все названия папок должны быть в kebab-case
-        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
+        // Все названия файлов должны быть в kebab-case
+        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
         'check-file/filename-naming-convention': [
             'error',
             { '**/*.*': 'KEBAB_CASE' },

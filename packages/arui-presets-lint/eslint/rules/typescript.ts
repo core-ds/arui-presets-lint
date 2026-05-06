@@ -7,10 +7,25 @@ import { bestPracticesConfig } from './best-practices.js';
 import { importsConfig } from './imports.js';
 import { variablesConfig } from './variables.js';
 
+/** Только ASCII в идентификаторах: camelCase/PascalCase в TS по умолчанию допускают кириллицу через Unicode case. */
+const asciiIdentifierName = {
+    regex: '^[A-Za-z0-9_$]+$',
+    match: true as const,
+};
+
+/**
+ * Члены класса / объектов / интерфейсов и кавычные ключи: печатные ASCII (дефисы, точки в JSON:API и т.д.),
+ * без кириллицы и прочего не-ASCII.
+ */
+const asciiMemberOrLiteralKeyName = {
+    regex: '^[\\u0021-\\u007E]+$',
+    match: true as const,
+};
+
 const bestPracticesRules = bestPracticesConfig.rules as Record<string, Linter.RuleEntry>;
 
 const importsRules = importsConfig.rules as Record<string, Linter.RuleEntry>;
-const variablesRules = variablesConfig.rules as Record<string, Linter.RuleEntry>;
+const variablesRules = variablesConfig[0].rules as Record<string, Linter.RuleEntry>;
 
 export const typescriptConfig: Linter.Config = {
     name: 'arui-presets-lint/typescript',
@@ -74,13 +89,42 @@ export const typescriptConfig: Linter.Config = {
             { fixMixedExportsWithInlineTypeSpecifier: true },
         ],
 
-        // Определяет правила именования
+        // Определяет правила именования + запрет не-ASCII в именах (issue #33)
         // https://typescript-eslint.io/rules/naming-convention
         '@typescript-eslint/naming-convention': [
             'error',
-            { selector: 'variable', format: ['camelCase', 'PascalCase', 'UPPER_CASE'] },
-            { selector: 'function', format: ['camelCase', 'PascalCase'] },
-            { selector: 'typeLike', format: ['PascalCase'] },
+            {
+                selector: 'variable',
+                format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+                custom: asciiIdentifierName,
+                leadingUnderscore: 'allow',
+                trailingUnderscore: 'allow',
+            },
+            {
+                selector: 'function',
+                format: ['camelCase', 'PascalCase'],
+                custom: asciiIdentifierName,
+            },
+            {
+                selector: 'parameter',
+                format: ['camelCase'],
+                custom: asciiIdentifierName,
+                leadingUnderscore: 'allow',
+                trailingUnderscore: 'allow',
+            },
+            {
+                selector: 'import',
+                format: ['camelCase', 'PascalCase'],
+                custom: asciiIdentifierName,
+            },
+            {
+                selector: 'memberLike',
+                format: null,
+                custom: asciiMemberOrLiteralKeyName,
+                leadingUnderscore: 'allow',
+                trailingUnderscore: 'allow',
+            },
+            { selector: 'typeLike', format: ['PascalCase'], custom: asciiIdentifierName },
         ],
 
         // Запрещает вызов require()
