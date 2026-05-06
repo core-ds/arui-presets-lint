@@ -1,5 +1,11 @@
 # stylelint-core-vars
 
+## 2.1.1
+
+### Patch Changes
+
+- [#121](https://github.com/core-ds/arui-presets-lint/pull/121) [`b83ff31`](https://github.com/core-ds/arui-presets-lint/commit/b83ff31f78483f79dcb263f71e3a2dd5a92b5c15) Thanks [@kiskv](https://github.com/kiskv)! - Фикс попадания зависимости с версией 'workspace:\*' в релизный пакет
+
 ## 2.1.0
 
 ### Minor Changes

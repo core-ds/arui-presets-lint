@@ -1,6 +1,6 @@
 {
     "name": "@alfalab/stylelint-core-vars",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "core-components css linter",
     "license": "MIT",
     "author": "core-ds contributors",
@@ -22,6 +22,7 @@
     },
     "scripts": {
         "build": "rimraf dist && tsc -p tsconfig.build.json",
+        "prepack": "tsx scripts/strip-dev-deps.ts",
         "test": "tsc --noEmit && yarn lint && yarn test:unit",
         "test:unit": "vitest --run",
         "lint": "yarn lint:scripts && yarn format:check",
