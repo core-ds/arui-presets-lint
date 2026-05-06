@@ -1,3 +1,12 @@
+## 9.5.1-snapshot-40cd8fbf1e13aca8b61d57e7e548ae2fe555e060
+
+### Patch Changes
+
+- [#121](https://github.com/core-ds/arui-presets-lint/pull/121) [`40cd8fb`](https://github.com/core-ds/arui-presets-lint/commit/40cd8fbf1e13aca8b61d57e7e548ae2fe555e060) Thanks [@kiskv](https://github.com/kiskv)! - Фикс попадания зависимости с версией 'workspace:\*' в релизный пакет
+
+- Updated dependencies [[`40cd8fb`](https://github.com/core-ds/arui-presets-lint/commit/40cd8fbf1e13aca8b61d57e7e548ae2fe555e060)]:
+    - @alfalab/stylelint-core-vars@2.1.1-snapshot-40cd8fbf1e13aca8b61d57e7e548ae2fe555e060
+
 ## 9.5.0
 
 ### Minor Changes
