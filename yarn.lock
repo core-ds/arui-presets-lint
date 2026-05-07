@@ -2548,14 +2548,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/changelog-github@npm:0.6.0":
-  version: 0.6.0
-  resolution: "@changesets/changelog-github@npm:0.6.0"
+"@changesets/changelog-github@npm:0.7.0":
+  version: 0.7.0
+  resolution: "@changesets/changelog-github@npm:0.7.0"
   dependencies:
     "@changesets/get-github-info": "npm:^0.8.0"
     "@changesets/types": "npm:^6.1.0"
     dotenv: "npm:^8.1.0"
-  checksum: 10c0/b2f20cfda2b663e2209b496de900469886afb4106b3a90ab39e2bcf6b8cd4c57f4870d50b60906a99116b1d444784db08c17f893eb2742094b376a336a94a5cf
+  checksum: 10c0/8054f8d5057e79eccf6658712603c9df04906f6b9c7a8b3581e63d178328ca9ba7cb27e4f2241115c3c3430099dd92ebdea097be86921d0a3cd0d07e06e896eb
   languageName: node
   linkType: hard
 
@@ -3888,44 +3888,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/darwin-64@npm:2.9.7":
-  version: 2.9.7
-  resolution: "@turbo/darwin-64@npm:2.9.7"
+"@turbo/darwin-64@npm:2.9.9":
+  version: 2.9.9
+  resolution: "@turbo/darwin-64@npm:2.9.9"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/darwin-arm64@npm:2.9.7":
-  version: 2.9.7
-  resolution: "@turbo/darwin-arm64@npm:2.9.7"
+"@turbo/darwin-arm64@npm:2.9.9":
+  version: 2.9.9
+  resolution: "@turbo/darwin-arm64@npm:2.9.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/linux-64@npm:2.9.7":
-  version: 2.9.7
-  resolution: "@turbo/linux-64@npm:2.9.7"
+"@turbo/linux-64@npm:2.9.9":
+  version: 2.9.9
+  resolution: "@turbo/linux-64@npm:2.9.9"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/linux-arm64@npm:2.9.7":
-  version: 2.9.7
-  resolution: "@turbo/linux-arm64@npm:2.9.7"
+"@turbo/linux-arm64@npm:2.9.9":
+  version: 2.9.9
+  resolution: "@turbo/linux-arm64@npm:2.9.9"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/windows-64@npm:2.9.7":
-  version: 2.9.7
-  resolution: "@turbo/windows-64@npm:2.9.7"
+"@turbo/windows-64@npm:2.9.9":
+  version: 2.9.9
+  resolution: "@turbo/windows-64@npm:2.9.9"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/windows-arm64@npm:2.9.7":
-  version: 2.9.7
-  resolution: "@turbo/windows-arm64@npm:2.9.7"
+"@turbo/windows-arm64@npm:2.9.9":
+  version: 2.9.9
+  resolution: "@turbo/windows-arm64@npm:2.9.9"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -4820,11 +4820,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "arui-presets-lint-monorepo@workspace:."
   dependencies:
-    "@changesets/changelog-github": "npm:0.6.0"
+    "@changesets/changelog-github": "npm:0.7.0"
     "@changesets/cli": "npm:2.31.0"
     arui-presets-lint: "workspace:*"
-    eslint-config-turbo: "npm:2.9.7"
-    turbo: "npm:2.9.7"
+    eslint-config-turbo: "npm:2.9.9"
+    turbo: "npm:2.9.9"
   languageName: unknown
   linkType: soft
 
@@ -6152,15 +6152,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:2.9.7":
-  version: 2.9.7
-  resolution: "eslint-config-turbo@npm:2.9.7"
+"eslint-config-turbo@npm:2.9.9":
+  version: 2.9.9
+  resolution: "eslint-config-turbo@npm:2.9.9"
   dependencies:
-    eslint-plugin-turbo: "npm:2.9.7"
+    eslint-plugin-turbo: "npm:2.9.9"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10c0/e8043a6bdec2dba020780e5494eb8ac8f96b48ba33ac09029a06c78fbefddd8f1be97e4b42e99d023c5b6283e6c3f2b439f57260a478b8471e323f4cf50fc76d
+  checksum: 10c0/bd2ae3c2b5b53e65f81e16de67889dfa721609370993ea55c9530ea9c66262dec97b645ce4620e6da62c2600940a8398af6f1dd66250fd35bd08442ad61d188e
   languageName: node
   linkType: hard
 
@@ -6366,15 +6366,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.9.7":
-  version: 2.9.7
-  resolution: "eslint-plugin-turbo@npm:2.9.7"
+"eslint-plugin-turbo@npm:2.9.9":
+  version: 2.9.9
+  resolution: "eslint-plugin-turbo@npm:2.9.9"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10c0/be7b679adc75b9375d746387651960ee8588d1592d33b74a54810642a484c267ed2f505b81e698f182b76dbcfafb0cccf01df68fd2a4ebce294cb7a302857883
+  checksum: 10c0/9fd03c82c9b1517b9d5b7aa474e51be2a38119d139c15c08e78a2e6d7f5a38d2c036d9600f280a3926ff3b987dfe6577b7b74a46187650325a4b86d10bddcacb
   languageName: node
   linkType: hard
 
@@ -11053,16 +11053,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:2.9.7":
-  version: 2.9.7
-  resolution: "turbo@npm:2.9.7"
+"turbo@npm:2.9.9":
+  version: 2.9.9
+  resolution: "turbo@npm:2.9.9"
   dependencies:
-    "@turbo/darwin-64": "npm:2.9.7"
-    "@turbo/darwin-arm64": "npm:2.9.7"
-    "@turbo/linux-64": "npm:2.9.7"
-    "@turbo/linux-arm64": "npm:2.9.7"
-    "@turbo/windows-64": "npm:2.9.7"
-    "@turbo/windows-arm64": "npm:2.9.7"
+    "@turbo/darwin-64": "npm:2.9.9"
+    "@turbo/darwin-arm64": "npm:2.9.9"
+    "@turbo/linux-64": "npm:2.9.9"
+    "@turbo/linux-arm64": "npm:2.9.9"
+    "@turbo/windows-64": "npm:2.9.9"
+    "@turbo/windows-arm64": "npm:2.9.9"
   dependenciesMeta:
     "@turbo/darwin-64":
       optional: true
@@ -11078,7 +11078,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10c0/5fa010810ce251279dac83db02e60ebd8014cf8e74e69a6c09751ae28aef0fdb95aa09b059ce8c987a1746dd5b04bb3002bd7fdcb6d0016d8690f079fec43921
+  checksum: 10c0/8c6717c9b264b2cfdb06b2cc2bf30554c82a9ff421270b277ec4922cb4542f2b88e11180ea93e587c8e1f06bc277b88125abd561c6e6922e79044144f9bf676f
   languageName: node
   linkType: hard
 
