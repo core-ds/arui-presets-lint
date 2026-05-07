@@ -4851,7 +4851,7 @@ __metadata:
     eslint-config-prettier: "npm:10.1.8"
     eslint-import-resolver-typescript: "npm:4.4.4"
     eslint-plugin-check-file: "npm:3.3.1"
-    eslint-plugin-de-morgan: "npm:2.1.1"
+    eslint-plugin-de-morgan: "npm:2.1.2"
     eslint-plugin-import-x: "npm:4.16.2"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
     eslint-plugin-n: "npm:18.0.1"
@@ -6216,12 +6216,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-de-morgan@npm:2.1.1":
-  version: 2.1.1
-  resolution: "eslint-plugin-de-morgan@npm:2.1.1"
+"eslint-plugin-de-morgan@npm:2.1.2":
+  version: 2.1.2
+  resolution: "eslint-plugin-de-morgan@npm:2.1.2"
   peerDependencies:
     eslint: ^8.45.0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/62f3c4bfbc4f112da8d75a056465d86022371a437c167783bd9286cdc4bc63d73f18012a81225be46bff968aa1bd38a6dfb1079400edc889e528b23b97c1b5a0
+  checksum: 10c0/527767af044479dbca69baa1f032c40c4c83569196451e01191d40ca30755f773bd47e18274e5144418716a3aa35d7a1b9ea15c572b31f781eaabbbcf5fcdb07
   languageName: node
   linkType: hard
 
