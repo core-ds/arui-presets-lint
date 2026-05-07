@@ -1,6 +1,6 @@
 {
     "name": "@alfalab/stylelint-core-vars",
-    "version": "2.1.1",
+    "version": "3.0.0-snapshot-b3a43926a1b653aa1b553d6109c91c52477dade8",
     "description": "core-components css linter",
     "license": "MIT",
     "author": "core-ds contributors",
