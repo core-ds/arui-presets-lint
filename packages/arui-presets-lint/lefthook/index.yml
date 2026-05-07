@@ -6,13 +6,16 @@ pre-commit:
     commands:
         check-scripts:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx}'
-            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored
+            stage_fixed: true
         check-styles:
             glob: '*.{css}'
-            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache" && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
+            stage_fixed: true
         check-json:
             glob: '*.{json}'
-            run: npx --no-install prettier --write {staged_files} --cache && git add {staged_files}
+            run: npx --no-install prettier --write {staged_files} --cache
+            stage_fixed: true
 commit-msg:
     commands:
         commitlint:
