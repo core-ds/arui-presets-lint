@@ -9,6 +9,7 @@ import {
     bestPracticesConfig,
     importsConfig,
     nodeRulesConfig,
+    noSecretsConfig,
     reactA11yConfig,
     reactConfig,
     testsConfig,
@@ -59,6 +60,7 @@ export const eslintConfig = [
     */
     bestPracticesConfig,
     nodeRulesConfig,
+    noSecretsConfig,
     reactConfig,
     reactA11yConfig,
     variablesConfig,

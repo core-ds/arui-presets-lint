@@ -1,5 +1,6 @@
 export { bestPracticesConfig } from './best-practices.js';
 export { importsConfig } from './imports.js';
+export { noSecretsConfig } from './no-secrets.js';
 export { nodeRulesConfig } from './node.js';
 export { reactA11yConfig } from './react-a11y.js';
 export { reactConfig } from './react.js';
