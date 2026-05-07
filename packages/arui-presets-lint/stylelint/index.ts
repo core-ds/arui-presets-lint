@@ -157,8 +157,41 @@ export default {
                 ignore: ['after-comment'],
             },
         ],
+
+        // Задаёт порядок перечисленных свойств относительно друг друга
+        // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
+        'order/properties-order': ['position', 'z-index', 'top', 'right', 'bottom', 'left'],
+
+        // Требует порядок вложенности: декларации > @media > псевдоэлементы > псевдоклассы > &__ > вложенные классы
+        // https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
+        'order/order': [
+            [
+                'declarations',
+                {
+                    type: 'at-rule',
+                    name: 'media',
+                },
+                {
+                    type: 'rule',
+                    selector: '^&::(before|after)',
+                },
+                {
+                    type: 'rule',
+                    selector: String.raw`^&:\w`,
+                },
+                {
+                    type: 'rule',
+                    selector: '^&_',
+                },
+                {
+                    type: 'rule',
+                    selector: '^.',
+                },
+            ],
+            { severity: 'warning' },
+        ],
     },
-    plugins: ['@alfalab/stylelint-core-vars'],
+    plugins: ['stylelint-order', '@alfalab/stylelint-core-vars'],
     overrides: [
         {
             files: ['*.module.css'],
