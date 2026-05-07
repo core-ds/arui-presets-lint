@@ -1,6 +1,6 @@
 {
     "name": "arui-presets-lint",
-    "version": "9.5.1",
+    "version": "9.6.0",
     "description": "Config files for arui-apps",
     "author": "core-ds contributors",
     "license": "MIT",
@@ -35,6 +35,7 @@
         "lefthook": "2.1.6",
         "prettier": "3.8.3",
         "stylelint": "17.11.0",
+        "stylelint-order": "8.1.1",
         "typescript-eslint": "8.59.2"
     },
     "engines": {
