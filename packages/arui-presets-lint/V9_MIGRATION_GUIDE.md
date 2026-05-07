@@ -58,7 +58,7 @@ export default defineConfig(eslintConfig, [
                     // Это позволит eslint линтить файлы, даже если они не указаны в tsconfig.json
                     // Обратите внимание, что включить '**' тут нельзя, влияет на производительность!
                     // https://typescript-eslint.io/packages/parser/#allowdefaultproject
-                    // Конретно тут - разрешаем линтить все файлы с расширениями .ts, .mts и .cts в корневой директории проекта
+                    // Конкретно тут - разрешаем линтить все файлы с расширениями .ts, .mts и .cts в корневой директории проекта
                     allowDefaultProject: ['*.ts', '*.mts', '*.cts'],
                 },
             },
