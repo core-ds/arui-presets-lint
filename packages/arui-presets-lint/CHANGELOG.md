@@ -1,3 +1,15 @@
+## 9.6.0
+
+### Minor Changes
+
+- [#125](https://github.com/core-ds/arui-presets-lint/pull/125) [`292ec32`](https://github.com/core-ds/arui-presets-lint/commit/292ec32d3f412dcb8f174256c73fe86b12951b02) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - В пресет stylelint добавлен плагин `stylelint-order` и правила `order/properties-order` и `order/order`.
+  За счёт них выравнивается порядок css свойств и выстраивается единообразный порядок вложенности в блоке.
+
+### Patch Changes
+
+- Updated dependencies []:
+    - @alfalab/stylelint-core-vars@2.1.1
+
 ## 9.5.1
 
 ### Patch Changes
