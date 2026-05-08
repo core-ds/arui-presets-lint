@@ -4865,6 +4865,7 @@ __metadata:
     eslint-plugin-import-x: "npm:4.16.2"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
     eslint-plugin-n: "npm:17.24.0"
+    eslint-plugin-no-secrets: "npm:2.3.3"
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-react-hooks: "npm:7.1.1"
     eslint-plugin-simple-import-sort: "npm:13.0.0"
@@ -6336,6 +6337,15 @@ __metadata:
   peerDependencies:
     eslint: ">=8.23.0"
   checksum: 10c0/65b6c9ccd4d69296df9bdc0517bdbbc71e5f1ec065e80623c49148ff7813829bd3568154a016fefc06749476f3fdadc0e1afa61a15695893a3ca3da161c9fe86
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-no-secrets@npm:2.3.3":
+  version: 2.3.3
+  resolution: "eslint-plugin-no-secrets@npm:2.3.3"
+  peerDependencies:
+    eslint: ">=5"
+  checksum: 10c0/c31ff296570360e93ac2409598d631c1e4177879f11c73305f9757352ff3471ed73e71b9eafc3d3601d16463f5dad2334ab7f3be0bed1dfa99f13a97ada4fba0
   languageName: node
   linkType: hard
 
