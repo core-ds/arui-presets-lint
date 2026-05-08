@@ -1,5 +1,11 @@
 # stylelint-core-vars
 
+## 3.0.0
+
+### Major Changes
+
+- [#120](https://github.com/core-ds/arui-presets-lint/pull/120) [`b6cbb1a`](https://github.com/core-ds/arui-presets-lint/commit/b6cbb1a87847682cecd1c7a73809020f17f7fb55) Thanks [@kiskv](https://github.com/kiskv)! - Обновление stylelint до 17 версии, минимальная версия node теперь - 20.19.0
+
 ## 2.1.1
 
 ### Patch Changes
