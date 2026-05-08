@@ -78,6 +78,23 @@ export default defineConfig(eslintConfig, [
 
     Так же все правила в конфиге которые начинаються на `import/` нужно заменить на `import-x/`. Других изменений делать не нужно, новый плагин полностью совместим со старым.
 
+    **Производительность `import-x/no-cycle`.**
+    Правило «дорогое»: оно обходит зависимости, чтобы найти путь обратно к текущему файлу.
+    В пресете это задано в [`eslint/rules/imports.ts`](eslint/rules/imports.ts): по умолчанию включены **`ignoreExternal: true`** и **`maxDepth: 20`** (см. [документацию правила](https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-cycle.md)). Циклы длиннее этого порога ESLint не сообщит.
+    Если необходима проверка без ограничения глубины или другое значение, то переопределите правило в своём `eslint.config.mts`:
+
+    ```typescript
+    {
+        rules: {
+            'import-x/no-cycle': ['error', { ignoreExternal: true, maxDepth: 50 }],
+            // или полная проверка без maxDepth (может сильно увеличить время линта):
+            // 'import-x/no-cycle': ['error', { ignoreExternal: true }],
+            // или отключить правило:
+            // 'import-x/no-cycle': 'off',
+        },
+    },
+    ```
+
 4. Набор правил eslint изменился - но многие правятся с помощью автофикса. Сделаем это!
 
     ```bash
