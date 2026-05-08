@@ -196,7 +196,8 @@ export const importsConfig: Linter.Config = {
 
         // Запрещать циклические зависимости между модулями
         // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-cycle.md
-        'import-x/no-cycle': ['error', { ignoreExternal: true }],
+        // maxDepth ограничивает глубину обхода графа импортов (без лимита правило сильно замедляет линтинг на больших проектах)
+        'import-x/no-cycle': ['error', { ignoreExternal: true, maxDepth: 20 }],
 
         // Гарантировать отсутствие бесполезных сегментов пути
         // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-useless-path-segments.md
