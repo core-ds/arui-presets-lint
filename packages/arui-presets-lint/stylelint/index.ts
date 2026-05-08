@@ -129,23 +129,23 @@ export default {
         ],
 
         // Требует использовать CSS-переменные дизайн-системы вместо хардкода
-        // https://github.com/core-ds/stylelint-core-vars
+        // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
         'stylelint-core-vars/use-vars': true,
 
         // Требует использовать миксины дизайн-системы
-        // https://github.com/core-ds/stylelint-core-vars
+        // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
         'stylelint-core-vars/use-mixins': true,
 
         // Рекомендует использовать один из доступных vars при выборе значения
-        // https://github.com/core-ds/stylelint-core-vars
+        // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
         'stylelint-core-vars/use-one-of-vars': [true, { severity: 'warning' }],
 
         // Рекомендует использовать один из доступных mixins при выборе
-        // https://github.com/core-ds/stylelint-core-vars
+        // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
         'stylelint-core-vars/use-one-of-mixins': [true, { severity: 'warning' }],
 
         // Предупреждает об использовании тeмных цветов напрямую
-        // https://github.com/core-ds/stylelint-core-vars
+        // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
 
         // Требует пустую строку перед правилами
@@ -201,7 +201,6 @@ export default {
                 'selector-class-pattern': [
                     '^[^-]+$',
                     {
-                        resolveNestedSelectors: true,
                         message:
                             'Expected class selector to be camelCase (or, for corner cases, snake_case)',
                         severity: 'warning',

@@ -320,8 +320,7 @@ function getVarsGroup(varsSet: VarsMap): string | undefined {
 }
 
 function sortVarsByUsage(arr: string[], sortingArr: string[]): string[] {
-    // eslint-disable-next-line unicorn/no-array-sort -- toSorted требует es2023, проект на es2022
-    return arr.slice().sort((a, b) => {
+    return arr.toSorted((a, b) => {
         const aUsage = a.slice(2).split('-')[2];
         const bUsage = b.slice(2).split('-')[2];
         const aIndex = sortingArr.indexOf(aUsage);

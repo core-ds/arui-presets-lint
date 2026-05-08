@@ -86,7 +86,7 @@ export default defineConfig(eslintConfig, [
                     // Это позволит eslint линтить файлы, даже если они не указаны в tsconfig.json
                     // Обратите внимание, что включить '**' тут нельзя, влияет на производительность!
                     // https://typescript-eslint.io/packages/parser/#allowdefaultproject
-                    // Конретно тут - разрешаем линтить все файлы с расширениями .ts, .mts и .cts в корневой директории проекта
+                    // Конкретно тут - разрешаем линтить все файлы с расширениями .ts, .mts и .cts в корневой директории проекта
                     allowDefaultProject: ['*.ts', '*.mts', '*.cts'],
                 },
             },
@@ -100,7 +100,7 @@ export default defineConfig(eslintConfig, [
 
 ```typescript
 import { eslintConfig } from 'arui-presets-lint/eslint';
-import { defineConfig } from 'arui-presets-lint/eslint/config';
+import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint/config';
 
 export default defineConfig(eslintConfig, [
     {
@@ -149,13 +149,15 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint/config';
 
 ## Настройка [lefthook](https://github.com/evilmartians/lefthook)
 
-При установке библиотеки в корне проекта создался файл lefthook.yml,
+Создайте в корне проекта файл lefthook.yml,
 он должен содержать следующее:
 
 ```yaml
 extends:
     - ./node_modules/arui-presets-lint/lefthook/index.yml
 ```
+
+Затем подключите хуки к репозиторию: `npx --no-install lefthook install`
 
 Этот конфиг можно расширить специфичными для вашего проекта настройками, см. [документацию](https://lefthook.dev/configuration/) Примеры такого расширения:
 
