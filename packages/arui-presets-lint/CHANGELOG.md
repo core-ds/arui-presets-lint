@@ -1,3 +1,12 @@
+## 9.6.1
+
+### Patch Changes
+
+- [#128](https://github.com/core-ds/arui-presets-lint/pull/128) [`bb55225`](https://github.com/core-ds/arui-presets-lint/commit/bb5522545b99f3ecc383f17f77dcfbcbfce91662) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - Для правила import-x/no-cycle задан maxDepth вместе с ignoreExternal, чтобы снизить время линта на больших графах импортов. В V9_MIGRATION_GUIDE описан компромисс и как переопределить правило в проекте
+
+- Updated dependencies []:
+    - @alfalab/stylelint-core-vars@2.1.1
+
 ## 9.6.0
 
 ### Minor Changes
