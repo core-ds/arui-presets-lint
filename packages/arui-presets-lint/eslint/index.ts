@@ -1,4 +1,6 @@
 import eslintJS from '@eslint/js';
+import jsonPlugin from '@eslint/json';
+import markdownPlugin from '@eslint/markdown';
 import { type Linter } from 'eslint';
 import gitignore from 'eslint-config-flat-gitignore';
 import checkFilePlugin from 'eslint-plugin-check-file';
@@ -84,7 +86,9 @@ export const eslintConfig = [
             '@typescript-eslint': tseslint.plugin,
             'de-morgan': deMorgan,
             n: nodePlugin,
-        } as Linter.Config['plugins'],
+            json: jsonPlugin,
+            markdown: markdownPlugin,
+        } as unknown as Linter.Config['plugins'],
     },
 
     /*

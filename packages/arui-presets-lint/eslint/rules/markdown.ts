@@ -1,4 +1,4 @@
-import markdown from '@eslint/markdown';
+import markdownPlugin from '@eslint/markdown';
 import { type Linter } from 'eslint';
 
 import { MARKDOWN_SCOPE } from '../constants.js';
@@ -10,7 +10,7 @@ export const markdownConfig: Linter.Config = {
     // и не соответствует строгим правилам CommonMark
     ignores: ['**/CHANGELOG.md'],
     plugins: {
-        markdown,
+        markdown: markdownPlugin,
     } as unknown as Linter.Config['plugins'],
     language: 'markdown/commonmark',
     rules: {
