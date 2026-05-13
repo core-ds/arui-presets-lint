@@ -1,3 +1,22 @@
+## 10.1.0-snapshot-006163856680e0ae214dd787d0be26eed2df6375
+
+### Minor Changes
+
+- [#136](https://github.com/core-ds/arui-presets-lint/pull/136) [`0b6cdb1`](https://github.com/core-ds/arui-presets-lint/commit/0b6cdb1ea92bc15cf08fb646d6f9d0e98fbce695) Thanks [@kiskv](https://github.com/kiskv)! - ## New Features
+
+        - Подключены плагины [`@eslint/json`](https://github.com/eslint/json) и [`@eslint/markdown`](https://github.com/eslint/markdown).
+        - `.json` файлы проверяются как строгий JSON, `.jsonc` и `tsconfig*.json` - как JSONC, `.json5` — как JSON5. Правила: `json/no-duplicate-keys`, `json/no-empty-keys`, `json/no-unnormalized-keys`, `json/no-unsafe-values` (как error).
+        - `.md` файлы проверяются по CommonMark (как warning). Подключены все рекомендованные правила `@eslint/markdown` (контроль уровней заголовков, отсутствие пустых ссылок/изображений, alt-текст и т.д.). `**/CHANGELOG.md` игнорируется по умолчанию.
+
+    ## Bug fixes
+
+        - Исправлены скоупы files, все плагины определены глобально, для того чтобы корректно срабатывало переопределение.
+
+### Patch Changes
+
+- Updated dependencies []:
+    - @alfalab/stylelint-core-vars@3.0.0
+
 ## 10.0.0
 
 ### Major Changes
