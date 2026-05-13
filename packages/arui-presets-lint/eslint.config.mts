@@ -1,5 +1,4 @@
-import { defineConfig } from './eslint/config.js';
-import { eslintConfig } from './eslint/index.js';
+import { defineConfig, eslintConfig } from './eslint/index.js';
 
 export default defineConfig(eslintConfig, [
     {

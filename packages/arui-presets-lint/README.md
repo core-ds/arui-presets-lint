@@ -41,8 +41,7 @@
 Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
 
 ```typescript
-import { defineConfig } from 'arui-presets-lint/eslint/config';
-import { eslintConfig } from 'arui-presets-lint/eslint';
+import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig);
 ```
@@ -51,8 +50,7 @@ export default defineConfig(eslintConfig);
 
 ```typescript
 import pluginCypress from 'eslint-plugin-cypress';
-import { defineConfig } from 'arui-presets-lint/eslint/config';
-import { eslintConfig, CYPRESS_SCOPE } from 'arui-presets-lint/eslint';
+import { defineConfig, eslintConfig, CYPRESS_SCOPE } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [
     {
@@ -74,8 +72,7 @@ export default defineConfig(eslintConfig, [
 Не забывайте про директиву files, её нужно указывать, если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
 
 ```typescript
-import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
-import { defineConfig } from 'arui-presets-lint/eslint/config';
+import { defineConfig, eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
 
 export default defineConfig(eslintConfig, [
     {
@@ -92,8 +89,7 @@ export default defineConfig(eslintConfig, [
 - (Рекомендуется) Добавить нужные файлы через опцию allowDefaultProject:
 
 ```typescript
-import { eslintConfig,; TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
-import { defineConfig } from 'arui-presets-lint/eslint/config';
+import { defineConfig, eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [
     {
@@ -116,8 +112,7 @@ export default defineConfig(eslintConfig, [
 - (НЕ рекомендуется) Добавить файлы в globalIgnores. В этом случае eslint не будет его проверять:
 
 ```typescript
-import { eslintConfig } from 'arui-presets-lint/eslint';
-import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint/config';
+import { defineConfig, globalIgnores, eslintConfig } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [
     {
@@ -146,7 +141,7 @@ export default defineConfig(eslintConfig, [
 > Вместо файла .eslintignore рекомендуется использовать globalIgnores в конфиге eslint ([подробнее](https://eslint.org/docs/latest/use/configure/ignore)). Импортируем функцию globalIgnores из `arui-presets-lint` вот так:
 
 ```typescript
-import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint/config';
+import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
 ...
 ```
 

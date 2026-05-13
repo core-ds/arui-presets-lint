@@ -15,8 +15,7 @@ yarn add arui-presets-lint@latest
 1. Удалить свойство `eslintConfig` из package.json, и создать в корне проекта файл `eslint.config.mts` со следующим содержимым:
 
 ```typescript
-import { defineConfig } from 'arui-presets-lint/eslint/config';
-import { eslintConfig, CYPRESS_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
+import { defineConfig, eslintConfig, CYPRESS_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig);
 ```
@@ -25,8 +24,7 @@ export default defineConfig(eslintConfig);
 
 ```typescript
 import pluginCypress from 'eslint-plugin-cypress';
-import { defineConfig } from 'arui-presets-lint/eslint/config';
-import { eslintConfig } from 'arui-presets-lint/eslint';
+import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [
     pluginCypress.configs.recommended,
@@ -46,8 +44,7 @@ export default defineConfig(eslintConfig, [
 Не забывайте про директиву files, её нужно указывать, если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
 
 ```typescript
-import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
-import { defineConfig } from 'arui-presets-lint/eslint/config';
+import { defineConfig, eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
 
 export default defineConfig(eslintConfig, [
     {
@@ -68,8 +65,7 @@ export default defineConfig(eslintConfig, [
     Ранее мы использовали кастомный tsconfig.eslint.json, например для того чтобы включить eslint для файлов в корневой директории - с переходом на [typescript-eslint projectService](https://typescript-eslint.io/blog/project-service/#introducing-the-project-service) он больше не нужен. Используйте основной tsconfig.json, а те файлы которые туда нельзя добавить, добавьте с помощью опции languageOptions.parserOptions.projectService.allowDefaultProject. Учтите что папки добавлять нельзя, так как это аффектит на производительность. Пример такого конфига:
 
 ```typescript
-import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
-import { defineConfig } from 'arui-presets-lint/eslint/config';
+import { defineConfig, eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [
     {
