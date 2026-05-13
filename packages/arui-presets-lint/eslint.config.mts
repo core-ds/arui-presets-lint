@@ -16,7 +16,7 @@ export default defineConfig(eslintConfig, [
                 {
                     devDependencies: [
                         'test/**/*',
-                        'cli/duplicates-checker.ts',
+                        '_internal/**/*',
                         'vitest.config.ts',
                         'scripts/**/*',
                     ],

@@ -1,5 +1,7 @@
 import { type TSESLint } from '@typescript-eslint/utils';
 
+import { GLOBAL_SCRIPTS_SCOPE } from '../../../constants.js';
+
 import { disableCommentsPlugin } from './plugin.js';
 
 /**
@@ -8,6 +10,7 @@ import { disableCommentsPlugin } from './plugin.js';
  */
 export const disableCommentsConfig: TSESLint.FlatConfig.Config = {
     name: 'arui-presets-lint/disable-comments',
+    files: [GLOBAL_SCRIPTS_SCOPE],
     plugins: {
         'disable-comments': disableCommentsPlugin,
     },

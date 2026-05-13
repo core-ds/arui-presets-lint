@@ -1,12 +1,15 @@
 import { type Linter } from 'eslint';
 import globals from 'globals';
 
+import { TESTS_SCRIPTS_SCOPE } from '../constants.js';
+
 export const testsConfig: Linter.Config = {
     name: 'arui-presets-lint/tests',
-    files: ['**/*.{test,tests,spec}.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
+    files: [TESTS_SCRIPTS_SCOPE],
     languageOptions: {
         globals: {
             ...globals.jest,
+            ...globals.vitest,
         },
     },
     rules: {
