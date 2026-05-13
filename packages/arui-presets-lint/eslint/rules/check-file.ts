@@ -44,9 +44,8 @@ export const checkFileConfig: Linter.Config[] = [
     },
     {
         // Включаем проверку других расширений файлов в eslint-plugin-check-file (которые процессор eslint не поддерживает).
-        // Для JSON и Markdown полноценный парсинг подключён через @eslint/json и @eslint/markdown,
-        // поэтому здесь они не нужны.
-        // ⚠️ НЕ ДОЛЖНО ПЕРЕСЕКАТЬСЯ С ПАТТЕРНОМ FILES, КОТОРЫЙ УКАЗАН ВЫШЕ
+        // Для JSON и Markdown полноценный парсинг подключён через @eslint/json и @eslint/markdown, поэтому здесь они не нужны.
+        // Не должен пересекаться с остальными расширениями, см. constants.ts
         files: [ANOTHER_FILES_SCOPE],
         processor: 'check-file/eslint-processor-check-file',
     },
