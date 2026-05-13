@@ -1,16 +1,17 @@
 import { type Linter } from 'eslint';
-import checkFilePlugin from 'eslint-plugin-check-file';
 import { importX } from 'eslint-plugin-import-x';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
+
+import { GLOBAL_SCRIPTS_SCOPE } from '../constants.js';
 
 export const importsConfig: Linter.Config = {
     // https://github.com/un-ts/eslint-plugin-import-x/blob/master/src/config/flat/typescript.ts
     ...(importX.flatConfigs.typescript as Linter.Config),
     name: 'arui-presets-lint/imports',
+    files: [GLOBAL_SCRIPTS_SCOPE],
     plugins: {
         'import-x': importX,
         'simple-import-sort': simpleImportSortPlugin,
-        'check-file': checkFilePlugin,
     },
     settings: {
         ...importX.flatConfigs.typescript.settings,
@@ -290,32 +291,5 @@ export const importsConfig: Linter.Config = {
         // Сортировка импортов
         // https://eslint.org/docs/rules/sort-imports
         'sort-imports': 'off',
-
-        // Все названия файлов должны быть в kebab-case
-        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
-        'check-file/folder-naming-convention': [
-            'error',
-            { '**/*.*': 'KEBAB_CASE' },
-            { ignoreMiddleExtensions: true },
-        ],
-
-        // Все названия папок должны быть в kebab-case
-        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
-        'check-file/filename-naming-convention': [
-            'error',
-            { '**/*.*': 'KEBAB_CASE' },
-            { ignoreMiddleExtensions: true },
-        ],
-
-        // Список запрещенных названий файлов
-        // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-blocklist.md
-        'check-file/filename-blocklist': [
-            'error',
-            { '**/tsconfig.eslint.json': '*tsconfig.json' },
-            {
-                errorMessage:
-                    'Вместо tsconfig.eslint.json используйте languageOptions.parserOptions.projectService.allowDefaultProject в конфиге eslint',
-            },
-        ],
     },
 };

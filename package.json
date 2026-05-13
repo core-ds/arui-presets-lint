@@ -16,8 +16,8 @@
         "@changesets/changelog-github": "0.7.0",
         "@changesets/cli": "2.31.0",
         "arui-presets-lint": "workspace:*",
-        "eslint-config-turbo": "2.9.9",
-        "turbo": "2.9.9"
+        "eslint-config-turbo": "2.9.12",
+        "turbo": "2.9.12"
     },
     "scripts": {
         "build": "turbo run build",

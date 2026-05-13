@@ -2,6 +2,8 @@ import { type Linter } from 'eslint';
 import nodePlugin from 'eslint-plugin-n';
 import globals from 'globals';
 
+import { NODEJS_SCRIPTS_SCOPE } from '../constants.js';
+
 export const nodeRulesConfig: Linter.Config = {
     ...nodePlugin.configs['flat/recommended'],
     name: 'arui-presets-lint/node',
@@ -13,7 +15,7 @@ export const nodeRulesConfig: Linter.Config = {
     plugins: {
         n: nodePlugin,
     },
-    files: ['**/server/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    files: [NODEJS_SCRIPTS_SCOPE],
     rules: {
         // https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#-rules
         ...nodePlugin.configs['flat/recommended'].rules,
