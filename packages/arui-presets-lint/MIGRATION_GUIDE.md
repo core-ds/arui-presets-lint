@@ -43,7 +43,7 @@ export default defineConfig(eslintConfig, [
 
 ^^ Тут мы добавляем eslint-plugin-cypress, и определяем кастомные правила на уровне проекта. Про новый формат конфига - подробности [тут](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-objects)
 
-Не забывайте про директиву files, её нужно указывать обязательно, особенно если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
+Не забывайте про директиву files, её нужно указывать, если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
 
 ```typescript
 import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
