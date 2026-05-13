@@ -110,5 +110,5 @@ export const eslintConfig = [
 export { defineConfig, globalIgnores, globals } from './config.js';
 export * from './constants.js';
 
-export { Linter } from 'eslint';
+export { type Linter } from 'eslint';
 export { type TSESLint } from '@typescript-eslint/utils';
