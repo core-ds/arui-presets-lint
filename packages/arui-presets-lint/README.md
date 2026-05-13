@@ -14,7 +14,7 @@
 
 [Как я могу внести изменения?](./CONTRIBUTING.md)
 
-🚀 [Миграция на версию 9](./V9_MIGRATION_GUIDE.md)
+🚀 [Миграция на версию 9/10 c 8](./MIGRATION_GUIDE.md)
 
 ## Установка и обновление
 
@@ -52,7 +52,7 @@ export default defineConfig(eslintConfig);
 ```typescript
 import pluginCypress from 'eslint-plugin-cypress';
 import { defineConfig } from 'arui-presets-lint/eslint/config';
-import { eslintConfig } from 'arui-presets-lint/eslint';
+import { eslintConfig, CYPRESS_SCOPE } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig, [
     {
@@ -63,9 +63,26 @@ export default defineConfig(eslintConfig, [
     },
     pluginCypress.configs.recommended,
     {
+        files: [CYPRESS_SCOPE],
         rules: {
             'cypress/no-unnecessary-waiting': 'off',
         },
+    },
+]);
+```
+
+Не забывайте про директиву files, её нужно указывать обязательно, особенно если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
+
+```typescript
+import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
+import { defineConfig } from 'arui-presets-lint/eslint/config';
+
+export default defineConfig(eslintConfig, [
+    {
+        rules: {
+            '@typescript-eslint/consistent-type-assertions': 'warning',
+        }
+        files: [TYPESCRIPT_SCRIPTS_SCOPE],
     },
 ]);
 ```
@@ -75,7 +92,7 @@ export default defineConfig(eslintConfig, [
 - (Рекомендуется) Добавить нужные файлы через опцию allowDefaultProject:
 
 ```typescript
-import { eslintConfig } from 'arui-presets-lint/eslint';
+import { eslintConfig,; TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
 import { defineConfig } from 'arui-presets-lint/eslint/config';
 
 export default defineConfig(eslintConfig, [
@@ -91,7 +108,7 @@ export default defineConfig(eslintConfig, [
                 },
             },
         },
-        files: ['**/*.{ts,tsx,mts,cts,mtsx,ctsx}'],
+        files: [TYPESCRIPT_SCRIPTS_SCOPE],
     },
 ]);
 ```

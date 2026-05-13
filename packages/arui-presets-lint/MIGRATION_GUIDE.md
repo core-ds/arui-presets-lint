@@ -1,4 +1,6 @@
-# Гид по миграции на arui-presets-lint@9
+# Гид по миграции на arui-presets-lint@9/10 с 8
+
+[Обновляетесь с 7 и более ранних на 8?](https://github.com/core-ds/arui-presets-lint/blob/v8.8.1/V8_MIGRATION_GUIDE.md)
 
 ## Введение
 
@@ -14,7 +16,7 @@ yarn add arui-presets-lint@latest
 
 ```typescript
 import { defineConfig } from 'arui-presets-lint/eslint/config';
-import { eslintConfig } from 'arui-presets-lint/eslint';
+import { eslintConfig, CYPRESS_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
 
 export default defineConfig(eslintConfig);
 ```
@@ -29,16 +31,35 @@ import { eslintConfig } from 'arui-presets-lint/eslint';
 export default defineConfig(eslintConfig, [
     pluginCypress.configs.recommended,
     {
+        // Константы появились в arui-presets-lint@10.1.0, если у вас более ранняя - укажите текстом:
+        // files: ['cypress/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mts,cts,mtsx,ctsx}']
+        files: [CYPRESS_SCOPE],
         rules: {
             'cypress/no-unnecessary-waiting': 'off',
         },
     },
-    // Тут лежат glob-паттерны файлов, которые нужно игнорировать в проекте. Возможно он вам не понадобится, так как глобальный игнор на основные файлы и папки уже настроен на уровне arui-presets-lint
-    ignores: []
 ]);
 ```
 
 ^^ Тут мы добавляем eslint-plugin-cypress, и определяем кастомные правила на уровне проекта. Про новый формат конфига - подробности [тут](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-objects)
+
+Не забывайте про директиву files, её нужно указывать обязательно, особенно если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
+
+```typescript
+import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
+import { defineConfig } from 'arui-presets-lint/eslint/config';
+
+export default defineConfig(eslintConfig, [
+    {
+        rules: {
+            '@typescript-eslint/consistent-type-assertions': 'warning',
+        }
+        // Константы появились в arui-presets-lint@10.1.0, если у вас более ранняя - укажите текстом:
+        // files: '**/*.{ts,tsx,mts,cts,mtsx,ctsx}',
+        files: [TYPESCRIPT_SCRIPTS_SCOPE],
+    },
+]);
+```
 
 > если нужно использовать плагины и правила, которые не поддерживают eslint 9, можно использовать для их подключения утилиты из пакета [@eslint/compat](https://www.npmjs.com/package/@eslint/compat)
 
@@ -47,7 +68,7 @@ export default defineConfig(eslintConfig, [
     Ранее мы использовали кастомный tsconfig.eslint.json, например для того чтобы включить eslint для файлов в корневой директории - с переходом на [typescript-eslint projectService](https://typescript-eslint.io/blog/project-service/#introducing-the-project-service) он больше не нужен. Используйте основной tsconfig.json, а те файлы которые туда нельзя добавить, добавьте с помощью опции languageOptions.parserOptions.projectService.allowDefaultProject. Учтите что папки добавлять нельзя, так как это аффектит на производительность. Пример такого конфига:
 
 ```typescript
-import { eslintConfig } from 'arui-presets-lint/eslint';
+import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint';
 import { defineConfig } from 'arui-presets-lint/eslint/config';
 
 export default defineConfig(eslintConfig, [
@@ -63,7 +84,7 @@ export default defineConfig(eslintConfig, [
                 },
             },
         },
-        files: ['**/*.{ts,tsx,mts,cts,mtsx,ctsx}'],
+        files: [TYPESCRIPT_SCRIPTS_SCOPE],
     },
 ]);
 ```
@@ -84,6 +105,8 @@ export default defineConfig(eslintConfig, [
     Если необходима проверка без ограничения глубины или другое значение, то переопределите правило в своём `eslint.config.mts`:
 
     ```typescript
+    import { GLOBAL_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'
+
     {
         rules: {
             'import-x/no-cycle': ['error', { ignoreExternal: true, maxDepth: 50 }],
@@ -92,6 +115,8 @@ export default defineConfig(eslintConfig, [
             // или отключить правило:
             // 'import-x/no-cycle': 'off',
         },
+        // files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mts,cts,mtsx,ctsx}']
+        files: [GLOBAL_SCRIPTS_SCOPE]
     },
     ```
 

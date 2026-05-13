@@ -1,8 +1,12 @@
-export const GLOBAL_SCRIPTS_SCOPE = '**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mts,cts,mtsx,ctsx}';
-export const NODEJS_SCRIPTS_SCOPE = '**/server/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}';
+const globalScriptsPattern = 'js,mjs,cjs,jsx,mjsx,ts,tsx,mts,cts,mtsx,ctsx';
+
+export const GLOBAL_SCRIPTS_SCOPE = `**/*.{${globalScriptsPattern}}`;
+export const NODEJS_SCRIPTS_SCOPE = `**/server/**/*.{${globalScriptsPattern}}`;
 export const TYPESCRIPT_SCRIPTS_SCOPE = '**/*.{ts,tsx,mts,cts,mtsx,ctsx}';
 export const REACT_SCRIPTS_SCOPE = '**/*.{jsx,mjsx,tsx,mtsx,ctsx}';
-export const TESTS_SCRIPTS_SCOPE = '**/*.{test,tests,spec}.{js,jsx,ts,tsx,cjs,cts,mjs,mts}';
+export const TESTS_SCRIPTS_SCOPE = `**/*.{test,tests,spec}.{${globalScriptsPattern}}`;
+export const CYPRESS_SCOPE = `cypress/**/*.{${globalScriptsPattern}}`;
+export const PLAYWRIGHT_SCOPE = `playwright/**/*.{${globalScriptsPattern}}`;
 export const MARKDOWN_SCOPE = '**/*.md';
 export const JSON_SCOPE = '**/*.{json,json5,jsonc}';
 // Не должен пересекаться с остальными
