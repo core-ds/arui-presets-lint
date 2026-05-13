@@ -65,13 +65,13 @@ export default defineConfig(eslintConfig, [
     {
         files: [CYPRESS_SCOPE],
         rules: {
-            'cypress/no-unnecessary-waiting': 'off',
+            'cypress/no-unnecessary-waiting': 'warn',
         },
     },
 ]);
 ```
 
-Не забывайте про директиву files, её нужно указывать обязательно, особенно если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
+Не забывайте про директиву files, её нужно указывать обязательно если правило переопределяется (не выключается). Константы можно импортировать из arui-presets-lint, например:
 
 ```typescript
 import { eslintConfig, TYPESCRIPT_SCRIPTS_SCOPE } from 'arui-presets-lint/eslint'

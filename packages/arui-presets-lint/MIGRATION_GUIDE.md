@@ -35,7 +35,7 @@ export default defineConfig(eslintConfig, [
         // files: ['cypress/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mts,cts,mtsx,ctsx}']
         files: [CYPRESS_SCOPE],
         rules: {
-            'cypress/no-unnecessary-waiting': 'off',
+            'cypress/no-unnecessary-waiting': 'warn',
         },
     },
 ]);
