@@ -1,7 +1,7 @@
 import { type Linter } from 'eslint';
 import checkFilePlugin from 'eslint-plugin-check-file';
 
-import { ANOTHER_FILES_SCOPE, GLOBAL_SCRIPTS_SCOPE } from '../constants.js';
+import { ANOTHER_FILES_SCOPE, GLOBAL_SCRIPTS_SCOPE, JSON_SCOPE } from '../constants.js';
 
 export const checkFileConfig: Linter.Config[] = [
     {
@@ -22,7 +22,11 @@ export const checkFileConfig: Linter.Config[] = [
             // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
             'check-file/filename-naming-convention': [
                 'error',
-                { [GLOBAL_SCRIPTS_SCOPE]: 'KEBAB_CASE', [ANOTHER_FILES_SCOPE]: 'KEBAB_CASE' },
+                {
+                    [GLOBAL_SCRIPTS_SCOPE]: 'KEBAB_CASE',
+                    [ANOTHER_FILES_SCOPE]: 'KEBAB_CASE',
+                    [JSON_SCOPE]: 'KEBAB_CASE',
+                },
                 { ignoreMiddleExtensions: true },
             ],
 
