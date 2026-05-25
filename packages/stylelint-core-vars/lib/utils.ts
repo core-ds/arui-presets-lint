@@ -243,7 +243,7 @@ export function findVars(
     for (const [value, variables] of Object.entries(propVars)) {
         const chosen = choiceVars(variables, prop, group);
 
-        if (!chosen || !chosen.length) continue;
+        if (!chosen?.length) continue;
 
         const index = findSubstring(cssValue, value);
 

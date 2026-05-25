@@ -167,7 +167,7 @@ const checkTypography = (
 
     const foundMixins = findTypographyMixins(typographyProps);
 
-    if (!foundMixins || !foundMixins.length) return;
+    if (!foundMixins?.length) return;
 
     const exactMixin = foundMixins.length === 1;
 
