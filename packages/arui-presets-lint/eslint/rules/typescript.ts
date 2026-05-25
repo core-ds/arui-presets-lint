@@ -178,6 +178,14 @@ export const typescriptConfig: Linter.Config = {
         'default-param-last': 'off',
         '@typescript-eslint/default-param-last': bestPracticesRules['default-param-last'],
 
+        // Запрещает дублирование значений в enum
+        // https://typescript-eslint.io/rules/no-duplicate-enum-values
+        '@typescript-eslint/no-duplicate-enum-values': 'error',
+
+        // Требует использования optional chaining вместо цепочек условий
+        // https://typescript-eslint.io/rules/prefer-optional-chain
+        '@typescript-eslint/prefer-optional-chain': 'error',
+
         // Требует/запрещает инициализацию переменных при объявлении
         // https://eslint.org/docs/rules/init-declarations
         'init-declarations': 'off',

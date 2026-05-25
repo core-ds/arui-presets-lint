@@ -1,3 +1,16 @@
+## 10.1.0
+
+### Minor Changes
+
+- [#145](https://github.com/core-ds/arui-presets-lint/pull/145) [`193f7b1`](https://github.com/core-ds/arui-presets-lint/commit/193f7b14e24ea1fbae5e3857976dbefca3f3ab73) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - Добавлены новые правила typescript-eslint:
+  `@typescript-eslint/no-duplicate-enum-values` - запрещает дублирование значений в enum
+  `@typescript-eslint/prefer-optional-chain` - требует использования optional chaining вместо цепочек условий
+
+### Patch Changes
+
+- Updated dependencies []:
+    - @alfalab/stylelint-core-vars@3.0.0
+
 ## 10.0.0
 
 ### Major Changes
