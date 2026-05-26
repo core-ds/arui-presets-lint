@@ -29,7 +29,7 @@ import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
 export default defineConfig(eslintConfig, [
     pluginCypress.configs.recommended,
     {
-        // Константы появились в arui-presets-lint@10.1.0, если у вас более ранняя - укажите текстом:
+        // Константы появились в arui-presets-lint@10.2.0, если у вас более ранняя - укажите текстом:
         // files: ['cypress/**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mts,cts,mtsx,ctsx}']
         files: [CYPRESS_SCOPE],
         rules: {
@@ -51,7 +51,7 @@ export default defineConfig(eslintConfig, [
         rules: {
             '@typescript-eslint/consistent-type-assertions': 'warning',
         }
-        // Константы появились в arui-presets-lint@10.1.0, если у вас более ранняя - укажите текстом:
+        // Константы появились в arui-presets-lint@10.2.0, если у вас более ранняя - укажите текстом:
         // files: '**/*.{ts,tsx,mts,cts,mtsx,ctsx}',
         files: [TYPESCRIPT_SCRIPTS_SCOPE],
     },
