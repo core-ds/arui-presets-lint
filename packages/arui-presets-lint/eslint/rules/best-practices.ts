@@ -2,9 +2,12 @@ import { type Linter } from 'eslint';
 import deMorgan from 'eslint-plugin-de-morgan';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
+import { GLOBAL_SCRIPTS_SCOPE } from '../constants.js';
+
 export const bestPracticesConfig: Linter.Config = {
     ...unicornPlugin.configs.unopinionated,
     name: 'arui-presets-lint/best-practices',
+    files: [GLOBAL_SCRIPTS_SCOPE],
     plugins: {
         unicorn: unicornPlugin,
         'de-morgan': deMorgan,

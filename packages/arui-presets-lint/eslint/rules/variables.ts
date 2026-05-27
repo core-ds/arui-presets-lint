@@ -1,7 +1,10 @@
 import { type Linter } from 'eslint';
 
+import { GLOBAL_SCRIPTS_SCOPE } from '../constants.js';
+
 export const variablesConfig: Linter.Config = {
     name: 'arui-presets-lint/variables',
+    files: [GLOBAL_SCRIPTS_SCOPE],
     rules: {
         // Требует/запрещает инициализацию переменных при объявлении
         // https://eslint.org/docs/rules/init-declarations

@@ -8,7 +8,6 @@
         "scripts",
         "eslint.config.mts",
         "vitest.config.ts",
-        "./cli/duplicates-checker.ts",
-        "./cli/build-dist-package.ts"
+        "_internal"
     ]
 }

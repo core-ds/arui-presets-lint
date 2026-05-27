@@ -1,0 +1,9 @@
+{
+    "name": "json-input",
+    "version": "1.0.0",
+    "items": [1, 2, 3],
+    "nested": {
+        "valid": true,
+        "count": 42
+    }
+}

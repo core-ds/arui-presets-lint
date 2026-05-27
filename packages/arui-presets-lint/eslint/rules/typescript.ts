@@ -3,6 +3,8 @@ import { type Linter } from 'eslint';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+import { TYPESCRIPT_SCRIPTS_SCOPE } from '../constants.js';
+
 import { bestPracticesConfig } from './best-practices.js';
 import { importsConfig } from './imports.js';
 import { variablesConfig } from './variables.js';
@@ -14,17 +16,17 @@ const variablesRules = variablesConfig.rules as Record<string, Linter.RuleEntry>
 
 export const typescriptConfig: Linter.Config = {
     name: 'arui-presets-lint/typescript',
-    files: ['**/*.{ts,tsx,mts,cts,mtsx,ctsx}'],
+    files: [TYPESCRIPT_SCRIPTS_SCOPE],
     languageOptions: {
         parser: tseslint.parser,
-        ecmaVersion: 2022,
+        ecmaVersion: 'latest',
         sourceType: 'module',
         parserOptions: {
             projectService: true,
             ecmaFeatures: { jsx: true },
         },
         globals: {
-            ...globals.es2023,
+            ...globals.es2026,
             ...globals.browser,
             ...globals.node,
         },

@@ -1,9 +1,12 @@
 import { type Linter } from 'eslint';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 
+import { REACT_SCRIPTS_SCOPE } from '../constants.js';
+
 export const reactA11yConfig: Linter.Config = {
     ...jsxA11yPlugin.flatConfigs.recommended,
     name: 'arui-presets-lint/react-a11y',
+    files: [REACT_SCRIPTS_SCOPE],
     plugins: {
         'jsx-a11y': jsxA11yPlugin as unknown as NonNullable<Linter.Config['plugins']>[string],
     },

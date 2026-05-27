@@ -2,11 +2,14 @@ import { type Linter } from 'eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 
+import { REACT_SCRIPTS_SCOPE } from '../constants.js';
+
 export const reactConfig: Linter.Config = {
     ...reactPlugin.configs.flat.recommended,
     ...reactHooksPlugin.configs['recommended-latest'],
 
     name: 'arui-presets-lint/react',
+    files: [REACT_SCRIPTS_SCOPE],
     plugins: {
         react: reactPlugin,
         'react-hooks': reactHooksPlugin,

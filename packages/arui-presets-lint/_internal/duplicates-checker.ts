@@ -2,6 +2,8 @@ import { intersection } from 'es-toolkit/array';
 
 import { disableCommentsConfig } from '../eslint/plugins/disable-comments/index.js';
 import { importsConfig } from '../eslint/rules/imports.js';
+import { jsonConfig } from '../eslint/rules/json.js';
+import { markdownConfig } from '../eslint/rules/markdown.js';
 import { nodeRulesConfig } from '../eslint/rules/node.js';
 import { reactConfig } from '../eslint/rules/react.js';
 import { reactA11yConfig } from '../eslint/rules/react-a11y.js';
@@ -50,16 +52,40 @@ const typescript = {
     ],
 };
 const variables = { rules: Object.keys(variablesConfig.rules || {}), name: variablesConfig.name };
+
+// Эти правила живут в собственных неймспейсах плагинов и не пересекаются
+// с правилами других конфигов, поэтому достаточно проверить отсутствие дубликатов внутри блока.
+
 const disableComments = {
     rules: Object.keys(disableCommentsConfig.rules || {}),
     name: disableCommentsConfig.name,
+};
+
+const json = {
+    rules: Object.keys(jsonConfig[0]?.rules || {}),
+    name: jsonConfig[0]?.name,
+};
+const markdown = {
+    rules: Object.keys(markdownConfig.rules || {}),
+    name: markdownConfig.name,
 };
 
 const configs: Array<{
     rules: string[];
     name?: string;
     ignore?: string;
-}> = [imports, node, react, reactA11y, tests, typescript, variables, disableComments];
+}> = [
+    imports,
+    node,
+    react,
+    reactA11y,
+    tests,
+    typescript,
+    variables,
+    disableComments,
+    json,
+    markdown,
+];
 
 const duplicates = [];
 

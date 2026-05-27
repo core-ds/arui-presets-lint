@@ -6,13 +6,13 @@
 
 ## Установка
 
-```
+```sh
 yarn add --dev stylelint @alfalab/stylelint-core-vars
 ```
 
 или
 
-```
+```sh
 npm install --save-dev stylelint @alfalab/stylelint-core-vars
 ```
 
@@ -20,7 +20,7 @@ npm install --save-dev stylelint @alfalab/stylelint-core-vars
 
 Добавьте в свой stylelint конфиг:
 
-```
+```jsonc
 {
   "plugins": [
     "@alfalab/stylelint-core-vars"

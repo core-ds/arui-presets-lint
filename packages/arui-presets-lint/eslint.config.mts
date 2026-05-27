@@ -1,5 +1,4 @@
-import { defineConfig } from './eslint/config.js';
-import { eslintConfig } from './eslint/index.js';
+import { defineConfig, eslintConfig } from './eslint/index.js';
 
 export default defineConfig(eslintConfig, [
     {
@@ -16,7 +15,7 @@ export default defineConfig(eslintConfig, [
                 {
                     devDependencies: [
                         'test/**/*',
-                        'cli/duplicates-checker.ts',
+                        '_internal/**/*',
                         'vitest.config.ts',
                         'scripts/**/*',
                     ],
