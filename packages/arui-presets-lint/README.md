@@ -159,6 +159,46 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
 }
 ```
 
+## Подключение [knip](https://knip.dev) (опционально)
+
+[knip](https://knip.dev) находит в проекте неиспользуемые файлы, зависимости и экспорты.
+В отличие от правила `import-x/no-unused-modules`, knip работает быстрее и полностью совместим с ESLint 9.
+
+Создайте в корне проекта файл `knip.ts` со следующим содержанием:
+
+```typescript
+export { default } from 'arui-presets-lint/knip';
+```
+
+Базовый конфиг включает стандартные точки входа knip, а также точки входа приложений arui-scripts
+(`src/server/index.ts`, `arui-scripts.config.ts`, `arui-scripts.overrides.ts`).
+
+Если нужно расширить конфиг на уровне проекта:
+
+```typescript
+import { type KnipConfig } from 'knip';
+
+import baseConfig from 'arui-presets-lint/knip';
+
+export default {
+    ...baseConfig,
+    // например, добавить зависимости, которые используются неявно
+    ignoreDependencies: ['some-implicit-dependency'],
+} satisfies KnipConfig;
+```
+
+Запуск через cli-утилиту:
+
+```json
+{
+    "scripts": {
+        "lint:unused": "arui-presets-lint knip"
+    }
+}
+```
+
+Подробнее про настройку: [документация knip](https://knip.dev/overview/configuration).
+
 ## Настройка [lefthook](https://github.com/evilmartians/lefthook)
 
 Создайте в корне проекта файл lefthook.yml,
