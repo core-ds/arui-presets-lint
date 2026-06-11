@@ -199,6 +199,33 @@ export default {
 
 Подробнее про настройку: [документация knip](https://knip.dev/overview/configuration).
 
+## Проверка секретов через [secretlint](https://github.com/secretlint/secretlint)
+
+[secretlint](https://github.com/secretlint/secretlint) ищет в файлах проекта случайно закоммиченные секреты:
+ключи AWS, приватные ключи, basic auth в url и т.д. Используется конфиг с пресетом правил
+[@secretlint/secretlint-rule-preset-recommend](https://github.com/secretlint/secretlint/tree/master/packages/%40secretlint/secretlint-rule-preset-recommend),
+который поставляется вместе с arui-presets-lint — дополнительная настройка не требуется.
+
+Проверка staged-файлов выполняется автоматически на pre-commit, если подключен lefthook (см. раздел ниже).
+
+Для полной проверки всех файлов проекта (например, в CI) можно использовать cli-команду
+(файлы из .gitignore исключаются из проверки):
+
+```json
+{
+    "scripts": {
+        "lint:secrets": "arui-presets-lint secretlint"
+    }
+}
+```
+
+Если нужно настроить правила на уровне проекта (например, добавить исключения через `allows`),
+создайте собственный `.secretlintrc.json` и вызывайте secretlint напрямую:
+
+```sh
+npx --no-install secretlint "**/*"
+```
+
 ## Настройка [lefthook](https://github.com/evilmartians/lefthook)
 
 Создайте в корне проекта файл lefthook.yml,

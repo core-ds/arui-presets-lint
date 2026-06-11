@@ -16,6 +16,8 @@ pre-commit:
             glob: '*.{json}'
             run: npx --no-install prettier --write {staged_files} --cache
             stage_fixed: true
+        check-secrets:
+            run: npx --no-install secretlint --secretlintrc ./node_modules/arui-presets-lint/secretlint/secretlintrc.json {staged_files}
 commit-msg:
     commands:
         commitlint:

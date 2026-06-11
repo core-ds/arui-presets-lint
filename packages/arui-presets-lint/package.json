@@ -17,6 +17,7 @@
         "@eslint/js": "9.39.4",
         "@eslint/json": "1.2.0",
         "@eslint/markdown": "8.0.2",
+        "@secretlint/secretlint-rule-preset-recommend": "11.7.1",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
         "@typescript-eslint/utils": "8.59.4",
         "eslint": "9.39.4",
@@ -37,6 +38,7 @@
         "knip": "6.16.1",
         "lefthook": "2.1.8",
         "prettier": "3.8.3",
+        "secretlint": "11.7.1",
         "stylelint": "17.12.0",
         "stylelint-order": "8.1.1",
         "typescript-eslint": "8.59.4"
@@ -61,7 +63,7 @@
         "vitest": "4.1.7"
     },
     "scripts": {
-        "build": "rimraf dist && tsc -p tsconfig.build.json && copyfiles 'lefthook/*.yml' '**/*.md' dist && tsx _internal/build-dist-package.ts",
+        "build": "rimraf dist && tsc -p tsconfig.build.json && copyfiles 'lefthook/*.yml' 'secretlint/*.json' '**/*.md' dist && tsx _internal/build-dist-package.ts",
         "test": "tsc --noEmit && eslint-config-prettier ./eslint/index.ts && tsx _internal/duplicates-checker.ts && yarn lint && yarn test:unit",
         "test:unit": "vitest --run --coverage",
         "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check",
