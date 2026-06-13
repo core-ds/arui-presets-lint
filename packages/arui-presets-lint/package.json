@@ -63,7 +63,7 @@
         "vitest": "4.1.7"
     },
     "scripts": {
-        "build": "rimraf dist && tsc -p tsconfig.build.json && copyfiles 'lefthook/*.yml' 'secretlint/*.json' '**/*.md' dist && tsx _internal/build-dist-package.ts",
+        "build": "rimraf dist && tsc -p tsconfig.build.json && copyfiles 'lefthook/*.yml' '**/*.md' dist && tsx _internal/build-dist-package.ts",
         "test": "tsc --noEmit && eslint-config-prettier ./eslint/index.ts && tsx _internal/duplicates-checker.ts && yarn lint && yarn test:unit",
         "test:unit": "vitest --run --coverage",
         "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check",

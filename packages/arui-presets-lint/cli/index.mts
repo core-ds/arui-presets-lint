@@ -9,7 +9,6 @@ const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const prettierParams =
     '"./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}" --no-error-on-unmatched-pattern --cache';
 const cacheFolder = './node_modules/.cache';
-const secretlintConfigPath = path.join(packageRoot, 'secretlint', 'secretlintrc.json');
 
 const commandsMap = {
     styles: `stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="${cacheFolder}/stylelint/.stylelintcache"`,
@@ -17,7 +16,7 @@ const commandsMap = {
     format: `prettier --write ${prettierParams} --list-different`,
     'format:check': `prettier --check ${prettierParams}`,
     knip: `knip --cache --cache-location="${cacheFolder}/knip"`,
-    secretlint: `secretlint --secretlintrc "${secretlintConfigPath}" --secretlintignore .gitignore "**/*"`,
+    secretlint: `secretlint --secretlintignore .gitignore "**/*"`,
 } as const;
 
 const commands = Object.keys(commandsMap);

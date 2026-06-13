@@ -5485,6 +5485,7 @@ __metadata:
     "@changesets/cli": "npm:2.31.0"
     arui-presets-lint: "workspace:*"
     eslint-config-turbo: "npm:2.9.14"
+    tsx: "npm:4.22.3"
     turbo: "npm:2.9.14"
   languageName: unknown
   linkType: soft

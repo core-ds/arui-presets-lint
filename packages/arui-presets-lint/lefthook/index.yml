@@ -17,7 +17,21 @@ pre-commit:
             run: npx --no-install prettier --write {staged_files} --cache
             stage_fixed: true
         check-secrets:
-            run: npx --no-install secretlint --secretlintrc ./node_modules/arui-presets-lint/secretlint/secretlintrc.json {staged_files}
+            run: npx --no-install secretlint {staged_files}
+pre-push:
+    parallel: true
+    commands:
+        check-scripts:
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc}'
+            run: npx --no-install prettier --check {push_files} --cache && npx --no-install eslint {push_files} --no-warn-ignored
+        check-styles:
+            glob: '*.{css}'
+            run: npx --no-install prettier --check {push_files} --cache && npx --no-install stylelint {push_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
+        check-md:
+            glob: '*.{md}'
+            run: npx --no-install prettier --check {push_files} --cache
+        check-secrets:
+            run: npx --no-install secretlint {push_files}
 commit-msg:
     commands:
         commitlint:
