@@ -16,8 +16,8 @@
         "@changesets/changelog-github": "0.7.0",
         "@changesets/cli": "2.31.0",
         "arui-presets-lint": "workspace:*",
-        "eslint-config-turbo": "2.9.14",
-        "turbo": "2.9.14"
+        "eslint-config-turbo": "2.9.18",
+        "turbo": "2.9.18"
     },
     "scripts": {
         "build": "turbo run build",
@@ -32,7 +32,7 @@
         "version-package": "changeset version",
         "version-package:snapshot": "changeset version --snapshot snapshot"
     },
-    "packageManager": "yarn@4.14.1",
+    "packageManager": "yarn@4.16.0",
     "commitlint": {
         "extends": "./packages/arui-presets-lint/commitlint/index.ts"
     },
