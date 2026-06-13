@@ -10,6 +10,11 @@
 
 ```bash
 yarn add arui-presets-lint@latest
+```|
+
+и после этого запустить:
+```bash
+npx --no-install lefthook install
 ```
 
 1. Проверить содержимое ключа `pre-push` в вашем lefthook.yml - arui-presets-lint начал поставлять дефолтную конфигурацию для него, не должно ничего дублироваться

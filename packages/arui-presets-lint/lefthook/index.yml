@@ -29,7 +29,7 @@ pre-push:
             run: npx --no-install prettier --check {push_files} --cache && npx --no-install stylelint {push_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
         check-md:
             glob: '*.{md}'
-            run: npx --no-install prettier --check {push_files} --cache
+            run: npx --no-install eslint {push_files} --cache --no-warn-ignored
         check-secrets:
             run: npx --no-install secretlint {push_files}
 commit-msg:
