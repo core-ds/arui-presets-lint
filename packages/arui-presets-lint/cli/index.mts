@@ -15,6 +15,8 @@ const commandsMap = {
     scripts: 'eslint .',
     format: `prettier --write ${prettierParams} --list-different`,
     'format:check': `prettier --check ${prettierParams}`,
+    knip: `knip --cache --cache-location="${cacheFolder}/knip"`,
+    secretlint: `secretlint --secretlintignore .gitignore "**/*"`,
 } as const;
 
 const commands = Object.keys(commandsMap);

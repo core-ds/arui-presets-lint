@@ -17,6 +17,7 @@
         "@eslint/js": "9.39.4",
         "@eslint/json": "1.2.0",
         "@eslint/markdown": "8.0.2",
+        "@secretlint/secretlint-rule-preset-recommend": "11.7.1",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
         "@typescript-eslint/utils": "8.59.4",
         "eslint": "9.39.4",
@@ -34,8 +35,10 @@
         "execa": "^9.6.1",
         "globals": "^17.0.0",
         "jiti": "^2.6.1",
+        "knip": "6.16.1",
         "lefthook": "2.1.8",
         "prettier": "3.8.3",
+        "secretlint": "11.7.1",
         "stylelint": "17.12.0",
         "stylelint-order": "8.1.1",
         "typescript-eslint": "8.59.4"
@@ -77,7 +80,8 @@
         "./eslint/plugins": "./eslint/plugins/index.ts",
         "./prettier": "./prettier/index.ts",
         "./commitlint": "./commitlint/index.ts",
-        "./stylelint": "./stylelint/index.ts"
+        "./stylelint": "./stylelint/index.ts",
+        "./knip": "./knip/index.ts"
     },
     "publishConfig": {
         "directory": "dist",
