@@ -5,7 +5,7 @@ pre-commit:
     parallel: true
     commands:
         check-scripts:
-            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx}'
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc}'
             run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored
             stage_fixed: true
         check-styles:
@@ -16,6 +16,9 @@ pre-commit:
             glob: '*.{json}'
             run: npx --no-install prettier --write {staged_files} --cache
             stage_fixed: true
+        check-md:
+            glob: '*.{md}'
+            run: npx --no-install eslint {staged_files} --cache --no-warn-ignored
 commit-msg:
     commands:
         commitlint:
