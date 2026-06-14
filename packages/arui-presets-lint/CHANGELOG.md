@@ -1,17 +1,31 @@
+## 11.0.0-snapshot-108dababd1248c2e5999d3a8ef6f5b49d45a364b
+
+### Major Changes
+
+- [#153](https://github.com/core-ds/arui-presets-lint/pull/153) [`7ba205e`](https://github.com/core-ds/arui-presets-lint/commit/7ba205ebb44573b31ffb1aecf0f37a6b70d4490c) Thanks [@kiskv](https://github.com/kiskv)! - - Добавлен новый линтер - [secretlint](https://github.com/secretlint/secretlint) для поиска случайно закоммиченных секретов: проверка staged-файлов на pre-commit хуке lefthook и команда `arui-presets-lint secretlint` для полной проверки проекта. Необходимо добавить конфиг в проект.
+    - Добавлен новый линтер - [knip](https://knip.dev) для поиска неиспользуемых файлов, зависимостей и экспортов: базовый конфиг `arui-presets-lint/knip` и команда `arui-presets-lint knip` в cli-утилите Необходимо добавить конфиг в проект.
+    - Дефолтный конфиг для pre-push хука в lefthook
+    - Обновлен README и добавлен [MIGRATION_GUIDE](https://github.com/core-ds/arui-presets-lint/blob/master/packages/arui-presets-lint/MIGRATION_GUIDE.md) для новой версии
+
+### Patch Changes
+
+- Updated dependencies []:
+    - @alfalab/stylelint-core-vars@3.0.0
+
 ## 10.2.0
 
 ### Minor Changes
 
 - [#136](https://github.com/core-ds/arui-presets-lint/pull/136) [`3612e03`](https://github.com/core-ds/arui-presets-lint/commit/3612e0386142053b43a800d8e7f9cf7e7b41205e) Thanks [@kiskv](https://github.com/kiskv)! - ## New Features
 
-        - Подключены плагины [`@eslint/json`](https://github.com/eslint/json) и [`@eslint/markdown`](https://github.com/eslint/markdown).
-        - `.json` файлы проверяются как строгий JSON, `.jsonc` и `tsconfig*.json` - как JSONC, `.json5` — как JSON5. Правила: `json/no-duplicate-keys`, `json/no-empty-keys`, `json/no-unnormalized-keys`, `json/no-unsafe-values` (как error).
-        - `.md` файлы проверяются по CommonMark (как warning). Подключены все рекомендованные правила `@eslint/markdown` (контроль уровней заголовков, отсутствие пустых ссылок/изображений, alt-текст и т.д.). `**/CHANGELOG.md` игнорируется по умолчанию.
-        - Добавлены константы для удобного прописывания области видимости правил на уровне проекта
+          - Подключены плагины [`@eslint/json`](https://github.com/eslint/json) и [`@eslint/markdown`](https://github.com/eslint/markdown).
+          - `.json` файлы проверяются как строгий JSON, `.jsonc` и `tsconfig*.json` - как JSONC, `.json5` — как JSON5. Правила: `json/no-duplicate-keys`, `json/no-empty-keys`, `json/no-unnormalized-keys`, `json/no-unsafe-values` (как error).
+          - `.md` файлы проверяются по CommonMark (как warning). Подключены все рекомендованные правила `@eslint/markdown` (контроль уровней заголовков, отсутствие пустых ссылок/изображений, alt-текст и т.д.). `**/CHANGELOG.md` игнорируется по умолчанию.
+          - Добавлены константы для удобного прописывания области видимости правил на уровне проекта
 
     ## Bug fixes
 
-        - Исправлены скоупы files, все плагины определены глобально, для того чтобы корректно срабатывало переопределение.
+          - Исправлены скоупы files, все плагины определены глобально, для того чтобы корректно срабатывало переопределение.
 
 ### Patch Changes
 
