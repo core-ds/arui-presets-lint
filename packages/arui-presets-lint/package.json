@@ -76,7 +76,10 @@
         "./eslint/config": "./eslint/config.ts",
         "./eslint/rules": "./eslint/rules/index.ts",
         "./eslint/plugins": "./eslint/plugins/index.ts",
-        "./prettier": "./prettier/index.ts",
+        "./prettier": {
+            "types": "./prettier/index.d.ts",
+            "import": "./prettier/index.js"
+        },
         "./commitlint": "./commitlint/index.ts",
         "./stylelint": "./stylelint/index.ts"
     },
