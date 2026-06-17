@@ -12,10 +12,6 @@ pre-commit:
             glob: '*.{css}'
             run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
             stage_fixed: true
-        check-json:
-            glob: '*.{json}'
-            run: npx --no-install prettier --write {staged_files} --cache
-            stage_fixed: true
         check-md:
             glob: '*.{md}'
             run: npx --no-install eslint {staged_files} --cache --no-warn-ignored
