@@ -32,7 +32,7 @@
         "version-package": "changeset version",
         "version-package:snapshot": "changeset version --snapshot snapshot"
     },
-    "packageManager": "yarn@4.16.0",
+    "packageManager": "yarn@4.17.0",
     "commitlint": {
         "extends": "./packages/arui-presets-lint/commitlint/index.ts"
     },
