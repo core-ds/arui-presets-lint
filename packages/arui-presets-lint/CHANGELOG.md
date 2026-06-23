@@ -1,3 +1,14 @@
+## 10.4.0
+
+### Minor Changes
+
+- [#150](https://github.com/core-ds/arui-presets-lint/pull/150) [`b48a542`](https://github.com/core-ds/arui-presets-lint/commit/b48a542e8879422b5c8676e2469e38f2fc495ab9) Thanks [@kiskv](https://github.com/kiskv)! - - Prettier ускорен через включение экспериментального cli на Rust
+
+### Patch Changes
+
+- Updated dependencies []:
+    - @alfalab/stylelint-core-vars@3.0.0
+
 ## 10.3.0
 
 ### Minor Changes
@@ -16,14 +27,14 @@
 
 - [#136](https://github.com/core-ds/arui-presets-lint/pull/136) [`3612e03`](https://github.com/core-ds/arui-presets-lint/commit/3612e0386142053b43a800d8e7f9cf7e7b41205e) Thanks [@kiskv](https://github.com/kiskv)! - ## New Features
 
-          - Подключены плагины [`@eslint/json`](https://github.com/eslint/json) и [`@eslint/markdown`](https://github.com/eslint/markdown).
-          - `.json` файлы проверяются как строгий JSON, `.jsonc` и `tsconfig*.json` - как JSONC, `.json5` — как JSON5. Правила: `json/no-duplicate-keys`, `json/no-empty-keys`, `json/no-unnormalized-keys`, `json/no-unsafe-values` (как error).
-          - `.md` файлы проверяются по CommonMark (как warning). Подключены все рекомендованные правила `@eslint/markdown` (контроль уровней заголовков, отсутствие пустых ссылок/изображений, alt-текст и т.д.). `**/CHANGELOG.md` игнорируется по умолчанию.
-          - Добавлены константы для удобного прописывания области видимости правил на уровне проекта
+            - Подключены плагины [`@eslint/json`](https://github.com/eslint/json) и [`@eslint/markdown`](https://github.com/eslint/markdown).
+            - `.json` файлы проверяются как строгий JSON, `.jsonc` и `tsconfig*.json` - как JSONC, `.json5` — как JSON5. Правила: `json/no-duplicate-keys`, `json/no-empty-keys`, `json/no-unnormalized-keys`, `json/no-unsafe-values` (как error).
+            - `.md` файлы проверяются по CommonMark (как warning). Подключены все рекомендованные правила `@eslint/markdown` (контроль уровней заголовков, отсутствие пустых ссылок/изображений, alt-текст и т.д.). `**/CHANGELOG.md` игнорируется по умолчанию.
+            - Добавлены константы для удобного прописывания области видимости правил на уровне проекта
 
     ## Bug fixes
 
-          - Исправлены скоупы files, все плагины определены глобально, для того чтобы корректно срабатывало переопределение.
+            - Исправлены скоупы files, все плагины определены глобально, для того чтобы корректно срабатывало переопределение.
 
 ### Patch Changes
 
