@@ -39,5 +39,5 @@
     "stylelint": {
         "extends": "./packages/arui-presets-lint/stylelint/index.ts"
     },
-    "prettier": "./packages/arui-presets-lint/prettier/index.ts"
+    "prettier": "./packages/arui-presets-lint/prettier/index.js"
 }

@@ -17,6 +17,7 @@
         "@eslint/js": "9.39.4",
         "@eslint/json": "2.0.0",
         "@eslint/markdown": "8.0.2",
+        "@prettier/plugin-oxc": "0.1.4",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
         "@typescript-eslint/utils": "8.61.1",
         "eslint": "9.39.4",
@@ -75,7 +76,10 @@
         "./eslint/config": "./eslint/config.ts",
         "./eslint/rules": "./eslint/rules/index.ts",
         "./eslint/plugins": "./eslint/plugins/index.ts",
-        "./prettier": "./prettier/index.ts",
+        "./prettier": {
+            "types": "./prettier/index.d.ts",
+            "import": "./prettier/index.js"
+        },
         "./commitlint": "./commitlint/index.ts",
         "./stylelint": "./stylelint/index.ts"
     },
@@ -89,5 +93,5 @@
     "stylelint": {
         "extends": "./stylelint/index.ts"
     },
-    "prettier": "./prettier/index.ts"
+    "prettier": "./prettier/index.js"
 }
