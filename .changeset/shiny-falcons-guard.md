@@ -2,6 +2,7 @@
 'arui-presets-lint': major
 ---
 
+- Прекращена поддержка NodeJS 20 - минимальная версия теперь 22.12.0.
 
 - Добавлен новый линтер - [secretlint](https://github.com/secretlint/secretlint) для поиска случайно закоммиченных секретов: проверка staged-файлов на pre-commit хуке lefthook и команда `arui-presets-lint secretlint` для полной проверки проекта. Необходимо добавить конфиг в проект.
 
