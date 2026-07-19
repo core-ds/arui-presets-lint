@@ -11,15 +11,11 @@ export const checkFileConfig: Linter.Config[] = [
         },
         rules: {
             // Все названия папок должны быть в kebab-case
-            // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
-            'check-file/folder-naming-convention': [
-                'error',
-                { '**/*.*': 'KEBAB_CASE' },
-                { ignoreMiddleExtensions: true },
-            ],
+            // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
+            'check-file/folder-naming-convention': ['error', { '**/*.*': 'KEBAB_CASE' }],
 
             // Все названия файлов должны быть в kebab-case
-            // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
+            // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
             'check-file/filename-naming-convention': [
                 'error',
                 {
