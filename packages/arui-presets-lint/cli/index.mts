@@ -16,7 +16,7 @@ const commandsMap = {
     format: `prettier --experimental-cli --write ${prettierParams}`,
     'format:check': `prettier --experimental-cli --check ${prettierParams}`,
     knip: `knip --no-config-hints --cache --cache-location="${cacheFolder}/knip"`,
-    secretlint: `secretlint --secretlintignore .gitignore "**/*"`,
+    secretlint: `secretlint "**/*"`,
 } as const;
 
 const commands = Object.keys(commandsMap);

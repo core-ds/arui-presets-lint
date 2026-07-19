@@ -3,8 +3,6 @@
 // eslint-disable-next-line no-restricted-syntax -- Отключено для тестирования правила
 'mixed сase';
 
-import React from 'react';
-
 definedAfterUsage();
 
 let dig = 3;

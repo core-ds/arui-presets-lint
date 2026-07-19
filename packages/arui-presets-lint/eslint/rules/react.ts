@@ -164,9 +164,10 @@ export const reactConfig: Linter.Config = {
             },
         ],
 
-        // Предотвращает ложную пометку React как неиспользуемого
+        // Предотвращает ложную пометку React как неиспользуемого. Выключено:
+        // с автоматическим JSX runtime (React 17+) импорт React в JSX-файлах не нужен
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
-        'react/jsx-uses-react': ['error'],
+        'react/jsx-uses-react': 'off',
 
         // Предотвращает ложную пометку переменных, используемых в JSX, как неиспользуемых
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
@@ -228,9 +229,12 @@ export const reactConfig: Linter.Config = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prop-types.md
         'react/prop-types': 'off',
 
-        // Предотвращает отсутствие импорта React при использовании JSX
+        // Предотвращает отсутствие импорта React при использовании JSX. Выключено:
+        // с автоматическим JSX runtime (React 17+) импорт не требуется, а на классическом
+        // runtime его отсутствие и так ломает сборку
+        // https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
-        'react/react-in-jsx-scope': 'error',
+        'react/react-in-jsx-scope': 'off',
 
         // Требует, чтобы методы render() что-то возвращали
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-render-return.md

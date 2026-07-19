@@ -12,16 +12,16 @@
     },
     "dependencies": {
         "@alfalab/stylelint-core-vars": "workspace:*",
-        "@commitlint/cli": "20.5.3",
-        "@commitlint/config-conventional": "20.5.3",
-        "@eslint/js": "9.39.4",
+        "@commitlint/cli": "21.2.1",
+        "@commitlint/config-conventional": "21.2.0",
+        "@eslint/js": "9.39.5",
         "@eslint/json": "2.0.1",
         "@eslint/markdown": "8.0.2",
         "@prettier/plugin-oxc": "0.2.1",
-        "@secretlint/secretlint-rule-preset-recommend": "11.7.1",
+        "@secretlint/secretlint-rule-preset-recommend": "13.0.2",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
         "@typescript-eslint/utils": "8.64.0",
-        "eslint": "9.39.4",
+        "eslint": "9.39.5",
         "eslint-config-flat-gitignore": "2.3.0",
         "eslint-import-resolver-typescript": "4.4.5",
         "eslint-plugin-check-file": "3.3.2",
@@ -40,13 +40,13 @@
         "knip": "6.27.0",
         "lefthook": "2.1.10",
         "prettier": "3.9.5",
-        "secretlint": "11.7.1",
+        "secretlint": "13.0.2",
         "stylelint": "17.14.0",
         "stylelint-order": "8.1.1",
         "typescript-eslint": "8.64.0"
     },
     "engines": {
-        "node": ">=20.19.0"
+        "node": ">=22.12.0"
     },
     "devDependencies": {
         "@alfalab/core-components": "50.18.0",

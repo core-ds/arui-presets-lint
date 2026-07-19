@@ -14,7 +14,7 @@ export const checkFileConfig: Linter.Config[] = [
             // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
             'check-file/folder-naming-convention': ['error', { '**/*.*': 'KEBAB_CASE' }],
 
-            // Все названия файлов должны быть в kebab-case
+            // Все названия файлов должны быть в kebab-case
             // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-naming-convention.md
             'check-file/filename-naming-convention': [
                 'error',
@@ -26,14 +26,14 @@ export const checkFileConfig: Linter.Config[] = [
                 { ignoreMiddleExtensions: true },
             ],
 
-            // Список запрещенных названий файлов
+            // Список запрещенных названий файлов
             // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/filename-blocklist.md
             'check-file/filename-blocklist': [
                 'error',
                 { '**/tsconfig.eslint.json': '*tsconfig.json' },
                 {
                     errorMessage:
-                        'Вместо tsconfig.eslint.json используйте languageOptions.parserOptions.projectService.allowDefaultProject в конфиге eslint',
+                        'Вместо tsconfig.eslint.json используйте languageOptions.parserOptions.projectService.allowDefaultProject в конфиге eslint',
                 },
             ],
         },
