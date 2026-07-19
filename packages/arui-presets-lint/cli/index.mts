@@ -13,8 +13,8 @@ const cacheFolder = './node_modules/.cache';
 const commandsMap = {
     styles: `stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="${cacheFolder}/stylelint/.stylelintcache"`,
     scripts: 'eslint .',
-    format: `prettier --write ${prettierParams} --list-different`,
-    'format:check': `prettier --check ${prettierParams}`,
+    format: `prettier --experimental-cli --write ${prettierParams}`,
+    'format:check': `prettier --experimental-cli --check ${prettierParams}`,
     knip: `knip --cache --cache-location="${cacheFolder}/knip"`,
     secretlint: `secretlint --secretlintignore .gitignore "**/*"`,
 } as const;

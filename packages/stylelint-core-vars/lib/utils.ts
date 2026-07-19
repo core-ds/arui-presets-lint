@@ -321,8 +321,8 @@ function getVarsGroup(varsSet: VarsMap): string | undefined {
 
 function sortVarsByUsage(arr: string[], sortingArr: string[]): string[] {
     return arr.toSorted((a, b) => {
-        const aUsage = a.slice(2).split('-')[2];
-        const bUsage = b.slice(2).split('-')[2];
+        const aUsage = a.slice(2).split('-', 3)[2];
+        const bUsage = b.slice(2).split('-', 3)[2];
         const aIndex = sortingArr.indexOf(aUsage);
         const bIndex = sortingArr.indexOf(bUsage);
         if (aIndex === -1 || bIndex === -1) return 0;

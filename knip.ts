@@ -7,9 +7,10 @@ export default {
     // в package.json (резолвит путь как имя shareable-конфига); его deps учтены ниже
     commitlint: false,
     // зависимости, которые используются как строковые ссылки в конфигах
-    // (плагины stylelint, extends commitlint, пресет secretlint) или запускаются
+    // (плагины prettier/stylelint, extends commitlint, пресет secretlint) или запускаются
     // как бинарники (через cli/execa и git-хуки lefthook) — статически knip их не видит
     ignoreDependencies: [
+        '@prettier/plugin-oxc',
         '@alfalab/stylelint-core-vars',
         '@alfalab/core-components-vars',
         'stylelint-order',
