@@ -1,6 +1,7 @@
 import { type Linter } from 'eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactYouMightNotNeedAnEffectPlugin from 'eslint-plugin-react-you-might-not-need-an-effect';
 
 import { REACT_SCRIPTS_SCOPE } from '../constants.js';
 
@@ -13,6 +14,7 @@ export const reactConfig: Linter.Config = {
     plugins: {
         react: reactPlugin,
         'react-hooks': reactHooksPlugin,
+        'react-you-might-not-need-an-effect': reactYouMightNotNeedAnEffectPlugin,
     } as Linter.Config['plugins'],
 
     settings: {
@@ -27,6 +29,12 @@ export const reactConfig: Linter.Config = {
         ...reactPlugin.configs.flat.recommended.rules,
 
         ...reactHooksPlugin.configs['recommended-latest'].rules,
+
+        // Эвристики поиска лишних useEffect: derived state, цепочки обновлений state,
+        // логика обработчиков событий в эффектах и т.д. Все правила рекомендованного
+        // конфига, уровень warn - у правил возможны ложные срабатывания
+        // https://github.com/NickvanDyke/eslint-plugin-react-you-might-not-need-an-effect
+        ...reactYouMightNotNeedAnEffectPlugin.configs.recommended.rules,
 
         // Требует, чтобы методы класса использовали this
         // https://eslint.org/docs/latest/rules/class-methods-use-this

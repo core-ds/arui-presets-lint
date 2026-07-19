@@ -9,4 +9,6 @@
 
 - Дефолтный конфиг для pre-push хука в lefthook
 
+- В конфигурацию eslint добавлен плагин [react-you-might-not-need-an-effect](https://github.com/NickvanDyke/eslint-plugin-react-you-might-not-need-an-effect) с рекомендованным набором правил (уровень warn) - подсказывает, где useEffect не нужен и его можно заменить более простым кодом
+
 - Обновлен README и добавлен [MIGRATION_GUIDE](https://github.com/core-ds/arui-presets-lint/blob/master/packages/arui-presets-lint/MIGRATION_GUIDE.md) для новой версии
