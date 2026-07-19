@@ -10,16 +10,16 @@
 
 ```bash
 yarn add arui-presets-lint@latest
-```|
+```
 
 и после этого запустить:
 ```bash
 npx --no-install lefthook install
 ```
 
-1. Проверить содержимое ключа `pre-push` в вашем lefthook.yml - arui-presets-lint начал поставлять дефолтную конфигурацию для него, не должно ничего дублироваться
+2. Проверить содержимое ключа `pre-push` в вашем lefthook.yml - arui-presets-lint начал поставлять дефолтную конфигурацию для него, не должно ничего дублироваться
 
-1. Добавить конфиги knip и secretlint в корень проекта:
+3. Добавить конфиги knip и secretlint в корень проекта:
 
 > knip.ts
 ```typescript
@@ -37,6 +37,7 @@ export { default } from 'arui-presets-lint/knip';
 }
 ```
 
+4. Добавить в `package.json` скрипты запуска новых линтеров (`lint:unused`, `lint:secrets`) и дополнить ими `lint` и `lint:fix`:
 
 ```json
 {
@@ -46,7 +47,7 @@ export { default } from 'arui-presets-lint/knip';
         "format": "arui-presets-lint format",
         "format:check": "arui-presets-lint format:check",
         "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix --allow-remove-files && yarn lint:secrets",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
         "lint:unused": "arui-presets-lint knip",
         "lint:secrets": "arui-presets-lint secretlint"
     }
@@ -56,7 +57,7 @@ export { default } from 'arui-presets-lint/knip';
 
 Если нужно тонко настроить - читайте [README.md](./README.md), в разделе по конкретному линтеру все описано
 
-1. Запустить команду:
+5. Запустить команду:
 ```sh
     yarn lint:fix
 ```

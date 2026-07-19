@@ -15,7 +15,7 @@ const commandsMap = {
     scripts: 'eslint .',
     format: `prettier --experimental-cli --write ${prettierParams}`,
     'format:check': `prettier --experimental-cli --check ${prettierParams}`,
-    knip: `knip --cache --cache-location="${cacheFolder}/knip"`,
+    knip: `knip --no-config-hints --cache --cache-location="${cacheFolder}/knip"`,
     secretlint: `secretlint --secretlintignore .gitignore "**/*"`,
 } as const;
 

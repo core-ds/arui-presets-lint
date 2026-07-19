@@ -14,7 +14,7 @@
 
 [Как я могу внести изменения?](./CONTRIBUTING.md)
 
-🚀 [Миграция на версию 9/10 c 8](./MIGRATION_GUIDE.md)
+🚀 [Миграция на версию 11 с 9/10](./MIGRATION_GUIDE.md)
 
 ## Установка и обновление
 
@@ -30,13 +30,13 @@
 
 ## [Prettier](https://prettier.io/)/[Stylelint](https://stylelint.io/)/[commitLint](https://commitlint.js.org/)
 
-> конфиги этх линтеров подключаются через `package.json`:
+> конфиги этих линтеров подключаются через `package.json`:
 
 ```json
 {
     "prettier": "arui-presets-lint/prettier",
     "stylelint": { "extends": "arui-presets-lint/stylelint" },
-    "commitlint": { "extends": "arui-presets-lint/commitlint" }
+    "commitlint": { "extends": "./node_modules/arui-presets-lint/commitlint" }
 }
 ```
 
@@ -49,9 +49,6 @@ knip находит неиспользуемые файлы, зависимос�
 ```typescript
 export { default } from 'arui-presets-lint/knip';
 ```
-
-Базовый конфиг включает стандартные точки входа knip, а также точки входа приложений arui-scripts
-(`src/server/index.ts`, `arui-scripts.config.ts`, `arui-scripts.overrides.ts`).
 
 Если нужно расширить конфиг на уровне проекта:
 
@@ -184,7 +181,7 @@ export default defineConfig(eslintConfig, [
         "format": "arui-presets-lint format",
         "format:check": "arui-presets-lint format:check",
         "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix --allow-remove-files && yarn lint:secrets",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
         "lint:unused": "arui-presets-lint knip",
         "lint:secrets": "arui-presets-lint secretlint"
     }
@@ -217,7 +214,7 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
 
 ## [lefthook](https://github.com/evilmartians/lefthook)
 
-> Lefthook настраевает гит-хуки в проекте согласно yml-конфигу
+> Lefthook настраивает гит-хуки в проекте согласно yml-конфигу
 
 Создайте в корне проекта файл lefthook.yml,
 он должен содержать следующее:
@@ -270,7 +267,7 @@ npx --no-install eslint "**/*.{js,jsx}"
 
 ```sh
 yarn arui-presets-lint --echo format
-# >> prettier --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json}" --no-error-on-unmatched-pattern --cache
+# >> prettier --experimental-cli --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}" --no-error-on-unmatched-pattern --cache
 ```
 
 Если нужно посмотреть, какой именно конфиг применяется в текущем проекте:

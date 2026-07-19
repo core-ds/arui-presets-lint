@@ -1,7 +1,13 @@
 /** @typedef {import('prettier').Config} PrettierConfig */
 
-/** @type {PrettierConfig} */
+/**
+ * Описание опций тут:
+ * https://prettier.io/docs/options
+ *
+ * @type {PrettierConfig}
+ */
 export default {
+    // https://www.npmjs.com/package/@prettier/plugin-oxc
     plugins: ['@prettier/plugin-oxc'],
     printWidth: 100,
     singleQuote: true,
