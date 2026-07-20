@@ -2,9 +2,21 @@ name: Tests
 
 on: [pull_request]
 
+# Новый пуш в PR отменяет ещё идущие прогоны предыдущего коммита
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
 jobs:
-    release:
+    test:
         runs-on: ubuntu-latest
+        strategy:
+            # Прогоняем на всех поддерживаемых мажорах Node (см. engines в пакетах);
+            # не отменяем вторую джобу при падении первой, чтобы видеть,
+            # специфична ли поломка для конкретной версии
+            fail-fast: false
+            matrix:
+                node-version: [22, 24]
         steps:
             - name: Checkout Repo
               uses: actions/checkout@v6
@@ -12,10 +24,10 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   fetch-depth: 0
 
-            - name: Setup Node.js
+            - name: Setup Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v6
               with:
-                  node-version: 24
+                  node-version: ${{ matrix.node-version }}
                   cache: yarn
 
             - name: Install dependencies
