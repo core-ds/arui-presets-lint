@@ -28,7 +28,7 @@
 
 Далее произвести следующие настройки:
 
-## [Prettier](https://prettier.io/)/[Stylelint](https://stylelint.io/)/[commitLint](https://commitlint.js.org/)
+## [Prettier](https://prettier.io/)/[Stylelint](https://stylelint.io/)/[commitlint](https://commitlint.js.org/)
 
 > конфиги этих линтеров подключаются через `package.json`:
 
