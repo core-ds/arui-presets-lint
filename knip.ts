@@ -30,7 +30,7 @@ export default {
             entry: ['_internal/*.ts', 'test/*-input.{ts,tsx,js,jsx}'],
         },
         'packages/stylelint-core-vars': {
-            entry: ['eslint.config.mts', 'scripts/*.ts'],
+            entry: ['eslint.config.mts'],
         },
     },
 } satisfies KnipConfig;

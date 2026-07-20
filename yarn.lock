@@ -2305,7 +2305,6 @@ __metadata:
     "@alfalab/core-components-vars": "npm:7.0.0"
     "@manypkg/get-packages": "npm:^3.1.0"
     "@vitest/coverage-istanbul": "npm:4.1.10"
-    arui-presets-lint: "workspace:*"
     jest-preset-stylelint: "npm:^9.0.0"
     postcss: "npm:^8.5.13"
     rimraf: "npm:6.1.3"
