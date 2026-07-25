@@ -9253,6 +9253,7 @@ exports[`статические конфиги > knip 1`] = `
   "jest": true,
   "playwright": true,
   "storybook": true,
+  "vitest": true,
 }
 `;
 

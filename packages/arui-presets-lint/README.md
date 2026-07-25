@@ -60,7 +60,7 @@ import baseConfig from 'arui-presets-lint/knip';
 export default {
     ...baseConfig,
     // например, добавить зависимости, которые используются неявно
-    ignoreDependencies: ['some-implicit-dependency'],
+    ignoreDependencies: [...baseConfig.ignoreDependencies, 'some-implicit-dependency'],
 } satisfies KnipConfig;
 ```
 

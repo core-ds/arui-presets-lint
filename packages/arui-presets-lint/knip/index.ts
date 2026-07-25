@@ -3,16 +3,17 @@ import { type KnipConfig } from 'knip';
 export default {
     // не репортить экспорты, которые используются только внутри своего же файла
     ignoreExportsUsedInFile: true,
-    // jest, storybook, playwright и cypress в проектах экосистемы обычно запускаются
-    // через arui-scripts и другие обёртки / shared-пресеты и не являются прямыми
-    // зависимостями - по зависимостям knip эти плагины не включит, поэтому включаем
-    // явно; плагины подхватят конфиги (jest.config.*, ключ jest в package.json,
-    // .storybook/*, playwright.config.* и т.д.) и разрешат пути из них
+    // jest, vitest, storybook, playwright и cypress в проектах экосистемы обычно
+    // запускаются через arui-scripts и другие обёртки / shared-пресеты и не являются
+    // прямыми зависимостями - по зависимостям knip эти плагины не включит, поэтому
+    // включаем явно; плагины подхватят конфиги (jest.config.*, ключ jest в package.json,
+    // vitest.config.*, .storybook/*, playwright.config.* и т.д.) и разрешат пути из них
     // (setupFiles, transform, stories, testDir и т.д.)
     jest: true,
     storybook: true,
     playwright: true,
     cypress: true,
+    vitest: true,
     // плагин ломается на extends с относительным путём в ключе commitlint
     // package.json (резолвит путь как имя shareable-конфига); сам commitlint
     // приходит через arui-presets-lint, поэтому отключение ничего не теряет

@@ -37,6 +37,38 @@ export { default } from 'arui-presets-lint/knip';
 }
 ```
 
+### Если knip в проекте уже стоял
+
+Тогда одним `knip.ts` не обойтись - иначе пресет может вообще не применяться:
+
+**Уберите `knip` из devDependencies проекта.** knip приезжает зависимостью arui-presets-lint. Если оставить свою версию и она не совпадёт с версией пресета, пакетный менеджер поставит вторую копию в `node_modules/arui-presets-lint/node_modules`, и `arui-presets-lint knip` запустит именно её (обёртка ищет бинарники начиная от каталога пресета), а прямой вызов `yarn knip` - вашу. Два разных knip на одном проекте дают разные репорты.
+
+**Оставьте ровно один конфиг.** knip берёт первый найденный файл из списка и дальше не смотрит:
+
+```
+knip.json, knip.jsonc, .knip.json, .knip.jsonc, knip.ts, knip.js, knip.config.ts, knip.config.js
+```
+
+`knip.json` идёт раньше `knip.ts` - если старый json оставить, новый `knip.ts` с пресетом будет молча проигнорирован. Ключ `knip` в package.json тоже читается: он мержится с файлом по верхнему уровню ключей, и файл выигрывает. Удалите и старый json, и ключ из package.json.
+
+**Переносите свои настройки через spread базового конфига.** Массивы не объединяются - свой `entry`, `ignore` или `ignoreDependencies` затирает пресетный целиком, поэтому дописывать нужно к базовым:
+
+```typescript
+import { type KnipConfig } from 'knip';
+
+import baseConfig from 'arui-presets-lint/knip';
+
+export default {
+    ...baseConfig,
+    entry: [...baseConfig.entry, 'src/legacy/entry.ts'],
+    ignoreDependencies: [...baseConfig.ignoreDependencies, 'some-implicit-dependency'],
+} satisfies KnipConfig;
+```
+
+**Замените в скриптах вызов `knip` на `arui-presets-lint knip`** - обёртка добавляет `--no-config-hints` и кэш. Свои флаги по-прежнему можно передавать: `arui-presets-lint knip --fix`.
+
+Первый прогон после перехода почти наверняка даст новые репорты: пресет принудительно включает плагины jest, vitest, storybook, playwright и cypress (в проектах экосистемы они обычно приходят через arui-scripts и по зависимостям knip их не видит) и задаёт свой набор `entry`.
+
 4. Добавить в `package.json` скрипты запуска новых линтеров (`lint:unused`, `lint:secrets`) и дополнить ими `lint` и `lint:fix`:
 
 ```json
