@@ -45,7 +45,7 @@ export { default } from 'arui-presets-lint/knip';
 
 **Оставьте ровно один конфиг.** knip берёт первый найденный файл из списка и дальше не смотрит:
 
-```
+```text
 knip.json, knip.jsonc, .knip.json, .knip.jsonc, knip.ts, knip.js, knip.config.ts, knip.config.js
 ```
 
