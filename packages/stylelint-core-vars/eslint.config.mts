@@ -1,4 +1,5 @@
 import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
+import path from 'node:path';
 
 export default defineConfig(eslintConfig, [
     {
@@ -19,6 +20,10 @@ export default defineConfig(eslintConfig, [
                         'vitest.setup.ts',
                         'eslint.config.mts',
                     ],
+                    // Пакет линтуется общими инструментами монорепозитория:
+                    // arui-presets-lint объявлен в devDependencies корня,
+                    // поэтому учитываем зависимости обоих манифестов
+                    packageDir: [import.meta.dirname, path.join(import.meta.dirname, '../..')],
                 },
             ],
             'import-x/no-useless-path-segments': 'off',

@@ -49,6 +49,10 @@ describe('commands', () => {
     it('recognizes the agents command', () => {
         expect(commands).toContain('agents');
     });
+
+    it('includes the knip and secretlint commands', () => {
+        expect(commands).toEqual(expect.arrayContaining(['knip', 'secretlint']));
+    });
 });
 
 describe('run', () => {
@@ -105,6 +109,33 @@ describe('run', () => {
 
         expect(execaCommand).toHaveBeenCalledOnce();
         expect(execaCommand.mock.calls[0][0]).toBe('eslint . --fix');
+    });
+
+    it('passes an empty env for non-secretlint commands', async () => {
+        execaCommand.mockResolvedValue({});
+
+        await run(['scripts']);
+
+        expect(execaCommand.mock.calls[0][1].env).toEqual({});
+    });
+
+    it('disables the secretlint profiler via NODE_OPTIONS', async () => {
+        execaCommand.mockResolvedValue({});
+
+        await run(['secretlint']);
+
+        expect(execaCommand.mock.calls[0][0]).toBe('secretlint "**/*"');
+        expect(execaCommand.mock.calls[0][1].env.NODE_OPTIONS).toContain(
+            '--import=data:text/javascript,',
+        );
+    });
+
+    it('keeps the secretlint profiler enabled when --profile is passed', async () => {
+        execaCommand.mockResolvedValue({});
+
+        await run(['secretlint', '--profile']);
+
+        expect(execaCommand.mock.calls[0][1].env).toEqual({});
     });
 
     it('echoes the resolved command when --echo is passed', async () => {

@@ -1,6 +1,7 @@
 import { type Linter } from 'eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactYouMightNotNeedAnEffectPlugin from 'eslint-plugin-react-you-might-not-need-an-effect';
 
 import { REACT_SCRIPTS_SCOPE } from '../constants.js';
 
@@ -13,6 +14,7 @@ export const reactConfig: Linter.Config = {
     plugins: {
         react: reactPlugin,
         'react-hooks': reactHooksPlugin,
+        'react-you-might-not-need-an-effect': reactYouMightNotNeedAnEffectPlugin,
     } as Linter.Config['plugins'],
 
     settings: {
@@ -27,6 +29,12 @@ export const reactConfig: Linter.Config = {
         ...reactPlugin.configs.flat.recommended.rules,
 
         ...reactHooksPlugin.configs['recommended-latest'].rules,
+
+        // Эвристики поиска лишних useEffect: derived state, цепочки обновлений state,
+        // логика обработчиков событий в эффектах и т.д. Все правила рекомендованного
+        // конфига, уровень warn - у правил возможны ложные срабатывания
+        // https://github.com/NickvanDyke/eslint-plugin-react-you-might-not-need-an-effect
+        ...reactYouMightNotNeedAnEffectPlugin.configs.recommended.rules,
 
         // Требует, чтобы методы класса использовали this
         // https://eslint.org/docs/latest/rules/class-methods-use-this
@@ -156,9 +164,10 @@ export const reactConfig: Linter.Config = {
             },
         ],
 
-        // Предотвращает ложную пометку React как неиспользуемого
+        // Предотвращает ложную пометку React как неиспользуемого. Выключено:
+        // с автоматическим JSX runtime (React 17+) импорт React в JSX-файлах не нужен
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
-        'react/jsx-uses-react': ['error'],
+        'react/jsx-uses-react': 'off',
 
         // Предотвращает ложную пометку переменных, используемых в JSX, как неиспользуемых
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
@@ -220,9 +229,12 @@ export const reactConfig: Linter.Config = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prop-types.md
         'react/prop-types': 'off',
 
-        // Предотвращает отсутствие импорта React при использовании JSX
+        // Предотвращает отсутствие импорта React при использовании JSX. Выключено:
+        // с автоматическим JSX runtime (React 17+) импорт не требуется, а на классическом
+        // runtime его отсутствие и так ломает сборку
+        // https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
-        'react/react-in-jsx-scope': 'error',
+        'react/react-in-jsx-scope': 'off',
 
         // Требует, чтобы методы render() что-то возвращали
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-render-return.md

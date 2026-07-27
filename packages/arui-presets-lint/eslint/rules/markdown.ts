@@ -11,7 +11,7 @@ export const markdownConfig: Linter.Config = {
     ignores: ['**/CHANGELOG.md'],
     plugins: {
         markdown: markdownPlugin,
-    } as unknown as Linter.Config['plugins'],
+    },
     language: 'markdown/commonmark',
     rules: {
         // Требует указывать язык для блоков кода с тройными бэктиками
