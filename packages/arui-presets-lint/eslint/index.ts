@@ -10,6 +10,7 @@ import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import nodePlugin from 'eslint-plugin-n';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactYouMightNotNeedAnEffect from 'eslint-plugin-react-you-might-not-need-an-effect';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
@@ -27,6 +28,7 @@ import {
     nodeRulesConfig,
     reactA11yConfig,
     reactConfig,
+    reactYouMightNotNeedAnEffectConfig,
     testsConfig,
     typescriptConfig,
     variablesConfig,
@@ -80,6 +82,7 @@ export const eslintConfig = [
             'check-file': checkFilePlugin,
             react: reactPlugin,
             'react-hooks': reactHooksPlugin,
+            'react-you-might-not-need-an-effect': reactYouMightNotNeedAnEffect,
             'jsx-a11y': jsxA11yPlugin,
             unicorn: unicornPlugin,
             'disable-comments': disableCommentsPlugin,
@@ -97,6 +100,7 @@ export const eslintConfig = [
     bestPracticesConfig,
     nodeRulesConfig,
     reactConfig,
+    reactYouMightNotNeedAnEffectConfig,
     reactA11yConfig,
     variablesConfig,
     testsConfig,

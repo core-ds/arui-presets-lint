@@ -7,6 +7,7 @@ import { markdownConfig } from '../eslint/rules/markdown.js';
 import { nodeRulesConfig } from '../eslint/rules/node.js';
 import { reactConfig } from '../eslint/rules/react.js';
 import { reactA11yConfig } from '../eslint/rules/react-a11y.js';
+import { reactYouMightNotNeedAnEffectConfig } from '../eslint/rules/react-you-might-not-need-an-effect.js';
 import { testsConfig } from '../eslint/rules/tests.js';
 import { typescriptConfig } from '../eslint/rules/typescript.js';
 import { variablesConfig } from '../eslint/rules/variables.js';
@@ -70,6 +71,11 @@ const markdown = {
     name: markdownConfig.name,
 };
 
+const reactYouMightNotNeedAnEffect = {
+    rules: Object.keys(reactYouMightNotNeedAnEffectConfig.rules || {}),
+    name: reactYouMightNotNeedAnEffectConfig.name,
+};
+
 const configs: Array<{
     rules: string[];
     name?: string;
@@ -79,6 +85,7 @@ const configs: Array<{
     node,
     react,
     reactA11y,
+    reactYouMightNotNeedAnEffect,
     tests,
     typescript,
     variables,

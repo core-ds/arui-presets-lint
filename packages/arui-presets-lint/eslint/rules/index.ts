@@ -5,6 +5,7 @@ export { markdownConfig } from './markdown.js';
 export { nodeRulesConfig } from './node.js';
 export { reactA11yConfig } from './react-a11y.js';
 export { reactConfig } from './react.js';
+export { reactYouMightNotNeedAnEffectConfig } from './react-you-might-not-need-an-effect.js';
 export { testsConfig } from './tests.js';
 export { typescriptConfig } from './typescript.js';
 export { variablesConfig } from './variables.js';

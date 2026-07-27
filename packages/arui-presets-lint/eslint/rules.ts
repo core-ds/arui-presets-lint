@@ -6,6 +6,7 @@ export {
     nodeRulesConfig,
     reactA11yConfig,
     reactConfig,
+    reactYouMightNotNeedAnEffectConfig,
     testsConfig,
     typescriptConfig,
     variablesConfig,
