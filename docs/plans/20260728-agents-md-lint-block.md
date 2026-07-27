@@ -84,10 +84,10 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] run `yarn test` (full package gate) - must pass before Task 6
 
 ### Task 6: Cleanup, docs, changeset
-- [ ] remove the 5 empty `packages/arui-presets-lint/skills/*` scaffolding dirs
-- [ ] add a README (Russian) section: what the AGENTS.md sync does, the `ARUI_PRESETS_LINT_SKIP_AGENTS` opt-out, and the manual `arui-presets-lint agents` command
-- [ ] add a changeset (`minor`) via `yarn changeset` describing the feature
-- [ ] run `yarn test` - must pass before Task 7
+- [x] remove the 5 empty `packages/arui-presets-lint/skills/*` scaffolding dirs
+- [x] add a README (Russian) section: what the AGENTS.md sync does, the `ARUI_PRESETS_LINT_SKIP_AGENTS` opt-out, and the manual `arui-presets-lint agents` command
+- [x] add a changeset (`minor`) via `yarn changeset` describing the feature
+- [x] run `yarn test` - must pass before Task 7
 
 ### Task 7: Verify acceptance criteria
 - [ ] verify all Overview requirements are implemented (block ships, postinstall in dist manifest only, CLI `agents` command works, opt-out + self-repo guards effective)
