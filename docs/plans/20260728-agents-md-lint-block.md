@@ -90,10 +90,10 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] run `yarn test` - must pass before Task 7
 
 ### Task 7: Verify acceptance criteria
-- [ ] verify all Overview requirements are implemented (block ships, postinstall in dist manifest only, CLI `agents` command works, opt-out + self-repo guards effective)
-- [ ] run the full package test suite (`yarn test`) and confirm coverage meets the project standard
-- [ ] run `yarn lint` - all issues fixed; confirm new `.mts` files lint clean
-- [ ] run `yarn build` and re-confirm dist artifacts
+- [x] verify all Overview requirements are implemented (block ships, postinstall in dist manifest only, CLI `agents` command works, opt-out + self-repo guards effective)
+- [x] run the full package test suite (`yarn test`) and confirm coverage meets the project standard
+- [x] run `yarn lint` - all issues fixed; confirm new `.mts` files lint clean
+- [x] run `yarn build` and re-confirm dist artifacts
 
 ### Task 8: [Final] Update documentation
 - [ ] ensure README changes are complete and accurate
