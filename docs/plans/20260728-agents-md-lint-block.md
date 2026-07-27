@@ -55,12 +55,12 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] run `yarn lint` in the package - must pass before Task 2
 
 ### Task 2: Implement the merge/sync module
-- [ ] create `packages/arui-presets-lint/cli/sync-agents.mts` using only `node:fs`/`node:path`/`node:url`
-- [ ] implement `mergeBlock(existing, block)` with markers `<!-- BEGIN arui-presets-lint -->` … `<!-- END arui-presets-lint -->`: replace region when markers present; append (with leading blank line) when absent; block becomes whole file when empty/missing
-- [ ] implement `syncAgentsMd(projectRoot)` → `{ changed, path }`: read shipped block via `fileURLToPath(import.meta.url)` (`../agents/lint-block.md` relative to compiled `cli/sync-agents.mjs`), read/create `<projectRoot>/AGENTS.md`, apply `mergeBlock`, write **only if content changed**
-- [ ] write tests for `mergeBlock`: create-from-empty, append-when-no-markers, replace-between-markers, preserves surrounding user content (success cases)
-- [ ] write tests for idempotency (same input → byte-identical output) and edge cases (block already current → `changed: false`; malformed/half markers)
-- [ ] add `packages/arui-presets-lint/test/sync-agents.test.ts` and run `yarn vitest run test/sync-agents.test.ts` - must pass before Task 3
+- [x] create `packages/arui-presets-lint/cli/sync-agents.mts` using only `node:fs`/`node:path`/`node:url`
+- [x] implement `mergeBlock(existing, block)` with markers `<!-- BEGIN arui-presets-lint -->` … `<!-- END arui-presets-lint -->`: replace region when markers present; append (with leading blank line) when absent; block becomes whole file when empty/missing
+- [x] implement `syncAgentsMd(projectRoot)` → `{ changed, path }`: read shipped block via `fileURLToPath(import.meta.url)` (`../agents/lint-block.md` relative to compiled `cli/sync-agents.mjs`), read/create `<projectRoot>/AGENTS.md`, apply `mergeBlock`, write **only if content changed**
+- [x] write tests for `mergeBlock`: create-from-empty, append-when-no-markers, replace-between-markers, preserves surrounding user content (success cases)
+- [x] write tests for idempotency (same input → byte-identical output) and edge cases (block already current → `changed: false`; malformed/half markers)
+- [x] add `packages/arui-presets-lint/test/sync-agents.test.ts` and run `yarn vitest run test/sync-agents.test.ts` - must pass before Task 3
 
 ### Task 3: Add the guarded postinstall entry
 - [ ] create `packages/arui-presets-lint/cli/postinstall.mts` — thin, never-throwing wrapper around `syncAgentsMd`
