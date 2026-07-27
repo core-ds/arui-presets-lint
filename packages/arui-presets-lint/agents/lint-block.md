@@ -9,22 +9,26 @@ Stylelint and lefthook.
 
 Group imports in this exact order, with one blank line between groups:
 
-1. Node.js built-ins (`node:fs`, `node:path`, …) — always use the `node:` prefix.
-2. `react`, `redux`, then other external packages (`@scope/pkg`, `pkg`).
-3. Alfa-Bank packages: `@alfalab/*`, `arui-feather/*`, `arui-private/*`.
-4. Aliased imports starting with `#`.
-5. Parent imports (`../`).
-6. Sibling imports (`./`).
-7. Style imports (`*.css`, `*.scss`).
+1. `react`, `redux`, then all other external packages and Node.js built-ins
+   (`@scope/pkg`, `pkg`, `node:fs`, `node:path`). Always use the `node:` prefix
+   for built-ins; they sort alphabetically together with the other externals (no
+   separate group, no blank line before them).
+2. Alfa-Bank packages: `@alfalab/*`, `arui-feather/*`, `arui-private/*`.
+3. Aliased imports starting with `#`.
+4. Parent imports (`../`).
+5. Sibling imports (`./`).
+6. Style imports (`*.css`, `*.scss`).
 
 ```ts
 import { useState } from 'react';
+import { readFile } from 'node:fs';
 
 import { Button } from '@alfalab/core-components/button';
 
 import { helper } from '#shared/helper';
 
 import { parentUtil } from '../utils';
+
 import { siblingUtil } from './sibling';
 
 import './styles.css';
