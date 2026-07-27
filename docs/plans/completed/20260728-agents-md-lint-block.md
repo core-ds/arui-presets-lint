@@ -4,7 +4,7 @@ GitHub issue: https://github.com/core-ds/arui-presets-lint/issues/111 ("Shared A
 
 ## Overview
 
-`arui-presets-lint` provides shared ESLint/Stylelint/Prettier configs to ~1000 internal Alfa-Bank projects. AI coding agents (Cursor, Copilot, Claude Code, …) don't read the ESLint config, so they repeatedly write code that violates house rules — wrong import-group order, `import { isEqual } from 'lodash'`, hardcoded colors instead of design-system tokens, `PropsWithChildren`, etc. LSP + lefthook catch these *after* the fact, but agents keep re-introducing them.
+`arui-presets-lint` provides shared ESLint/Stylelint/Prettier configs to ~1000 internal Alfa-Bank projects. AI coding agents (Kilo Code, Opencode, …) don't read the ESLint config, so they repeatedly write code that violates house rules — wrong import-group order, `import { isEqual } from 'lodash'`, hardcoded colors instead of design-system tokens, `PropsWithChildren`, etc. LSP + lefthook catch these *after* the fact, but agents keep re-introducing them.
 
 This change ships a single consolidated, English lint-rules block that is merged into each project's `AGENTS.md` automatically on `postinstall`, so any agent that reads `AGENTS.md` follows the house rules up front. The same logic is exposed as an explicit CLI subcommand (`arui-presets-lint agents`) for manual re-runs and `--ignore-scripts` environments.
 
