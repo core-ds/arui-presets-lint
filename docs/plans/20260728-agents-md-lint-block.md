@@ -47,12 +47,12 @@ This change ships a single consolidated, English lint-rules block that is merged
 ## Implementation Steps
 
 ### Task 1: Author the English lint-rules block
-- [ ] create `packages/arui-presets-lint/agents/lint-block.md` with curated English sections, each grounded in the real config: Imports & ordering (7 groups: node builtins → react/redux/externals → `@alfalab/*` + arui-feather/arui-private → `#` aliases → parent `../` → sibling `./` → `*.css`/`*.scss`; blank line between groups)
-- [ ] add lodash section (`import isEqual from 'lodash/isEqual'`, never `import { isEqual } from 'lodash'` or `lodash.*`) and inline type-imports section (`import { type Foo, bar } from '...'`)
-- [ ] add CSS/design-token section (`var(--color-light-...)`, gap/shadow/border-radius tokens, typography `@mixin`s; never `--color-dark-*` directly)
-- [ ] add React section (`PropsWithChildren` → `children?: ReactNode`; React in scope; no array-index `key`; `<button type>`; self-closing; explicit boolean prop; no redundant JSX curlies; exhaustive-deps), TypeScript section (naming conventions; no floating promises; `array-simple`), General section (no `++`/`--`; prefer template literals; no nested ternaries; no param reassignment; kebab-case files/folders), Formatting section (printWidth 100, 4-space, single quotes incl. JSX, trailing comma all), and `eslint-disable`-needs-description note
-- [ ] verify the file is valid CommonMark and passes the package's own markdown lint / prettier (self-lint runs in `yarn test`)
-- [ ] run `yarn lint` in the package - must pass before Task 2
+- [x] create `packages/arui-presets-lint/agents/lint-block.md` with curated English sections, each grounded in the real config: Imports & ordering (7 groups: node builtins → react/redux/externals → `@alfalab/*` + arui-feather/arui-private → `#` aliases → parent `../` → sibling `./` → `*.css`/`*.scss`; blank line between groups)
+- [x] add lodash section (`import isEqual from 'lodash/isEqual'`, never `import { isEqual } from 'lodash'` or `lodash.*`) and inline type-imports section (`import { type Foo, bar } from '...'`)
+- [x] add CSS/design-token section (`var(--color-light-...)`, gap/shadow/border-radius tokens, typography `@mixin`s; never `--color-dark-*` directly)
+- [x] add React section (`PropsWithChildren` → `children?: ReactNode`; React in scope; no array-index `key`; `<button type>`; self-closing; explicit boolean prop; no redundant JSX curlies; exhaustive-deps), TypeScript section (naming conventions; no floating promises; `array-simple`), General section (no `++`/`--`; prefer template literals; no nested ternaries; no param reassignment; kebab-case files/folders), Formatting section (printWidth 100, 4-space, single quotes incl. JSX, trailing comma all), and `eslint-disable`-needs-description note
+- [x] verify the file is valid CommonMark and passes the package's own markdown lint / prettier (self-lint runs in `yarn test`)
+- [x] run `yarn lint` in the package - must pass before Task 2
 
 ### Task 2: Implement the merge/sync module
 - [ ] create `packages/arui-presets-lint/cli/sync-agents.mts` using only `node:fs`/`node:path`/`node:url`
