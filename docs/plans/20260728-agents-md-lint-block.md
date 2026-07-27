@@ -63,12 +63,12 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] add `packages/arui-presets-lint/test/sync-agents.test.ts` and run `yarn vitest run test/sync-agents.test.ts` - must pass before Task 3
 
 ### Task 3: Add the guarded postinstall entry
-- [ ] create `packages/arui-presets-lint/cli/postinstall.mts` — thin, never-throwing wrapper around `syncAgentsMd`
-- [ ] resolve consumer root from `process.env.INIT_CWD`; bail if unset
-- [ ] bail when target is our own package/monorepo (target `package.json` `name === 'arui-presets-lint'` or workspace root) to avoid self-modification in local dev/CI
-- [ ] add opt-out via `process.env.ARUI_PRESETS_LINT_SKIP_AGENTS`; wrap everything in `try/catch`, print a concise notice on write, print a warning and exit 0 on error
-- [ ] write tests for the guard/decision logic (extract a pure `shouldRun(env, targetPkgName)` helper so guards are unit-testable without spawning installs): skip when no `INIT_CWD`, skip on self-repo, skip when opt-out set, run otherwise
-- [ ] run `yarn vitest run` - must pass before Task 4
+- [x] create `packages/arui-presets-lint/cli/postinstall.mts` — thin, never-throwing wrapper around `syncAgentsMd`
+- [x] resolve consumer root from `process.env.INIT_CWD`; bail if unset
+- [x] bail when target is our own package/monorepo (target `package.json` `name === 'arui-presets-lint'` or workspace root) to avoid self-modification in local dev/CI
+- [x] add opt-out via `process.env.ARUI_PRESETS_LINT_SKIP_AGENTS`; wrap everything in `try/catch`, print a concise notice on write, print a warning and exit 0 on error
+- [x] write tests for the guard/decision logic (extract a pure `shouldRun(env, targetPkgName)` helper so guards are unit-testable without spawning installs): skip when no `INIT_CWD`, skip on self-repo, skip when opt-out set, run otherwise
+- [x] run `yarn vitest run` - must pass before Task 4
 
 ### Task 4: Wire the CLI subcommand
 - [ ] extend `packages/arui-presets-lint/cli/index.mts`: add `agents` to the recognized-commands list; branch **before** the execa path so `agents` runs `syncAgentsMd(process.cwd())` via `await import('./sync-agents.mjs')`, logs the `{ changed, path }` result, and `process.exit(0)`
