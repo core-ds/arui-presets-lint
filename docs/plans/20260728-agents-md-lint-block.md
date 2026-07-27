@@ -96,8 +96,8 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] run `yarn build` and re-confirm dist artifacts
 
 ### Task 8: [Final] Update documentation
-- [ ] ensure README changes are complete and accurate
-- [ ] note any new patterns (guarded postinstall + marker-merge) in repo docs if warranted
+- [x] ensure README changes are complete and accurate
+- [x] note any new patterns (guarded postinstall + marker-merge) in repo docs if warranted
 
 ## Technical Details
 
