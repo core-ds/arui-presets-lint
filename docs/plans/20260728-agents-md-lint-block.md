@@ -77,11 +77,11 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] run `yarn vitest run` - must pass before Task 5
 
 ### Task 5: Inject the postinstall hook into the published manifest
-- [ ] edit `packages/arui-presets-lint/_internal/build-dist-package.ts` so `distPkg.scripts` is a minimal published set containing `postinstall: 'node cli/postinstall.mjs'` (dist-root-relative, matching `bin`); do NOT add `postinstall` to the source `package.json`
-- [ ] confirm no source scripts that reference stripped devDeps (tsx/rimraf/copyfiles) leak into the published manifest in a way that could break consumer installs
-- [ ] write/adjust a check (unit test or extend `_internal` assertions) verifying the generated `dist/package.json` contains the `postinstall` entry and the block ships — or cover via the build verification in Task 6
-- [ ] run `yarn build` and inspect `dist/package.json` + `dist/agents/lint-block.md` + `dist/cli/{sync-agents,postinstall}.mjs`
-- [ ] run `yarn test` (full package gate) - must pass before Task 6
+- [x] edit `packages/arui-presets-lint/_internal/build-dist-package.ts` so `distPkg.scripts` is a minimal published set containing `postinstall: 'node cli/postinstall.mjs'` (dist-root-relative, matching `bin`); do NOT add `postinstall` to the source `package.json` (pure assembly extracted to `_internal/dist-package.ts` for testability)
+- [x] confirm no source scripts that reference stripped devDeps (tsx/rimraf/copyfiles) leak into the published manifest in a way that could break consumer installs
+- [x] write/adjust a check (unit test or extend `_internal` assertions) verifying the generated `dist/package.json` contains the `postinstall` entry and the block ships — or cover via the build verification in Task 6 (`test/dist-package.test.ts`)
+- [x] run `yarn build` and inspect `dist/package.json` + `dist/agents/lint-block.md` + `dist/cli/{sync-agents,postinstall}.mjs`
+- [x] run `yarn test` (full package gate) - must pass before Task 6
 
 ### Task 6: Cleanup, docs, changeset
 - [ ] remove the 5 empty `packages/arui-presets-lint/skills/*` scaffolding dirs
