@@ -71,10 +71,10 @@ This change ships a single consolidated, English lint-rules block that is merged
 - [x] run `yarn vitest run` - must pass before Task 4
 
 ### Task 4: Wire the CLI subcommand
-- [ ] extend `packages/arui-presets-lint/cli/index.mts`: add `agents` to the recognized-commands list; branch **before** the execa path so `agents` runs `syncAgentsMd(process.cwd())` via `await import('./sync-agents.mjs')`, logs the `{ changed, path }` result, and `process.exit(0)`
-- [ ] preserve existing `--echo` handling and the usage/error message for unknown commands
-- [ ] write/extend a test asserting `agents` is accepted and dispatches to the sync path (and that unknown commands still error) — mock the sync module or assert on argv parsing
-- [ ] run `yarn vitest run` - must pass before Task 5
+- [x] extend `packages/arui-presets-lint/cli/index.mts`: add `agents` to the recognized-commands list; branch **before** the execa path so `agents` runs `syncAgentsMd(process.cwd())` via `await import('./sync-agents.mjs')`, logs the `{ changed, path }` result, and `process.exit(0)` (logic extracted to `cli/commands.mts` — shebang `index.mts` can't hold exports under `unicorn/no-exports-in-scripts`; `index.mts` is now a thin bin that calls `run`)
+- [x] preserve existing `--echo` handling and the usage/error message for unknown commands
+- [x] write/extend a test asserting `agents` is accepted and dispatches to the sync path (and that unknown commands still error) — mock the sync module or assert on argv parsing (`test/commands.test.ts`, sync + execa modules mocked)
+- [x] run `yarn vitest run` - must pass before Task 5
 
 ### Task 5: Inject the postinstall hook into the published manifest
 - [ ] edit `packages/arui-presets-lint/_internal/build-dist-package.ts` so `distPkg.scripts` is a minimal published set containing `postinstall: 'node cli/postinstall.mjs'` (dist-root-relative, matching `bin`); do NOT add `postinstall` to the source `package.json`
