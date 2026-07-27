@@ -66,6 +66,8 @@ export default {
 
 Подробнее про настройку: [документация knip](https://knip.dev/overview/configuration).
 
+> Флаг `--fix` у knip удаляет неиспользуемые файлы, экспорты и зависимости — запускайте его осознанно (скрипт `lint:unused:fix`), не смешивая с обычным `lint:fix`.
+
 ## [secretlint](https://github.com/secretlint/secretlint)
 
 secretlint ищет в файлах проекта случайно закоммиченные секреты:
@@ -181,12 +183,15 @@ export default defineConfig(eslintConfig, [
         "format": "arui-presets-lint format",
         "format:check": "arui-presets-lint format:check",
         "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:secrets",
         "lint:unused": "arui-presets-lint knip",
+        "lint:unused:fix": "arui-presets-lint knip --fix",
         "lint:secrets": "arui-presets-lint secretlint"
     }
 }
 ```
+
+> **`knip --fix` может удалять неиспользуемые файлы, экспорты и зависимости. Поэтому его нет в `lint:fix`, только проверка через `lint:unused`. Автоочистку запускайте отдельно `yarn lint:unused:fix`и только после ревью репорта knip.
 
 Чтобы eslint / stylelint / prettier / secretlint не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore / .secretlintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
