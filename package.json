@@ -14,17 +14,20 @@
     ],
     "devDependencies": {
         "@changesets/changelog-github": "0.7.0",
-        "@changesets/cli": "2.31.0",
+        "@changesets/cli": "2.31.1",
         "arui-presets-lint": "workspace:*",
-        "eslint-config-turbo": "2.9.18",
-        "turbo": "2.9.18"
+        "eslint-config-turbo": "2.10.7",
+        "tsx": "4.23.1",
+        "turbo": "2.10.7"
     },
     "scripts": {
         "build": "turbo run build",
-        "test": "turbo run test",
+        "test": "turbo run test && yarn lint:unused && yarn lint:secrets",
         "test:unit": "turbo run test:unit",
-        "lint": "turbo run lint",
-        "lint:fix": "turbo run lint:fix",
+        "lint": "turbo run lint && yarn lint:unused && yarn lint:secrets",
+        "lint:fix": "turbo run lint:fix && yarn lint:unused && yarn lint:secrets",
+        "lint:unused": "tsx packages/arui-presets-lint/cli/index.mts knip",
+        "lint:secrets": "tsx packages/arui-presets-lint/cli/index.mts secretlint",
         "format": "turbo run format",
         "format:check": "turbo run format:check",
         "release": "turbo run build && changeset publish",
@@ -32,7 +35,7 @@
         "version-package": "changeset version",
         "version-package:snapshot": "changeset version --snapshot snapshot"
     },
-    "packageManager": "yarn@4.17.0",
+    "packageManager": "yarn@4.17.1",
     "commitlint": {
         "extends": "./packages/arui-presets-lint/commitlint/index.ts"
     },

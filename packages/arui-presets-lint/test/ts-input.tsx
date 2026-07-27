@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import { type FC } from 'react';
 
 import { type Product, SumTestFunc, type User } from './types/index.js';
 

@@ -14,7 +14,7 @@
 
 [Как я могу внести изменения?](./CONTRIBUTING.md)
 
-🚀 [Миграция на версию 9/10 c 8](./MIGRATION_GUIDE.md)
+🚀 [Миграция на версию 11 с 9/10](./MIGRATION_GUIDE.md)
 
 ## Установка и обновление
 
@@ -28,17 +28,64 @@
 
 Далее произвести следующие настройки:
 
-## Подключение конфигов prettier/stylelint/commitlint через `package.json`:
+## [Prettier](https://prettier.io/)/[Stylelint](https://stylelint.io/)/[commitlint](https://commitlint.js.org/)
+
+> конфиги этих линтеров подключаются через `package.json`:
 
 ```json
 {
     "prettier": "arui-presets-lint/prettier",
     "stylelint": { "extends": "arui-presets-lint/stylelint" },
-    "commitlint": { "extends": "arui-presets-lint/commitlint" }
+    "commitlint": { "extends": "./node_modules/arui-presets-lint/commitlint" }
 }
 ```
 
-Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
+## [knip](https://knip.dev)
+
+knip находит неиспользуемые файлы, зависимости и экспорты
+
+Создайте в корне проекта файл `knip.ts` со следующим содержанием:
+
+```typescript
+export { default } from 'arui-presets-lint/knip';
+```
+
+Если нужно расширить конфиг на уровне проекта:
+
+```typescript
+import { type KnipConfig } from 'knip';
+
+import baseConfig from 'arui-presets-lint/knip';
+
+export default {
+    ...baseConfig,
+    // например, добавить зависимости, которые используются неявно
+    ignoreDependencies: [...baseConfig.ignoreDependencies, 'some-implicit-dependency'],
+} satisfies KnipConfig;
+```
+
+Подробнее про настройку: [документация knip](https://knip.dev/overview/configuration).
+
+## [secretlint](https://github.com/secretlint/secretlint)
+
+secretlint ищет в файлах проекта случайно закоммиченные секреты:
+ключи AWS, приватные ключи, basic auth в url и т.д. Используется конфиг с пресетом правил.
+
+Для его работы нужно добавить в корень проекта файл `.secretlintrc.json` со следующим содержанием:
+
+```json
+{
+    "rules": [
+        {
+            "id": "@secretlint/secretlint-rule-preset-recommend"
+        }
+    ]
+}
+```
+
+## ESLint
+
+> Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
 
 ```typescript
 import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
@@ -121,7 +168,10 @@ export default defineConfig(eslintConfig, [
 ]);
 ```
 
-## Конфигурация скриптов для запуска в `package.json`:
+## Запуск линтеров в cli
+
+После настройки конфигов - нужно добавить скрипты для их запуска в package.json (для этого библиотека предоставляет удобные cli-алиасы):
+
 
 ```json
 {
@@ -130,13 +180,15 @@ export default defineConfig(eslintConfig, [
         "lint:scripts": "arui-presets-lint scripts",
         "format": "arui-presets-lint format",
         "format:check": "arui-presets-lint format:check",
-        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format"
+        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
+        "lint:unused": "arui-presets-lint knip",
+        "lint:secrets": "arui-presets-lint secretlint"
     }
 }
 ```
 
-Чтобы eslint / stylelint / prettier не проверял конкретные файлы и папки, можно исключить их с помощью файлов .stylelintignore / .prettierignore / .eslintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
+Чтобы eslint / stylelint / prettier / secretlint не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore / .secretlintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
 > Вместо файла .eslintignore рекомендуется использовать globalIgnores в конфиге eslint ([подробнее](https://eslint.org/docs/latest/use/configure/ignore)). Импортируем функцию globalIgnores из `arui-presets-lint` вот так:
 
@@ -159,7 +211,10 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
 }
 ```
 
-## Настройка [lefthook](https://github.com/evilmartians/lefthook)
+
+## [lefthook](https://github.com/evilmartians/lefthook)
+
+> Lefthook настраивает гит-хуки в проекте согласно yml-конфигу
 
 Создайте в корне проекта файл lefthook.yml,
 он должен содержать следующее:
@@ -187,12 +242,6 @@ pre-commit:
         run-tests:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts}'
             run: npx --no-install jest --findRelatedTests --passWithNoTests {staged_files}
-
-pre-push:
-    commands:
-        # Запустить команду 'lint' на pre-push:
-        run-lint:
-            run: yarn lint
 ```
 
 ## Гибкая конфигурация
@@ -218,7 +267,7 @@ npx --no-install eslint "**/*.{js,jsx}"
 
 ```sh
 yarn arui-presets-lint --echo format
-# >> prettier --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json}" --no-error-on-unmatched-pattern --cache
+# >> prettier --experimental-cli --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}" --no-error-on-unmatched-pattern --cache
 ```
 
 Если нужно посмотреть, какой именно конфиг применяется в текущем проекте:
