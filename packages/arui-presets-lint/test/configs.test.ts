@@ -1,4 +1,5 @@
 import { ESLint, type Linter } from 'eslint';
+import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -83,5 +84,11 @@ describe('статические конфиги', () => {
 
     it('knip', () => {
         expectToMatchSnapshot(knipConfig);
+    });
+
+    it('lefthook', () => {
+        expectToMatchSnapshot(
+            fs.readFileSync(path.join(packageRoot, 'lefthook/index.yml'), 'utf8'),
+        );
     });
 });

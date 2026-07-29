@@ -9258,6 +9258,47 @@ exports[`статические конфиги > knip 1`] = `
 }
 `;
 
+exports[`статические конфиги > lefthook 1`] = `
+"#   Описание параметров тут:
+#   https://lefthook.dev/configuration/
+
+pre-commit:
+    parallel: true
+    commands:
+        check-scripts:
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc}'
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored
+            stage_fixed: true
+        check-styles:
+            glob: '*.{css}'
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install stylelint {staged_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
+            stage_fixed: true
+        check-md:
+            glob: '*.{md}'
+            run: npx --no-install eslint {staged_files} --no-warn-ignored
+        check-secrets:
+            run: npx --no-install secretlint {staged_files}
+pre-push:
+    parallel: true
+    commands:
+        check-scripts:
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc}'
+            run: npx --no-install prettier --check {push_files} --cache && npx --no-install eslint {push_files} --no-warn-ignored
+        check-styles:
+            glob: '*.{css}'
+            run: npx --no-install prettier --check {push_files} --cache && npx --no-install stylelint {push_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
+        check-md:
+            glob: '*.{md}'
+            run: npx --no-install eslint {push_files} --no-warn-ignored
+        check-secrets:
+            run: npx --no-install secretlint {push_files}
+commit-msg:
+    commands:
+        commitlint:
+            run: npx --no-install commitlint --edit {1}
+"
+`;
+
 exports[`статические конфиги > prettier 1`] = `
 {
   "endOfLine": "auto",
