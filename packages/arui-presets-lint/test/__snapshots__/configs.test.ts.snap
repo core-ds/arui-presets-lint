@@ -9248,6 +9248,7 @@ exports[`статические конфиги > knip 1`] = `
   "ignoreDependencies": [
     "@types/webpack-env",
     "@types/css-modules",
+    "arui-scripts-corporate-presets",
   ],
   "ignoreExportsUsedInFile": true,
   "jest": true,
