@@ -1,3 +1,11 @@
+## 11.0.1
+
+### Patch Changes
+
+- [#177](https://github.com/core-ds/arui-presets-lint/pull/177) [`c023d8b`](https://github.com/core-ds/arui-presets-lint/commit/c023d8bbd654214f5cf7c2c229da07d31fae6da7) Thanks [@VladislavNsk](https://github.com/VladislavNsk)! - Knip-пресет игнорирует `arui-scripts-corporate-presets`, подключаемый через строковую конфигурацию `arui-scripts`.
+
+- [#178](https://github.com/core-ds/arui-presets-lint/pull/178) [`3ba93f7`](https://github.com/core-ds/arui-presets-lint/commit/3ba93f76f05e4d0636627efaa954185e34df030b) Thanks [@VladislavNsk](https://github.com/VladislavNsk)! - В Lefthook-пресете отключён ESLint cache для Markdown-файлов, чтобы хуки не создавали `.eslintcache` в корне проекта.
+
 ## 11.0.0
 
 ### Major Changes
