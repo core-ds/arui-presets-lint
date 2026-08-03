@@ -22,8 +22,8 @@ export default {
         // Стандартные точки входа knip. При переопределении опции entry дефолтные значения
         // не объединяются с заданными, поэтому повторяем их явно
         // https://knip.dev/overview/configuration#defaults
-        '{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!',
-        'src/{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!',
+        '{index,mobile-index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!',
+        'src/{index,mobile-index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!',
         // Серверная точка входа приложений arui-scripts и совместимых сборщиков
         // ({,app/} - поддержка обеих структур проекта: базовой и feature-sliced)
         'src/{,app/}server/index.{js,jsx,ts,tsx}!',

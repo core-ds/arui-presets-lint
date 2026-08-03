@@ -9219,8 +9219,8 @@ exports[`статические конфиги > knip 1`] = `
   "commitlint": false,
   "cypress": true,
   "entry": [
-    "{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
-    "src/{index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
+    "{index,mobile-index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
+    "src/{index,mobile-index,cli,main}.{js,mjs,cjs,jsx,ts,tsx,mts,cts}!",
     "src/{,app/}server/index.{js,jsx,ts,tsx}!",
     "src/server/{mock,mocks}/**/*.{js,ts}",
     "src/modules/**/*.{js,jsx,ts,tsx}!",
