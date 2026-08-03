@@ -1,6 +1,6 @@
 # Гид по миграции на arui-presets-lint@11 с 9/10
 
-[Обновляетесь с 8 на 9/10?](https://github.com/core-ds/arui-presets-lint/blob/v10.2.0/MIGRATION_GUIDE.md)
+[Обновляетесь с 8 на 9/10?](https://github.com/core-ds/arui-presets-lint/blob/arui-presets-lint%4010.4.0/packages/arui-presets-lint/MIGRATION_GUIDE.md)
 
 ## Введение
 
@@ -86,10 +86,12 @@ export default {
 }
 ```
 
+> ⚠️  Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
+
 
 Если нужно тонко настроить - читайте [README.md](./README.md), в разделе по конкретному линтеру все описано
 
-5. Запустить команду:
+1. Запустить команду:
 ```sh
     yarn lint:fix
 ```
