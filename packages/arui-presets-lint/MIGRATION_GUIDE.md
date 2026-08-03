@@ -4,9 +4,17 @@
 
 ## Введение
 
-Основные поинты - это 2 новых линтера (secretlint и knip) и дефолтный конфиг для хука pre-push в lefthook.
+Основные изменения:
 
-1. Обновить зависимость:
+- минимальная версия Node.js — **22.12.0** (поддержка Node.js v20 прекращена);
+- 2 новых линтера (secretlint и knip) и дефолтный конфиг для хука pre-push в lefthook;
+- в eslint: отключены `react/react-in-jsx-scope` и `react/jsx-uses-react`, добавлен плагин
+  [react-you-might-not-need-an-effect](https://github.com/NickvanDyke/eslint-plugin-react-you-might-not-need-an-effect).
+
+1. Убедиться, что в проекте Node.js **>= 22.12.0** (см. `engines` в `package.json` / CI).
+   На Node.js v20 пакет больше не поддерживается.
+
+2. Обновить зависимость:
 
 ```bash
 yarn add arui-presets-lint@latest
@@ -17,9 +25,9 @@ yarn add arui-presets-lint@latest
 npx --no-install lefthook install
 ```
 
-2. Проверить содержимое ключа `pre-push` в вашем lefthook.yml - arui-presets-lint начал поставлять дефолтную конфигурацию для него, не должно ничего дублироваться
+3. Проверить содержимое ключа `pre-push` в вашем lefthook.yml - arui-presets-lint начал поставлять дефолтную конфигурацию для него, не должно ничего дублироваться
 
-3. Добавить конфиги knip и secretlint в корень проекта:
+4. Добавить конфиги knip и secretlint в корень проекта:
 
 > knip.ts
 ```typescript
@@ -65,11 +73,11 @@ export default {
 } satisfies KnipConfig;
 ```
 
-**Замените в скриптах вызов `knip` на `arui-presets-lint knip`** - обёртка добавляет `--no-config-hints` и кэш. Свои флаги по-прежнему можно передавать: `arui-presets-lint knip --fix`.
+**Замените в скриптах вызов `knip` на `arui-presets-lint knip`** - обёртка добавляет `--no-config-hints` и кэш. Свои флаги по-прежнему можно передавать.
 
 Первый прогон после перехода почти наверняка даст новые репорты: пресет принудительно включает плагины jest, vitest, storybook, playwright и cypress (в проектах экосистемы они обычно приходят через arui-scripts и по зависимостям knip их не видит) и задаёт свой набор `entry`.
 
-4. Добавить в `package.json` скрипты запуска новых линтеров (`lint:unused`, `lint:secrets`) и дополнить ими `lint` и `lint:fix`:
+5. Добавить в `package.json` скрипты запуска новых линтеров (`lint:unused`, `lint:secrets`) и дополнить ими `lint` и `lint:fix`:
 
 ```json
 {
@@ -79,17 +87,24 @@ export default {
         "format": "arui-presets-lint format",
         "format:check": "arui-presets-lint format:check",
         "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
+        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:secrets",
         "lint:unused": "arui-presets-lint knip",
+        "lint:unused:fix": "arui-presets-lint knip --fix",
         "lint:secrets": "arui-presets-lint secretlint"
     }
 }
 ```
 
+> `knip --fix` удаляет неиспользуемые файлы, экспорты и зависимости, поэтому его нет в `lint:fix`. Сначала `yarn lint:unused`, после ревью отдельно выполнить `yarn lint:unused:fix`.
+
+6. Учесть изменения eslint (уже в пресете, дополнительно ничего подключать не нужно):
+
+- **`react/react-in-jsx-scope` и `react/jsx-uses-react` выключены.** С [автоматическим JSX runtime](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) (React 17+) импорт `React` в JSX-файлах не нужен. Если проект еще на стандартном runtime без нового transform, то отсутствие импорта по-прежнему сломает сборку; это ответственность самой сборки, а не eslint.
+- **Добавлен плагин `eslint-plugin-react-you-might-not-need-an-effect`** с рекомендованным набором правил на уровне `warn`.
 
 Если нужно тонко настроить - читайте [README.md](./README.md), в разделе по конкретному линтеру все описано
 
-5. Запустить команду:
+7. Запустить команду:
 ```sh
     yarn lint:fix
 ```
