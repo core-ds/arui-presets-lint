@@ -1,3 +1,9 @@
+## 11.0.2
+
+### Patch Changes
+
+- [#180](https://github.com/core-ds/arui-presets-lint/pull/180) [`f1f180b`](https://github.com/core-ds/arui-presets-lint/commit/f1f180b381e54d30c7e8ec2995ae9fea2c7d4be0) Thanks [@amodanov](https://github.com/amodanov)! - Добавлена поддержка `mobile-index` в стандартных точках входа Knip.
+
 ## 11.0.1
 
 ### Patch Changes
