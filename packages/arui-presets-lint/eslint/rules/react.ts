@@ -417,9 +417,14 @@ export const reactConfig: Linter.Config = {
             ],
         ],
 
-        // Запрещает ненужные фрагменты
+        // Запрещает ненужные фрагменты, но разрешает одиночные выражения в них
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
-        'react/jsx-no-useless-fragment': 'error',
+        'react/jsx-no-useless-fragment': [
+            'error',
+            {
+                allowExpressions: true,
+            },
+        ],
 
         // Обязывает конкретный тип функции для функциональных компонентов
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
