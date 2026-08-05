@@ -1,3 +1,13 @@
+## 11.1.0
+
+### Minor Changes
+
+- [#183](https://github.com/core-ds/arui-presets-lint/pull/183) [`e678023`](https://github.com/core-ds/arui-presets-lint/commit/e67802391341bfff9fd676bf1702f63cae87f6a9) Thanks [@kiskv](https://github.com/kiskv)! - В Lefthook-пресете на pre-push добавлен запуск knip.
+
+### Patch Changes
+
+- [#183](https://github.com/core-ds/arui-presets-lint/pull/183) [`e678023`](https://github.com/core-ds/arui-presets-lint/commit/e67802391341bfff9fd676bf1702f63cae87f6a9) Thanks [@kiskv](https://github.com/kiskv)! - Поправлена ссылка на гид по миграции с 8 на 9/10, в README добавлена сноска про ручной запуск `lint:fix`.
+
 ## 11.0.2
 
 ### Patch Changes
