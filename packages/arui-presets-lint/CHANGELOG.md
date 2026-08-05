@@ -1,3 +1,9 @@
+## 11.1.1
+
+### Patch Changes
+
+- [#185](https://github.com/core-ds/arui-presets-lint/pull/185) [`5a777e6`](https://github.com/core-ds/arui-presets-lint/commit/5a777e6f832d9c6a7ab731ad72e241e15ce7750f) Thanks [@KalashnikovTV](https://github.com/KalashnikovTV)! - - Для правила react/jsx-no-useless-fragment добавлено исключение в виде одиночных выражений
+
 ## 11.1.0
 
 ### Minor Changes
