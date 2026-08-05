@@ -31,6 +31,8 @@ pre-push:
             run: npx --no-install eslint {push_files} --no-warn-ignored
         check-secrets:
             run: npx --no-install secretlint {push_files}
+        check-unused:
+            run: npx --no-install knip --no-config-hints --cache --cache-location="./node_modules/.cache/knip"
 commit-msg:
     commands:
         commitlint:
