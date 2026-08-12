@@ -5,23 +5,56 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-type ExportTarget = string | { types: string; import: string };
+type ExportConditions = {
+    types?: string;
+    import?: string;
+    require?: string;
+    default?: string;
+};
+type ExportTarget = string | ExportConditions;
 type Deps = Record<string, string>;
 type PackageJson = { exports: Record<string, ExportTarget>; [key: string]: unknown };
 
 const sourcePkg = JSON.parse(await readFile('package.json', 'utf8')) as PackageJson;
 
-const distExports = Object.fromEntries(
-    Object.entries(sourcePkg.exports).map(([subpath, target]): [string, ExportTarget] => {
-        if (typeof target !== 'string' || !target.endsWith('.ts')) {
-            return [subpath, target];
+/**
+ * Добавляем `default` (тот же ESM-файл, что и `import`) только для resolve:
+ * CJS резолверы вроде require.resolve / resolve-from иначе не находят subpath
+ * (например arui-presets-lint/commitlint).
+ */
+const withResolvableConditions = (jsTarget: string, dtsTarget: string): ExportConditions => ({
+    types: dtsTarget,
+    import: jsTarget,
+    default: jsTarget,
+});
+
+const toDistExport = (target: ExportTarget): ExportTarget => {
+    if (typeof target === 'string') {
+        if (!target.endsWith('.ts')) {
+            return target;
         }
 
         const jsTarget = target.replace(/\.ts$/, '.js');
         const dtsTarget = target.replace(/\.ts$/, '.d.ts');
 
-        return [subpath, { types: dtsTarget, import: jsTarget }];
-    }),
+        return withResolvableConditions(jsTarget, dtsTarget);
+    }
+
+    if (target.import && !target.default) {
+        return {
+            ...target,
+            default: target.import,
+        };
+    }
+
+    return target;
+};
+
+const distExports = Object.fromEntries(
+    Object.entries(sourcePkg.exports).map(([subpath, target]): [string, ExportTarget] => [
+        subpath,
+        toDistExport(target),
+    ]),
 );
 
 async function resolveWorkspaceDeps(deps: Deps | undefined): Promise<Deps | undefined> {
