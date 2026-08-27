@@ -5,6 +5,7 @@ export {
     markdownConfig,
     nodeRulesConfig,
     reactA11yConfig,
+    reactHooksConfig,
     reactConfig,
     testsConfig,
     typescriptConfig,
