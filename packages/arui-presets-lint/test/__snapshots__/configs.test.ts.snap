@@ -5,6 +5,7 @@ exports[`итоговый резолв конфига eslint > configs/settings.
   "@",
   "@typescript-eslint",
   "check-file",
+  "core-components",
   "de-morgan",
   "disable-comments",
   "import-x",
@@ -70,6 +71,7 @@ exports[`итоговый резолв конфига eslint > docs/guide.md > p
   "@",
   "@typescript-eslint",
   "check-file",
+  "core-components",
   "de-morgan",
   "disable-comments",
   "import-x",
@@ -217,6 +219,7 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "@",
   "@typescript-eslint",
   "check-file",
+  "core-components",
   "de-morgan",
   "disable-comments",
   "import-x",
@@ -303,6 +306,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "constructor-super": [
     0,
+  ],
+  "core-components/core-components-imports": [
+    2,
   ],
   "de-morgan/no-negated-conjunction": [
     1,
@@ -2060,6 +2066,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "@",
   "@typescript-eslint",
   "check-file",
+  "core-components",
   "de-morgan",
   "disable-comments",
   "import-x",
@@ -2472,6 +2479,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "constructor-super": [
     0,
+  ],
+  "core-components/core-components-imports": [
+    2,
   ],
   "de-morgan/no-negated-conjunction": [
     1,
@@ -4919,6 +4929,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "@",
   "@typescript-eslint",
   "check-file",
+  "core-components",
   "de-morgan",
   "disable-comments",
   "import-x",
@@ -5313,6 +5324,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "constructor-super": [
     0,
+  ],
+  "core-components/core-components-imports": [
+    2,
   ],
   "de-morgan/no-negated-conjunction": [
     1,
@@ -7048,6 +7062,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "@",
   "@typescript-eslint",
   "check-file",
+  "core-components",
   "de-morgan",
   "disable-comments",
   "import-x",
@@ -7442,6 +7457,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "constructor-super": [
     0,
+  ],
+  "core-components/core-components-imports": [
+    2,
   ],
   "de-morgan/no-negated-conjunction": [
     1,
