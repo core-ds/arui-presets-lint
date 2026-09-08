@@ -1,27 +1,31 @@
 import { AST_NODE_TYPES, type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
-import { CORE_COMPONENTS_PACKAGE } from '../constants.js';
-import { recordFinding } from '../report.js';
+import {
+    CORE_COMPONENTS_PACKAGE,
+    type CoreComponentsImportForm,
+    IMPORT_FORM,
+    STANDALONE_PREFIX,
+} from '../constants.js';
 import { getSplitComponents } from '../scanner.js';
 import { type CoreComponentsImportRuleOptions } from '../types.js';
 
 type ParsedSource = {
     component: string;
     platform: string | null;
+    importForm: CoreComponentsImportForm;
 };
-
-const STANDALONE_PREFIX = `${CORE_COMPONENTS_PACKAGE}-`;
 
 /**
  * Извлекает имя компонента и платформенный суффикс из модуля агрегатора
  * или из отдельного подпакета @alfalab/core-components-<pkg>.
  * Например:
- *   '@alfalab/core-components/button/desktop' -> { component: 'button', platform: 'desktop' }
- *   '@alfalab/core-components-button/desktop' -> { component: 'button', platform: 'desktop' }
- *   '@alfalab/core-components-button'         -> { component: 'button', platform: null }
+ *   '@alfalab/core-components/button/desktop' -> { component: 'button', platform: 'desktop', form: 'aggregator' }
+ *   '@alfalab/core-components-button/desktop' -> { component: 'button', platform: 'desktop', form: 'standalone' }
  */
 const parseCoreComponentsSource = (source: string): ParsedSource | null => {
-    if (source === CORE_COMPONENTS_PACKAGE) return { component: '', platform: null };
+    if (source === CORE_COMPONENTS_PACKAGE) {
+        return { component: '', platform: null, importForm: IMPORT_FORM.AGGREGATOR };
+    }
 
     // Ветка отдельного подпакета: '@alfalab/core-components-<pkg>[/platform]'
     if (source.startsWith(STANDALONE_PREFIX)) {
@@ -31,7 +35,7 @@ const parseCoreComponentsSource = (source: string): ParsedSource | null => {
             .replace(/\/index$/, '');
         const [component, platform] = normalized.split('/');
 
-        return { component, platform: platform ?? null };
+        return { component, platform: platform ?? null, importForm: IMPORT_FORM.STANDALONE };
     }
 
     const prefix = `${CORE_COMPONENTS_PACKAGE}/`;
@@ -39,14 +43,13 @@ const parseCoreComponentsSource = (source: string): ParsedSource | null => {
     // Ветка агрегатора: '@alfalab/core-components/<pkg>[/platform]'
     if (!source.startsWith(prefix)) return null;
 
-    // Отбрасываем возможный index.js, index и/или расширение
     const normalized = source
         .slice(prefix.length)
         .replace(/\.(js|jsx|ts|tsx|mjs|cjs)$/, '')
         .replace(/\/index$/, '');
     const [component, platform] = normalized.split('/');
 
-    return { component, platform: platform ?? null };
+    return { component, platform: platform ?? null, importForm: IMPORT_FORM.AGGREGATOR };
 };
 
 export const coreComponentsImportRule: TSESLint.RuleModule<
@@ -57,8 +60,9 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         type: 'problem',
         docs: {
             description:
-                'Требует использовать платформенные импорты (@alfalab/core-components/<pkg>/desktop или @alfalab/core-components/<pkg>/mobile) ' +
-                'для компонентов core-components, у которых есть разделение на desktop/mobile',
+                'Требует использовать платформенные импорты для компонентов core-components, у которых есть разделение на desktop/mobile. ' +
+                'Поддерживаются обе формы импорта: через агрегатор (@alfalab/core-components/<pkg>/desktop или @alfalab/core-components/<pkg>/mobile) ' +
+                'и через отдельный подпакет (@alfalab/core-components-<pkg>/desktop или @alfalab/core-components-<pkg>/mobile).',
         },
         schema: [
             {
@@ -69,9 +73,6 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
                         items: { type: 'string' },
                         uniqueItems: true,
                     },
-                    reportFile: {
-                        oneOf: [{ type: 'string' }, { type: 'boolean' }],
-                    },
                 },
                 additionalProperties: false,
             },
@@ -79,7 +80,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         messages: {
             missingPlatform:
                 'Компонент "{{component}}" имеет разделение на desktop/mobile. ' +
-                'Используйте платформенный импорт "{{packageName}}/{{component}}/desktop" или "{{packageName}}/{{component}}/mobile" ' +
+                'Используйте платформенный импорт "{{suggestedDesktop}}" или "{{suggestedMobile}}" ' +
                 'вместо импорта с корня пакета.',
         },
     },
@@ -92,8 +93,6 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
             ? new Set(options.splitComponents)
             : null;
 
-        // Список сплит-компонентов резолвится относительно файла, который линтится,
-        // чтобы учитывать версию core-components именно этого потребительского проекта.
         let runtimeSplitComponents: Set<string> | null = null;
 
         const getRuntimeSplitComponents = (): Set<string> => {
@@ -117,24 +116,22 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
             // Платформенный импорт - корректный вариант использования
             if (parsed.platform) return;
 
+            // Базовый префикс под форму импорта: агрегатор '@alfalab/core-components/button'
+            // или отдельный пакет '@alfalab/core-components-button'
+            const packageBase =
+                parsed.importForm === IMPORT_FORM.STANDALONE
+                    ? `${CORE_COMPONENTS_PACKAGE}-${parsed.component}`
+                    : `${CORE_COMPONENTS_PACKAGE}/${parsed.component}`;
+
             context.report({
                 node,
                 messageId: 'missingPlatform',
                 data: {
                     component: parsed.component,
-                    packageName: CORE_COMPONENTS_PACKAGE,
+                    suggestedDesktop: `${packageBase}/desktop`,
+                    suggestedMobile: `${packageBase}/mobile`,
                 },
             });
-
-            recordFinding(
-                {
-                    component: parsed.component,
-                    file: context.filename,
-                    line: node.loc.start.line,
-                    importPath: sourceValue,
-                },
-                options.reportFile,
-            );
         };
 
         return {

@@ -1,13 +1,9 @@
 import tsParser from '@typescript-eslint/parser';
 import { createRuleTester } from 'eslint-vitest-rule-tester';
-import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { describe, it } from 'vitest';
 
 import { CORE_COMPONENTS_PACKAGE } from '../../eslint/plugins/core-components/constants.js';
 import { coreComponentsImportRule } from '../../eslint/plugins/core-components/rule/index.js';
-import { type CoreComponentsImportFinding } from '../../eslint/plugins/core-components/types.js';
 
 const testerConfig = {
     linterOptions: {
@@ -37,70 +33,70 @@ describe('core-components-imports', () => {
         it.each([...splitComponents])('принимает платформенный импорт %s', async (component) => {
             await valid({
                 code: `import { ${component}Desktop } from '${CORE_COMPONENTS_PACKAGE}/${component}/desktop';`,
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает мобильный платформенный импорт', async () => {
             await valid({
                 code: "import { ButtonMobile } from '@alfalab/core-components/button/mobile';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает импорт несвязанного пакета', async () => {
             await valid({
                 code: "import { Link } from '@alfalab/core-components/link';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает импорт корня агрегатора без компонента', async () => {
             await valid({
                 code: "import { setup } from '@alfalab/core-components';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает импорт постороннего пакета', async () => {
             await valid({
                 code: "import { Button } from 'some-lib';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает импорт только типов с корня пакета', async () => {
             await valid({
                 code: "import { type ButtonProps } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает экспорт только типов с корня пакета', async () => {
             await valid({
                 code: "export type { ButtonProps } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает платформенный импорт из отдельного пакета', async () => {
             await valid({
                 code: "import { ButtonDesktop } from '@alfalab/core-components-button/desktop';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает мобильный импорт из отдельного пакета', async () => {
             await valid({
                 code: "import { ButtonMobile } from '@alfalab/core-components-button/mobile';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it('принимает импорт отдельного пакета без разделения desktop/mobile', async () => {
             await valid({
                 code: "import { Accordion } from '@alfalab/core-components-accordion';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
     });
@@ -109,23 +105,41 @@ describe('core-components-imports', () => {
         it('помечает импорт с корня сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
-                errors: [{ messageId: 'missingPlatform' }],
+                options: [{ splitComponents }],
+                errors: [
+                    {
+                        messageId: 'missingPlatform',
+                        data: {
+                            component: 'button',
+                            suggestedDesktop: '@alfalab/core-components/button/desktop',
+                            suggestedMobile: '@alfalab/core-components/button/mobile',
+                        },
+                    },
+                ],
             });
         });
 
         it('помечает импорт сплит-компонента из отдельного пакета без платформы как ошибку', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components-button';",
-                options: [{ splitComponents, reportFile: false }],
-                errors: [{ messageId: 'missingPlatform' }],
+                options: [{ splitComponents }],
+                errors: [
+                    {
+                        messageId: 'missingPlatform',
+                        data: {
+                            component: 'button',
+                            suggestedDesktop: '@alfalab/core-components-button/desktop',
+                            suggestedMobile: '@alfalab/core-components-button/mobile',
+                        },
+                    },
+                ],
             });
         });
 
         it('помечает export from сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "export { Button } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -133,7 +147,7 @@ describe('core-components-imports', () => {
         it('помечает export * from сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "export * from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -141,7 +155,7 @@ describe('core-components-imports', () => {
         it('помечает импорт с /index как ошибку', async () => {
             await invalid({
                 code: "export * from '@alfalab/core-components/button/index';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -149,7 +163,7 @@ describe('core-components-imports', () => {
         it('помечает смешанный импорт значения и типа с корня как ошибку', async () => {
             await invalid({
                 code: "import { Button, type ButtonProps } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -157,14 +171,14 @@ describe('core-components-imports', () => {
         it('принимает import type из компонента с разделением desktop/mobile', async () => {
             await valid({
                 code: "import type { ButtonProps } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
             });
         });
 
         it.each([...splitComponents])('помечает импорт %s с корня как ошибку', async (component) => {
             await invalid({
                 code: `import { ${component} } from '${CORE_COMPONENTS_PACKAGE}/${component}';`,
-                options: [{ splitComponents, reportFile: false }],
+                options: [{ splitComponents }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -177,7 +191,6 @@ describe('core-components-imports', () => {
         it('помечает сплит-компонент, определённый из node_modules, как ошибку', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components/button';",
-                options: [{ reportFile: false }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -185,77 +198,7 @@ describe('core-components-imports', () => {
         it('принимает платформенный импорт при runtime-скане', async () => {
             await valid({
                 code: "import { ButtonDesktop } from '@alfalab/core-components/button/desktop';",
-                options: [{ reportFile: false }],
             });
-        });
-    });
-
-    describe('отчёт в JSON', () => {
-        let tmpDir: string;
-
-        beforeEach(() => {
-            tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'core-components-imports-'));
-        });
-
-        afterEach(() => {
-            fs.rmSync(tmpDir, { recursive: true, force: true });
-        });
-
-        it('пишет плоский список нарушений с нормализованным путём', async () => {
-            const reportFile = path.join(tmpDir, 'errors.json');
-
-            await invalid({
-                code: "import { Button } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile }],
-                errors: [{ messageId: 'missingPlatform' }],
-            });
-
-            const report = JSON.parse(fs.readFileSync(reportFile, 'utf8')) as CoreComponentsImportFinding[];
-
-            expect(report).toHaveLength(1);
-            expect(report[0]).toMatchObject({
-                component: 'button',
-                line: 1,
-                importPath: '@alfalab/core-components/button',
-            });
-            // Путь в отчёте всегда с разделителем "/", независимо от ОС
-            expect(report[0].file).not.toContain('\\');
-        });
-
-        it('не пишет отчёт при reportFile: false', async () => {
-            const reportFile = path.join(tmpDir, 'should-not-exist.json');
-
-            await invalid({
-                code: "import { Button } from '@alfalab/core-components/button';",
-                options: [{ splitComponents, reportFile: false }],
-                errors: [{ messageId: 'missingPlatform' }],
-            });
-
-            expect(fs.existsSync(reportFile)).toBe(false);
-        });
-
-        it('собирает несколько нарушений и сортирует по строке', async () => {
-            const reportFile = path.join(tmpDir, 'errors.json');
-
-            await invalid({
-                code: [
-                    "import { Button } from '@alfalab/core-components/button';",
-                    "import { ButtonMobile } from '@alfalab/core-components/button/mobile';",
-                    "import { Button as Btn } from '@alfalab/core-components/button';",
-                ].join('\n'),
-                options: [{ splitComponents, reportFile }],
-                errors: [
-                    { messageId: 'missingPlatform' },
-                    { messageId: 'missingPlatform' },
-                ],
-            });
-
-            const report = JSON.parse(fs.readFileSync(reportFile, 'utf8')) as CoreComponentsImportFinding[];
-
-            // Два корневых импорта (строки 1 и 3) попадают в отчёт; платформенный (строка 2) - нет
-            expect(report).toHaveLength(2);
-            expect(report[0].line).toBe(1);
-            expect(report[1].line).toBe(3);
         });
     });
 });
