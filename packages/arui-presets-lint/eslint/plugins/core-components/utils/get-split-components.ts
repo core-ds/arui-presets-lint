@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-import { CORE_COMPONENTS_PACKAGE, PLATFORM_DIRS } from './constants.js';
+import { CORE_COMPONENTS_PACKAGE, PLATFORM_DIRS } from '../constants/index.js';
 
 const platformDirs: string[] = [...PLATFORM_DIRS];
 
@@ -14,7 +14,7 @@ const platformDirs: string[] = [...PLATFORM_DIRS];
  * @returns {string} Абсолютный путь к директории пакета
  * @throws {Error} Если пакет не найден
  */
-export const resolveCoreComponentsDir = (from: string): string => {
+const resolveCoreComponentsDir = (from: string): string => {
     // В rule-тестерах и при линте виртуальных файлов context.filename может указывать
     // на несуществующий путь - в этом случае резолвим пакет от cwd процесса.
     let base = from;
@@ -42,7 +42,7 @@ export const resolveCoreComponentsDir = (from: string): string => {
  * @param {string} componentDir - Абсолютный путь к подкаталогу компонента
  * @returns {boolean} true, если есть и desktop, и mobile
  */
-export const isPlatformSplit = (componentDir: string): boolean =>
+const isPlatformSplit = (componentDir: string): boolean =>
     platformDirs.every((platform) => fs.existsSync(path.join(componentDir, platform)));
 
 /**
@@ -51,7 +51,7 @@ export const isPlatformSplit = (componentDir: string): boolean =>
  * @param {string} coreComponentsDir - Абсолютный путь к директории пакета
  * @returns {string[]} Список имён сплитнутых компонентов (отсортирован)
  */
-export const findSplitComponents = (coreComponentsDir: string): string[] => {
+const findSplitComponents = (coreComponentsDir: string): string[] => {
     const splitComponents: string[] = [];
 
     for (const entry of fs.readdirSync(coreComponentsDir, { withFileTypes: true })) {

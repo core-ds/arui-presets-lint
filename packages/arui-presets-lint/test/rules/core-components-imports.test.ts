@@ -2,7 +2,7 @@ import tsParser from '@typescript-eslint/parser';
 import { createRuleTester } from 'eslint-vitest-rule-tester';
 import { describe, it } from 'vitest';
 
-import { CORE_COMPONENTS_PACKAGE } from '../../eslint/plugins/core-components/constants.js';
+import { CORE_COMPONENTS_PACKAGE } from '../../eslint/plugins/core-components/constants/index.js';
 import { coreComponentsImportRule } from '../../eslint/plugins/core-components/rule/index.js';
 
 const testerConfig = {
