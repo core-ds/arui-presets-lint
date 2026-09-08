@@ -97,7 +97,7 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('принимает импорт несплитнутого отдельного пакета', async () => {
+        it('принимает импорт отдельного пакета без разделения desktop/mobile', async () => {
             await valid({
                 code: "import { Accordion } from '@alfalab/core-components-accordion';",
                 options: [{ splitComponents, reportFile: false }],
@@ -106,7 +106,7 @@ describe('core-components-imports', () => {
     });
 
     describe('invalid', () => {
-        it('флагает импорт сплитнутого компонента без платформенного сабпаса', async () => {
+        it('помечает импорт с корня сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components/button';",
                 options: [{ splitComponents, reportFile: false }],
@@ -114,7 +114,7 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('флагает импорт сплитнутого компонента из отдельного пакета без платформы', async () => {
+        it('помечает импорт сплит-компонента из отдельного пакета без платформы как ошибку', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components-button';",
                 options: [{ splitComponents, reportFile: false }],
@@ -122,7 +122,7 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('флагает export from сплитнутого компонента', async () => {
+        it('помечает export from сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "export { Button } from '@alfalab/core-components/button';",
                 options: [{ splitComponents, reportFile: false }],
@@ -130,7 +130,7 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('флагает export * from сплитнутого компонента', async () => {
+        it('помечает export * from сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "export * from '@alfalab/core-components/button';",
                 options: [{ splitComponents, reportFile: false }],
@@ -138,7 +138,7 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('флагает импорт сплитнутого компонента с /index', async () => {
+        it('помечает импорт с /index как ошибку', async () => {
             await invalid({
                 code: "export * from '@alfalab/core-components/button/index';",
                 options: [{ splitComponents, reportFile: false }],
@@ -146,7 +146,7 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('флагает смешанный импорт значения и типа с корня', async () => {
+        it('помечает смешанный импорт значения и типа с корня как ошибку', async () => {
             await invalid({
                 code: "import { Button, type ButtonProps } from '@alfalab/core-components/button';",
                 options: [{ splitComponents, reportFile: false }],
@@ -154,14 +154,14 @@ describe('core-components-imports', () => {
             });
         });
 
-        it('принимает import type из сплит-компонента', async () => {
+        it('принимает import type из компонента с разделением desktop/mobile', async () => {
             await valid({
                 code: "import type { ButtonProps } from '@alfalab/core-components/button';",
                 options: [{ splitComponents, reportFile: false }],
             });
         });
 
-        it.each([...splitComponents])('флагает импорт %s с корня', async (component) => {
+        it.each([...splitComponents])('помечает импорт %s с корня как ошибку', async (component) => {
             await invalid({
                 code: `import { ${component} } from '${CORE_COMPONENTS_PACKAGE}/${component}';`,
                 options: [{ splitComponents, reportFile: false }],
@@ -174,7 +174,7 @@ describe('core-components-imports', () => {
         // Правило само определяет сплит-компоненты по установленной в node_modules
         // версии @alfalab/core-components. В проде правило резолвит пакет относительно
         // линтуемого файла, поэтому здесь опираемся на установленную devDependency.
-        it('флагает сплит-компонент, определённый из node_modules', async () => {
+        it('помечает сплит-компонент, определённый из node_modules, как ошибку', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components/button';",
                 options: [{ reportFile: false }],

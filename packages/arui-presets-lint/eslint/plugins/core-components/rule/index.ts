@@ -57,8 +57,8 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         type: 'problem',
         docs: {
             description:
-                'Требует использовать платформенные импорты (@alfalab/core-components/<pkg>/desktop или /mobile) ' +
-                'для компонентов core-components, сплитнутых на платформы',
+                'Требует использовать платформенные импорты (@alfalab/core-components/<pkg>/desktop или @alfalab/core-components/<pkg>/mobile) ' +
+                'для компонентов core-components, у которых есть разделение на desktop/mobile',
         },
         schema: [
             {
@@ -78,8 +78,8 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         ],
         messages: {
             missingPlatform:
-                'Компонент "{{component}}" сплитнут на платформы. ' +
-                'Используйте платформенный импорт "{{packageName}}/{{component}}/desktop" или "/mobile" ' +
+                'Компонент "{{component}}" имеет разделение на desktop/mobile. ' +
+                'Используйте платформенный импорт "{{packageName}}/{{component}}/desktop" или "{{packageName}}/{{component}}/mobile" ' +
                 'вместо импорта с корня пакета.',
         },
     },
@@ -143,7 +143,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
                 if (typeof sourceValue !== 'string') return;
 
-                // Импорт только типов - не флагаем, типы можно брать и с корня пакета.
+                // Импорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета.
                 // Покрывает обе формы: `import type { X }` и `import { type X }`.
                 const isTypeOnlyImport =
                     node.importKind === 'type' ||
@@ -165,7 +165,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
                 if (typeof sourceValue !== 'string') return;
 
-                // Экспорт только типов - не флагаем, типы можно брать и с корня пакета
+                // Экспорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета
                 if (node.exportKind === 'type') return;
 
                 reportIfWrongPlatform(node, sourceValue);
