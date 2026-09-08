@@ -15,7 +15,6 @@ import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-import { coreComponentsConfig, coreComponentsPlugin } from './plugins/core-components/index.js';
 import { disableCommentsConfig, disableCommentsPlugin } from './plugins/index.js';
 import { globalIgnores } from './config.js';
 import { GLOBAL_SCRIPTS_SCOPE } from './constants.js';
@@ -89,7 +88,6 @@ export const eslintConfig = [
             n: nodePlugin,
             json: jsonPlugin,
             markdown: markdownPlugin,
-            'core-components': coreComponentsPlugin,
         } as unknown as Linter.Config['plugins'],
     },
 
@@ -108,7 +106,6 @@ export const eslintConfig = [
     jsonConfig,
     markdownConfig,
     checkFileConfig,
-    coreComponentsConfig,
     /*
         ☭.
     */
