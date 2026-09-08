@@ -34,24 +34,16 @@ export const resolveCoreComponentsDir = (from: string): string => {
 
 /**
  * Определяет, является ли подкаталог пакета сплитнутым на платформы.
- * Сплит определяется по наличию подпапок (или файлов) desktop и mobile.
- * Это единственный согласованный внешний интерфейс, доступный из node_modules.
+ * Сплит определяется по наличию подкаталогов desktop и mobile прямо под компонентом.
+ * Это единственный согласованный внешний интерфейс, доступный из node_modules:
+ * у всех сплитнутых компонентов в опубликованном пакете есть обе папки,
+ * а файлы вида Component.{desktop,mobile}.d.ts могут встречаться и у несплитнутых
+ * (например mq), поэтому критерий по файлам не используется.
  * @param {string} componentDir - Абсолютный путь к подкаталогу компонента
  * @returns {boolean} true, если есть и desktop, и mobile
  */
-export const isPlatformSplit = (componentDir: string): boolean => {
-    const has = (platform: string): boolean => {
-        const dirPath = path.join(componentDir, platform);
-
-        if (fs.existsSync(dirPath)) return true;
-
-        const filePath = path.join(componentDir, `Component.${platform}.d.ts`);
-
-        return fs.existsSync(filePath);
-    };
-
-    return platformDirs.every(has);
-};
+export const isPlatformSplit = (componentDir: string): boolean =>
+    platformDirs.every((platform) => fs.existsSync(path.join(componentDir, platform)));
 
 /**
  * Сканирует установленный пакет @alfalab/core-components и возвращает
@@ -64,6 +56,7 @@ export const findSplitComponents = (coreComponentsDir: string): string[] => {
 
     for (const entry of fs.readdirSync(coreComponentsDir, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
+        if (entry.name === 'node_modules') continue;
         if (platformDirs.includes(entry.name)) continue;
 
         const componentDir = path.join(coreComponentsDir, entry.name);

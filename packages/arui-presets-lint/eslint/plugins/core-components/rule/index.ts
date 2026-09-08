@@ -10,14 +10,33 @@ type ParsedSource = {
     platform: string | null;
 };
 
+const STANDALONE_PREFIX = `${CORE_COMPONENTS_PACKAGE}-`;
+
 /**
- * Извлекает имя компонента и платформенный суффикс из модуля агрегатора.
+ * Извлекает имя компонента и платформенный суффикс из модуля агрегатора
+ * или из отдельного подпакета @alfalab/core-components-<pkg>.
+ * Например:
+ *   '@alfalab/core-components/button/desktop' -> { component: 'button', platform: 'desktop' }
+ *   '@alfalab/core-components-button/desktop' -> { component: 'button', platform: 'desktop' }
+ *   '@alfalab/core-components-button'         -> { component: 'button', platform: null }
  */
 const parseCoreComponentsSource = (source: string): ParsedSource | null => {
     if (source === CORE_COMPONENTS_PACKAGE) return { component: '', platform: null };
 
+    // Ветка отдельного подпакета: '@alfalab/core-components-<pkg>[/platform]'
+    if (source.startsWith(STANDALONE_PREFIX)) {
+        const normalized = source
+            .slice(STANDALONE_PREFIX.length)
+            .replace(/\.(js|jsx|ts|tsx|mjs|cjs)$/, '')
+            .replace(/\/index$/, '');
+        const [component, platform] = normalized.split('/');
+
+        return { component, platform: platform ?? null };
+    }
+
     const prefix = `${CORE_COMPONENTS_PACKAGE}/`;
 
+    // Ветка агрегатора: '@alfalab/core-components/<pkg>[/platform]'
     if (!source.startsWith(prefix)) return null;
 
     // Отбрасываем возможный index.js, index и/или расширение
