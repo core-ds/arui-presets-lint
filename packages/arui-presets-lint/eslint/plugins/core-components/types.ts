@@ -6,6 +6,13 @@ export type CoreComponentsImportRuleOptions = {
      * в node_modules версии @alfalab/core-components в момент запуска.
      */
     splitComponents?: string[];
+
+    /**
+     * Путь к JSON-файлу отчёта (плоский список найденных нарушений).
+     * По умолчанию - 'core-components-imports-errors.json' в cwd процесса.
+     * Передайте false, чтобы полностью отключить запись отчёта.
+     */
+    reportFile?: string | false;
 };
 
 export type CoreComponentsImportFinding = {

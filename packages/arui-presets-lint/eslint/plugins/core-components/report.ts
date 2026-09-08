@@ -7,8 +7,16 @@ const DEFAULT_REPORT_FILENAME = 'core-components-imports-errors.json';
 
 const findingsByReport = new Map<string, Map<string, CoreComponentsImportFinding>>();
 
+/**
+ * Нормализует путь до единого вида с разделителем "/", чтобы отчёт
+ * выглядел одинаково на Windows и macOS/Linux (слэш как универсальный разделитель).
+ * @param {string} filePath - Оригинальный путь
+ * @returns {string} Нормализованный путь с "/" в качестве разделителя
+ */
+const normalizePath = (filePath: string): string => filePath.replaceAll('\\', '/');
+
 const findingKey = (finding: CoreComponentsImportFinding) =>
-    `${finding.file}:${finding.line}:${finding.importPath}`;
+    `${normalizePath(finding.file)}:${finding.line}:${finding.importPath}`;
 
 const resolveReportPath = (reportFile?: string | false) => {
     if (reportFile === false) return null;
@@ -18,11 +26,16 @@ const resolveReportPath = (reportFile?: string | false) => {
 };
 
 const writeReport = (reportPath: string, findings: CoreComponentsImportFinding[]) => {
-    const sorted = [...findings].toSorted((a, b) => {
-        if (a.file !== b.file) return a.file.localeCompare(b.file);
-        if (a.line !== b.line) return a.line - b.line;
-        return a.importPath.localeCompare(b.importPath);
-    });
+    const sorted = [...findings]
+        .map((finding) => ({
+            ...finding,
+            file: normalizePath(finding.file),
+        }))
+        .toSorted((a, b) => {
+            if (a.file !== b.file) return a.file.localeCompare(b.file);
+            if (a.line !== b.line) return a.line - b.line;
+            return a.importPath.localeCompare(b.importPath);
+        });
 
     fs.mkdirSync(path.dirname(reportPath), { recursive: true });
     fs.writeFileSync(reportPath, `${JSON.stringify(sorted, null, 4)}\n`, 'utf8');

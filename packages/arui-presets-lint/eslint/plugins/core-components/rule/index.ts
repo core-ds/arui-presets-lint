@@ -5,12 +5,15 @@ import { recordFinding } from '../report.js';
 import { getSplitComponents } from '../scanner.js';
 import { type CoreComponentsImportRuleOptions } from '../types.js';
 
+type ParsedSource = {
+    component: string;
+    platform: string | null;
+};
+
 /**
  * Извлекает имя компонента и платформенный суффикс из модуля агрегатора.
- * @param {string} source - Значение module, например '@alfalab/core-components/button/desktop'
- * @returns {{ component: string; platform: string | null } | null}
  */
-const parseCoreComponentsSource = (source: string) => {
+const parseCoreComponentsSource = (source: string): ParsedSource | null => {
     if (source === CORE_COMPONENTS_PACKAGE) return { component: '', platform: null };
 
     const prefix = `${CORE_COMPONENTS_PACKAGE}/`;
@@ -46,6 +49,9 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
                         type: 'array',
                         items: { type: 'string' },
                         uniqueItems: true,
+                    },
+                    reportFile: {
+                        oneOf: [{ type: 'string' }, { type: 'boolean' }],
                     },
                 },
                 additionalProperties: false,
@@ -101,16 +107,19 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
                 },
             });
 
-            recordFinding({
-                component: parsed.component,
-                file: context.filename,
-                line: node.loc.start.line,
-                importPath: sourceValue,
-            });
+            recordFinding(
+                {
+                    component: parsed.component,
+                    file: context.filename,
+                    line: node.loc.start.line,
+                    importPath: sourceValue,
+                },
+                options.reportFile,
+            );
         };
 
         return {
-            ImportDeclaration(node: TSESTree.ImportDeclaration) {
+            ImportDeclaration: (node: TSESTree.ImportDeclaration) => {
                 const sourceValue = node.source.value;
 
                 if (typeof sourceValue !== 'string') return;
@@ -130,7 +139,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
                 reportIfWrongPlatform(node, sourceValue);
             },
-            ExportNamedDeclaration(node: TSESTree.ExportNamedDeclaration) {
+            ExportNamedDeclaration: (node: TSESTree.ExportNamedDeclaration) => {
                 if (!node.source) return;
 
                 const sourceValue = node.source.value;
@@ -142,7 +151,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
                 reportIfWrongPlatform(node, sourceValue);
             },
-            ExportAllDeclaration(node: TSESTree.ExportAllDeclaration) {
+            ExportAllDeclaration: (node: TSESTree.ExportAllDeclaration) => {
                 const sourceValue = node.source.value;
 
                 if (typeof sourceValue !== 'string') return;

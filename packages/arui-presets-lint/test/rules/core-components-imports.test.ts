@@ -1,9 +1,13 @@
 import tsParser from '@typescript-eslint/parser';
 import { createRuleTester } from 'eslint-vitest-rule-tester';
-import { describe, it } from 'vitest';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { CORE_COMPONENTS_PACKAGE } from '../../eslint/plugins/core-components/constants.js';
 import { coreComponentsImportRule } from '../../eslint/plugins/core-components/rule/index.js';
+import { type CoreComponentsImportFinding } from '../../eslint/plugins/core-components/types.js';
 
 const testerConfig = {
     linterOptions: {
@@ -144,7 +148,7 @@ describe('core-components-imports', () => {
         it('флагает сплит-компонент, определённый из node_modules', async () => {
             await invalid({
                 code: "import { Button } from '@alfalab/core-components/button';",
-                options: [{}],
+                options: [{ reportFile: false }],
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
@@ -152,8 +156,53 @@ describe('core-components-imports', () => {
         it('принимает платформенный импорт при runtime-скане', async () => {
             await valid({
                 code: "import { ButtonDesktop } from '@alfalab/core-components/button/desktop';",
-                options: [{}],
+                options: [{ reportFile: false }],
             });
+        });
+    });
+
+    describe('отчёт в JSON', () => {
+        let tmpDir: string;
+
+        beforeEach(() => {
+            tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'core-components-imports-'));
+        });
+
+        afterEach(() => {
+            fs.rmSync(tmpDir, { recursive: true, force: true });
+        });
+
+        it('пишет плоский список нарушений с нормализованным путём', async () => {
+            const reportFile = path.join(tmpDir, 'errors.json');
+
+            await invalid({
+                code: "import { Button } from '@alfalab/core-components/button';",
+                options: [{ splitComponents, reportFile }],
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+
+            const report = JSON.parse(fs.readFileSync(reportFile, 'utf8')) as CoreComponentsImportFinding[];
+
+            expect(report).toHaveLength(1);
+            expect(report[0]).toMatchObject({
+                component: 'button',
+                line: 1,
+                importPath: '@alfalab/core-components/button',
+            });
+            // Путь в отчёте всегда с разделителем "/", независимо от ОС
+            expect(report[0].file).not.toContain('\\');
+        });
+
+        it('не пишет отчёт при reportFile: false', async () => {
+            const reportFile = path.join(tmpDir, 'should-not-exist.json');
+
+            await invalid({
+                code: "import { Button } from '@alfalab/core-components/button';",
+                options: [{ splitComponents, reportFile: false }],
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+
+            expect(fs.existsSync(reportFile)).toBe(false);
         });
     });
 });

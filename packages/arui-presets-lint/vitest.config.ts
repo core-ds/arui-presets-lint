@@ -10,7 +10,7 @@ export default defineConfig({
             thresholds: {
                 statements: 90,
                 functions: 90,
-                branches: 80,
+                branches: 85,
                 lines: 90,
             },
             exclude: [...configDefaults.exclude],

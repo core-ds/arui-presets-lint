@@ -1,0 +1,26 @@
+[
+    {
+        "component": "button",
+        "file": "C:/Users/dev/Desktop/pomoika/development/JavaScript/Alfa-bank/arui-presets-lint/packages/arui-presets-lint/file.ts",
+        "line": 1,
+        "importPath": "@alfalab/core-components/button"
+    },
+    {
+        "component": "button",
+        "file": "C:/Users/dev/Desktop/pomoika/development/JavaScript/Alfa-bank/arui-presets-lint/packages/arui-presets-lint/file.ts",
+        "line": 1,
+        "importPath": "@alfalab/core-components/button/index"
+    },
+    {
+        "component": "modal",
+        "file": "C:/Users/dev/Desktop/pomoika/development/JavaScript/Alfa-bank/arui-presets-lint/packages/arui-presets-lint/file.ts",
+        "line": 1,
+        "importPath": "@alfalab/core-components/modal"
+    },
+    {
+        "component": "select",
+        "file": "C:/Users/dev/Desktop/pomoika/development/JavaScript/Alfa-bank/arui-presets-lint/packages/arui-presets-lint/file.ts",
+        "line": 1,
+        "importPath": "@alfalab/core-components/select"
+    }
+]
