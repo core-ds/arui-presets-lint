@@ -66,6 +66,18 @@ describe('core-components-imports', () => {
             });
         });
 
+        it('принимает импорт, где все спецификаторы - типы', async () => {
+            await valid({
+                code: "import { type ButtonProps, type ButtonData } from '@alfalab/core-components/button';",
+            });
+        });
+
+        it('принимает несколько type-спецификаторов без import type', async () => {
+            await valid({
+                code: "import { type ButtonProps, type CommonButtonProps } from '@alfalab/core-components-button';",
+            });
+        });
+
         it('принимает экспорт только типов с корня пакета', async () => {
             await valid({
                 code: "export type { ButtonProps } from '@alfalab/core-components/button';",
@@ -150,6 +162,20 @@ describe('core-components-imports', () => {
             });
         });
 
+        it('помечает side-effect импорт сплит-компонента как ошибку', async () => {
+            await invalid({
+                code: "import '@alfalab/core-components/button';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('помечает export * as ns из сплит-компонента как ошибку', async () => {
+            await invalid({
+                code: "export * as buttonNs from '@alfalab/core-components/button';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
         it('помечает импорт с /index как ошибку', async () => {
             await invalid({
                 code: "export * from '@alfalab/core-components/button/index';",
@@ -160,6 +186,20 @@ describe('core-components-imports', () => {
         it('помечает смешанный импорт значения и типа с корня как ошибку', async () => {
             await invalid({
                 code: "import { Button, type ButtonProps } from '@alfalab/core-components/button';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('помечает смешанный импорт нескольких значений и типа как ошибку', async () => {
+            await invalid({
+                code: "import { Button, ButtonLoader, type ButtonProps } from '@alfalab/core-components/button';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('помечает экспорт нескольких значений с типом как ошибку', async () => {
+            await invalid({
+                code: "export { Button, ButtonLoader, type ButtonProps } from '@alfalab/core-components/button';",
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });
