@@ -1,8 +1,8 @@
-import { AST_NODE_TYPES, type TSESLint, type TSESTree } from '@typescript-eslint/utils';
+import { type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
 import { CORE_COMPONENTS_PACKAGE, IMPORT_FORM } from '../constants/index.js';
 import { type CoreComponentsImportRuleOptions } from '../types/index.js';
-import { getSplitComponents, parseCoreComponentsSource } from '../utils/index.js';
+import { getSplitComponents, isTypeOnlyImport, parseCoreComponentsSource } from '../utils/index.js';
 
 export const coreComponentsImportRule: TSESLint.RuleModule<
     'missingPlatform',
@@ -58,15 +58,19 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         // Результат кэшируется один раз, чтобы не пересобирать Set на каждый импорт.
         let effectiveSplitComponents: Set<string> | null = null;
 
-        const getEffectiveSplitComponents = (): Set<string> => {
-            if (effectiveSplitComponents) return effectiveSplitComponents;
-
+        const computeEffectiveSplitComponents = (): Set<string> => {
             const splitComponents =
                 manualSplitComponents ?? new Set(getSplitComponents(context.filename));
 
-            effectiveSplitComponents = excludedSplitComponents
+            return excludedSplitComponents
                 ? new Set([...splitComponents].filter((c) => !excludedSplitComponents.has(c)))
                 : splitComponents;
+        };
+
+        const getEffectiveSplitComponents = (): Set<string> => {
+            if (effectiveSplitComponents) return effectiveSplitComponents;
+
+            effectiveSplitComponents = computeEffectiveSplitComponents();
 
             return effectiveSplitComponents;
         };
@@ -110,18 +114,8 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
                 if (typeof sourceValue !== 'string') return;
 
-                // Импорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета.
-                // Покрывает обе формы: `import type { X }` и `import { type X }`.
-                const isTypeOnlyImport =
-                    node.importKind === 'type' ||
-                    (node.specifiers.length > 0 &&
-                        node.specifiers.every(
-                            (specifier) =>
-                                specifier.type === AST_NODE_TYPES.ImportSpecifier &&
-                                specifier.importKind === 'type',
-                        ));
-
-                if (isTypeOnlyImport) return;
+                // Импорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета
+                if (isTypeOnlyImport(node)) return;
 
                 reportIfWrongPlatform(node, sourceValue);
             },

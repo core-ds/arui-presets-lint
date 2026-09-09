@@ -125,13 +125,12 @@ const splitComponentsCache = new Map<string, string[]>();
  */
 export const getSplitComponents = (from: string): string[] => {
     const coreComponentsDir = resolveCoreComponentsDir(from);
+    const cached = splitComponentsCache.get(coreComponentsDir);
 
-    let splitComponents = splitComponentsCache.get(coreComponentsDir);
+    if (cached !== undefined) return cached;
 
-    if (splitComponents === undefined) {
-        splitComponents = findSplitComponents(coreComponentsDir);
-        splitComponentsCache.set(coreComponentsDir, splitComponents);
-    }
+    const splitComponents = findSplitComponents(coreComponentsDir);
+    splitComponentsCache.set(coreComponentsDir, splitComponents);
 
     return splitComponents;
 };

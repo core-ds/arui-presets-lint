@@ -12,6 +12,13 @@ type ParsedSource = {
 };
 
 /**
+ * Нормализует модуль-сегмент источника: обрезает файловое расширение и суффикс
+ * /index, оставляя только `<component>[/platform]`.
+ */
+const normalizeModulePath = (raw: string): string =>
+    raw.replace(/\.(js|jsx|ts|tsx|mjs|cjs)$/, '').replace(/\/index$/, '');
+
+/**
  * Извлекает имя компонента и платформенный суффикс из модуля агрегатора
  * или из отдельного подпакета @alfalab/core-components-<pkg>.
  * Например:
@@ -25,11 +32,9 @@ export const parseCoreComponentsSource = (source: string): ParsedSource | null =
 
     // Ветка отдельного подпакета: '@alfalab/core-components-<pkg>[/platform]'
     if (source.startsWith(STANDALONE_PREFIX)) {
-        const normalized = source
-            .slice(STANDALONE_PREFIX.length)
-            .replace(/\.(js|jsx|ts|tsx|mjs|cjs)$/, '')
-            .replace(/\/index$/, '');
-        const [component, platform] = normalized.split('/');
+        const [component, platform] = normalizeModulePath(
+            source.slice(STANDALONE_PREFIX.length),
+        ).split('/');
 
         return { component, platform: platform ?? null, importForm: IMPORT_FORM.STANDALONE };
     }
@@ -39,11 +44,7 @@ export const parseCoreComponentsSource = (source: string): ParsedSource | null =
     // Ветка агрегатора: '@alfalab/core-components/<pkg>[/platform]'
     if (!source.startsWith(prefix)) return null;
 
-    const normalized = source
-        .slice(prefix.length)
-        .replace(/\.(js|jsx|ts|tsx|mjs|cjs)$/, '')
-        .replace(/\/index$/, '');
-    const [component, platform] = normalized.split('/');
+    const [component, platform] = normalizeModulePath(source.slice(prefix.length)).split('/');
 
     return { component, platform: platform ?? null, importForm: IMPORT_FORM.AGGREGATOR };
 };
