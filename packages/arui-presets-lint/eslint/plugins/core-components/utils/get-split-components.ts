@@ -2,9 +2,15 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-import { CORE_COMPONENTS_PACKAGE, PLATFORM_DIRS } from '../constants/index.js';
+import {
+    CORE_COMPONENTS_PACKAGE,
+    PLATFORM_DIRS,
+    PLATFORM_FILE_EXTENSIONS,
+} from '../constants/index.js';
 
 const platformDirs: string[] = [...PLATFORM_DIRS];
+
+const platformFileExtensions: string[] = [...PLATFORM_FILE_EXTENSIONS];
 
 /**
  * Резолвит директорию пакета @alfalab/core-components из node_modules,
@@ -33,21 +39,57 @@ const resolveCoreComponentsDir = (from: string): string => {
 };
 
 /**
- * Определяет, является ли подкаталог пакета сплитнутым на платформы.
- * Сплит определяется по наличию подкаталогов desktop и mobile прямо под компонентом.
- * Это единственный согласованный внешний интерфейс, доступный из node_modules:
- * у всех сплитнутых компонентов в опубликованном пакете есть обе папки,
- * а файлы вида Component.{desktop,mobile}.d.ts могут встречаться и у несплитнутых
- * (например mq), поэтому критерий по файлам не используется.
+ * Строит регэксп, находящий платформу строго как отдельный сегмент имени
+ * (в начале, в конце или отделённый точкой/дефисом/подчёркиванием),
+ * чтобы не ловить подстроки в helper-файлах вроде useIsDesktop.js.
+ */
+const platformNamePattern = (platform: string): RegExp =>
+    new RegExp(`(^|[._-])${platform}([._-]|$)`);
+
+/**
+ * Является ли имя файла декларацией типов (.d.ts, .d.mts, .d.cts).
+ * Печатные типы намеренно исключаются из маркеров сплита: правило работает
+ * только с рантайм-импортами и пропускает type imports/exports.
+ */
+const isDeclarationFile = (fileName: string): boolean => /\.d\.(ts|mts|cts)$/.test(fileName);
+
+/**
+ * Проверяет, что для конкретной платформы в корне компонента есть подкаталог
+ * (desktop/, mobile/) либо рантайм-файл с платформой-сегментом имени
+ * (desktop.js, Component.desktop.js, Alert.desktop.js). Типы (.d.ts) не считаются:
+ * правило требует платформенный импорт только для рантайм-импортов.
  * @param {string} componentDir - Абсолютный путь к подкаталогу компонента
- * @returns {boolean} true, если есть и desktop, и mobile
+ * @param {string} platform - Платформа (desktop или mobile)
+ * @returns {boolean} true, если для платформы есть папка или файл
+ */
+const hasPlatformEntry = (componentDir: string, platform: string): boolean => {
+    if (fs.existsSync(path.join(componentDir, platform))) return true;
+
+    const pattern = platformNamePattern(platform);
+
+    return fs
+        .readdirSync(componentDir, { withFileTypes: true })
+        .some(
+            (entry) =>
+                entry.isFile() &&
+                !isDeclarationFile(entry.name) &&
+                pattern.test(entry.name) &&
+                platformFileExtensions.some((extension) => entry.name.endsWith(extension)),
+        );
+};
+
+/**
+ * Определяет, сплитнут ли компонент на платформы: потребуется наличие записи
+ * (папки или файла) для каждой из платформ desktop и mobile.
+ * @param {string} componentDir - Абсолютный путь к подкаталогу компонента
+ * @returns {boolean} true, если есть записи для desktop и mobile
  */
 const isPlatformSplit = (componentDir: string): boolean =>
-    platformDirs.every((platform) => fs.existsSync(path.join(componentDir, platform)));
+    platformDirs.every((platform) => hasPlatformEntry(componentDir, platform));
 
 /**
  * Сканирует установленный пакет @alfalab/core-components и возвращает
- * список подкаталогов компонентов, сплитнутых на платформы.
+ * имена компонентов, сплитнутых на платформы.
  * @param {string} coreComponentsDir - Абсолютный путь к директории пакета
  * @returns {string[]} Список имён сплитнутых компонентов (отсортирован)
  */

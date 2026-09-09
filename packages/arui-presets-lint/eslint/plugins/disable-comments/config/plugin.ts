@@ -1,4 +1,4 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type Linter } from 'eslint';
 
 import { requireDescriptionRule } from '../rule/index.js';
 
@@ -6,8 +6,8 @@ import { requireDescriptionRule } from '../rule/index.js';
  * Плагин, который можно импортировать отдельно.
  * Содержит лишь набор правил, без их активации.
  */
-export const disableCommentsPlugin: TSESLint.FlatConfig.Plugin = {
+export const disableCommentsPlugin = {
     rules: {
         'require-description': requireDescriptionRule,
     },
-};
+} as Linter.Config['plugins'];

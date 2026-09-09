@@ -25,6 +25,11 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
                         items: { type: 'string' },
                         uniqueItems: true,
                     },
+                    excludeSplitComponents: {
+                        type: 'array',
+                        items: { type: 'string' },
+                        uniqueItems: true,
+                    },
                 },
                 additionalProperties: false,
             },
@@ -39,18 +44,31 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
     create(context) {
         const options = context.options[0] ?? {};
 
-        // Разрешённый вручную список сплит-компонентов, либо список,
-        // вычисленный по установленной в node_modules версии core-components.
+        // Ручной список сплит-компонентов: полностью заменяет автоопределение.
         const manualSplitComponents = options.splitComponents
             ? new Set(options.splitComponents)
             : null;
 
-        let runtimeSplitComponents: Set<string> | null = null;
+        // Компоненты, исключённые из проверки. Вычитаются из итогового набора:
+        // как из ручного splitComponents, так и из автоопределения.
+        const excludedSplitComponents = options.excludeSplitComponents
+            ? new Set(options.excludeSplitComponents)
+            : null;
 
-        const getRuntimeSplitComponents = (): Set<string> => {
-            runtimeSplitComponents ??= new Set(getSplitComponents(context.filename));
+        // Результат кэшируется один раз, чтобы не пересобирать Set на каждый импорт.
+        let effectiveSplitComponents: Set<string> | null = null;
 
-            return runtimeSplitComponents;
+        const getEffectiveSplitComponents = (): Set<string> => {
+            if (effectiveSplitComponents) return effectiveSplitComponents;
+
+            const splitComponents =
+                manualSplitComponents ?? new Set(getSplitComponents(context.filename));
+
+            effectiveSplitComponents = excludedSplitComponents
+                ? new Set([...splitComponents].filter((c) => !excludedSplitComponents.has(c)))
+                : splitComponents;
+
+            return effectiveSplitComponents;
         };
 
         const reportIfWrongPlatform = (node: TSESTree.Node, sourceValue: string) => {
@@ -61,7 +79,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
             // Импорт корня агрегатора без компонента - не можем определить сплит
             if (!parsed.component) return;
 
-            const splitComponents = manualSplitComponents ?? getRuntimeSplitComponents();
+            const splitComponents = getEffectiveSplitComponents();
 
             if (!splitComponents.has(parsed.component)) return;
 
@@ -123,6 +141,9 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
                 const sourceValue = node.source.value;
 
                 if (typeof sourceValue !== 'string') return;
+
+                // Экспорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета
+                if (node.exportKind === 'type') return;
 
                 reportIfWrongPlatform(node, sourceValue);
             },

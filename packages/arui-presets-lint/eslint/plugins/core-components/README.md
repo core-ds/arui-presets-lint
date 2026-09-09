@@ -60,7 +60,8 @@ export default [
 
 #### Параметры правила `core-components/core-components-imports`
 
-- **splitComponents** *(массив строк)* – список сплитнутых на платформы компонентов (имена подкаталогов, например `button`). Если параметр не передан, правило само определяет список по установленной в `node_modules` версии `@alfalab/core-components` в момент запуска.
+- **splitComponents** *(массив строк)* – ручной список сплит-компонентов (имена компонентов, например `button`). Полностью заменяет автоопределение по установленной в `node_modules` версии `@alfalab/core-components`. Если не передан, список определяется автоматически в момент запуска.
+- **excludeSplitComponents** *(массив строк)* – компоненты, которые нужно исключить из проверки (имена компонентов core-components, например `button`, `alert`). Вычитается из итогового набора — как из переданного `splitComponents`, так и из автоопределения.
 
 #### Пример конфигурации
 
@@ -69,11 +70,15 @@ export default [
   "rules": {
     "core-components/core-components-imports": [
       "error",
-      { "splitComponents": ["button"] }
+      { "splitComponents": ["button"], "excludeSplitComponents": ["select"] }
     ]
   }
 }
 ```
+
+### Как определяется список сплит-компонентов
+
+По умолчанию правило автоматически находит сплит-компоненты по установленному пакету `@alfalab/core-components` из `node_modules` (относительно линтуемого файла). Компонент считается сплитнутым, если для каждой платформы (`desktop` и `mobile`) в его корне присутствует подкаталог (`desktop/`, `mobile/`) **либо** рантайм-файл с платформой-сегментом имени (`desktop.js`, `Component.desktop.js`, `Alert.desktop.js`). Файлы объявлений типов (`.d.ts`) не учитываются — правило применяется только к рантайм-импортам. Автоопределение можно полностью заменить опцией `splitComponents`, а `excludeSplitComponents` позволяет вычесть отдельные компоненты из итогового набора.
 
 ### Примеры
 
@@ -108,6 +113,10 @@ import { Link } from '@alfalab/core-components/link';
 // ✅ Импорт только типов — типы можно брать и с корня пакета
 import type { ButtonProps } from '@alfalab/core-components/button';
 import { type ButtonProps } from '@alfalab/core-components/button';
+
+// ✅ Экспорт только типов
+export type { ButtonProps } from '@alfalab/core-components/button';
+export type * from '@alfalab/core-components/button';
 ```
 
 ### Сообщения и предложения (suggestions)
