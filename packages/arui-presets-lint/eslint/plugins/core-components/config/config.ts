@@ -15,6 +15,6 @@ export const coreComponentsConfig = {
         'core-components': coreComponentsPlugin,
     },
     rules: {
-        'core-components/core-components-imports': 'error',
+        'core-components/core-components-imports': 'warn',
     },
 } as Linter.Config;
