@@ -114,6 +114,16 @@ import { ButtonDesktop } from '@alfalab/core-components-button/desktop';
 import { ButtonMobile } from '@alfalab/core-components-button/mobile';
 ```
 
+Динамический импорт проверяется аналогично статическому:
+
+```ts
+// ❌ Ошибка: у Button есть desktop/mobile разделение
+const { Button } = await import('@alfalab/core-components/button');
+
+// ✅ Через платформенный путь
+const { ButtonDesktop } = await import('@alfalab/core-components/button/desktop');
+```
+
 Что остаётся валидным:
 
 ```ts
@@ -131,6 +141,8 @@ import { type ButtonProps } from '@alfalab/core-components/button';
 export type { ButtonProps } from '@alfalab/core-components/button';
 export type * from '@alfalab/core-components/button';
 ```
+
+> Примечание: `require('@alfalab/core-components/...')` (CommonJS) правило не проверяет.
 
 ### Сообщения и предложения (suggestions)
 
