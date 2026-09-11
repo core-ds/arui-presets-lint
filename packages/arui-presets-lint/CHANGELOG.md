@@ -1,3 +1,10 @@
+## 11.2.0-snapshot-843e8313c7c3185572f6ce40793402ccc9ff0044
+
+### Minor Changes
+
+- [#195](https://github.com/core-ds/arui-presets-lint/pull/195) [`24fe51c`](https://github.com/core-ds/arui-presets-lint/commit/24fe51c0698d84acd4cb719ad8b969fecc5508c2) Thanks [@github-actions](https://github.com/apps/github-actions)! - - Добавлен плагин, содержащий набор правил ESLint для контроля импортов design-системы **core-components**.
+    - Плагин требует использовать платформенные импорты (`desktop`/`mobile`) для компонентов, у которых есть разделение на платформы, и не даёт брать их с корня пакета.
+
 ## 11.1.1
 
 ### Patch Changes
