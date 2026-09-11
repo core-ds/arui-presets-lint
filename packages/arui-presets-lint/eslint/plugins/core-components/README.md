@@ -142,8 +142,6 @@ export type { ButtonProps } from '@alfalab/core-components/button';
 export type * from '@alfalab/core-components/button';
 ```
 
-> Примечание: `require('@alfalab/core-components/...')` (CommonJS) правило не проверяет.
-
 ### Сообщения и предложения (suggestions)
 
 | messageId      | Текст сообщения                                                                                                                              |
