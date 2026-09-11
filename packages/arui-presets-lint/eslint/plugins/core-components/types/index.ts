@@ -1,3 +1,11 @@
+import { type PLATFORM_DIRS } from '../constants/index.js';
+
+/**
+ * Имя платформы. Ограничивается фактически объявленными PLATFORM_DIRS,
+ * поэтому не-существующая платформа отсекается на этапе компиляции как неявная ошибка рантайма.
+ */
+export type PlatformName = (typeof PLATFORM_DIRS)[number];
+
 export type CoreComponentsImportRuleOptions = {
     /**
      * Ручной список сплит-компонентов (имена компонентов core-components,

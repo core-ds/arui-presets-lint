@@ -113,6 +113,12 @@ describe('core-components-imports', () => {
                 code: "import { Accordion } from '@alfalab/core-components-accordion';",
             });
         });
+
+        it('принимает динамический import() с платформенным путём сплит-компонента', async () => {
+            await valid({
+                code: "const { ButtonMobile } = await import('@alfalab/core-components/button/mobile');",
+            });
+        });
     });
 
     describe('invalid', () => {
@@ -165,6 +171,13 @@ describe('core-components-imports', () => {
         it('помечает side-effect импорт сплит-компонента как ошибку', async () => {
             await invalid({
                 code: "import '@alfalab/core-components/button';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('помечает динамический import() сплит-компонента с корня как ошибку', async () => {
+            await invalid({
+                code: "const { Button } = await import('@alfalab/core-components/button');",
                 errors: [{ messageId: 'missingPlatform' }],
             });
         });

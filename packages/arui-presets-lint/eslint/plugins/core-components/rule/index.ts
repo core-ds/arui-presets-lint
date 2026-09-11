@@ -2,7 +2,12 @@ import { type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
 import { CORE_COMPONENTS_PACKAGE, IMPORT_FORM } from '../constants/index.js';
 import { type CoreComponentsImportRuleOptions } from '../types/index.js';
-import { getSplitComponents, isTypeOnlyImport, parseCoreComponentsSource } from '../utils/index.js';
+import {
+    getImportSourceString,
+    getSplitComponents,
+    isTypeOnlyImport,
+    parseCoreComponentsSource,
+} from '../utils/index.js';
 
 export const coreComponentsImportRule: TSESLint.RuleModule<
     'missingPlatform',
@@ -110,21 +115,28 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
         return {
             ImportDeclaration: (node: TSESTree.ImportDeclaration) => {
-                const sourceValue = node.source.value;
+                const sourceValue = getImportSourceString(node);
 
-                if (typeof sourceValue !== 'string') return;
+                if (sourceValue === null) return;
 
                 // Импорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета
                 if (isTypeOnlyImport(node)) return;
 
                 reportIfWrongPlatform(node, sourceValue);
             },
+            ImportExpression: (node: TSESTree.ImportExpression) => {
+                const sourceValue = getImportSourceString(node);
+
+                if (sourceValue === null) return;
+
+                reportIfWrongPlatform(node, sourceValue);
+            },
             ExportNamedDeclaration: (node: TSESTree.ExportNamedDeclaration) => {
                 if (!node.source) return;
 
-                const sourceValue = node.source.value;
+                const sourceValue = getImportSourceString(node);
 
-                if (typeof sourceValue !== 'string') return;
+                if (sourceValue === null) return;
 
                 // Экспорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета
                 if (node.exportKind === 'type') return;
@@ -132,9 +144,9 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
                 reportIfWrongPlatform(node, sourceValue);
             },
             ExportAllDeclaration: (node: TSESTree.ExportAllDeclaration) => {
-                const sourceValue = node.source.value;
+                const sourceValue = getImportSourceString(node);
 
-                if (typeof sourceValue !== 'string') return;
+                if (sourceValue === null) return;
 
                 // Экспорт только типов - не помечаем как ошибку, типы можно брать и с корня пакета
                 if (node.exportKind === 'type') return;

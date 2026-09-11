@@ -7,10 +7,11 @@ import {
     PLATFORM_DIRS,
     PLATFORM_FILE_EXTENSIONS,
 } from '../constants/index.js';
+import { type PlatformName } from '../types/index.js';
 
-const platformDirs: string[] = [...PLATFORM_DIRS];
+const platformDirs: readonly PlatformName[] = [...PLATFORM_DIRS];
 
-const platformFileExtensions: string[] = [...PLATFORM_FILE_EXTENSIONS];
+const platformFileExtensions: readonly string[] = [...PLATFORM_FILE_EXTENSIONS];
 
 /**
  * Резолвит директорию пакета @alfalab/core-components из node_modules,
@@ -44,7 +45,7 @@ const resolveCoreComponentsDir = (from: string): string => {
  * чтобы не ловить подстроки в helper-файлах вроде useIsDesktop.js.
  */
 const platformNamePattern = (platform: string): RegExp =>
-    new RegExp(`(^|[._-])${platform}([._-]|$)`);
+    new RegExp(`(^|[._-])${platform}([._-]|$)`, 'i');
 
 /**
  * Является ли имя файла декларацией типов (.d.ts, .d.mts, .d.cts).
@@ -59,10 +60,10 @@ const isDeclarationFile = (fileName: string): boolean => /\.d\.(ts|mts|cts)$/.te
  * (desktop.js, Component.desktop.js, Alert.desktop.js). Типы (.d.ts) не считаются:
  * правило требует платформенный импорт только для рантайм-импортов.
  * @param {string} componentDir - Абсолютный путь к подкаталогу компонента
- * @param {string} platform - Платформа (desktop или mobile)
+ * @param {PlatformName} platform - Платформа (desktop или mobile)
  * @returns {boolean} true, если для платформы есть папка или файл
  */
-const hasPlatformEntry = (componentDir: string, platform: string): boolean => {
+const hasPlatformEntry = (componentDir: string, platform: PlatformName): boolean => {
     if (fs.existsSync(path.join(componentDir, platform))) return true;
 
     const pattern = platformNamePattern(platform);
@@ -99,7 +100,7 @@ const findSplitComponents = (coreComponentsDir: string): string[] => {
     for (const entry of fs.readdirSync(coreComponentsDir, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
         if (entry.name === 'node_modules') continue;
-        if (platformDirs.includes(entry.name)) continue;
+        if ((platformDirs as readonly string[]).includes(entry.name)) continue;
 
         const componentDir = path.join(coreComponentsDir, entry.name);
 

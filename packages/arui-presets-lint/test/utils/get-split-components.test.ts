@@ -150,4 +150,32 @@ describe('getSplitComponents', () => {
 
         expect(components).not.toContain('accordion');
     });
+
+    it('распознаёт сплит при папках платформ в верхнем регистре (Desktop/, Mobile/)', () => {
+        const root = path.join(tempRoot, 'ci-dirs');
+        createPackage(root, { grid: 'none' });
+        const componentDir = componentDirOf(root, 'grid');
+        fs.mkdirSync(path.join(componentDir, 'Desktop'));
+        fs.mkdirSync(path.join(componentDir, 'Mobile'));
+        const entry = path.join(root, 'entry.ts');
+        fs.writeFileSync(entry, '');
+
+        const components = getSplitComponents(entry);
+
+        expect(components).toContain('grid');
+    });
+
+    it('распознаёт сплит при платформенном файле в верхнем регистре (Component.Desktop.js)', () => {
+        const root = path.join(tempRoot, 'ci-files');
+        createPackage(root, { tag: 'none' });
+        const componentDir = componentDirOf(root, 'tag');
+        fs.writeFileSync(path.join(componentDir, 'Tag.Desktop.js'), '');
+        fs.writeFileSync(path.join(componentDir, 'Tag.Mobile.js'), '');
+        const entry = path.join(root, 'entry.ts');
+        fs.writeFileSync(entry, '');
+
+        const components = getSplitComponents(entry);
+
+        expect(components).toContain('tag');
+    });
 });
