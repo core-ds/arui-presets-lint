@@ -43,6 +43,26 @@ const resolveCoreComponentsDir = (from: string): string => {
  * Строит регэксп, находящий платформу строго как отдельный сегмент имени
  * (в начале, в конце или отделённый точкой/дефисом/подчёркиванием),
  * чтобы не ловить подстроки в helper-файлах вроде useIsDesktop.js.
+ *
+ * Регэксп применяется только к именам файлов (entry.isFile()), и вдобавок
+ * файл обязан заканчиваться рантайм-расширением (см. platformFileExtensions),
+ * поэтому итоговым маркером становится файл вида `<...>.desktop.<ext>`.
+ *
+ * Для platform = 'desktop' (флаг 'i' — регистронезависимость):
+ *
+ * Совпадают (✅):
+ *   Desktop.js            — desktop в начале имени, отделена началом строки и точкой
+ *   Component.desktop.js  — отделена точками
+ *   Component-desktop.js  — отделена дефисом
+ *   Component_desktop.js  — отделена подчёркиванием
+ *   index.desktop.mjs     — desktop не обязана быть последним сегментом
+ *                           (главное, чтобы имя заканчивалось рантайм-расширением)
+ *
+ * Не совпадают (❌):
+ *   useIsDesktop.js       — desktop внутри слова, без разделителя слева
+ *   desktopify.js         — desktop внутри слова, без разделителя справа
+ *   desktops.js           — desktop с лишним суффиксом без разделителя
+ *   mydesktopcomponent    — desktop не отделено ни слева, ни справа
  */
 const platformNamePattern = (platform: string): RegExp =>
     new RegExp(`(^|[._-])${platform}([._-]|$)`, 'i');
