@@ -27,6 +27,7 @@ import {
     nodeRulesConfig,
     reactA11yConfig,
     reactConfig,
+    reactHooksConfig,
     testsConfig,
     typescriptConfig,
     variablesConfig,
@@ -96,6 +97,7 @@ export const eslintConfig = [
     */
     bestPracticesConfig,
     nodeRulesConfig,
+    reactHooksConfig,
     reactConfig,
     reactA11yConfig,
     variablesConfig,

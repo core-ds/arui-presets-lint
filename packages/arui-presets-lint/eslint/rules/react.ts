@@ -1,21 +1,18 @@
 import { type Linter } from 'eslint';
 import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import reactYouMightNotNeedAnEffectPlugin from 'eslint-plugin-react-you-might-not-need-an-effect';
 
 import { REACT_SCRIPTS_SCOPE } from '../constants.js';
 
 export const reactConfig: Linter.Config = {
     ...reactPlugin.configs.flat.recommended,
-    ...reactHooksPlugin.configs['recommended-latest'],
 
     name: 'arui-presets-lint/react',
     files: [REACT_SCRIPTS_SCOPE],
     plugins: {
         react: reactPlugin,
-        'react-hooks': reactHooksPlugin,
         'react-you-might-not-need-an-effect': reactYouMightNotNeedAnEffectPlugin,
-    } as Linter.Config['plugins'],
+    },
 
     settings: {
         react: {
@@ -27,8 +24,6 @@ export const reactConfig: Linter.Config = {
     rules: {
         // https://github.com/jsx-eslint/eslint-plugin-react?tab=readme-ov-file#list-of-supported-rules
         ...reactPlugin.configs.flat.recommended.rules,
-
-        ...reactHooksPlugin.configs['recommended-latest'].rules,
 
         // Эвристики поиска лишних useEffect: derived state, цепочки обновлений state,
         // логика обработчиков событий в эффектах и т.д. Все правила рекомендованного
@@ -461,14 +456,6 @@ export const reactConfig: Linter.Config = {
         // Предотвращает объявление неиспользуемых методов класса компонента
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-class-component-methods.md
         'react/no-unused-class-component-methods': 'error',
-
-        // Правила хуков (обязательные)
-        // https://react.dev/reference/rules/rules-of-hooks
-        'react-hooks/rules-of-hooks': 'error',
-
-        // Проверка списка зависимостей для хуков типа useEffect и др.
-        // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#advanced-configuration
-        'react-hooks/exhaustive-deps': 'error',
 
         // Определяет, где должны располагаться статические свойства компонента React
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
