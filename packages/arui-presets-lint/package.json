@@ -20,6 +20,7 @@
         "@prettier/plugin-oxc": "0.2.3",
         "@secretlint/secretlint-rule-preset-recommend": "13.0.5",
         "@types/eslint-plugin-jsx-a11y": "6.10.1",
+        "@typescript-eslint/parser": "8.70.0",
         "@typescript-eslint/utils": "8.70.0",
         "eslint": "9.39.5",
         "eslint-config-flat-gitignore": "2.4.0",
