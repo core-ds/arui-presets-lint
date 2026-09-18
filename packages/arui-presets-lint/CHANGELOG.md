@@ -1,3 +1,9 @@
+## 11.2.0
+
+### Minor Changes
+
+- [#202](https://github.com/core-ds/arui-presets-lint/pull/202) [`3f41bd8`](https://github.com/core-ds/arui-presets-lint/commit/3f41bd8046584f27bb3216405ab9c079e3560f7c) Thanks [@kiskv](https://github.com/kiskv)! - Обновлены зависимости: линтеры и их плагины подняты до последних patch- и minor-версий.
+
 ## 11.1.2
 
 ### Patch Changes
