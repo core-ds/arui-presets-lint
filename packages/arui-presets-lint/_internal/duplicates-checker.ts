@@ -7,6 +7,7 @@ import { markdownConfig } from '../eslint/rules/markdown.js';
 import { nodeRulesConfig } from '../eslint/rules/node.js';
 import { reactConfig } from '../eslint/rules/react.js';
 import { reactA11yConfig } from '../eslint/rules/react-a11y.js';
+import { reactHooksConfig } from '../eslint/rules/react-hooks.js';
 import { testsConfig } from '../eslint/rules/tests.js';
 import { typescriptConfig } from '../eslint/rules/typescript.js';
 import { variablesConfig } from '../eslint/rules/variables.js';
@@ -15,6 +16,10 @@ const imports = { rules: Object.keys(importsConfig.rules || {}), name: importsCo
 const node = { rules: Object.keys(nodeRulesConfig.rules || {}), name: nodeRulesConfig.name };
 const react = { rules: Object.keys(reactConfig.rules || {}), name: reactConfig.name };
 const reactA11y = { rules: Object.keys(reactA11yConfig.rules || {}), name: reactA11yConfig.name };
+const reactHooks = {
+    rules: Object.keys(reactHooksConfig.rules || {}),
+    name: reactHooksConfig.name,
+};
 const tests = { rules: Object.keys(testsConfig.rules || {}), name: testsConfig.name };
 const typescript = {
     rules: Object.keys(typescriptConfig.rules || {}),
@@ -79,6 +84,7 @@ const configs: Array<{
     node,
     react,
     reactA11y,
+    reactHooks,
     tests,
     typescript,
     variables,

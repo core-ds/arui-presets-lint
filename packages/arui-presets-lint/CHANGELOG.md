@@ -1,3 +1,15 @@
+## 11.2.0
+
+### Minor Changes
+
+- [#202](https://github.com/core-ds/arui-presets-lint/pull/202) [`3f41bd8`](https://github.com/core-ds/arui-presets-lint/commit/3f41bd8046584f27bb3216405ab9c079e3560f7c) Thanks [@kiskv](https://github.com/kiskv)! - Обновлены зависимости: линтеры и их плагины подняты до последних patch- и minor-версий.
+
+## 11.1.2
+
+### Patch Changes
+
+- [#191](https://github.com/core-ds/arui-presets-lint/pull/191) [`d6c68b8`](https://github.com/core-ds/arui-presets-lint/commit/d6c68b8c5fa6dfbad94a4ba0e34106d411619ead) Thanks [@kiskv](https://github.com/kiskv)! - Правила React Hooks теперь проверяются во всех поддерживаемых JavaScript- и TypeScript-файлах.
+
 ## 11.1.1
 
 ### Patch Changes

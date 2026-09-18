@@ -4,6 +4,7 @@ export { jsonConfig } from './json.js';
 export { markdownConfig } from './markdown.js';
 export { nodeRulesConfig } from './node.js';
 export { reactA11yConfig } from './react-a11y.js';
+export { reactHooksConfig } from './react-hooks.js';
 export { reactConfig } from './react.js';
 export { testsConfig } from './tests.js';
 export { typescriptConfig } from './typescript.js';
