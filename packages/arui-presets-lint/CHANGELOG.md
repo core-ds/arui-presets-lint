@@ -1,3 +1,9 @@
+## 11.1.2
+
+### Patch Changes
+
+- [#191](https://github.com/core-ds/arui-presets-lint/pull/191) [`d6c68b8`](https://github.com/core-ds/arui-presets-lint/commit/d6c68b8c5fa6dfbad94a4ba0e34106d411619ead) Thanks [@kiskv](https://github.com/kiskv)! - Правила React Hooks теперь проверяются во всех поддерживаемых JavaScript- и TypeScript-файлах.
+
 ## 11.1.1
 
 ### Patch Changes
