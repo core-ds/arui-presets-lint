@@ -5,24 +5,9 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-type ExportTarget = string | { types: string; import: string };
-type Deps = Record<string, string>;
-type PackageJson = { exports: Record<string, ExportTarget>; [key: string]: unknown };
+import { buildDistPackageJson, type Deps, type PackageJson } from './dist-package.js';
 
 const sourcePkg = JSON.parse(await readFile('package.json', 'utf8')) as PackageJson;
-
-const distExports = Object.fromEntries(
-    Object.entries(sourcePkg.exports).map(([subpath, target]): [string, ExportTarget] => {
-        if (typeof target !== 'string' || !target.endsWith('.ts')) {
-            return [subpath, target];
-        }
-
-        const jsTarget = target.replace(/\.ts$/, '.js');
-        const dtsTarget = target.replace(/\.ts$/, '.d.ts');
-
-        return [subpath, { types: dtsTarget, import: jsTarget }];
-    }),
-);
 
 async function resolveWorkspaceDeps(deps: Deps | undefined): Promise<Deps | undefined> {
     if (!deps) return deps;
@@ -49,12 +34,9 @@ async function resolveWorkspaceDeps(deps: Deps | undefined): Promise<Deps | unde
     return resolved;
 }
 
-const distPkg: PackageJson = {
-    ...sourcePkg,
-    exports: distExports,
-    dependencies: await resolveWorkspaceDeps(sourcePkg.dependencies as Deps),
-    // devDeps в релизной версии не нужны
-    devDependencies: {},
-};
+const distPkg = buildDistPackageJson(
+    sourcePkg,
+    await resolveWorkspaceDeps(sourcePkg.dependencies as Deps),
+);
 
 await writeFile('dist/package.json', `${JSON.stringify(distPkg, null, 4)}\n`);
