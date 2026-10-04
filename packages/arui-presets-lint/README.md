@@ -85,6 +85,64 @@ secretlint ищет в файлах проекта случайно закомм
 
 ## ESLint
 
+### Дополнительные правила дизайн-системы
+
+Правила подключаются явно, поэтому существующий пресет не меняет поведение:
+
+```typescript
+import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
+import { createDesignSystemConfig } from 'arui-presets-lint/eslint/plugins';
+
+export default defineConfig(eslintConfig, createDesignSystemConfig({
+    deprecatedComponents: {
+        modules: ['@alfalab/core-components', 'arui-private'],
+    },
+}));
+```
+
+`design-system/no-deprecated-components` читает JSDoc `@deprecated` у импортированного
+React-компонента через TypeScript checker и сообщает об использовании в JSX.
+Текст аннотации выводится в диагностике. Поддерживаются алиасы импортов, namespace
+imports, default imports и subpath вроде `@alfalab/core-components/button`.
+Проверка включается для TSX и требует типовой информации (`projectService` и файл
+в tsconfig). Без неё выдаётся отдельная ошибка, а не молчаливый пропуск проверки.
+
+По умолчанию проверяются `@alfalab/core-components` и `arui-private` с subpath-импортами.
+Если приватный пакет имеет scoped-имя, укажите точное имя в `modules`.
+`deprecatedComponents: false` отключает автоматическую проверку аннотаций.
+Проверяются прямые импорты этих пакетов; локальные обёртки, промежуточные barrels и
+динамические alias-переменные не отслеживаются. Если при генерации `.d.ts` комментарий
+`@deprecated` потерян, правило не сможет его обнаружить.
+
+Дополнительно можно передать подтверждённые командой DS ограничения:
+
+```typescript
+createDesignSystemConfig({
+    deprecatedApis: [
+        { module: 'my-design-system', export: 'LegacyButton', replacement: 'Button' },
+    ],
+    deprecatedProps: [
+        { module: 'my-design-system', component: 'Button', prop: 'legacySize', replacement: 'size' },
+    ],
+    accessibleNames: [
+        { module: 'my-design-system', component: 'IconButton' },
+    ],
+});
+```
+
+Это пример пользовательского реестра, а не список deprecated API core-components.
+`no-deprecated-api` проверяет named/default imports, статические namespace-обращения
+и named re-exports. `no-deprecated-props` проверяет явно переданные JSX-props.
+Правила учитывают источник импорта и локальное переопределение имени компонента.
+
+`require-accessible-name` требует непустой `aria-label` или `aria-labelledby`;
+свои поддерживаемые компонентом props задаются через `labelProps`.
+Выражения с динамическими значениями принимаются: их содержимое проверяется в рантайме.
+Spread-props не анализируются; для accessible name допускается явный `allowSpread: true`,
+который пропускает такую проверку. Наличие aria-labelledby не гарантирует существование
+целевого элемента — это остаётся задачей UI-тестов. CSS-токены продолжают проверяться
+существующим Stylelint-плагином. Автоматические замены компонентов и props не выполняются.
+
 > Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
 
 ```typescript
