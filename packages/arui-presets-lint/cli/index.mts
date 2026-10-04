@@ -4,6 +4,8 @@ import { execaCommand, ExecaError } from 'execa';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { setupProject } from './setup.js';
+
 const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const prettierParams =
@@ -35,46 +37,62 @@ const disableUserTiming = `--import=data:text/javascript,${encodeURIComponent(
     'performance.mark = () => undefined; performance.measure = () => undefined;',
 )}`;
 
-const commands = Object.keys(commandsMap);
+const commands = [...Object.keys(commandsMap), 'init', 'migrate'];
 const enableEcho = process.argv[2] === '--echo';
 const command = enableEcho ? process.argv[3] : process.argv[2];
 
-if (!command || !commands.includes(command)) {
-    console.error(`Please specify one of available commands: ${commands.join(' ')}`);
-
-    process.exit(-1);
-}
-
 const args = enableEcho ? process.argv.slice(4) : process.argv.slice(3);
 
-const exec = [commandsMap[command as keyof typeof commandsMap], ...args].join(' ');
+if (command === 'init' || command === 'migrate') {
+    try {
+        await setupProject(process.cwd(), command === 'migrate', args);
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        if (args.includes('--json')) {
+            console.log(JSON.stringify({ exitCode: 1, error: message, results: [] }));
+        } else {
+            console.error(message);
+        }
+        process.exitCode = 1;
+    }
+} else {
+    if (!command || !commands.includes(command)) {
+        console.error(`Please specify one of available commands: ${commands.join(' ')}`);
 
-// --profile у secretlint как раз печатает замеры профайлера, для него метки нужно оставить
-const env =
-    command === 'secretlint' && !args.includes('--profile')
-        ? {
-              NODE_OPTIONS: [process.env.NODE_OPTIONS, disableUserTiming].filter(Boolean).join(' '),
-          }
-        : {};
+        process.exit(-1);
+    }
 
-if (enableEcho) {
-    console.log('>>', exec);
-}
+    const exec = [commandsMap[command as keyof typeof commandsMap], ...args].join(' ');
 
-try {
-    await execaCommand(exec, {
-        shell: true,
-        preferLocal: true,
-        localDir: packageRoot,
-        stdio: ['pipe', 'inherit', 'inherit'],
-        env,
-    });
-} catch (error: unknown) {
-    if (error instanceof ExecaError) {
-        console.error(error.message);
-        process.exit(error.exitCode);
-    } else {
-        console.error('Unknown error');
-        process.exit(1);
+    // --profile у secretlint как раз печатает замеры профайлера, для него метки нужно оставить
+    const env =
+        command === 'secretlint' && !args.includes('--profile')
+            ? {
+                  NODE_OPTIONS: [process.env.NODE_OPTIONS, disableUserTiming]
+                      .filter(Boolean)
+                      .join(' '),
+              }
+            : {};
+
+    if (enableEcho) {
+        console.log('>>', exec);
+    }
+
+    try {
+        await execaCommand(exec, {
+            shell: true,
+            preferLocal: true,
+            localDir: packageRoot,
+            stdio: ['pipe', 'inherit', 'inherit'],
+            env,
+        });
+    } catch (error: unknown) {
+        if (error instanceof ExecaError) {
+            console.error(error.message);
+            process.exit(error.exitCode);
+        } else {
+            console.error('Unknown error');
+            process.exit(1);
+        }
     }
 }
