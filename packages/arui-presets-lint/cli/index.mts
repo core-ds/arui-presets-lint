@@ -4,6 +4,8 @@ import { execaCommand, ExecaError } from 'execa';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { setupProject } from './setup.js';
+
 const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const prettierParams =
@@ -19,37 +21,51 @@ const commandsMap = {
     secretlint: `secretlint "**/*"`,
 } as const;
 
-const commands = Object.keys(commandsMap);
+const commands = [...Object.keys(commandsMap), 'init'];
 const enableEcho = process.argv[2] === '--echo';
 const command = enableEcho ? process.argv[3] : process.argv[2];
 
-if (!command || !commands.includes(command)) {
-    console.error(`Please specify one of available commands: ${commands.join(' ')}`);
-
-    process.exit(-1);
-}
-
 const args = enableEcho ? process.argv.slice(4) : process.argv.slice(3);
 
-const exec = [commandsMap[command as keyof typeof commandsMap], ...args].join(' ');
+if (command === 'init') {
+    try {
+        await setupProject(process.cwd(), args);
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        if (args.includes('--json')) {
+            console.log(JSON.stringify({ exitCode: 1, error: message, results: [] }));
+        } else {
+            console.error(message);
+        }
+        process.exitCode = 1;
+    }
+} else {
+    if (!command || !commands.includes(command)) {
+        console.error(`Please specify one of available commands: ${commands.join(' ')}`);
 
-if (enableEcho) {
-    console.log('>>', exec);
-}
+        process.exit(-1);
+    }
 
-try {
-    await execaCommand(exec, {
-        shell: true,
-        preferLocal: true,
-        localDir: packageRoot,
-        stdio: ['pipe', 'inherit', 'inherit'],
-    });
-} catch (error: unknown) {
-    if (error instanceof ExecaError) {
-        console.error(error.message);
-        process.exit(error.exitCode);
-    } else {
-        console.error('Unknown error');
-        process.exit(1);
+    const exec = [commandsMap[command as keyof typeof commandsMap], ...args].join(' ');
+
+    if (enableEcho) {
+        console.log('>>', exec);
+    }
+
+    try {
+        await execaCommand(exec, {
+            shell: true,
+            preferLocal: true,
+            localDir: packageRoot,
+            stdio: ['pipe', 'inherit', 'inherit'],
+        });
+    } catch (error: unknown) {
+        if (error instanceof ExecaError) {
+            console.error(error.message);
+            process.exit(error.exitCode);
+        } else {
+            console.error('Unknown error');
+            process.exit(1);
+        }
     }
 }
