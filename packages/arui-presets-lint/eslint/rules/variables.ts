@@ -1,11 +1,18 @@
 import { type Linter } from 'eslint';
 
 import { GLOBAL_SCRIPTS_SCOPE } from '../constants.js';
+import { asciiPlugin } from '../plugins/ascii/index.js';
 
 export const variablesConfig: Linter.Config = {
     name: 'arui-presets-lint/variables',
     files: [GLOBAL_SCRIPTS_SCOPE],
+    // Позволяет использовать variablesConfig самостоятельно, без полного пресета.
+    plugins: { ascii: asciiPlugin },
     rules: {
+        // Запрещает кириллицу и другие символы вне ASCII в идентификаторах JS/TS и JSX.
+        // https://github.com/core-ds/arui-presets-lint/issues/33
+        'ascii/no-non-ascii-identifiers': 'error',
+
         // Требует/запрещает инициализацию переменных при объявлении
         // https://eslint.org/docs/rules/init-declarations
         'init-declarations': 'off',
