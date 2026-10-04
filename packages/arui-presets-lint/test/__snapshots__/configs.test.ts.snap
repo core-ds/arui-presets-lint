@@ -4,6 +4,7 @@ exports[`итоговый резолв конфига eslint > configs/settings.
 [
   "@",
   "@typescript-eslint",
+  "ascii",
   "check-file",
   "de-morgan",
   "disable-comments",
@@ -21,6 +22,9 @@ exports[`итоговый резолв конфига eslint > configs/settings.
 
 exports[`итоговый резолв конфига eslint > configs/settings.json > rules 1`] = `
 {
+  "ascii/no-non-ascii-filenames": [
+    2,
+  ],
   "check-file/filename-blocklist": [
     2,
     {
@@ -69,6 +73,7 @@ exports[`итоговый резолв конфига eslint > docs/guide.md > p
 [
   "@",
   "@typescript-eslint",
+  "ascii",
   "check-file",
   "de-morgan",
   "disable-comments",
@@ -86,6 +91,9 @@ exports[`итоговый резолв конфига eslint > docs/guide.md > p
 
 exports[`итоговый резолв конфига eslint > docs/guide.md > rules 1`] = `
 {
+  "ascii/no-non-ascii-filenames": [
+    2,
+  ],
   "check-file/filename-blocklist": [
     2,
     {
@@ -216,6 +224,7 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
 [
   "@",
   "@typescript-eslint",
+  "ascii",
   "check-file",
   "de-morgan",
   "disable-comments",
@@ -253,6 +262,12 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "arrow-body-style": [
     2,
     "as-needed",
+  ],
+  "ascii/no-non-ascii-filenames": [
+    2,
+  ],
+  "ascii/no-non-ascii-identifiers": [
+    2,
   ],
   "block-scoped-var": [
     2,
@@ -2110,6 +2125,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
 [
   "@",
   "@typescript-eslint",
+  "ascii",
   "check-file",
   "de-morgan",
   "disable-comments",
@@ -2456,6 +2472,12 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "arrow-body-style": [
     2,
     "as-needed",
+  ],
+  "ascii/no-non-ascii-filenames": [
+    2,
+  ],
+  "ascii/no-non-ascii-identifiers": [
+    2,
   ],
   "block-scoped-var": [
     2,
@@ -4969,6 +4991,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
 [
   "@",
   "@typescript-eslint",
+  "ascii",
   "check-file",
   "de-morgan",
   "disable-comments",
@@ -5314,6 +5337,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "arrow-body-style": [
     2,
     "as-needed",
+  ],
+  "ascii/no-non-ascii-filenames": [
+    2,
+  ],
+  "ascii/no-non-ascii-identifiers": [
+    2,
   ],
   "block-scoped-var": [
     2,
@@ -7149,6 +7178,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
 [
   "@",
   "@typescript-eslint",
+  "ascii",
   "check-file",
   "de-morgan",
   "disable-comments",
@@ -7494,6 +7524,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "arrow-body-style": [
     2,
     "as-needed",
+  ],
+  "ascii/no-non-ascii-filenames": [
+    2,
+  ],
+  "ascii/no-non-ascii-identifiers": [
+    2,
   ],
   "block-scoped-var": [
     2,
