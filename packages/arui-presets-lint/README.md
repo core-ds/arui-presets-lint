@@ -170,6 +170,29 @@ export default defineConfig(eslintConfig, [
 
 ## Запуск линтеров в cli
 
+### Общая проверка
+
+```sh
+arui-presets-lint check
+arui-presets-lint check --json
+arui-presets-lint check --changed
+arui-presets-lint scripts --changed --fix
+```
+
+`check` запускает ESLint, Stylelint, Prettier (без автофиксов), Knip и Secretlint.
+Ошибка одной проверки не отменяет остальные. Код завершения `1`, если хотя бы одна упала.
+Перед запуском каждой проверки CLI показывает ее номер и название.
+Принимает только флаги `--changed` и `--json`.
+
+`--json` выводит в stdout JSON отчет: `exitCode`, `results` (по каждой проверке `command`, `status`, `exitCode`, `stdout`, `stderr`), `changed`, `full`.
+Если проверки не начались из-за ошибки аргументов или Git, CLI возвращает отдельный объект:
+`{"exitCode":1,"error":"текст ошибки","results":[]}`.
+
+`--changed` проверяет только измененные файлы: staged, unstaged и новые относительно HEAD.
+Значение флага передавайте через `=`: `--max-warnings=0`.
+Knip всегда проверяет весь проект. Изменение конфигов, package.json, lock-файлов
+или удаление файлов включает полный прогон.
+
 После настройки конфигов - нужно добавить скрипты для их запуска в package.json (для этого библиотека предоставляет удобные cli-алиасы):
 
 
@@ -269,7 +292,7 @@ npx --no-install eslint "**/*.{js,jsx}"
 
 ```sh
 yarn arui-presets-lint --echo format
-# >> prettier --experimental-cli --write "./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}" --no-error-on-unmatched-pattern --cache
+# >> prettier ["--experimental-cli","--write","--no-error-on-unmatched-pattern","--cache","./**/*.{ts,tsx,js,jsx,mjs,mts,cjs,cts,css,json,mjsx,cjsx,mtsx,ctsx}"]
 ```
 
 Если нужно посмотреть, какой именно конфиг применяется в текущем проекте:
