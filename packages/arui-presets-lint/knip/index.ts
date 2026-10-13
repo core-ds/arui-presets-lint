@@ -36,6 +36,7 @@ export default {
         // Конфигурация arui-scripts подключается сборщиком, а не через импорты
         'arui-scripts.config.{js,mjs,cjs,ts,mts,cts}',
         'arui-scripts.overrides.{js,mjs,cjs,ts,mts,cts}',
+        "arui-scripts-artifacts.{js,mjs,cjs,ts,mts,cts}",
         // Платформенные входные точки многоплатформенных приложений: index - webpack
         // entry, remote - модуль, экспонируемый через module federation
         'src/{,app/}{desktop,mobile,webview}/{index,remote}.{js,jsx,ts,tsx}!',
