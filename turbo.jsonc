@@ -14,8 +14,10 @@
         "test:unit": {
             "outputs": ["coverage/**"],
         },
+        // stylelint подключает @alfalab/stylelint-core-vars,
+        // экспорты которого указывают на dist — без сборки зависимости плагин не резолвится
         "lint": {
-            "dependsOn": [],
+            "dependsOn": ["^build"],
         },
         "lint:fix": {
             "cache": false,
