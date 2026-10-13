@@ -9382,6 +9382,7 @@ exports[`статические конфиги > knip 1`] = `
     "src/modules/**/*.{js,jsx,ts,tsx}!",
     "arui-scripts.config.{js,mjs,cjs,ts,mts,cts}",
     "arui-scripts.overrides.{js,mjs,cjs,ts,mts,cts}",
+    "arui-scripts-artifacts.{js,mjs,cjs,ts,mts,cts}",
     "src/{,app/}{desktop,mobile,webview}/{index,remote}.{js,jsx,ts,tsx}!",
     "src/remotes/**/index.{js,jsx,ts,tsx}!",
     "remotes.{js,ts}",
