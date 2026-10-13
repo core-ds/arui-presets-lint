@@ -309,6 +309,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "de-morgan/no-negated-disjunction": [
     1,
+    {
+      "enforceForMixedOperators": false,
+    },
   ],
   "default-case": [
     0,
@@ -2529,6 +2532,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "de-morgan/no-negated-disjunction": [
     1,
+    {
+      "enforceForMixedOperators": false,
+    },
   ],
   "default-case": [
     0,
@@ -5370,6 +5376,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "de-morgan/no-negated-disjunction": [
     1,
+    {
+      "enforceForMixedOperators": false,
+    },
   ],
   "default-case": [
     0,
@@ -7550,6 +7559,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "de-morgan/no-negated-disjunction": [
     1,
+    {
+      "enforceForMixedOperators": false,
+    },
   ],
   "default-case": [
     0,
