@@ -1,3 +1,9 @@
+## 11.2.1
+
+### Patch Changes
+
+- [#212](https://github.com/core-ds/arui-presets-lint/pull/212) [`2563380`](https://github.com/core-ds/arui-presets-lint/commit/2563380f253f1bb9af1586396f715dfaae8444df) Thanks [@amodanov](https://github.com/amodanov)! - В пресет knip добавлена поддержка конфигурации `arui-scripts-artifacts.*` пакета `@alfalab/arui-scripts-artifacts`.
+
 ## 11.2.0
 
 ### Minor Changes
