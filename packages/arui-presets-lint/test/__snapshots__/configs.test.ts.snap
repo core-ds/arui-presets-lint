@@ -304,6 +304,10 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "constructor-super": [
     0,
   ],
+  "curly": [
+    2,
+    "all",
+  ],
   "de-morgan/no-negated-conjunction": [
     1,
   ],
@@ -2523,6 +2527,10 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "constructor-super": [
     0,
+  ],
+  "curly": [
+    2,
+    "all",
   ],
   "de-morgan/no-negated-conjunction": [
     1,
@@ -5365,6 +5373,10 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "constructor-super": [
     0,
   ],
+  "curly": [
+    2,
+    "all",
+  ],
   "de-morgan/no-negated-conjunction": [
     1,
   ],
@@ -7544,6 +7556,10 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "constructor-super": [
     0,
+  ],
+  "curly": [
+    2,
+    "all",
   ],
   "de-morgan/no-negated-conjunction": [
     1,

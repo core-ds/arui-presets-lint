@@ -25,7 +25,9 @@ const distExports = Object.fromEntries(
 );
 
 async function resolveWorkspaceDeps(deps: Deps | undefined): Promise<Deps | undefined> {
-    if (!deps) return deps;
+    if (!deps) {
+        return deps;
+    }
 
     const resolved = { ...deps };
 
