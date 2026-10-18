@@ -1,36 +1,33 @@
 Набор правил ESLint для контроля импортов design-системы **core-components**.
 Плагин требует использовать платформенные импорты (`desktop`/`mobile`) для компонентов, у которых есть разделение на платформы, и не даёт брать их с корня пакета.
 
+Плагин не входит в базовый `eslintConfig` и не подключается глобально — конфиг импортируется в проект вручную.
+
 ### Config
 
-Пакет экспортирует готовую конфигурацию ESLint.
+Пакет экспортирует готовую конфигурацию ESLint `coreComponentsConfig`, которая подключает плагин и включает правило на уровне `warn`:
 
-```js
+```ts
+import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
 import { coreComponentsConfig } from 'arui-presets-lint/eslint/plugins';
 
-export default [
-  ...eslintConfig,
-  coreComponentsConfig,
-];
+export default defineConfig(eslintConfig, [coreComponentsConfig]);
 ```
 
-Если вам нужен только сам плагин или отдельное правило, их можно импортировать из соответствующих подпапок:
-```js
-// Импорт плагина
+Если нужен только сам плагин, чтобы включить правило со своими настройками:
+
+```ts
 import { coreComponentsPlugin } from 'arui-presets-lint/eslint/plugins';
 
-// Импорт правила
-import { coreComponentsImportRule } from 'arui-presets-lint/eslint/plugins/core-components/rule';
-
 export default [
-  {
-    plugins: {
-      'core-components': coreComponentsPlugin,
+    {
+        plugins: {
+            'core-components': coreComponentsPlugin,
+        },
+        rules: {
+            'core-components/core-components-imports': 'error',
+        },
     },
-    rules: {
-      'core-components/core-components-imports': 'error',
-    },
-  },
 ];
 ```
 
@@ -38,30 +35,33 @@ export default [
 
 Конфиг `coreComponentsConfig` включает правило на уровне **`warn`**. Если требуется изменить уровень или параметры, добавьте собственный объект конфигурации после импорта готового конфига:
 
-```js
+```ts
+import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
 import { coreComponentsConfig } from 'arui-presets-lint/eslint/plugins';
 
-export default [
-  coreComponentsConfig,
-  {
-    rules: {
-      // Снижаем до предупреждения
-      'core-components/core-components-imports': 'warn',
+export default defineConfig(eslintConfig, [
+    coreComponentsConfig,
+    {
+        rules: {
+            // Повышаем предупреждение до ошибки
+            'core-components/core-components-imports': 'error',
+        },
     },
-  },
-];
+]);
 ```
+
+Конфиг не ограничен по `files`, поэтому правило действует на все линтуемые файлы проекта.
 
 ### Список правил
 
-| Правило                                    | Описание                                                                                                                         | По умолчанию |
-|--------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|--------------|
-| `core-components/core-components-imports` | Требует использовать платформенные импорты (`desktop`/`mobile`) для компонентов core-components, у которых есть разделение на платформы | `warn` |
+| Правило                                   | Описание                                                                                                                                | По умолчанию |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| `core-components/core-components-imports` | Требует использовать платформенные импорты (`desktop`/`mobile`) для компонентов core-components, у которых есть разделение на платформы | `warn`       |
 
 #### Параметры правила `core-components/core-components-imports`
 
-- **splitComponents** *(массив строк)* – ручной список компонентов разделенных на платформы (имена компонентов, например `button`). Полностью заменяет автоопределение. Если не передан, список определяется автоматически.
-- **excludeSplitComponents** *(массив строк)* – компоненты, которые нужно исключить из проверки (имена компонентов, например `button`, `alert`). Вычитается из итогового набора — как из переданного `splitComponents`, так и из автоопределения.
+- **splitComponents** _(массив строк)_ – ручной список компонентов разделенных на платформы (имена компонентов, например `button`). Полностью заменяет автоопределение. Если не передан, список определяется автоматически.
+- **excludeSplitComponents** _(массив строк)_ – компоненты, которые нужно исключить из проверки (имена компонентов, например `button`, `alert`). Вычитается из итогового набора — как из переданного `splitComponents`, так и из автоопределения.
 
 #### Пример конфигурации
 
@@ -160,6 +160,6 @@ export * from '@alfalab/core-components/button/index';
 
 Правило сообщает один `messageId` — `missingPlatform`, авто-фиксов нет: правку нужно делать вручную или через автоподстановку IDE.
 
-| messageId      | Текст сообщения                                                                                                                              |
-|----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| messageId         | Текст сообщения                                                                                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `missingPlatform` | Компонент "{{component}}" имеет разделение на desktop/mobile. Используйте платформенный импорт "{{suggestedDesktop}}" или "{{suggestedMobile}}" вместо импорта с корня пакета. |
