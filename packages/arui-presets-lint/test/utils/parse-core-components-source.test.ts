@@ -69,6 +69,51 @@ describe('parseCoreComponentsSource', () => {
         });
     });
 
+    it('не считает платформой сегмент формата сборки esm у агрегатора', () => {
+        expect(parseCoreComponentsSource('@alfalab/core-components/button/esm')).toEqual({
+            component: 'button',
+            platform: null,
+            importForm: 'aggregator',
+        });
+    });
+
+    it('не считает платформой сегмент формата сборки esm/index.js у агрегатора', () => {
+        expect(parseCoreComponentsSource('@alfalab/core-components/button/esm/index.js')).toEqual({
+            component: 'button',
+            platform: null,
+            importForm: 'aggregator',
+        });
+    });
+
+    it('не считает платформой сегмент внутреннего подмодуля у агрегатора', () => {
+        expect(parseCoreComponentsSource('@alfalab/core-components/button/utils')).toEqual({
+            component: 'button',
+            platform: null,
+            importForm: 'aggregator',
+        });
+    });
+
+    it('не считает платформой сегмент формата сборки esm у отдельного подпакета', () => {
+        expect(parseCoreComponentsSource('@alfalab/core-components-button/esm')).toEqual({
+            component: 'button',
+            platform: null,
+            importForm: 'standalone',
+        });
+    });
+
+    it('не считает платформой сегмент modern/cssm у отдельного подпакета', () => {
+        expect(parseCoreComponentsSource('@alfalab/core-components-button/modern')).toEqual({
+            component: 'button',
+            platform: null,
+            importForm: 'standalone',
+        });
+        expect(parseCoreComponentsSource('@alfalab/core-components-button/cssm')).toEqual({
+            component: 'button',
+            platform: null,
+            importForm: 'standalone',
+        });
+    });
+
     it('возвращает null для постороннего пакета', () => {
         expect(parseCoreComponentsSource('some-lib')).toBeNull();
     });

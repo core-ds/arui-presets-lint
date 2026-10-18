@@ -211,6 +211,34 @@ describe('core-components-imports', () => {
             });
         });
 
+        it('сообщает об ошибке при импорте с сегментом формата сборки esm', async () => {
+            await invalid({
+                code: "import { Button } from '@alfalab/core-components/button/esm';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('сообщает об ошибке при импорте из esm/index.js универсального входа', async () => {
+            await invalid({
+                code: "import { Button } from '@alfalab/core-components/button/esm/index.js';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('сообщает об ошибке при импорте из внутреннего подмодуля с корнем компонента', async () => {
+            await invalid({
+                code: "import { Button } from '@alfalab/core-components/button/shared';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('сообщает об ошибке при импорте с сегментом формата сборки esm из отдельного подпакета', async () => {
+            await invalid({
+                code: "import { Button } from '@alfalab/core-components-button/esm';",
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
         it('сообщает об ошибке при смешанном импорте значения и типа с корня', async () => {
             await invalid({
                 code: "import { Button, type ButtonProps } from '@alfalab/core-components/button';",
@@ -280,7 +308,9 @@ describe('core-components-imports', () => {
         it('не сообщает об ошибке для компонента, вычтенного excludeSplitComponents из ручного списка', async () => {
             await valid({
                 code: "import { Button } from '@alfalab/core-components/button';",
-                options: [{ splitComponents: ['button', 'select'], excludeSplitComponents: ['button'] }],
+                options: [
+                    { splitComponents: ['button', 'select'], excludeSplitComponents: ['button'] },
+                ],
             });
         });
     });
