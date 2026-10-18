@@ -85,6 +85,78 @@ secretlint ищет в файлах проекта случайно закомм
 
 ## ESLint
 
+### Дополнительные правила дизайн-системы
+
+Как добавлять новые проверки, описано в [памятке разработчика](eslint/plugins/design-system/README.md).
+
+Правила подключаются явно, поэтому существующий пресет не меняет поведение:
+
+```typescript
+import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
+import { createDesignSystemConfig } from 'arui-presets-lint/eslint/plugins';
+
+export default defineConfig(
+    eslintConfig,
+    createDesignSystemConfig({
+        deprecatedComponents: {
+            modules: ['@alfalab/core-components', 'arui-private'],
+        },
+    }),
+);
+```
+
+`design-system/no-deprecated-components` читает JSDoc `@deprecated` у импортированного
+React-компонента через TypeScript checker и сообщает об использовании в JSX
+предупреждением (`warn`).
+Текст аннотации выводится в диагностике. Проверяется выбранная JSX-сигнатура, включая
+call signatures const-компонентов; аннотация на самом const относится ко всему компоненту.
+Поддерживаются алиасы импортов, namespace imports, default imports и subpath вроде
+`@alfalab/core-components/button`, а также составные компоненты и вложенные обращения
+вида `<Group.Old />` и `<Private.Group.Old />`. Учитываются аннотации на промежуточных
+реэкспортах внутри пакета.
+Проверка включается для TSX и требует типовой информации (`projectService` и файл
+в tsconfig). Без нее выдается отдельное предупреждение, а не молчаливый пропуск проверки.
+
+По умолчанию проверяются `@alfalab/core-components` и `arui-private` с subpath-импортами.
+Если приватный пакет имеет scoped-имя, укажите точное имя в `modules`.
+`deprecatedComponents: false` отключает автоматическую проверку аннотаций.
+Проверяются прямые импорты этих пакетов; локальные обёртки, промежуточные barrels и
+динамические alias-переменные не отслеживаются. Если при генерации `.d.ts` комментарий
+`@deprecated` потерян, правило не сможет его обнаружить.
+
+Дополнительно можно передать подтверждённые командой DS ограничения:
+
+```typescript
+createDesignSystemConfig({
+    deprecatedApis: [{ module: 'my-design-system', export: 'LegacyButton', replacement: 'Button' }],
+    deprecatedProps: [
+        {
+            module: 'my-design-system',
+            component: 'Button',
+            prop: 'legacySize',
+            replacement: 'size',
+        },
+    ],
+    accessibleNames: [{ module: 'my-design-system', component: 'IconButton' }],
+});
+```
+
+Это пример пользовательского реестра, а не список deprecated API core-components.
+`no-deprecated-api` проверяет named/default imports, статические namespace-обращения
+и named re-exports. `no-deprecated-props` проверяет явно переданные JSX-props.
+Правила учитывают источник импорта и локальное переопределение имени компонента.
+Объявления type и interface не скрывают импорт в JSX.
+
+`require-accessible-name` требует непустой `aria-label` или `aria-labelledby`;
+свои поддерживаемые компонентом props задаются через `labelProps`.
+Статически пустые строки, включая шаблонные строки без подстановок, и `void` не считаются
+доступным именем. TypeScript-обёртки (`as`, `satisfies`, `!`) не скрывают пустое значение.
+Выражения с динамическими значениями принимаются: их содержимое проверяется в рантайме.
+Spread-props не анализируются; для accessible name допускается явный `allowSpread: true`,
+который пропускает такую проверку. Наличие aria-labelledby не гарантирует существование
+целевого элемента — это остаётся задачей UI-тестов. CSS-токены продолжают проверяться
+существующим Stylelint-плагином. Автоматические замены компонентов и props не выполняются.
+
 > Для настройки eslint нужно создать в корне проекта файл `eslint.config.mts` со следующим содержанием:
 
 ```typescript
@@ -172,7 +244,6 @@ export default defineConfig(eslintConfig, [
 
 После настройки конфигов - нужно добавить скрипты для их запуска в package.json (для этого библиотека предоставляет удобные cli-алиасы):
 
-
 ```json
 {
     "scripts": {
@@ -188,7 +259,7 @@ export default defineConfig(eslintConfig, [
 }
 ```
 
-> ⚠️  Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
+> ⚠️ Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
 
 Чтобы eslint / stylelint / prettier / secretlint не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore / .secretlintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
@@ -212,7 +283,6 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
     }
 }
 ```
-
 
 ## [lefthook](https://github.com/evilmartians/lefthook)
 
