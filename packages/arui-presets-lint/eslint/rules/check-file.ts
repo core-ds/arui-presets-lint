@@ -1,15 +1,31 @@
 import { type Linter } from 'eslint';
 import checkFilePlugin from 'eslint-plugin-check-file';
 
-import { ANOTHER_FILES_SCOPE, GLOBAL_SCRIPTS_SCOPE, JSON_SCOPE } from '../constants.js';
+import {
+    ANOTHER_FILES_SCOPE,
+    GLOBAL_SCRIPTS_SCOPE,
+    JSON_SCOPE,
+    MARKDOWN_SCOPE,
+} from '../constants.js';
+import { filenameOnlyParser } from '../plugins/ascii/filename-only-parser.js';
+import { asciiPlugin } from '../plugins/ascii/index.js';
+
+// ищем символы вне ASCII в именах файлов и папок.
+const nonAsciiPathSegment = '*[^\u0000-\u007F]*';
 
 export const checkFileConfig: Linter.Config[] = [
     {
         name: 'arui-presets-lint/check-file',
         plugins: {
+            // Конфиг экспортируется отдельно через /eslint/rules и регистрирует свои плагины.
+            ascii: asciiPlugin,
             'check-file': checkFilePlugin,
         },
         rules: {
+            // Проверяет полный путь внутри проекта, включая промежуточные расширения файла.
+            // https://github.com/core-ds/arui-presets-lint/issues/33
+            'ascii/no-non-ascii-filenames': 'error',
+
             // Все названия папок должны быть в kebab-case
             // https://github.com/dukeluo/eslint-plugin-check-file/blob/main/docs/rules/folder-naming-convention.md
             'check-file/folder-naming-convention': ['error', { '**/*.*': 'KEBAB_CASE' }],
@@ -37,6 +53,24 @@ export const checkFileConfig: Linter.Config[] = [
                 },
             ],
         },
+    },
+    {
+        // Для неизвестных форматов проверяем только имена файлов и папок.
+        // Известные форматы обрабатываются своими парсерами.
+        name: 'arui-presets-lint/non-ascii-files',
+        // Используем ?* вместо *, чтобы ESLint проверял и файлы неизвестных форматов.
+        files: [`**/${nonAsciiPathSegment}`, `**/${nonAsciiPathSegment}/**/?*`],
+        ignores: [
+            GLOBAL_SCRIPTS_SCOPE,
+            JSON_SCOPE,
+            MARKDOWN_SCOPE,
+            ANOTHER_FILES_SCOPE,
+            // CHANGELOG.md исключён из Markdown-парсера, поэтому проверяем только его путь.
+            '!**/CHANGELOG.md',
+        ],
+        // Конфиг проекта может заменить этот парсер своим.
+        // Пустой процессор удалил бы текст файла и не дал бы новому парсеру проверить его.
+        languageOptions: { parser: filenameOnlyParser },
     },
     {
         // Включаем проверку других расширений файлов в eslint-plugin-check-file (которые процессор eslint не поддерживает).
