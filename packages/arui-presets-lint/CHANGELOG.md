@@ -1,3 +1,9 @@
+## 11.3.0
+
+### Minor Changes
+
+- [#218](https://github.com/core-ds/arui-presets-lint/pull/218) [`8d8760e`](https://github.com/core-ds/arui-presets-lint/commit/8d8760eaaba4186a9944f41048e7f63f8bc6e2cb) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - В eslint пресет добавлено правило `curly`, требующее фигурные скобки в условиях и циклах
+
 ## 11.2.1
 
 ### Patch Changes
