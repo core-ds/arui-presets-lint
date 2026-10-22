@@ -31,7 +31,9 @@ export const vars = {
 };
 
 export const colorsSet = Object.values(vars.colors).reduce<Set<string>>((acc, colorVars) => {
-    for (const colorVar of colorVars) acc.add(colorVar);
+    for (const colorVar of colorVars) {
+        acc.add(colorVar);
+    }
 
     return acc;
 }, new Set());
@@ -232,7 +234,9 @@ export function findVars(
     options: { allowNumericValues?: boolean },
 ): SubstitutionResult | undefined {
     const propVars = varsByProperties[prop];
-    if (!propVars) return undefined;
+    if (!propVars) {
+        return undefined;
+    }
 
     const group = getVarsGroup(propVars);
 
@@ -243,7 +247,9 @@ export function findVars(
     for (const [value, variables] of Object.entries(propVars)) {
         const chosen = choiceVars(variables, prop, group);
 
-        if (!chosen?.length) continue;
+        if (!chosen?.length) {
+            continue;
+        }
 
         const index = findSubstring(cssValue, value);
 
@@ -264,11 +270,15 @@ export function findVars(
 export function findOldVars(cssValue: string, prop: string): SubstitutionResult | undefined {
     const matches = /var\(([^),]+)/g.exec(cssValue);
 
-    if (!matches) return undefined;
+    if (!matches) {
+        return undefined;
+    }
 
     const oldVar = matches[1];
     const replacements = oldNewMap[oldVar];
-    if (!replacements) return undefined;
+    if (!replacements) {
+        return undefined;
+    }
 
     const variants = getColorVariants(prop);
 
@@ -325,7 +335,9 @@ function sortVarsByUsage(arr: string[], sortingArr: string[]): string[] {
         const bUsage = b.slice(2).split('-', 3)[2];
         const aIndex = sortingArr.indexOf(aUsage);
         const bIndex = sortingArr.indexOf(bUsage);
-        if (aIndex === -1 || bIndex === -1) return 0;
+        if (aIndex === -1 || bIndex === -1) {
+            return 0;
+        }
         return aIndex - bIndex;
     });
 }
