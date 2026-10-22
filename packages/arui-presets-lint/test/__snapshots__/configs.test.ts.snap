@@ -9637,6 +9637,12 @@ exports[`статические конфиги > stylelint 1`] = `
         "severity": "warning",
       },
     ],
+    "stylelint-core-vars/do-not-use-old-vars": [
+      true,
+      {
+        "severity": "warning",
+      },
+    ],
     "stylelint-core-vars/use-mixins": true,
     "stylelint-core-vars/use-one-of-mixins": [
       true,
