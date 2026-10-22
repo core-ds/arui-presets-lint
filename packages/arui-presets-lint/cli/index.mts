@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execaCommand, ExecaError } from 'execa';
+import { execa, ExecaError } from 'execa';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -38,7 +38,7 @@ if (enableEcho) {
 }
 
 try {
-    await execaCommand(exec, {
+    await execa(exec, {
         shell: true,
         preferLocal: true,
         localDir: packageRoot,
