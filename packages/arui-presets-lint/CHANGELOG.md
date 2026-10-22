@@ -1,3 +1,13 @@
+## 11.4.0
+
+### Minor Changes
+
+- [#217](https://github.com/core-ds/arui-presets-lint/pull/217) [`2340128`](https://github.com/core-ds/arui-presets-lint/commit/23401284f0b3b56d883a9e266ea5ea8355040063) Thanks [@kiskv](https://github.com/kiskv)! - Обновлены зависимости: линтеры и их плагины подняты до последних patch- и minor-версий.
+
+### Patch Changes
+
+- [#217](https://github.com/core-ds/arui-presets-lint/pull/217) [`2340128`](https://github.com/core-ds/arui-presets-lint/commit/23401284f0b3b56d883a9e266ea5ea8355040063) Thanks [@kiskv](https://github.com/kiskv)! - secretlint обновлён до 13.0.7, где профайлер больше не замедляет прогон — cli-обёртка не отключает User Timing API при запуске `arui-presets-lint secretlint`.
+
 ## 11.3.0
 
 ### Minor Changes
