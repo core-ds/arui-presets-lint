@@ -49,7 +49,9 @@ export const messages = {
     [RULE_DO_NOT_USE_OLD_VARS]: typedRuleMessages(RULE_DO_NOT_USE_OLD_VARS, {
         expected: (variables: string[], value: string | string[], fixable = true) => {
             const valueStr = String(value);
-            if (!variables.length) return `Ask you designer how to replace old token '${valueStr}'`;
+            if (!variables.length) {
+                return `Ask you designer how to replace old token '${valueStr}'`;
+            }
 
             const startMsg = fixable ? 'Use' : 'Cant find proper token, but you can use';
 
@@ -163,11 +165,15 @@ const checkTypography = (
     }, {});
 
     const hasTypography = 'font-size' in typographyProps;
-    if (!hasTypography) return;
+    if (!hasTypography) {
+        return;
+    }
 
     const foundMixins = findTypographyMixins(typographyProps);
 
-    if (!foundMixins?.length) return;
+    if (!foundMixins?.length) {
+        return;
+    }
 
     const exactMixin = foundMixins.length === 1;
 
