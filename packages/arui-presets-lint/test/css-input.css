@@ -5,12 +5,12 @@
 @custom-media --small-only screen and (max-width: 47.9375em);
 
 .super-style {
-    display: flex;
     position: relative;
     z-index: 1;
     top: 1px;
     right: 1px;
     bottom: 1px;
+    display: flex;
 
     @media (--small-only) {
         & + & {

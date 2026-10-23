@@ -158,9 +158,12 @@ export default {
             },
         ],
 
-        // Задаёт порядок перечисленных свойств относительно друг друга
+        // Требует свойства позиционирования в заданном порядке перед остальными свойствами
         // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
-        'order/properties-order': ['position', 'z-index', 'top', 'right', 'bottom', 'left'],
+        'order/properties-order': [
+            ['position', 'z-index', 'top', 'right', 'bottom', 'left'],
+            { unspecified: 'bottom' },
+        ],
 
         // Требует порядок вложенности: декларации > @media > псевдоэлементы > псевдоклассы > &__ > вложенные классы
         // https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md

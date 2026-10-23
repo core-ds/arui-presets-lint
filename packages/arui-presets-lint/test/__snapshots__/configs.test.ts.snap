@@ -9599,12 +9599,17 @@ exports[`статические конфиги > stylelint 1`] = `
       },
     ],
     "order/properties-order": [
-      "position",
-      "z-index",
-      "top",
-      "right",
-      "bottom",
-      "left",
+      [
+        "position",
+        "z-index",
+        "top",
+        "right",
+        "bottom",
+        "left",
+      ],
+      {
+        "unspecified": "bottom",
+      },
     ],
     "rule-empty-line-before": [
       "always",
