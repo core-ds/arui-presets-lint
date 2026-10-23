@@ -34,6 +34,16 @@ it('пресет требует свойства позиционировани�
 
 it.each([
     {
+        rule: 'alpha-value-notation',
+        code: '.button { opacity: 50%; }',
+        expected: '.button { opacity: 0.5; }',
+    },
+    {
+        rule: 'alpha-value-notation',
+        code: '.button { background-image: linear-gradient(rgb(0 0 0 / 50%), transparent); }',
+        expected: '.button { background-image: linear-gradient(rgb(0 0 0 / 0.5), transparent); }',
+    },
+    {
         rule: 'value-keyword-case',
         code: '.button { display: BLOCK; }',
         expected: '.button { display: block; }',
@@ -199,4 +209,138 @@ it('разрешает отдельные свойства фона, включ�
     const checked = await stylelint.lint({ code, config });
 
     expect(checked.results[0].warnings).toEqual([]);
+});
+
+it.each([
+    { rule: 'property-no-unknown', code: '.button { widht: 10px; }' },
+    { rule: 'declaration-property-value-no-unknown', code: '.button { display: fleex; }' },
+    {
+        rule: 'declaration-block-no-duplicate-custom-properties',
+        code: '.button { --level: 1; --level: 2; }',
+    },
+    { rule: 'declaration-no-important', code: '.button { display: block !important; }' },
+    {
+        rule: 'declaration-no-important',
+        code: '@keyframes fade { from { opacity: 0 !important; } }',
+    },
+])('$rule: сообщает об ошибке в $code', async ({ rule, code }) => {
+    const checked = await stylelint.lint({ code: await formatCss(code), config });
+
+    expect(checked.errored).toBe(true);
+    expect(checked.results[0].warnings).toContainEqual(
+        expect.objectContaining({ rule, severity: 'error' }),
+    );
+});
+
+it.each(['shared', "shared from './base.module.css'"])(
+    'разрешает composes: %s в CSS Modules',
+    async (value) => {
+        const checked = await stylelint.lint({
+            code: `.button { composes: ${value}; }`,
+            codeFilename: 'src/component.module.css',
+            config,
+        });
+
+        expect(checked.results[0].warnings).toEqual([]);
+    },
+);
+
+it('проверяет неизвестные свойства в CSS Modules при разрешенном composes', async () => {
+    const checked = await stylelint.lint({
+        code: '.button { composes: shared; widht: 10px; }',
+        codeFilename: 'src/component.module.css',
+        config,
+    });
+
+    expect(checked.errored).toBe(true);
+    expect(checked.results[0].warnings).toEqual([
+        expect.objectContaining({ rule: 'property-no-unknown', severity: 'error' }),
+    ]);
+    expect(checked.results[0].warnings[0].text).toContain('widht');
+});
+
+it('не разрешает composes за пределами CSS Modules', async () => {
+    const checked = await stylelint.lint({
+        code: '.button { composes: shared; }',
+        codeFilename: 'src/component.css',
+        config,
+    });
+
+    expect(checked.errored).toBe(true);
+    expect(checked.results[0].warnings).toEqual([
+        expect.objectContaining({ rule: 'property-no-unknown', severity: 'error' }),
+    ]);
+});
+
+it('сохраняет поддержку миксинов PostCSS, переменных и запасных CSS-деклараций', async () => {
+    const code = await formatCss(`@define-mixin expanded {
+    display: block;
+    width: var(--button-width, 100%);
+}
+
+.button {
+    --level: 1;
+    height: 100%;
+    height: 100vh;
+    @mixin expanded;
+}
+
+.active {
+    --level: 2;
+    opacity: 0.5;
+}`);
+    const checked = await stylelint.lint({ code, config });
+
+    expect(checked.results[0].warnings).toEqual([]);
+});
+
+it.each([
+    {
+        name: 'отключение без объяснения',
+        code: `.button {
+    /* stylelint-disable-next-line declaration-no-important */
+    display: block !important;
+}`,
+        rule: '--report-descriptionless-disables',
+    },
+    {
+        name: 'ненужное отключение с объяснением',
+        code: `.button {
+    /* stylelint-disable-next-line declaration-no-important -- Сторонний компонент */
+    display: block;
+}`,
+        rule: '--report-needless-disables',
+    },
+])('считает ошибкой $name', async ({ code, rule }) => {
+    const checked = await stylelint.lint({ code: await formatCss(code), config });
+
+    expect(checked.errored).toBe(true);
+    expect(checked.results[0].warnings).toEqual([
+        expect.objectContaining({ rule, severity: 'error' }),
+    ]);
+});
+
+it('разрешает необходимое точечное отключение с объяснением', async () => {
+    const code = await formatCss(`.button {
+    /* stylelint-disable-next-line declaration-no-important -- Сторонний компонент */
+    display: block !important;
+}`);
+    const checked = await stylelint.lint({ code, config });
+
+    expect(checked.errored).toBe(false);
+    expect(checked.results[0].warnings).toEqual([]);
+});
+
+it('точечное отключение не скрывает ошибки других правил', async () => {
+    const code = await formatCss(`.button {
+    /* stylelint-disable-next-line declaration-no-important -- Сторонний компонент */
+    display: block !important;
+    widht: 10px;
+}`);
+    const checked = await stylelint.lint({ code, config });
+
+    expect(checked.errored).toBe(true);
+    expect(checked.results[0].warnings).toEqual([
+        expect.objectContaining({ rule: 'property-no-unknown', severity: 'error' }),
+    ]);
 });

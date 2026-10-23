@@ -1,7 +1,19 @@
 import { type Config } from 'stylelint';
 
 export default {
+    // Требует объяснять отключения правил
+    // https://stylelint.io/user-guide/configure/#reportdescriptionlessdisables
+    reportDescriptionlessDisables: true,
+
+    // Запрещает отключения правил, которые больше не нужны
+    // https://stylelint.io/user-guide/configure/#reportneedlessdisables
+    reportNeedlessDisables: true,
+
     rules: {
+        // Требует числовую запись прозрачности вместо процентов
+        // https://stylelint.io/user-guide/rules/alpha-value-notation
+        'alpha-value-notation': 'number',
+
         // Запрещает пустые блоки
         // https://stylelint.io/user-guide/rules/block-no-empty
         'block-no-empty': true,
@@ -50,6 +62,14 @@ export default {
         // https://stylelint.io/user-guide/rules/declaration-block-single-line-max-declarations
         'declaration-block-single-line-max-declarations': 2,
 
+        // Запрещает !important в декларациях
+        // https://stylelint.io/user-guide/rules/declaration-no-important
+        'declaration-no-important': true,
+
+        // Запрещает неизвестные значения CSS-свойств
+        // https://stylelint.io/user-guide/rules/declaration-property-value-no-unknown
+        'declaration-property-value-no-unknown': true,
+
         // Требует числовой вес шрифта, сохраняя относительные значения lighter и bolder
         // https://stylelint.io/user-guide/rules/font-weight-notation
         'font-weight-notation': ['numeric', { ignore: ['relative'] }],
@@ -93,6 +113,10 @@ export default {
         // Запрещает сокращенное свойство background, требуя отдельные свойства фона
         // https://stylelint.io/user-guide/rules/property-disallowed-list
         'property-disallowed-list': ['background'],
+
+        // Запрещает неизвестные CSS-свойства
+        // https://stylelint.io/user-guide/rules/property-no-unknown
+        'property-no-unknown': true,
 
         // Запрещает неизвестные псевдоклассы
         // https://stylelint.io/user-guide/rules/selector-pseudo-class-no-unknown
@@ -144,6 +168,10 @@ export default {
         // Запрещает дублирующиеся селекторы
         // https://stylelint.io/user-guide/rules/no-duplicate-selectors
         'no-duplicate-selectors': true,
+
+        // Запрещает повторное объявление CSS-переменной в одном блоке
+        // https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-custom-properties
+        'declaration-block-no-duplicate-custom-properties': true,
 
         // Запрещает дублирующиеся свойства в блоке
         // https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties
@@ -225,6 +253,10 @@ export default {
         {
             files: ['*.module.css'],
             rules: {
+                // Разрешает композицию классов CSS Modules
+                // https://stylelint.io/user-guide/rules/property-no-unknown
+                'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
+
                 // Требует lowerCamelCase в именах классов CSS Modules
                 // https://stylelint.io/user-guide/rules/selector-class-pattern
                 'selector-class-pattern': [
