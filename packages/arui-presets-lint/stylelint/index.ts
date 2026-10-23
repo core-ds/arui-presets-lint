@@ -1,5 +1,26 @@
 import { type Config } from 'stylelint';
 
+import cssModulesPlugins from './css-modules.js';
+
+const keywordCaseOptions = {
+    // Эти свойства содержат имена, регистр которых влияет на ссылки на них.
+    ignoreProperties: [
+        /^--/,
+        'composes',
+        'grid',
+        /^grid-template(?:-(?:rows|columns|areas))?$/,
+        'container',
+        'container-name',
+        'counter-set',
+        'view-transition-name',
+        'view-transition-class',
+        'page',
+        'color-scheme',
+    ],
+    ignoreKeywords: [/^--/],
+    camelCaseSvgKeywords: true,
+};
+
 export default {
     // Требует объяснять отключения правил
     // https://stylelint.io/user-guide/configure/#reportdescriptionlessdisables
@@ -155,15 +176,9 @@ export default {
         // https://stylelint.io/user-guide/rules/unit-no-unknown
         'unit-no-unknown': true,
 
-        // Требует нижний регистр значений, сохраняя регистр custom properties и SVG-ключевых слов
+        // Требует нижний регистр ключевых слов, сохраняя пользовательские имена
         // https://stylelint.io/user-guide/rules/value-keyword-case
-        'value-keyword-case': [
-            'lower',
-            {
-                ignoreProperties: [/^--/],
-                camelCaseSvgKeywords: true,
-            },
-        ],
+        'value-keyword-case': ['lower', keywordCaseOptions],
 
         // Запрещает дублирующиеся селекторы
         // https://stylelint.io/user-guide/rules/no-duplicate-selectors
@@ -636,11 +651,18 @@ export default {
             { severity: 'warning' },
         ],
     },
-    plugins: ['stylelint-order', '@alfalab/stylelint-core-vars'],
+    plugins: ['stylelint-order', '@alfalab/stylelint-core-vars', ...cssModulesPlugins],
     overrides: [
         {
             files: ['*.module.css'],
             rules: {
+                // Версии штатных правил, учитывающие объявления и импорты @value
+                // https://github.com/css-modules/postcss-modules-values
+                'declaration-property-value-no-unknown': null,
+                'arui-presets-lint/declaration-property-value-no-unknown': true,
+                'value-keyword-case': null,
+                'arui-presets-lint/value-keyword-case': ['lower', keywordCaseOptions],
+
                 // Разрешает композицию классов CSS Modules
                 // https://stylelint.io/user-guide/rules/property-no-unknown
                 'property-no-unknown': [true, { ignoreProperties: ['composes'] }],

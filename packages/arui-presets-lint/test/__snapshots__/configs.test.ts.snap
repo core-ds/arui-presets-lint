@@ -9508,6 +9508,30 @@ exports[`статические конфиги > stylelint 1`] = `
         "*.module.css",
       ],
       "rules": {
+        "arui-presets-lint/declaration-property-value-no-unknown": true,
+        "arui-presets-lint/value-keyword-case": [
+          "lower",
+          {
+            "camelCaseSvgKeywords": true,
+            "ignoreKeywords": [
+              /\\^--/,
+            ],
+            "ignoreProperties": [
+              /\\^--/,
+              "composes",
+              "grid",
+              /\\^grid-template\\(\\?:-\\(\\?:rows\\|columns\\|areas\\)\\)\\?\\$/,
+              "container",
+              "container-name",
+              "counter-set",
+              "view-transition-name",
+              "view-transition-class",
+              "page",
+              "color-scheme",
+            ],
+          },
+        ],
+        "declaration-property-value-no-unknown": null,
         "property-no-unknown": [
           true,
           {
@@ -9523,12 +9547,21 @@ exports[`статические конфиги > stylelint 1`] = `
             "severity": "warning",
           },
         ],
+        "value-keyword-case": null,
       },
     },
   ],
   "plugins": [
     "stylelint-order",
     "@alfalab/stylelint-core-vars",
+    {
+      "rule": [Function],
+      "ruleName": "arui-presets-lint/declaration-property-value-no-unknown",
+    },
+    {
+      "rule": [Function],
+      "ruleName": "arui-presets-lint/value-keyword-case",
+    },
   ],
   "reportDescriptionlessDisables": true,
   "reportNeedlessDisables": true,
@@ -10053,8 +10086,21 @@ exports[`статические конфиги > stylelint 1`] = `
       "lower",
       {
         "camelCaseSvgKeywords": true,
+        "ignoreKeywords": [
+          /\\^--/,
+        ],
         "ignoreProperties": [
           /\\^--/,
+          "composes",
+          "grid",
+          /\\^grid-template\\(\\?:-\\(\\?:rows\\|columns\\|areas\\)\\)\\?\\$/,
+          "container",
+          "container-name",
+          "counter-set",
+          "view-transition-name",
+          "view-transition-class",
+          "page",
+          "color-scheme",
         ],
       },
     ],

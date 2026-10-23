@@ -5728,6 +5728,8 @@ __metadata:
     jiti: "npm:^2.6.1"
     knip: "npm:6.42.1"
     lefthook: "npm:2.2.2"
+    postcss: "npm:^8.5.13"
+    postcss-value-parser: "npm:^4.2.0"
     prettier: "npm:3.9.10"
     react: "npm:19.3.1"
     rimraf: "npm:6.1.3"
