@@ -107,3 +107,96 @@ it('сохраняет регистр идентификаторов, SVG-зна
     expect(corrected.code).toBe(code);
     expect(corrected.results[0].warnings).toEqual([]);
 });
+
+it('разрешает lowerCamelCase в именах классов CSS Modules', async () => {
+    const checked = await stylelint.lint({
+        code: '.button, .buttonTitle, .buttonTitle2, .x { display: block; }',
+        codeFilename: 'src/component.module.css',
+        config,
+    });
+
+    expect(checked.results[0].warnings).toEqual([]);
+});
+
+it.each(['ButtonTitle', 'button_title', 'button-title', 'button__title'])(
+    'предупреждает о классе %s в CSS Modules и не переименовывает его автоматически',
+    async (name) => {
+        const code = `.${name} { display: block; }`;
+        const options = { code, codeFilename: 'src/component.module.css', config };
+        const checked = await stylelint.lint(options);
+        const corrected = await stylelint.lint({ ...options, fix: true });
+
+        expect(checked.results[0].warnings).toEqual([
+            expect.objectContaining({
+                rule: 'selector-class-pattern',
+                severity: 'warning',
+            }),
+        ]);
+        expect(checked.results[0].warnings[0].text).toContain('lowerCamelCase');
+        expect(corrected.code).toBe(code);
+        expect(corrected.results[0].warnings).toEqual(checked.results[0].warnings);
+    },
+);
+
+it('проверяет явно заданные вложенные классы CSS Modules', async () => {
+    const code = await formatCss(`.root {
+    @media (width >= 600px) {
+        .ButtonTitle {
+            display: block;
+        }
+    }
+}`);
+    const checked = await stylelint.lint({
+        code,
+        codeFilename: 'src/component.module.css',
+        config,
+    });
+
+    expect(checked.results[0].warnings).toEqual([
+        expect.objectContaining({ rule: 'selector-class-pattern', severity: 'warning' }),
+    ]);
+});
+
+it('не ограничивает имена классов вне CSS Modules', async () => {
+    const checked = await stylelint.lint({
+        code: '.ButtonTitle, .button_title, .button-title { display: block; }',
+        codeFilename: 'src/component.css',
+        config,
+    });
+
+    expect(checked.results[0].warnings).toEqual([]);
+});
+
+it.each([
+    'var(--color-light-bg-primary)',
+    "url('./image.svg') center / cover no-repeat",
+    'linear-gradient(var(--color-light-bg-primary), var(--color-light-text-primary))',
+])('запрещает background: %s и не заменяет его автоматически', async (value) => {
+    const code = await formatCss(`.button { background: ${value}; }`);
+    const checked = await stylelint.lint({ code, config });
+    const corrected = await stylelint.lint({ code, config, fix: true });
+
+    expect(checked.errored).toBe(true);
+    expect(checked.results[0].warnings).toEqual([
+        expect.objectContaining({ rule: 'property-disallowed-list', severity: 'error' }),
+    ]);
+    expect(corrected.errored).toBe(true);
+    expect(corrected.code).toBe(code);
+    expect(corrected.results[0].warnings).toEqual(checked.results[0].warnings);
+});
+
+it('разрешает отдельные свойства фона, включая градиенты в background-image', async () => {
+    const code = await formatCss(`.button {
+    background-color: var(--color-light-bg-primary);
+    background-image: linear-gradient(var(--color-light-bg-primary), var(--color-light-text-primary));
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
+}`);
+    const checked = await stylelint.lint({ code, config });
+
+    expect(checked.results[0].warnings).toEqual([]);
+});

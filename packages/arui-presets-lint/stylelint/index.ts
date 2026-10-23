@@ -90,6 +90,10 @@ export default {
         // https://stylelint.io/user-guide/rules/no-invalid-double-slash-comments
         'no-invalid-double-slash-comments': true,
 
+        // Запрещает сокращенное свойство background, требуя отдельные свойства фона
+        // https://stylelint.io/user-guide/rules/property-disallowed-list
+        'property-disallowed-list': ['background'],
+
         // Запрещает неизвестные псевдоклассы
         // https://stylelint.io/user-guide/rules/selector-pseudo-class-no-unknown
         'selector-pseudo-class-no-unknown': [
@@ -221,13 +225,12 @@ export default {
         {
             files: ['*.module.css'],
             rules: {
-                // Запрещает дефис в классах (требует camelCase или snake_case)
+                // Требует lowerCamelCase в именах классов CSS Modules
                 // https://stylelint.io/user-guide/rules/selector-class-pattern
                 'selector-class-pattern': [
-                    '^[^-]+$',
+                    '^[a-z][a-zA-Z0-9]*$',
                     {
-                        message:
-                            'Expected class selector to be camelCase (or, for corner cases, snake_case)',
+                        message: 'Expected class selector to be lowerCamelCase',
                         severity: 'warning',
                     },
                 ],

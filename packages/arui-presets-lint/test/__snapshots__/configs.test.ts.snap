@@ -9509,9 +9509,9 @@ exports[`статические конфиги > stylelint 1`] = `
       ],
       "rules": {
         "selector-class-pattern": [
-          "^[^-]+$",
+          "^[a-z][a-zA-Z0-9]*$",
           {
-            "message": "Expected class selector to be camelCase (or, for corner cases, snake_case)",
+            "message": "Expected class selector to be lowerCamelCase",
             "severity": "warning",
           },
         ],
@@ -9620,6 +9620,9 @@ exports[`статические конфиги > stylelint 1`] = `
       {
         "unspecified": "bottom",
       },
+    ],
+    "property-disallowed-list": [
+      "background",
     ],
     "rule-empty-line-before": [
       "always",

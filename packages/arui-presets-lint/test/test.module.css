@@ -1,7 +1,7 @@
 .testClass {
     margin: var(--gap-0);
 
-    &_inner {
+    &Inner {
         padding: var(--gap-0);
     }
 }
