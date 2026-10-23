@@ -148,6 +148,52 @@ const checkVars = (
     }
 };
 
+const checkOldVars = (
+    decl: Declaration,
+    result: stylelint.PostcssResult,
+    context: stylelint.RuleContext,
+): void => {
+    // PostCSS хранит комментарии между частями значения отдельно от decl.value.
+    const value = decl.raws.value?.value === decl.value ? decl.raws.value.raw : decl.value;
+    const substitutions = findOldVars(value, decl.prop);
+
+    for (const substitution of substitutions) {
+        if (context.fix && substitution.fixable) {
+            continue;
+        }
+
+        const index = substitution.index + decl.prop.length + (decl.raws.between?.length ?? 0);
+
+        stylelint.utils.report({
+            result,
+            ruleName: RULE_DO_NOT_USE_OLD_VARS,
+            message: messages[RULE_DO_NOT_USE_OLD_VARS].expected(
+                substitution.variables,
+                substitution.value,
+                substitution.fixable,
+            ),
+            node: decl,
+            index,
+            endIndex: index + substitution.value.length,
+        });
+    }
+
+    if (context.fix) {
+        let fixedValue = value;
+
+        // Замены справа налево сохраняют исходные позиции остальных токенов.
+        for (const substitution of substitutions.toReversed()) {
+            if (substitution.fixable) {
+                fixedValue = `${fixedValue.slice(0, substitution.index)}${substitution.fixedValue}${fixedValue.slice(substitution.index + substitution.value.length)}`;
+            }
+        }
+
+        if (fixedValue !== value) {
+            decl.value = fixedValue;
+        }
+    }
+};
+
 const checkTypography = (
     rule: PostcssRule,
     result: stylelint.PostcssResult,
@@ -313,14 +359,7 @@ export default [
 
             return (root, result) => {
                 root.walkDecls((decl) => {
-                    checkVars(
-                        decl,
-                        result,
-                        context,
-                        RULE_DO_NOT_USE_OLD_VARS,
-                        findOldVars,
-                        (_fixable, fixed) => !fixed,
-                    );
+                    checkOldVars(decl, result, context);
                 });
             };
         }),

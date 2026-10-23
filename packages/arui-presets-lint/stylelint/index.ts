@@ -148,6 +148,10 @@ export default {
         // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
         'stylelint-core-vars/do-not-use-dark-colors': [true, { severity: 'warning' }],
 
+        // Предупреждает об использовании устаревших токенов дизайн-системы
+        // https://github.com/core-ds/arui-presets-lint/tree/master/packages/stylelint-core-vars
+        'stylelint-core-vars/do-not-use-old-vars': [true, { severity: 'warning' }],
+
         // Требует пустую строку перед правилами
         // https://stylelint.io/user-guide/rules/rule-empty-line-before
         'rule-empty-line-before': [
