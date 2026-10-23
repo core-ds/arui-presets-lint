@@ -19,10 +19,10 @@
     }
 
     &__name {
-        color: var(--red);
         width: calc(100px + 20px);
         height: 100%;
         height: 100vh;
+        color: var(--red);
         background-image: linear-gradient(
             0deg,
             rgba(0, 0, 0, 1) 80%,
