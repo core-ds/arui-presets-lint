@@ -50,6 +50,10 @@ export default {
         // https://stylelint.io/user-guide/rules/declaration-block-single-line-max-declarations
         'declaration-block-single-line-max-declarations': 2,
 
+        // Требует числовой вес шрифта, сохраняя относительные значения lighter и bolder
+        // https://stylelint.io/user-guide/rules/font-weight-notation
+        'font-weight-notation': ['numeric', { ignore: ['relative'] }],
+
         // Требует пробелы вокруг операторов в calc()
         // https://stylelint.io/user-guide/rules/function-calc-no-unspaced-operator
         'function-calc-no-unspaced-operator': true,
@@ -61,6 +65,14 @@ export default {
         // Требует нижний регистр для имeн функций
         // https://stylelint.io/user-guide/rules/function-name-case
         'function-name-case': 'lower',
+
+        // Требует кавычки вокруг URL
+        // https://stylelint.io/user-guide/rules/function-url-quotes
+        'function-url-quotes': 'always',
+
+        // Требует строковую форму @import
+        // https://stylelint.io/user-guide/rules/import-notation
+        'import-notation': 'string',
 
         // Запрещает !important в keyframe-декларациях
         // https://stylelint.io/user-guide/rules/keyframe-declaration-no-important
@@ -114,6 +126,16 @@ export default {
         // Запрещает неизвестные единицы измерения
         // https://stylelint.io/user-guide/rules/unit-no-unknown
         'unit-no-unknown': true,
+
+        // Требует нижний регистр значений, сохраняя регистр custom properties и SVG-ключевых слов
+        // https://stylelint.io/user-guide/rules/value-keyword-case
+        'value-keyword-case': [
+            'lower',
+            {
+                ignoreProperties: [/^--/],
+                camelCaseSvgKeywords: true,
+            },
+        ],
 
         // Запрещает дублирующиеся селекторы
         // https://stylelint.io/user-guide/rules/no-duplicate-selectors

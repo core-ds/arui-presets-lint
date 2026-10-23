@@ -9562,9 +9562,19 @@ exports[`статические конфиги > stylelint 1`] = `
     ],
     "declaration-block-no-shorthand-property-overrides": true,
     "declaration-block-single-line-max-declarations": 2,
+    "font-weight-notation": [
+      "numeric",
+      {
+        "ignore": [
+          "relative",
+        ],
+      },
+    ],
     "function-calc-no-unspaced-operator": true,
     "function-linear-gradient-no-nonstandard-direction": true,
     "function-name-case": "lower",
+    "function-url-quotes": "always",
+    "import-notation": "string",
     "keyframe-declaration-no-important": true,
     "length-zero-no-unit": true,
     "no-duplicate-selectors": true,
@@ -9657,6 +9667,15 @@ exports[`статические конфиги > stylelint 1`] = `
     ],
     "stylelint-core-vars/use-vars": true,
     "unit-no-unknown": true,
+    "value-keyword-case": [
+      "lower",
+      {
+        "camelCaseSvgKeywords": true,
+        "ignoreProperties": [
+          /\\^--/,
+        ],
+      },
+    ],
   },
 }
 `;
