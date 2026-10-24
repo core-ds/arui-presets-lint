@@ -1,6 +1,14 @@
 import { type Config } from 'stylelint';
 
 export default {
+    // Требует объяснять отключения правил
+    // https://stylelint.io/user-guide/configure/#reportdescriptionlessdisables
+    reportDescriptionlessDisables: true,
+
+    // Запрещает отключения правил, которые больше не нужны
+    // https://stylelint.io/user-guide/configure/#reportneedlessdisables
+    reportNeedlessDisables: true,
+
     rules: {
         // Запрещает пустые блоки
         // https://stylelint.io/user-guide/rules/block-no-empty
@@ -50,6 +58,14 @@ export default {
         // https://stylelint.io/user-guide/rules/declaration-block-single-line-max-declarations
         'declaration-block-single-line-max-declarations': 2,
 
+        // Запрещает !important в декларациях
+        // https://stylelint.io/user-guide/rules/declaration-no-important
+        'declaration-no-important': true,
+
+        // Запрещает неизвестные значения css свойств
+        // https://stylelint.io/user-guide/rules/declaration-property-value-no-unknown
+        'declaration-property-value-no-unknown': true,
+
         // Требует пробелы вокруг операторов в calc()
         // https://stylelint.io/user-guide/rules/function-calc-no-unspaced-operator
         'function-calc-no-unspaced-operator': true,
@@ -61,6 +77,14 @@ export default {
         // Требует нижний регистр для имeн функций
         // https://stylelint.io/user-guide/rules/function-name-case
         'function-name-case': 'lower',
+
+        // Требует кавычки вокруг URL
+        // https://stylelint.io/user-guide/rules/function-url-quotes
+        'function-url-quotes': 'always',
+
+        // Требует строковую форму @import
+        // https://stylelint.io/user-guide/rules/import-notation
+        'import-notation': 'string',
 
         // Запрещает !important в keyframe-декларациях
         // https://stylelint.io/user-guide/rules/keyframe-declaration-no-important
@@ -77,6 +101,10 @@ export default {
         // Запрещает невалидные двойные слэш-комментарии
         // https://stylelint.io/user-guide/rules/no-invalid-double-slash-comments
         'no-invalid-double-slash-comments': true,
+
+        // Запрещает неизвестные css свойства
+        // https://stylelint.io/user-guide/rules/property-no-unknown
+        'property-no-unknown': true,
 
         // Запрещает неизвестные псевдоклассы
         // https://stylelint.io/user-guide/rules/selector-pseudo-class-no-unknown
@@ -118,6 +146,10 @@ export default {
         // Запрещает дублирующиеся селекторы
         // https://stylelint.io/user-guide/rules/no-duplicate-selectors
         'no-duplicate-selectors': true,
+
+        // Запрещает повторное объявление css переменной в одном блоке
+        // https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-custom-properties
+        'declaration-block-no-duplicate-custom-properties': true,
 
         // Запрещает дублирующиеся свойства в блоке
         // https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties
@@ -196,6 +228,10 @@ export default {
         {
             files: ['*.module.css'],
             rules: {
+                // Разрешает композицию классов CSS Modules
+                // https://stylelint.io/user-guide/rules/property-no-unknown
+                'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
+
                 // Запрещает дефис в классах (требует camelCase или snake_case)
                 // https://stylelint.io/user-guide/rules/selector-class-pattern
                 'selector-class-pattern': [

@@ -9508,6 +9508,14 @@ exports[`статические конфиги > stylelint 1`] = `
         "*.module.css",
       ],
       "rules": {
+        "property-no-unknown": [
+          true,
+          {
+            "ignoreProperties": [
+              "composes",
+            ],
+          },
+        ],
         "selector-class-pattern": [
           "^[^-]+$",
           {
@@ -9522,6 +9530,8 @@ exports[`статические конфиги > stylelint 1`] = `
     "stylelint-order",
     "@alfalab/stylelint-core-vars",
   ],
+  "reportDescriptionlessDisables": true,
+  "reportNeedlessDisables": true,
   "rules": {
     "block-no-empty": true,
     "color-hex-length": "short",
@@ -9552,6 +9562,7 @@ exports[`статические конфиги > stylelint 1`] = `
         ],
       },
     ],
+    "declaration-block-no-duplicate-custom-properties": true,
     "declaration-block-no-duplicate-properties": [
       true,
       {
@@ -9562,9 +9573,13 @@ exports[`статические конфиги > stylelint 1`] = `
     ],
     "declaration-block-no-shorthand-property-overrides": true,
     "declaration-block-single-line-max-declarations": 2,
+    "declaration-no-important": true,
+    "declaration-property-value-no-unknown": true,
     "function-calc-no-unspaced-operator": true,
     "function-linear-gradient-no-nonstandard-direction": true,
     "function-name-case": "lower",
+    "function-url-quotes": "always",
+    "import-notation": "string",
     "keyframe-declaration-no-important": true,
     "length-zero-no-unit": true,
     "no-duplicate-selectors": true,
@@ -9606,6 +9621,7 @@ exports[`статические конфиги > stylelint 1`] = `
       "bottom",
       "left",
     ],
+    "property-no-unknown": true,
     "rule-empty-line-before": [
       "always",
       {
