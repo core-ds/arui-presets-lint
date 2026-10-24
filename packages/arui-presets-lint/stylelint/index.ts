@@ -1,5 +1,7 @@
 import { type Config } from 'stylelint';
 
+import propertiesOrder from './properties-order.js';
+
 export default {
     rules: {
         // Запрещает пустые блоки
@@ -158,14 +160,15 @@ export default {
             },
         ],
 
-        // Задаёт порядок перечисленных свойств относительно друг друга
+        // Требует порядок: позиционирование, раскладка, размеры, отступы, текст, оформление, эффекты, взаимодействие
         // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
-        'order/properties-order': ['position', 'z-index', 'top', 'right', 'bottom', 'left'],
+        'order/properties-order': [propertiesOrder, { unspecified: 'bottomAlphabetical' }],
 
-        // Требует порядок вложенности: декларации > @media > псевдоэлементы > псевдоклассы > &__ > вложенные классы
+        // Требует порядок: CSS-переменные > декларации > @media > псевдоэлементы > псевдоклассы > &__ > вложенные классы
         // https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
         'order/order': [
             [
+                'custom-properties',
                 'declarations',
                 {
                     type: 'at-rule',
