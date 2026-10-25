@@ -1,3 +1,14 @@
+## 12.0.0-snapshot-54c137652f3426c99a12223eb6bf064a008d098c
+
+### Major Changes
+
+- [#228](https://github.com/core-ds/arui-presets-lint/pull/228) [`652293c`](https://github.com/core-ds/arui-presets-lint/commit/652293c5f3d70018bce551f764b9a5db5ff334d2) Thanks [@kiskv](https://github.com/kiskv)! - - ESLint и Execa обновлены до 10.
+    - React и Hooks переведены на `eslint-plugin-react-x`.
+    - `eslint-plugin-jsx-a11y` заменён на `eslint-plugin-jsx-a11y-x`.
+    - В CLI и Lefthook включён многопоточный запуск ESLint.
+    - На pre-push проверка форматирования запускается параллельно с линтерами.
+    - Требуется Node.js 22.13+.
+
 ## 11.4.0
 
 ### Minor Changes
