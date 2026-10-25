@@ -1,6 +1,9 @@
 import { createRuleTester } from 'eslint-vitest-rule-tester';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import tseslint from 'typescript-eslint';
-import { describe, it } from 'vitest';
+import { afterAll, describe, it } from 'vitest';
 
 import { CORE_COMPONENTS_PACKAGE } from '../../eslint/plugins/core-components/constants/index.js';
 import { coreComponentsImportRule } from '../../eslint/plugins/core-components/rule/index.js';
@@ -285,6 +288,179 @@ describe('core-components-imports', () => {
         it('не сообщает об ошибке при платформенном импорте в runtime-скане', async () => {
             await valid({
                 code: "import { ButtonDesktop } from '@alfalab/core-components/button/desktop';",
+            });
+        });
+    });
+
+    describe('автоопределение по форме импорта', () => {
+        const formRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'core-components-form-'));
+
+        const formTester = createRuleTester({
+            ...testerConfig,
+            name: 'core-components-imports',
+            rule: coreComponentsImportRule,
+            parserOptions: { tsconfigRootDir: formRoot },
+        });
+
+        afterAll(() => {
+            fs.rmSync(formRoot, { recursive: true, force: true });
+        });
+
+        const createProject = ({
+            aggregator = [],
+            standalone = [],
+            standaloneUnsplit = [],
+        }: {
+            aggregator?: string[];
+            standalone?: string[];
+            standaloneUnsplit?: string[];
+        }): string => {
+            const root = fs.mkdtempSync(path.join(formRoot, 'project-'));
+
+            if (aggregator.length > 0) {
+                const aggregateDir = path.join(root, 'node_modules', '@alfalab', 'core-components');
+                fs.mkdirSync(aggregateDir, { recursive: true });
+                fs.writeFileSync(
+                    path.join(aggregateDir, 'package.json'),
+                    JSON.stringify({ name: CORE_COMPONENTS_PACKAGE, version: '0.0.0' }),
+                );
+
+                for (const component of aggregator) {
+                    fs.mkdirSync(path.join(aggregateDir, component, 'desktop'), { recursive: true });
+                    fs.mkdirSync(path.join(aggregateDir, component, 'mobile'), { recursive: true });
+                }
+            }
+
+            for (const component of standalone) {
+                const standaloneDir = path.join(
+                    root,
+                    'node_modules',
+                    '@alfalab',
+                    `core-components-${component}`,
+                );
+                fs.mkdirSync(path.join(standaloneDir, 'desktop'), { recursive: true });
+                fs.mkdirSync(path.join(standaloneDir, 'mobile'), { recursive: true });
+                fs.writeFileSync(
+                    path.join(standaloneDir, 'package.json'),
+                    JSON.stringify({
+                        name: `@alfalab/core-components-${component}`,
+                        version: '0.0.0',
+                    }),
+                );
+            }
+
+            for (const component of standaloneUnsplit) {
+                const standaloneDir = path.join(
+                    root,
+                    'node_modules',
+                    '@alfalab',
+                    `core-components-${component}`,
+                );
+                fs.mkdirSync(standaloneDir, { recursive: true });
+                fs.writeFileSync(path.join(standaloneDir, 'index.js'), '');
+                fs.writeFileSync(
+                    path.join(standaloneDir, 'package.json'),
+                    JSON.stringify({
+                        name: `@alfalab/core-components-${component}`,
+                        version: '0.0.0',
+                    }),
+                );
+            }
+
+            const entry = path.join(root, 'entry.ts');
+            fs.writeFileSync(entry, '');
+
+            return entry;
+        };
+
+        it('сообщает об ошибке для standalone-импорта, разделённого только в отдельном подпакете', async () => {
+            const filename = createProject({ aggregator: ['link'], standalone: ['button'] });
+
+            await formTester.invalid({
+                code: "import { Button } from '@alfalab/core-components-button';",
+                filename,
+                errors: [
+                    {
+                        messageId: 'missingPlatform',
+                        data: {
+                            component: 'button',
+                            suggestedDesktop: '@alfalab/core-components-button/desktop',
+                            suggestedMobile: '@alfalab/core-components-button/mobile',
+                        },
+                    },
+                ],
+            });
+        });
+
+        it('не сообщает об ошибке для агрегатор-импорта, не разделённого в агрегаторе', async () => {
+            // Зеркальный случай: разделён только standalone-пакет, агрегатор — нет.
+            const filename = createProject({ aggregator: ['link'], standalone: ['button'] });
+
+            await formTester.valid({
+                code: "import { Button } from '@alfalab/core-components/button';",
+                filename,
+            });
+        });
+
+        it('сообщает об ошибке для standalone-импорта, когда разделены обе формы', async () => {
+            const filename = createProject({ aggregator: ['button'], standalone: ['button'] });
+
+            await formTester.invalid({
+                code: "import { Button } from '@alfalab/core-components-button';",
+                filename,
+                errors: [{ messageId: 'missingPlatform' }],
+            });
+        });
+
+        it('не сообщает об ошибке для агрегатор-импорта standalone-разделённого компонента без агрегатора', async () => {
+            const filename = createProject({ standalone: ['button'] });
+
+            await formTester.valid({
+                code: "import { Button } from '@alfalab/core-components/button';",
+                filename,
+            });
+        });
+
+        it('не сообщает об ошибке для standalone-импорта, если установленный подпакет не разделён', async () => {
+            // Разделён только агрегатор; подпакет установлен, но без desktop/mobile —
+            // подсказка с платформенным путём у него была бы невыполнимой.
+            const filename = createProject({
+                aggregator: ['button'],
+                standaloneUnsplit: ['button'],
+            });
+
+            await formTester.valid({
+                code: "import { Button } from '@alfalab/core-components-button';",
+                filename,
+            });
+        });
+
+        it('не сообщает об ошибке для standalone-импорта, если подпакет вообще не установлен', async () => {
+            // Разделён только агрегатор; standalone-пакета в node_modules нет.
+            const filename = createProject({ aggregator: ['button'] });
+
+            await formTester.valid({
+                code: "import { Button } from '@alfalab/core-components-button';",
+                filename,
+            });
+        });
+
+        it('сообщает об ошибке для агрегатор-импорта, когда установлен только агрегатор', async () => {
+            const filename = createProject({ aggregator: ['button'] });
+
+            await formTester.invalid({
+                code: "import { Button } from '@alfalab/core-components/button';",
+                filename,
+                errors: [
+                    {
+                        messageId: 'missingPlatform',
+                        data: {
+                            component: 'button',
+                            suggestedDesktop: '@alfalab/core-components/button/desktop',
+                            suggestedMobile: '@alfalab/core-components/button/mobile',
+                        },
+                    },
+                ],
             });
         });
     });

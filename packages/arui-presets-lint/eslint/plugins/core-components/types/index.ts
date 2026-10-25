@@ -1,7 +1,14 @@
-import { type PLATFORM_DIRS } from '../constants/index.js';
+import { type CoreComponentsImportForm, type PLATFORM_DIRS } from '../constants/index.js';
 
 /** Имя платформы, ограниченное объявленными PLATFORM_DIRS. */
 export type PlatformName = (typeof PLATFORM_DIRS)[number];
+
+/**
+ * Компоненты, разделённые на платформы, сгруппированные по форме импорта.
+ * Детект считается для каждой формы отдельно: платформенность зависит от того,
+ * в какой именно установленный пакет резолвится импорт.
+ */
+export type SplitComponentsByForm = Record<CoreComponentsImportForm, ReadonlySet<string>>;
 
 export type CoreComponentsImportRuleOptions = {
     /**

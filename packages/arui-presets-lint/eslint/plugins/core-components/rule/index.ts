@@ -1,10 +1,13 @@
 import { type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 
 import { CORE_COMPONENTS_PACKAGE } from '../constants/index.js';
-import { type CoreComponentsImportRuleOptions } from '../types/index.js';
+import {
+    type CoreComponentsImportRuleOptions,
+    type SplitComponentsByForm,
+} from '../types/index.js';
 import {
     getImportSourceString,
-    getSplitComponents,
+    getSplitComponentsByForm,
     isTypeOnlyExport,
     isTypeOnlyImport,
     parseCoreComponentsSource,
@@ -50,7 +53,8 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
     create(context) {
         const options = context.options[0] ?? {};
 
-        // Ручной список компонентов разделенных на платформы: полностью заменяет автоопределение.
+        // Ручной список компонентов разделенных на платформы: полностью заменяет автоопределение
+        // и применяется к обеим формам импорта.
         const manualSplitComponents = options.splitComponents
             ? new Set(options.splitComponents)
             : null;
@@ -58,21 +62,33 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         // Компоненты, исключённые из проверки. Вычитаются и из ручного списка, и из автоопределения.
         const excludedSplitComponents = options.excludeSplitComponents;
 
-        let effectiveSplitComponents: Set<string> | undefined;
+        let effectiveSplitComponents: SplitComponentsByForm | undefined;
 
-        const getEffectiveSplitComponents = (): Set<string> => {
-            if (effectiveSplitComponents) return effectiveSplitComponents;
+        const withoutExclusions = (components: ReadonlySet<string>): ReadonlySet<string> => {
+            if (!excludedSplitComponents?.length) return components;
 
-            const splitComponents =
-                manualSplitComponents ?? new Set(getSplitComponents(context.filename));
+            const filtered = new Set(components);
 
-            if (excludedSplitComponents) {
-                for (const component of excludedSplitComponents) {
-                    splitComponents.delete(component);
-                }
+            for (const component of excludedSplitComponents) {
+                filtered.delete(component);
             }
 
-            effectiveSplitComponents = splitComponents;
+            return filtered;
+        };
+
+        const getEffectiveSplitComponents = (): SplitComponentsByForm => {
+            if (effectiveSplitComponents) return effectiveSplitComponents;
+
+            // Без ручного списка автоопределение идёт раздельно по формам импорта:
+            // агрегатор и отдельные подпакеты — разные установленные пакеты.
+            const detected = manualSplitComponents
+                ? { aggregator: manualSplitComponents, standalone: manualSplitComponents }
+                : getSplitComponentsByForm(context.filename);
+
+            effectiveSplitComponents = {
+                aggregator: withoutExclusions(detected.aggregator),
+                standalone: withoutExclusions(detected.standalone),
+            };
 
             return effectiveSplitComponents;
         };
@@ -84,7 +100,7 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
 
             if (!parsed.component) return;
 
-            const splitComponents = getEffectiveSplitComponents();
+            const splitComponents = getEffectiveSplitComponents()[parsed.importForm];
 
             if (!splitComponents.has(parsed.component)) return;
 

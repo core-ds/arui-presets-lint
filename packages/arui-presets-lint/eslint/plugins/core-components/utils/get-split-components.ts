@@ -8,7 +8,7 @@ import {
     PLATFORM_FILE_EXTENSIONS,
     STANDALONE_PREFIX,
 } from '../constants/index.js';
-import { type PlatformName } from '../types/index.js';
+import { type PlatformName, type SplitComponentsByForm } from '../types/index.js';
 
 /**
  * Директория scope (@alfalab), внутри которой лежат отдельные подпакеты.
@@ -25,17 +25,26 @@ type SplitCandidate = { component: string; dir: string };
 /**
  * Мемоизирует функцию по ключу, чтобы обход node_modules и проверки платформ
  * не повторялись на каждый проверяемый файл.
+ *
+ * Ключ сериализуется в строку через JSON.stringify: так в один кэш попадают
+ * не только одинаковые строковые ключи, но и составные (список scope-директорий),
+ * которые для разных файлов одного проекта совпадают по содержимому, а не по ссылке.
  */
-const memoize = <K, V>(compute: (key: K) => V): ((key: K) => V) => {
-    const cache = new Map<K, V>();
+const memoize = <K, V>(
+    compute: (key: K) => V,
+    serialize: (key: K) => string = (key) => JSON.stringify(key),
+): ((key: K) => V) => {
+    const cache = new Map<string, V>();
 
     return (key) => {
-        if (cache.has(key)) {
-            return cache.get(key) as V;
+        const cacheKey = serialize(key);
+
+        if (cache.has(cacheKey)) {
+            return cache.get(cacheKey) as V;
         }
 
         const value = compute(key);
-        cache.set(key, value);
+        cache.set(cacheKey, value);
 
         return value;
     };
@@ -68,7 +77,7 @@ const resolveBaseDir = (from: string): string => {
  * Резолвит директорию установленного пакета @alfalab/core-components
  * относительно base; null, если пакет не установлен.
  */
-const resolveCoreComponentsDir = (base: string): string | null => {
+const resolveCoreComponentsDir = memoize((base: string): string | null => {
     try {
         const require = createRequire(path.join(base, 'noop.mjs'));
 
@@ -76,7 +85,7 @@ const resolveCoreComponentsDir = (base: string): string | null => {
     } catch {
         return null;
     }
-};
+});
 
 /**
  * stat-информация записи с переходом по симлинку, либо null.
@@ -91,25 +100,19 @@ const statEntry = (parentDir: string, name: string): fs.Stats | null => {
 
 /**
  * Директории scope `@alfalab` во всех node_modules вверх по дереву (ближайшая первой).
- * Нужны, когда агрегатор не установлен.
+ *
+ * Считается инкрементально от родителя: для каждого каталога проверяется только его
+ * собственный `node_modules/@alfalab`, а остаток берётся из кэша родителя. Так обход
+ * дерева выполняется один раз на каталог, а не на каждый линтуемый файл.
  */
 const resolveScopeDirs = memoize((base: string): string[] => {
-    const scopeDirs: string[] = [];
-    let dir = base;
+    const scopeDir = path.join(base, 'node_modules', SCOPE_DIR_NAME);
+    const localScopeDirs = fs.existsSync(scopeDir) ? [scopeDir] : [];
+    const parent = path.dirname(base);
 
-    for (;;) {
-        const scopeDir = path.join(dir, 'node_modules', SCOPE_DIR_NAME);
+    if (parent === base) return localScopeDirs;
 
-        if (fs.existsSync(scopeDir)) scopeDirs.push(scopeDir);
-
-        const parent = path.dirname(dir);
-
-        if (parent === dir) break;
-
-        dir = parent;
-    }
-
-    return scopeDirs;
+    return [...localScopeDirs, ...resolveScopeDirs(parent)];
 });
 
 /**
@@ -215,24 +218,32 @@ const getAggregatorCandidates = memoize(aggregatorCandidates);
 const getStandaloneCandidates = memoize(standaloneCandidates);
 
 /**
- * Список компонентов, разделенных на платформы, для пакета, установленного относительно `from`.
- * Источник истины — агрегатор `@alfalab/core-components`, если он установлен;
- * иначе — отдельные подпакеты `@alfalab/core-components-<pkg>`. Если не найдено
- * ни того, ни другого, возвращается пустой список (правило не срабатывает).
+ * Компоненты, разделённые на платформы, найденные в агрегаторе `@alfalab/core-components`
+ * по директории его установки. Пустой набор, если агрегатор не установлен.
+ *
+ * Ключ кэша — директория установки, а не base линтуемого файла: все файлы одного
+ * проекта делят одну установку и не должны пересобирать набор заново.
  */
-export const getSplitComponents = (from: string): string[] => {
-    const base = resolveBaseDir(from);
-    const coreComponentsDir = resolveCoreComponentsDir(base);
+const getAggregatorSplitComponents = memoize(
+    (coreComponentsDir: string | null): ReadonlySet<string> => {
+        if (coreComponentsDir === null) return new Set<string>();
 
-    // Агрегатор установлен - источник истины только он, отдельные подпакеты не сканируем
-    if (coreComponentsDir !== null) {
-        return collectSplitComponents(getAggregatorCandidates(coreComponentsDir));
-    }
+        return new Set(collectSplitComponents(getAggregatorCandidates(coreComponentsDir)));
+    },
+);
 
-    // Агрегатора нет - собираем из отдельных подпакетов
+/**
+ * Компоненты, разделённые на платформы, найденные в отдельных подпакетах
+ * `@alfalab/core-components-<pkg>` по списку scope-директорий.
+ *
+ * Ключ кэша — сам список scope-директорий: он одинаков для всех файлов,
+ * видящих один и тот же набор node_modules, поэтому скан выполняется один раз
+ * на установку, а не на каждый каталог с файлами.
+ */
+const getStandaloneSplitComponents = memoize((scopeDirs: string[]): ReadonlySet<string> => {
     const candidates = new Map<string, SplitCandidate>();
 
-    for (const scopeDir of resolveScopeDirs(base)) {
+    for (const scopeDir of scopeDirs) {
         for (const candidate of getStandaloneCandidates(scopeDir)) {
             if (!candidates.has(candidate.component)) {
                 candidates.set(candidate.component, candidate);
@@ -240,5 +251,22 @@ export const getSplitComponents = (from: string): string[] => {
         }
     }
 
-    return collectSplitComponents(candidates.values());
+    return new Set(collectSplitComponents(candidates.values()));
+});
+
+/**
+ * Компоненты, разделённые на платформы, для установленных относительно `from` пакетов,
+ * раздельно по форме импорта. Импорт через агрегатор и импорт через отдельный подпакет
+ * резолвятся в разные установленные пакеты и версии, поэтому и разделение на платформы
+ * определяется для каждого независимо: если в агрегаторе компонент ещё не разделён,
+ * а в установленном отдельном подпакете уже есть desktop/mobile, standalone-импорт
+ * всё равно будет проверен (и наоборот).
+ */
+export const getSplitComponentsByForm = (from: string): SplitComponentsByForm => {
+    const base = resolveBaseDir(from);
+
+    return {
+        aggregator: getAggregatorSplitComponents(resolveCoreComponentsDir(base)),
+        standalone: getStandaloneSplitComponents(resolveScopeDirs(base)),
+    };
 };
