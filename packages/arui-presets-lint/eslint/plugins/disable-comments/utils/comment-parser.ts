@@ -85,7 +85,7 @@ export function getPreviousComment(
 ): TSESTree.Comment | undefined {
     const currentIndex = allComments.indexOf(currentComment);
 
-    return currentIndex > 0 ? allComments[currentIndex - 1] : undefined;
+    return allComments[currentIndex - 1];
 }
 
 export function isAdjacentComment(

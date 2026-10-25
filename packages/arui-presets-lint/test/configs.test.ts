@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import commitlintConfig from '../commitlint/index.js';
 import { defineConfig, eslintConfig } from '../eslint/index.js';
+import { reactHooksConfig } from '../eslint/rules/index.js';
 import knipConfig from '../knip/index.js';
 import prettierConfig from '../prettier/index.js';
 import stylelintConfig from '../stylelint/index.js';
@@ -64,8 +65,83 @@ describe('итоговый резолв конфига eslint', () => {
             path.join(packageRoot, file),
         )) as Linter.Config;
 
-        expectToMatchSnapshot(Object.keys(config.plugins ?? {}).toSorted(), 'plugins');
+        expectToMatchSnapshot(
+            Object.keys(config.plugins ?? {}).toSorted((first, second) =>
+                first.localeCompare(second),
+            ),
+            'plugins',
+        );
         expectToMatchSnapshot(sortByKey(config.rules ?? {}), 'rules');
+    });
+});
+
+describe('импорты devDependencies в монорепозитории', () => {
+    it.each([
+        { location: 'корня монорепозитория', cwd: path.resolve(packageRoot, '../..') },
+        { location: 'каталога пакета', cwd: packageRoot },
+    ])('сохраняет ограничения при запуске из $location', async ({ cwd }) => {
+        const eslint = new ESLint({ cwd });
+        const results = await eslint.lintFiles(
+            ['test/configs.test.ts', 'test/rules/require-description.test.ts'].map((file) =>
+                path.join(packageRoot, file),
+            ),
+        );
+
+        expect(results).toHaveLength(2);
+        expect(results.every(({ fatalErrorCount }) => fatalErrorCount === 0)).toBe(true);
+        expect(
+            results.flatMap(({ messages }) =>
+                messages.filter(({ ruleId }) => ruleId === 'import-x/no-extraneous-dependencies'),
+            ),
+        ).toEqual([]);
+
+        const [productionResult] = await eslint.lintText(
+            "import { describe } from 'vitest'; export { describe };",
+            { filePath: path.join(packageRoot, 'src/no-dev-dependency.js') },
+        );
+
+        expect(productionResult.fatalErrorCount).toBe(0);
+        expect(
+            productionResult.messages.filter(
+                ({ ruleId }) => ruleId === 'import-x/no-extraneous-dependencies',
+            ),
+        ).toEqual([expect.objectContaining({ severity: 2, messageId: 'devDep' })]);
+    });
+});
+
+describe('подключение публичных ESLint-конфигов', () => {
+    it('принимает базовый конфиг из руководства по установке', async () => {
+        const eslint = new ESLint({
+            cwd: packageRoot,
+            overrideConfigFile: true,
+            overrideConfig: defineConfig(eslintConfig),
+        });
+        const [result] = await eslint.lintText(
+            `import { defineConfig, eslintConfig } from 'arui-presets-lint/eslint';
+
+            export default defineConfig(eslintConfig);`,
+            { filePath: 'eslint.config.mts' },
+        );
+
+        expect(result.messages).toEqual([]);
+    });
+
+    it('подключает публичный конфиг Hooks отдельно от общего пресета', async () => {
+        const eslint = new ESLint({
+            cwd: packageRoot,
+            overrideConfigFile: true,
+            overrideConfig: defineConfig(reactHooksConfig),
+        });
+
+        const config: unknown = await eslint.calculateConfigForFile('prettier/index.js');
+
+        expect(config).toHaveProperty(['plugins', 'react-x']);
+        expect(config).toMatchObject({
+            rules: {
+                'react-x/rules-of-hooks': [2],
+                'react-x/exhaustive-deps': [2],
+            },
+        });
     });
 });
 

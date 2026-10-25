@@ -1,98 +1,84 @@
-# Гид по миграции на arui-presets-lint@11 с 9/10
+# Гид по миграции на arui-presets-lint@12 с 11
 
-[Обновляетесь с 8 на 9/10?](https://github.com/core-ds/arui-presets-lint/blob/arui-presets-lint%4010.4.0/packages/arui-presets-lint/MIGRATION_GUIDE.md)
+[Обновляетесь с 9/10 на 11?](https://github.com/core-ds/arui-presets-lint/blob/arui-presets-lint%4011.4.0/packages/arui-presets-lint/MIGRATION_GUIDE.md)
 
-## Введение
+## 1. Обновите Node.js
 
-Основные поинты - это 2 новых линтера (secretlint и knip) и дефолтный конфиг для хука pre-push в lefthook.
+Локально и в CI используйте Node.js **22.13.0+ в ветке 22** либо **24.0.0+**.
 
-1. Обновить зависимость:
+## 2. Обновите зависимость
 
-```bash
-yarn add arui-presets-lint@latest
-```
-
-и после этого запустить:
-```bash
-npx --no-install lefthook install
-```
-
-2. Проверить содержимое ключа `pre-push` в вашем lefthook.yml - arui-presets-lint начал поставлять дефолтную конфигурацию для него, не должно ничего дублироваться
-
-3. Добавить конфиги knip и secretlint в корень проекта:
-
-> knip.ts
-```typescript
-export { default } from 'arui-presets-lint/knip';
-```
-
-> .secretlintrc.json
-```json
-{
-    "rules": [
-        {
-            "id": "@secretlint/secretlint-rule-preset-recommend"
-        }
-    ]
-}
-```
-
-### Если knip в проекте уже стоял
-
-Тогда одним `knip.ts` не обойтись - иначе пресет может вообще не применяться:
-
-**Уберите `knip` из devDependencies проекта.** knip приезжает зависимостью arui-presets-lint. Если оставить свою версию и она не совпадёт с версией пресета, пакетный менеджер поставит вторую копию в `node_modules/arui-presets-lint/node_modules`, и `arui-presets-lint knip` запустит именно её (обёртка ищет бинарники начиная от каталога пресета), а прямой вызов `yarn knip` - вашу. Два разных knip на одном проекте дают разные репорты.
-
-**Оставьте ровно один конфиг.** knip берёт первый найденный файл из списка и дальше не смотрит:
-
-```text
-knip.json, knip.jsonc, .knip.json, .knip.jsonc, knip.ts, knip.js, knip.config.ts, knip.config.js
-```
-
-`knip.json` идёт раньше `knip.ts` - если старый json оставить, новый `knip.ts` с пресетом будет молча проигнорирован. Ключ `knip` в package.json тоже читается: он мержится с файлом по верхнему уровню ключей, и файл выигрывает. Удалите и старый json, и ключ из package.json.
-
-**Переносите свои настройки через spread базового конфига.** Массивы не объединяются - свой `entry`, `ignore` или `ignoreDependencies` затирает пресетный целиком, поэтому дописывать нужно к базовым:
-
-```typescript
-import { type KnipConfig } from 'knip';
-
-import baseConfig from 'arui-presets-lint/knip';
-
-export default {
-    ...baseConfig,
-    entry: [...baseConfig.entry, 'src/legacy/entry.ts'],
-    ignoreDependencies: [...baseConfig.ignoreDependencies, 'some-implicit-dependency'],
-} satisfies KnipConfig;
-```
-
-**Замените в скриптах вызов `knip` на `arui-presets-lint knip`** - обёртка добавляет `--no-config-hints` и кэш. Свои флаги по-прежнему можно передавать: `arui-presets-lint knip --fix`.
-
-Первый прогон после перехода почти наверняка даст новые репорты: пресет принудительно включает плагины jest, vitest, storybook, playwright и cypress (в проектах экосистемы они обычно приходят через arui-scripts и по зависимостям knip их не видит) и задаёт свой набор `entry`.
-
-4. Добавить в `package.json` скрипты запуска новых линтеров (`lint:unused`, `lint:secrets`) и дополнить ими `lint` и `lint:fix`:
-
-```json
-{
-    "scripts": {
-        "lint:styles": "arui-presets-lint styles",
-        "lint:scripts": "arui-presets-lint scripts",
-        "format": "arui-presets-lint format",
-        "format:check": "arui-presets-lint format:check",
-        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
-        "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
-        "lint:unused": "arui-presets-lint knip",
-        "lint:secrets": "arui-presets-lint secretlint"
-    }
-}
-```
-
-> ⚠️  Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
-
-
-Если нужно тонко настроить - читайте [README.md](./README.md), в разделе по конкретному линтеру все описано
-
-1. Запустить команду:
 ```sh
-    yarn lint:fix
+yarn add -D arui-presets-lint@^12
 ```
-и исправить ошибки
+
+Если `eslint` закреплён в проекте отдельно, обновите его до 10.x. Дополнительные ESLint-плагины
+обновите до версий с поддержкой ESLint 10.
+
+## 3. Замените имена правил
+
+В `eslint.config.*` и комментариях `eslint`, `eslint-disable`, `eslint-disable-next-line`,
+`eslint-disable-line`, `eslint-enable` обновите ссылки на правила:
+
+| Было                                      | Стало                                     |
+| ----------------------------------------- | ----------------------------------------- |
+| `jsx-a11y/*`                              | `jsx-a11y-x/*`                            |
+| `react/no-array-index-key`                | `react-x/no-array-index-key`              |
+| `react/no-unstable-nested-components`     | `react-x/no-nested-component-definitions` |
+| `react/jsx-no-constructed-context-values` | `react-x/no-unstable-context-value`       |
+| `react/no-danger`                         | `react-dom/no-dangerously-set-innerhtml`  |
+| `react/no-unknown-property`               | `react-dom/no-unknown-property`           |
+| `react/jsx-no-target-blank`               | `react-dom/no-unsafe-target-blank`        |
+| `react/no-children-prop`                  | `react-jsx/no-children-prop`              |
+| `react-hooks/rules-of-hooks`              | `react-x/rules-of-hooks`                  |
+| `react-hooks/exhaustive-deps`             | `react-x/exhaustive-deps`                 |
+| `react-hooks/void-use-memo`               | `react-x/use-memo`                        |
+| Остальные `react-hooks/*`                 | `react-x/*` с тем же именем               |
+| `unicorn/no-array-for-each`               | `unicorn/no-for-each`                     |
+| `unicorn/no-unused-array-method-return`   | `unicorn/no-unused-builtin-method-return` |
+| `unicorn/no-hex-escape`                   | `unicorn/prefer-literal-ascii`            |
+
+Остальные `react/*` замените по [таблице миграции React](https://eslint-react.xyz/docs/migrating-from-eslint-plugin-react).
+Удалите переопределения и комментарии отключения правил без аналога, включая
+`react/jsx-uses-react`, `react/jsx-uses-vars`, `react/jsx-no-undef`, `jsx-a11y/accessible-emoji`,
+`jsx-a11y/label-has-for` и `jsx-a11y/no-onchange`.
+
+Удалите переопределения и комментарии отключения правил без аналога:
+
+- `react-hooks/config`
+- `react-hooks/gating`
+- `react-hooks/incompatible-library`
+- `react-hooks/preserve-manual-memoization`
+
+Проверьте опции перенесённых правил по документации новых правил:
+[React](https://eslint-react.xyz/docs/migrating-from-eslint-plugin-react),
+[Hooks](https://eslint-react.xyz/docs/migrating-from-eslint-plugin-react-hooks),
+[JSX-a11y-x](https://github.com/eslint-community/eslint-plugin-jsx-a11y-x#migrating-from-eslint-plugin-jsx-a11y).
+
+## 4. Перенесите собственные настройки плагинов
+
+- Версию React из `settings.react.version` перенесите в `settings['react-x'].version`.
+- Настройки доступности из `settings['jsx-a11y']` перенесите в `settings['jsx-a11y-x']`.
+- Настройку `settings['react-hooks'].additionalEffectHooks` перенесите в
+  `settings['react-x'].additionalEffectHooks`, задав регулярное выражение строкой с `/`,
+  например `'/^(useProjectEffect|useCustomEffect)$/u'`.
+- Остальные настройки `settings.react` перенесите по [документации нового анализатора](https://eslint-react.xyz/docs/configuration/configure-analyzer).
+
+## 5. Обновите конфигурацию под ESLint 10
+
+Удалите комментарии `/* eslint-env ... */`, а глобальные переменные из них перенесите в
+`languageOptions.globals` в `eslint.config.*`.
+
+В монорепозитории проверьте каждый `eslint.config.*`: ESLint 10 выбирает ближайший к проверяемому
+файлу конфиг. Явно подключите в нём общий пресет и общие игноры. Если скрипт должен использовать
+один конкретный конфиг, передайте его через `--config`.
+
+## 6. Исправьте ошибки и проверьте проект
+
+```sh
+yarn lint:scripts
+```
+
+Исправьте новые сообщения ESLint и Unicorn. При необходимости автофикса запустите
+`yarn lint:scripts --fix` и проверьте изменения, в том числе совместимость предлагаемых API
+с целевыми браузерами и Node.js проекта. Затем запустите полный линт и тесты проекта.

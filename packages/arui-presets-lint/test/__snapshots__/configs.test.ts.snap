@@ -9,11 +9,12 @@ exports[`итоговый резолв конфига eslint > configs/settings.
   "disable-comments",
   "import-x",
   "json",
-  "jsx-a11y",
+  "jsx-a11y-x",
   "markdown",
   "n",
-  "react",
-  "react-hooks",
+  "react-dom",
+  "react-jsx",
+  "react-x",
   "simple-import-sort",
   "unicorn",
 ]
@@ -74,11 +75,12 @@ exports[`итоговый резолв конфига eslint > docs/guide.md > p
   "disable-comments",
   "import-x",
   "json",
-  "jsx-a11y",
+  "jsx-a11y-x",
   "markdown",
   "n",
-  "react",
-  "react-hooks",
+  "react-dom",
+  "react-jsx",
+  "react-x",
   "simple-import-sort",
   "unicorn",
 ]
@@ -221,11 +223,12 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "disable-comments",
   "import-x",
   "json",
-  "jsx-a11y",
+  "jsx-a11y-x",
   "markdown",
   "n",
-  "react",
-  "react-hooks",
+  "react-dom",
+  "react-jsx",
+  "react-x",
   "simple-import-sort",
   "unicorn",
 ]
@@ -521,6 +524,7 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "init-declarations": [
     0,
+    "always",
   ],
   "max-classes-per-file": [
     2,
@@ -532,6 +536,7 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "max-nested-callbacks": [
     1,
+    10,
   ],
   "max-params": [
     1,
@@ -598,6 +603,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "no-constant-binary-expression": [
     2,
+    {
+      "checkRelationalComparisons": false,
+    },
   ],
   "no-constant-condition": [
     1,
@@ -791,6 +799,12 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "enforceConst": true,
       "ignore": [],
       "ignoreArrayIndexes": true,
+      "ignoreClassFieldInitialValues": false,
+      "ignoreDefaultValues": false,
+      "ignoreEnums": false,
+      "ignoreNumericLiteralTypes": false,
+      "ignoreReadonlyClassProperties": false,
+      "ignoreTypeIndexes": false,
     },
   ],
   "no-misleading-character-class": [
@@ -852,6 +866,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
     {
       "allowForLoopAfterthoughts": true,
     },
+  ],
+  "no-process-exit": [
+    0,
   ],
   "no-promise-executor-return": [
     2,
@@ -1026,7 +1043,7 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "no-shadow-restricted-names": [
     2,
     {
-      "reportGlobalThis": false,
+      "reportGlobalThis": true,
     },
   ],
   "no-sparse-arrays": [
@@ -1039,6 +1056,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
     2,
   ],
   "no-throw-literal": [
+    2,
+  ],
+  "no-unassigned-vars": [
     2,
   ],
   "no-undef": [
@@ -1071,6 +1091,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "no-unmodified-loop-condition": [
     0,
+    {
+      "checkConditionalExpressions": false,
+    },
   ],
   "no-unneeded-ternary": [
     2,
@@ -1122,7 +1145,11 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
     2,
     {
       "args": "after-used",
+      "caughtErrors": "all",
+      "ignoreClassWithStaticInitBlock": false,
       "ignoreRestSiblings": true,
+      "ignoreUsingDeclarations": false,
+      "reportUsedIgnorePattern": false,
       "vars": "all",
     },
   ],
@@ -1137,6 +1164,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "typedefs": true,
       "variables": true,
     },
+  ],
+  "no-useless-assignment": [
+    2,
   ],
   "no-useless-backreference": [
     2,
@@ -1255,59 +1285,50 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "prefer-template": [
     2,
   ],
+  "preserve-caught-error": [
+    2,
+    {
+      "errorClassNames": [],
+      "requireCatchParameter": false,
+    },
+  ],
   "radix": [
     2,
-    "always",
   ],
-  "react-hooks/config": [
+  "react-x/error-boundaries": [
     2,
   ],
-  "react-hooks/error-boundaries": [
+  "react-x/exhaustive-deps": [
     2,
   ],
-  "react-hooks/exhaustive-deps": [
+  "react-x/globals": [
     2,
   ],
-  "react-hooks/gating": [
+  "react-x/immutability": [
     2,
   ],
-  "react-hooks/globals": [
+  "react-x/purity": [
     2,
   ],
-  "react-hooks/immutability": [
+  "react-x/refs": [
     2,
   ],
-  "react-hooks/incompatible-library": [
+  "react-x/rules-of-hooks": [
+    2,
+  ],
+  "react-x/set-state-in-effect": [
+    2,
+  ],
+  "react-x/set-state-in-render": [
+    2,
+  ],
+  "react-x/static-components": [
+    2,
+  ],
+  "react-x/unsupported-syntax": [
     1,
   ],
-  "react-hooks/preserve-manual-memoization": [
-    2,
-  ],
-  "react-hooks/purity": [
-    2,
-  ],
-  "react-hooks/refs": [
-    2,
-  ],
-  "react-hooks/rules-of-hooks": [
-    2,
-  ],
-  "react-hooks/set-state-in-effect": [
-    2,
-  ],
-  "react-hooks/set-state-in-render": [
-    2,
-  ],
-  "react-hooks/static-components": [
-    2,
-  ],
-  "react-hooks/unsupported-syntax": [
-    1,
-  ],
-  "react-hooks/use-memo": [
-    2,
-  ],
-  "react-hooks/void-use-memo": [
+  "react-x/use-memo": [
     2,
   ],
   "require-atomic-updates": [
@@ -1385,12 +1406,65 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "name": "error",
     },
   ],
+  "unicorn/class-reference-in-static-methods": [
+    0,
+    {
+      "preferSuper": true,
+      "preferThis": true,
+    },
+  ],
+  "unicorn/comma-spacing": [
+    0,
+  ],
+  "unicorn/comment-content": [
+    0,
+    {
+      "checkUniformCase": true,
+      "extendDefaultReplacements": true,
+      "ignore": [],
+      "replacements": {},
+    },
+  ],
+  "unicorn/consistent-arrow-return-style": [
+    0,
+  ],
   "unicorn/consistent-assert": [
     0,
+  ],
+  "unicorn/consistent-boolean-name": [
+    0,
+    {
+      "checkArguments": "always",
+      "checkFields": "never",
+      "checkFunctions": "always",
+      "checkMethods": "never",
+      "checkVariables": "always",
+      "ignore": [],
+      "wrappers": {},
+    },
+  ],
+  "unicorn/consistent-class-member-order": [
+    0,
+    {
+      "order": [
+        "static-field",
+        "static-block",
+        "static-method",
+        "private-field",
+        "public-field",
+        "constructor",
+        "private-method",
+        "public-method",
+      ],
+    },
   ],
   "unicorn/consistent-compound-words": [
     2,
     {},
+  ],
+  "unicorn/consistent-conditional-object-spread": [
+    0,
+    "logical",
   ],
   "unicorn/consistent-date-clone": [
     2,
@@ -1404,21 +1478,50 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/consistent-existence-index-check": [
     2,
   ],
+  "unicorn/consistent-export-decorator-position": [
+    0,
+    "above",
+  ],
   "unicorn/consistent-function-scoping": [
     0,
     {
       "checkArrowFunctions": true,
     },
   ],
+  "unicorn/consistent-function-style": [
+    0,
+    {
+      "callbacks": "ignore",
+      "default": "ignore",
+      "namedExports": "ignore",
+      "namedFunctions": "ignore",
+      "objectProperties": "ignore",
+      "reassignedVariables": "ignore",
+      "typedVariables": "ignore",
+    },
+  ],
   "unicorn/consistent-json-file-read": [
     0,
     "string",
   ],
+  "unicorn/consistent-optional-chaining": [
+    2,
+  ],
   "unicorn/consistent-template-literal-escape": [
+    0,
+  ],
+  "unicorn/consistent-tuple-labels": [
     0,
   ],
   "unicorn/custom-error-definition": [
     0,
+  ],
+  "unicorn/default-export-style": [
+    0,
+    {
+      "classes": "inline",
+      "functions": "inline",
+    },
   ],
   "unicorn/dom-node-dataset": [
     2,
@@ -1456,12 +1559,34 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "non-zero": "greater-than",
     },
   ],
+  "unicorn/explicit-timer-delay": [
+    2,
+    "always",
+  ],
   "unicorn/filename-case": [
     0,
+  ],
+  "unicorn/id-match": [
+    0,
+    "^.+$",
+    {
+      "checkNamedSpecifiers": true,
+      "classFields": false,
+      "ignoreDestructuring": false,
+      "onlyDeclarations": false,
+      "properties": false,
+    },
   ],
   "unicorn/import-style": [
     2,
     {},
+  ],
+  "unicorn/indent": [
+    0,
+    {
+      "indent": "tab",
+      "tabWidth": 4,
+    },
   ],
   "unicorn/isolated-functions": [
     0,
@@ -1471,10 +1596,40 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       ],
       "functions": [
         "makeSynchronous",
+        "workerize",
       ],
       "overrideGlobals": {},
       "selectors": [],
     },
+  ],
+  "unicorn/iteration-fallback-style": [
+    0,
+    "guard",
+  ],
+  "unicorn/key-name-casing": [
+    0,
+    {
+      "PascalCase": false,
+      "SCREAMING_SNAKE_CASE": false,
+      "camelCase": true,
+      "ignore": [],
+      "kebab-case": false,
+      "snake_case": false,
+    },
+  ],
+  "unicorn/logical-assignment-operators": [
+    0,
+    "always",
+  ],
+  "unicorn/max-nested-calls": [
+    0,
+    {
+      "max": 3,
+    },
+  ],
+  "unicorn/name-replacements": [
+    0,
+    {},
   ],
   "unicorn/new-for-builtins": [
     2,
@@ -1483,6 +1638,9 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
     2,
   ],
   "unicorn/no-accessor-recursion": [
+    2,
+  ],
+  "unicorn/no-accidental-bitwise-operator": [
     2,
   ],
   "unicorn/no-anonymous-default-export": [
@@ -1494,14 +1652,17 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "ignore": [],
     },
   ],
-  "unicorn/no-array-fill-with-reference-type": [
-    2,
+  "unicorn/no-array-concat-in-loop": [
+    0,
   ],
-  "unicorn/no-array-for-each": [
+  "unicorn/no-array-fill-with-reference-type": [
     2,
   ],
   "unicorn/no-array-from-fill": [
     2,
+  ],
+  "unicorn/no-array-front-mutation": [
+    0,
   ],
   "unicorn/no-array-method-this-argument": [
     2,
@@ -1524,26 +1685,86 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "allowExpressionStatement": true,
     },
   ],
+  "unicorn/no-array-sort-for-min-max": [
+    2,
+  ],
+  "unicorn/no-array-splice": [
+    0,
+  ],
+  "unicorn/no-asterisk-prefix-in-documentation-comments": [
+    0,
+  ],
+  "unicorn/no-async-iterator-callback": [
+    2,
+  ],
+  "unicorn/no-async-promise-finally": [
+    2,
+  ],
   "unicorn/no-await-expression-member": [
     0,
   ],
   "unicorn/no-await-in-promise-methods": [
     2,
   ],
+  "unicorn/no-barrel-files": [
+    0,
+  ],
   "unicorn/no-blob-to-file": [
     2,
   ],
+  "unicorn/no-boolean-sort-comparator": [
+    2,
+  ],
+  "unicorn/no-break-in-nested-loop": [
+    0,
+    {
+      "checkContinue": false,
+    },
+  ],
   "unicorn/no-canvas-to-image": [
+    2,
+  ],
+  "unicorn/no-chained-comparison": [
+    2,
+  ],
+  "unicorn/no-collection-bracket-access": [
+    2,
+  ],
+  "unicorn/no-computed-property-existence-check": [
+    0,
+  ],
+  "unicorn/no-conflicting-constraints": [
     2,
   ],
   "unicorn/no-confusing-array-splice": [
     0,
   ],
+  "unicorn/no-confusing-array-with": [
+    0,
+  ],
   "unicorn/no-console-spaces": [
     2,
   ],
+  "unicorn/no-constant-zero-expression": [
+    2,
+  ],
+  "unicorn/no-declarations-before-early-exit": [
+    0,
+  ],
   "unicorn/no-document-cookie": [
     2,
+  ],
+  "unicorn/no-double-comparison": [
+    2,
+  ],
+  "unicorn/no-duplicate-if-branches": [
+    0,
+  ],
+  "unicorn/no-duplicate-logical-operands": [
+    2,
+  ],
+  "unicorn/no-duplicate-loops": [
+    0,
   ],
   "unicorn/no-duplicate-set-values": [
     0,
@@ -1554,20 +1775,44 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "allowComments": false,
     },
   ],
+  "unicorn/no-empty-link-text": [
+    0,
+  ],
+  "unicorn/no-error-property-assignment": [
+    2,
+  ],
   "unicorn/no-exports-in-scripts": [
+    2,
+  ],
+  "unicorn/no-for-each": [
     2,
   ],
   "unicorn/no-for-loop": [
     0,
   ],
-  "unicorn/no-hex-escape": [
-    2,
+  "unicorn/no-global-object-property-assignment": [
+    0,
   ],
   "unicorn/no-immediate-mutation": [
     0,
+    {
+      "checkConditionals": false,
+    },
+  ],
+  "unicorn/no-impossible-length-comparison": [
+    2,
+  ],
+  "unicorn/no-incomplete-accessor-override": [
+    2,
   ],
   "unicorn/no-incorrect-query-selector": [
     0,
+  ],
+  "unicorn/no-incorrect-template-string-interpolation": [
+    0,
+  ],
+  "unicorn/no-ineffective-csp-directives": [
+    2,
   ],
   "unicorn/no-instanceof-builtins": [
     2,
@@ -1578,14 +1823,54 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "useErrorIsError": false,
     },
   ],
+  "unicorn/no-invalid-argument-count": [
+    2,
+    {},
+  ],
+  "unicorn/no-invalid-boolean-attribute-value": [
+    2,
+  ],
+  "unicorn/no-invalid-character-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-dom-token": [
+    2,
+  ],
   "unicorn/no-invalid-fetch-options": [
     2,
   ],
   "unicorn/no-invalid-file-input-accept": [
     0,
   ],
+  "unicorn/no-invalid-integrity": [
+    2,
+  ],
+  "unicorn/no-invalid-intl-options": [
+    2,
+  ],
+  "unicorn/no-invalid-property-descriptor": [
+    2,
+  ],
   "unicorn/no-invalid-remove-event-listener": [
     2,
+  ],
+  "unicorn/no-invalid-response-options": [
+    2,
+  ],
+  "unicorn/no-invalid-style-set-property": [
+    2,
+  ],
+  "unicorn/no-invalid-temporal-arithmetic": [
+    2,
+  ],
+  "unicorn/no-invalid-url-protocol-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-well-known-symbol-methods": [
+    2,
+  ],
+  "unicorn/no-javascript-url": [
+    0,
   ],
   "unicorn/no-keyword-prefix": [
     0,
@@ -1594,8 +1879,20 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-late-current-target-access": [
     0,
   ],
+  "unicorn/no-late-event-control": [
+    0,
+  ],
+  "unicorn/no-leading-empty-lines": [
+    0,
+  ],
   "unicorn/no-lonely-if": [
     2,
+  ],
+  "unicorn/no-loop-iterable-mutation": [
+    0,
+  ],
+  "unicorn/no-loss-of-precision": [
+    0,
   ],
   "unicorn/no-magic-array-flat-depth": [
     2,
@@ -1603,8 +1900,29 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-manually-wrapped-comments": [
     0,
   ],
+  "unicorn/no-mismatched-map-key": [
+    0,
+  ],
+  "unicorn/no-misrefactored-assignment": [
+    2,
+  ],
+  "unicorn/no-missing-local-resource": [
+    0,
+  ],
+  "unicorn/no-multiple-promise-resolver-calls": [
+    2,
+  ],
   "unicorn/no-named-default": [
     2,
+  ],
+  "unicorn/no-negated-array-predicate": [
+    2,
+  ],
+  "unicorn/no-negated-comparison": [
+    2,
+    {
+      "checkLogicalExpressions": false,
+    },
   ],
   "unicorn/no-negated-condition": [
     2,
@@ -1621,6 +1939,25 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-new-buffer": [
     2,
   ],
+  "unicorn/no-non-function-verb-prefix": [
+    0,
+    {
+      "ignore": [],
+      "verbs": [
+        "get",
+        "set",
+        "unset",
+        "delete",
+        "add",
+        "remove",
+        "destroy",
+        "create",
+      ],
+    },
+  ],
+  "unicorn/no-nonstandard-builtin-properties": [
+    2,
+  ],
   "unicorn/no-null": [
     0,
     {
@@ -1631,13 +1968,40 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-object-as-default-parameter": [
     2,
   ],
+  "unicorn/no-object-methods-with-collections": [
+    0,
+  ],
+  "unicorn/no-optional-chaining-on-undeclared-variable": [
+    0,
+  ],
+  "unicorn/no-prevent-default-in-passive-listener": [
+    2,
+  ],
   "unicorn/no-process-exit": [
     0,
+  ],
+  "unicorn/no-redundant-comparison": [
+    2,
+  ],
+  "unicorn/no-repeated-call-wrappers": [
+    0,
+  ],
+  "unicorn/no-return-array-push": [
+    0,
+  ],
+  "unicorn/no-selector-as-dom-name": [
+    0,
+  ],
+  "unicorn/no-shorthand-property-overrides": [
+    2,
   ],
   "unicorn/no-single-promise-in-promise-methods": [
     2,
   ],
   "unicorn/no-static-only-class": [
+    2,
+  ],
+  "unicorn/no-subtraction-comparison": [
     2,
   ],
   "unicorn/no-thenable": [
@@ -1649,14 +2013,36 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-this-outside-of-class": [
     0,
   ],
+  "unicorn/no-top-level-assignment-in-function": [
+    0,
+  ],
+  "unicorn/no-top-level-side-effects": [
+    0,
+    {
+      "allow": {},
+      "checkUnknownCalls": false,
+    },
+  ],
+  "unicorn/no-transition-all": [
+    2,
+  ],
   "unicorn/no-typeof-undefined": [
     2,
     {
       "checkGlobalVariables": false,
     },
   ],
+  "unicorn/no-uncalled-method": [
+    0,
+  ],
+  "unicorn/no-undeclared-class-members": [
+    0,
+  ],
   "unicorn/no-unnecessary-array-flat-depth": [
     2,
+  ],
+  "unicorn/no-unnecessary-array-flat-map": [
+    0,
   ],
   "unicorn/no-unnecessary-array-splice-count": [
     2,
@@ -1664,8 +2050,26 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-unnecessary-await": [
     2,
   ],
+  "unicorn/no-unnecessary-boolean-comparison": [
+    0,
+  ],
+  "unicorn/no-unnecessary-default-arguments": [
+    0,
+  ],
+  "unicorn/no-unnecessary-fetch-options": [
+    2,
+  ],
+  "unicorn/no-unnecessary-global-this": [
+    2,
+  ],
   "unicorn/no-unnecessary-nested-ternary": [
     2,
+  ],
+  "unicorn/no-unnecessary-parameters": [
+    0,
+    {
+      "minimumCallCount": 2,
+    },
   ],
   "unicorn/no-unnecessary-polyfills": [
     2,
@@ -1674,20 +2078,86 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-unnecessary-slice-end": [
     2,
   ],
+  "unicorn/no-unnecessary-splice": [
+    0,
+  ],
+  "unicorn/no-unnecessary-string-trim": [
+    2,
+  ],
   "unicorn/no-unreadable-array-destructuring": [
     2,
+    {
+      "maximumIgnoredElements": 1,
+    },
+  ],
+  "unicorn/no-unreadable-for-of-expression": [
+    0,
   ],
   "unicorn/no-unreadable-iife": [
     2,
   ],
-  "unicorn/no-unused-array-method-return": [
+  "unicorn/no-unreadable-new-expression": [
+    0,
+  ],
+  "unicorn/no-unreadable-object-destructuring": [
+    2,
+  ],
+  "unicorn/no-unsafe-buffer-conversion": [
+    2,
+  ],
+  "unicorn/no-unsafe-dom-html": [
+    0,
+  ],
+  "unicorn/no-unsafe-json-serialization": [
+    0,
+  ],
+  "unicorn/no-unsafe-promise-all-settled-values": [
+    2,
+  ],
+  "unicorn/no-unsafe-property-key": [
+    0,
+  ],
+  "unicorn/no-unsafe-sqlite-interpolation": [
+    2,
+  ],
+  "unicorn/no-unsafe-string-replacement": [
+    0,
+  ],
+  "unicorn/no-unused-builtin-method-return": [
+    2,
+  ],
+  "unicorn/no-unused-iterator-helper": [
     2,
   ],
   "unicorn/no-unused-properties": [
     0,
   ],
+  "unicorn/no-url-in-search-params": [
+    2,
+  ],
+  "unicorn/no-useless-boolean-cast": [
+    2,
+  ],
+  "unicorn/no-useless-coercion": [
+    2,
+  ],
   "unicorn/no-useless-collection-argument": [
     2,
+  ],
+  "unicorn/no-useless-compound-assignment": [
+    2,
+  ],
+  "unicorn/no-useless-concat": [
+    2,
+  ],
+  "unicorn/no-useless-continue": [
+    0,
+  ],
+  "unicorn/no-useless-delete-check": [
+    2,
+  ],
+  "unicorn/no-useless-else": [
+    0,
   ],
   "unicorn/no-useless-error-capture-stack-trace": [
     2,
@@ -1701,7 +2171,22 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-useless-length-check": [
     2,
   ],
+  "unicorn/no-useless-logical-operand": [
+    2,
+  ],
+  "unicorn/no-useless-override": [
+    2,
+  ],
   "unicorn/no-useless-promise-resolve-reject": [
+    2,
+  ],
+  "unicorn/no-useless-re-export": [
+    2,
+  ],
+  "unicorn/no-useless-recursion": [
+    0,
+  ],
+  "unicorn/no-useless-set-construction": [
     2,
   ],
   "unicorn/no-useless-spread": [
@@ -1710,12 +2195,21 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/no-useless-switch-case": [
     2,
   ],
+  "unicorn/no-useless-template-literals": [
+    2,
+  ],
   "unicorn/no-useless-undefined": [
     2,
     {
       "checkArguments": true,
       "checkArrowFunctionBody": true,
     },
+  ],
+  "unicorn/no-using-resource-escape": [
+    2,
+  ],
+  "unicorn/no-xor-as-exponentiation": [
+    2,
   ],
   "unicorn/no-zero-fractions": [
     2,
@@ -1749,6 +2243,16 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "onlyIfContainsSeparator": false,
     },
   ],
+  "unicorn/operator-assignment": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-abort-signal-any": [
+    0,
+  ],
+  "unicorn/prefer-abort-signal-timeout": [
+    0,
+  ],
   "unicorn/prefer-add-event-listener": [
     2,
     {
@@ -1757,6 +2261,12 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
         "sax",
       ],
     },
+  ],
+  "unicorn/prefer-add-event-listener-options": [
+    0,
+  ],
+  "unicorn/prefer-aggregate-error": [
+    2,
   ],
   "unicorn/prefer-array-find": [
     2,
@@ -1773,11 +2283,26 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/prefer-array-flat-map": [
     2,
   ],
+  "unicorn/prefer-array-from-async": [
+    0,
+  ],
+  "unicorn/prefer-array-from-map": [
+    2,
+  ],
+  "unicorn/prefer-array-from-range": [
+    2,
+  ],
   "unicorn/prefer-array-index-of": [
     2,
   ],
+  "unicorn/prefer-array-iterable-methods": [
+    0,
+  ],
   "unicorn/prefer-array-last-methods": [
     2,
+  ],
+  "unicorn/prefer-array-slice": [
+    0,
   ],
   "unicorn/prefer-array-some": [
     2,
@@ -1789,10 +2314,19 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "getLastElementFunctions": [],
     },
   ],
+  "unicorn/prefer-await": [
+    0,
+  ],
   "unicorn/prefer-bigint-literals": [
     2,
   ],
   "unicorn/prefer-blob-reading-methods": [
+    2,
+  ],
+  "unicorn/prefer-block-statement-over-iife": [
+    0,
+  ],
+  "unicorn/prefer-boolean-return": [
     2,
   ],
   "unicorn/prefer-class-fields": [
@@ -1804,19 +2338,68 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/prefer-code-point": [
     2,
   ],
+  "unicorn/prefer-combined-guards": [
+    0,
+    {
+      "checkCompoundConditions": false,
+      "checkMultiStatementBodies": false,
+    },
+  ],
+  "unicorn/prefer-continue": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
   "unicorn/prefer-date-now": [
     2,
   ],
   "unicorn/prefer-default-parameters": [
     2,
+    {
+      "checkFallbackExpressions": true,
+    },
+  ],
+  "unicorn/prefer-direct-iteration": [
+    2,
+  ],
+  "unicorn/prefer-dispose": [
+    0,
   ],
   "unicorn/prefer-dom-node-append": [
     2,
   ],
+  "unicorn/prefer-dom-node-html-methods": [
+    0,
+    {
+      "checkGetHTML": true,
+      "checkSetHTML": false,
+    },
+  ],
   "unicorn/prefer-dom-node-remove": [
     2,
   ],
+  "unicorn/prefer-dom-node-replace-children": [
+    2,
+  ],
   "unicorn/prefer-dom-node-text-content": [
+    2,
+  ],
+  "unicorn/prefer-early-return": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
+  "unicorn/prefer-else-if": [
+    0,
+  ],
+  "unicorn/prefer-error-is-error": [
+    0,
+  ],
+  "unicorn/prefer-escaped-irregular-whitespace": [
     2,
   ],
   "unicorn/prefer-event-target": [
@@ -1828,14 +2411,35 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "checkUsedVariables": true,
     },
   ],
+  "unicorn/prefer-flat-math-min-max": [
+    2,
+  ],
   "unicorn/prefer-get-or-insert-computed": [
     0,
+  ],
+  "unicorn/prefer-global-number-constants": [
+    2,
   ],
   "unicorn/prefer-global-this": [
     0,
   ],
+  "unicorn/prefer-group-by": [
+    0,
+  ],
+  "unicorn/prefer-has-check": [
+    2,
+  ],
+  "unicorn/prefer-hoisting-branch-code": [
+    0,
+  ],
   "unicorn/prefer-https": [
     0,
+    {
+      "ignore": [],
+    },
+  ],
+  "unicorn/prefer-identifier-import-export-specifiers": [
+    2,
   ],
   "unicorn/prefer-import-meta-properties": [
     0,
@@ -1849,19 +2453,46 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "minimumComparisons": 3,
     },
   ],
+  "unicorn/prefer-iterable-in-constructor": [
+    2,
+  ],
   "unicorn/prefer-iterator-concat": [
+    0,
+  ],
+  "unicorn/prefer-iterator-helpers": [
+    2,
+  ],
+  "unicorn/prefer-iterator-to-array": [
     0,
   ],
   "unicorn/prefer-iterator-to-array-at-end": [
     2,
   ],
+  "unicorn/prefer-iterator-zip": [
+    0,
+  ],
+  "unicorn/prefer-json-import": [
+    0,
+  ],
   "unicorn/prefer-keyboard-event-key": [
     2,
+  ],
+  "unicorn/prefer-literal-ascii": [
+    2,
+  ],
+  "unicorn/prefer-location-assign": [
+    0,
   ],
   "unicorn/prefer-logical-operator-over-ternary": [
     2,
   ],
+  "unicorn/prefer-map-from-entries": [
+    2,
+  ],
   "unicorn/prefer-math-abs": [
+    2,
+  ],
+  "unicorn/prefer-math-constants": [
     2,
   ],
   "unicorn/prefer-math-min-max": [
@@ -1869,6 +2500,13 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "unicorn/prefer-math-trunc": [
     2,
+  ],
+  "unicorn/prefer-minimal-ternary": [
+    2,
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
   ],
   "unicorn/prefer-modern-dom-apis": [
     2,
@@ -1888,12 +2526,24 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/prefer-node-protocol": [
     1,
   ],
+  "unicorn/prefer-number-coercion": [
+    0,
+  ],
+  "unicorn/prefer-number-is-safe-integer": [
+    0,
+  ],
   "unicorn/prefer-number-properties": [
     2,
     {
       "checkInfinity": false,
-      "checkNaN": true,
+      "checkNaN": false,
     },
+  ],
+  "unicorn/prefer-object-define-properties": [
+    2,
+  ],
+  "unicorn/prefer-object-destructuring-defaults": [
+    0,
   ],
   "unicorn/prefer-object-from-entries": [
     2,
@@ -1901,7 +2551,28 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "functions": [],
     },
   ],
+  "unicorn/prefer-object-iterable-methods": [
+    2,
+  ],
+  "unicorn/prefer-observer-apis": [
+    0,
+  ],
   "unicorn/prefer-optional-catch-binding": [
+    2,
+  ],
+  "unicorn/prefer-path2d": [
+    2,
+  ],
+  "unicorn/prefer-private-class-fields": [
+    0,
+  ],
+  "unicorn/prefer-promise-static-methods": [
+    2,
+  ],
+  "unicorn/prefer-promise-try": [
+    0,
+  ],
+  "unicorn/prefer-promise-with-resolvers": [
     2,
   ],
   "unicorn/prefer-prototype-methods": [
@@ -1923,11 +2594,17 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/prefer-reflect-apply": [
     2,
   ],
+  "unicorn/prefer-regexp-escape": [
+    0,
+  ],
   "unicorn/prefer-regexp-test": [
     2,
   ],
   "unicorn/prefer-response-static-json": [
     2,
+  ],
+  "unicorn/prefer-scoped-selector": [
+    0,
   ],
   "unicorn/prefer-set-has": [
     2,
@@ -1935,17 +2612,48 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "minimumItems": 0,
     },
   ],
+  "unicorn/prefer-set-methods": [
+    0,
+  ],
   "unicorn/prefer-set-size": [
     2,
   ],
-  "unicorn/prefer-simple-condition-first": [
+  "unicorn/prefer-short-arrow-method": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-short-escape-sequences": [
     2,
+  ],
+  "unicorn/prefer-simple-condition-first": [
+    0,
+  ],
+  "unicorn/prefer-simple-sort-comparator": [
+    2,
+  ],
+  "unicorn/prefer-simplified-conditions": [
+    0,
+    {
+      "negatedConditions": "simplify",
+    },
+  ],
+  "unicorn/prefer-single-array-predicate": [
+    1,
   ],
   "unicorn/prefer-single-call": [
     2,
     {
       "ignore": [],
     },
+  ],
+  "unicorn/prefer-single-object-destructuring": [
+    0,
+  ],
+  "unicorn/prefer-single-replace": [
+    2,
+  ],
+  "unicorn/prefer-smaller-scope": [
+    0,
   ],
   "unicorn/prefer-split-limit": [
     2,
@@ -1993,9 +2701,30 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
       "minimumCases": 3,
     },
   ],
-  "unicorn/prefer-ternary": [
+  "unicorn/prefer-temporal": [
+    0,
+    {
+      "checkDateNow": false,
+      "checkMethods": false,
+      "checkReferences": false,
+    },
+  ],
+  "unicorn/prefer-temporal-conversion": [
     2,
+  ],
+  "unicorn/prefer-ternary": [
+    0,
     "always",
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
+  ],
+  "unicorn/prefer-then-catch": [
+    0,
+  ],
+  "unicorn/prefer-toggle-attribute": [
+    2,
   ],
   "unicorn/prefer-top-level-await": [
     0,
@@ -2003,9 +2732,32 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/prefer-type-error": [
     2,
   ],
-  "unicorn/prevent-abbreviations": [
+  "unicorn/prefer-type-literal-last": [
     0,
-    {},
+  ],
+  "unicorn/prefer-uint8array-base64": [
+    0,
+  ],
+  "unicorn/prefer-uint8array-hex": [
+    0,
+  ],
+  "unicorn/prefer-unary-minus": [
+    2,
+  ],
+  "unicorn/prefer-unicode-code-point-escapes": [
+    0,
+  ],
+  "unicorn/prefer-url-can-parse": [
+    0,
+  ],
+  "unicorn/prefer-url-href": [
+    2,
+  ],
+  "unicorn/prefer-url-search-parameters": [
+    2,
+  ],
+  "unicorn/prefer-while-loop-condition": [
+    2,
   ],
   "unicorn/relative-url-style": [
     2,
@@ -2014,10 +2766,19 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   "unicorn/require-array-join-separator": [
     2,
   ],
+  "unicorn/require-array-sort-compare": [
+    0,
+  ],
   "unicorn/require-css-escape": [
     2,
     {
       "checkAllSelectors": false,
+    },
+  ],
+  "unicorn/require-frontmatter-fields": [
+    0,
+    {
+      "fields": [],
     },
   ],
   "unicorn/require-module-attributes": [
@@ -2034,6 +2795,19 @@ exports[`итоговый резолв конфига eslint > scripts/build.mjs
   ],
   "unicorn/require-post-message-target-origin": [
     0,
+  ],
+  "unicorn/require-proxy-trap-boolean-return": [
+    2,
+  ],
+  "unicorn/require-text-decoder-streaming": [
+    2,
+  ],
+  "unicorn/single-line-block-comment-style": [
+    0,
+    "multiline",
+    {
+      "ignore": [],
+    },
   ],
   "unicorn/string-content": [
     0,
@@ -2122,11 +2896,12 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "disable-comments",
   "import-x",
   "json",
-  "jsx-a11y",
+  "jsx-a11y-x",
   "markdown",
   "n",
-  "react",
-  "react-hooks",
+  "react-dom",
+  "react-jsx",
+  "react-x",
   "react-you-might-not-need-an-effect",
   "simple-import-sort",
   "unicorn",
@@ -2427,6 +3202,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
     {
       "allowEmptyReject": true,
     },
+  ],
+  "@typescript-eslint/require-array-sort-compare": [
+    2,
   ],
   "@typescript-eslint/require-await": [
     0,
@@ -2748,8 +3526,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "init-declarations": [
     0,
+    "always",
   ],
-  "jsx-a11y/alt-text": [
+  "jsx-a11y-x/alt-text": [
     2,
     {
       "area": [],
@@ -2764,51 +3543,63 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "object": [],
     },
   ],
-  "jsx-a11y/anchor-ambiguous-text": [
+  "jsx-a11y-x/anchor-ambiguous-text": [
     0,
+    {
+      "words": [
+        "click here",
+        "here",
+        "link",
+        "a link",
+        "learn more",
+      ],
+    },
   ],
-  "jsx-a11y/anchor-has-content": [
+  "jsx-a11y-x/anchor-has-content": [
     2,
     {
       "components": [],
     },
   ],
-  "jsx-a11y/anchor-is-valid": [
+  "jsx-a11y-x/anchor-is-valid": [
     1,
     {
       "aspects": [
         "invalidHref",
       ],
+      "components": [],
+      "specialLink": [],
     },
   ],
-  "jsx-a11y/aria-activedescendant-has-tabindex": [
+  "jsx-a11y-x/aria-activedescendant-has-tabindex": [
     2,
   ],
-  "jsx-a11y/aria-props": [
+  "jsx-a11y-x/aria-props": [
     2,
   ],
-  "jsx-a11y/aria-proptypes": [
+  "jsx-a11y-x/aria-proptypes": [
     2,
   ],
-  "jsx-a11y/aria-role": [
+  "jsx-a11y-x/aria-role": [
     2,
     {
+      "allowedInvalidRoles": [],
       "ignoreNonDOM": false,
     },
   ],
-  "jsx-a11y/aria-unsupported-elements": [
+  "jsx-a11y-x/aria-unsupported-elements": [
     2,
   ],
-  "jsx-a11y/autocomplete-valid": [
+  "jsx-a11y-x/autocomplete-valid": [
     0,
     {
       "inputComponents": [],
     },
   ],
-  "jsx-a11y/click-events-have-key-events": [
+  "jsx-a11y-x/click-events-have-key-events": [
     2,
   ],
-  "jsx-a11y/control-has-associated-label": [
+  "jsx-a11y-x/control-has-associated-label": [
     2,
     {
       "controlComponents": [],
@@ -2839,7 +3630,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/heading-has-content": [
+  "jsx-a11y-x/heading-has-content": [
     2,
     {
       "components": [
@@ -2847,34 +3638,44 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/html-has-lang": [
+  "jsx-a11y-x/html-has-lang": [
     2,
   ],
-  "jsx-a11y/iframe-has-title": [
+  "jsx-a11y-x/iframe-has-title": [
     2,
   ],
-  "jsx-a11y/img-redundant-alt": [
+  "jsx-a11y-x/img-redundant-alt": [
     2,
+    {
+      "components": [],
+      "words": [],
+    },
   ],
-  "jsx-a11y/interactive-supports-focus": [
+  "jsx-a11y-x/interactive-supports-focus": [
     2,
+    {
+      "tabbable": [],
+    },
   ],
-  "jsx-a11y/label-has-associated-control": [
+  "jsx-a11y-x/label-has-associated-control": [
     2,
     {
       "assert": "either",
+      "controlComponents": [],
+      "depth": 2,
+      "labelAttributes": [],
       "labelComponents": [
         "label",
       ],
     },
   ],
-  "jsx-a11y/label-has-for": [
+  "jsx-a11y-x/label-has-for": [
     0,
   ],
-  "jsx-a11y/lang": [
+  "jsx-a11y-x/lang": [
     2,
   ],
-  "jsx-a11y/media-has-caption": [
+  "jsx-a11y-x/media-has-caption": [
     2,
     {
       "audio": [],
@@ -2882,19 +3683,27 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "video": [],
     },
   ],
-  "jsx-a11y/mouse-events-have-key-events": [
+  "jsx-a11y-x/mouse-events-have-key-events": [
+    2,
+    {
+      "hoverInHandlers": [
+        "onMouseOver",
+      ],
+      "hoverOutHandlers": [
+        "onMouseOut",
+      ],
+    },
+  ],
+  "jsx-a11y-x/no-access-key": [
     2,
   ],
-  "jsx-a11y/no-access-key": [
-    2,
-  ],
-  "jsx-a11y/no-autofocus": [
+  "jsx-a11y-x/no-autofocus": [
     2,
     {
       "ignoreNonDOM": true,
     },
   ],
-  "jsx-a11y/no-distracting-elements": [
+  "jsx-a11y-x/no-distracting-elements": [
     2,
     {
       "elements": [
@@ -2903,7 +3712,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/no-interactive-element-to-noninteractive-role": [
+  "jsx-a11y-x/no-interactive-element-to-noninteractive-role": [
     2,
     {
       "tr": [
@@ -2912,7 +3721,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/no-noninteractive-element-interactions": [
+  "jsx-a11y-x/no-noninteractive-element-interactions": [
     2,
     {
       "handlers": [
@@ -2925,7 +3734,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/no-noninteractive-element-to-interactive-role": [
+  "jsx-a11y-x/no-noninteractive-element-to-interactive-role": [
     2,
     {
       "li": [
@@ -2961,7 +3770,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/no-noninteractive-tabindex": [
+  "jsx-a11y-x/no-noninteractive-tabindex": [
     2,
     {
       "roles": [
@@ -2970,10 +3779,11 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "tags": [],
     },
   ],
-  "jsx-a11y/no-redundant-roles": [
+  "jsx-a11y-x/no-redundant-roles": [
     2,
+    {},
   ],
-  "jsx-a11y/no-static-element-interactions": [
+  "jsx-a11y-x/no-static-element-interactions": [
     2,
     {
       "handlers": [
@@ -2986,16 +3796,16 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
     },
   ],
-  "jsx-a11y/role-has-required-aria-props": [
+  "jsx-a11y-x/role-has-required-aria-props": [
     2,
   ],
-  "jsx-a11y/role-supports-aria-props": [
+  "jsx-a11y-x/role-supports-aria-props": [
     2,
   ],
-  "jsx-a11y/scope": [
+  "jsx-a11y-x/scope": [
     2,
   ],
-  "jsx-a11y/tabindex-no-positive": [
+  "jsx-a11y-x/tabindex-no-positive": [
     2,
   ],
   "max-classes-per-file": [
@@ -3008,6 +3818,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "max-nested-callbacks": [
     1,
+    10,
   ],
   "max-params": [
     0,
@@ -3074,6 +3885,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "no-constant-binary-expression": [
     2,
+    {
+      "checkRelationalComparisons": false,
+    },
   ],
   "no-constant-condition": [
     1,
@@ -3267,6 +4081,12 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "enforceConst": true,
       "ignore": [],
       "ignoreArrayIndexes": true,
+      "ignoreClassFieldInitialValues": false,
+      "ignoreDefaultValues": false,
+      "ignoreEnums": false,
+      "ignoreNumericLiteralTypes": false,
+      "ignoreReadonlyClassProperties": false,
+      "ignoreTypeIndexes": false,
     },
   ],
   "no-misleading-character-class": [
@@ -3331,6 +4151,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
     {
       "allowForLoopAfterthoughts": true,
     },
+  ],
+  "no-process-exit": [
+    0,
   ],
   "no-promise-executor-return": [
     2,
@@ -3505,7 +4328,7 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "no-shadow-restricted-names": [
     2,
     {
-      "reportGlobalThis": false,
+      "reportGlobalThis": true,
     },
   ],
   "no-sparse-arrays": [
@@ -3519,6 +4342,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "no-throw-literal": [
     0,
+  ],
+  "no-unassigned-vars": [
+    2,
   ],
   "no-undef": [
     0,
@@ -3550,6 +4376,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "no-unmodified-loop-condition": [
     0,
+    {
+      "checkConditionalExpressions": false,
+    },
   ],
   "no-unneeded-ternary": [
     2,
@@ -3601,7 +4430,11 @@ exports[`итоговый резолв конфига eslint > src/components/so
     0,
     {
       "args": "after-used",
+      "caughtErrors": "all",
+      "ignoreClassWithStaticInitBlock": false,
       "ignoreRestSiblings": true,
+      "ignoreUsingDeclarations": false,
+      "reportUsedIgnorePattern": false,
       "vars": "all",
     },
   ],
@@ -3616,6 +4449,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "typedefs": true,
       "variables": true,
     },
+  ],
+  "no-useless-assignment": [
+    2,
   ],
   "no-useless-backreference": [
     2,
@@ -3734,59 +4570,139 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "prefer-template": [
     2,
   ],
+  "preserve-caught-error": [
+    2,
+    {
+      "errorClassNames": [],
+      "requireCatchParameter": false,
+    },
+  ],
   "radix": [
     2,
-    "always",
   ],
-  "react-hooks/config": [
-    2,
-  ],
-  "react-hooks/error-boundaries": [
-    2,
-  ],
-  "react-hooks/exhaustive-deps": [
-    2,
-  ],
-  "react-hooks/gating": [
-    2,
-  ],
-  "react-hooks/globals": [
-    2,
-  ],
-  "react-hooks/immutability": [
-    2,
-  ],
-  "react-hooks/incompatible-library": [
+  "react-dom/no-dangerously-set-innerhtml": [
     1,
   ],
-  "react-hooks/preserve-manual-memoization": [
+  "react-dom/no-dangerously-set-innerhtml-with-children": [
     2,
   ],
-  "react-hooks/purity": [
+  "react-dom/no-find-dom-node": [
     2,
   ],
-  "react-hooks/refs": [
+  "react-dom/no-hydrate": [
     2,
   ],
-  "react-hooks/rules-of-hooks": [
+  "react-dom/no-missing-button-type": [
     2,
   ],
-  "react-hooks/set-state-in-effect": [
+  "react-dom/no-render": [
     2,
   ],
-  "react-hooks/set-state-in-render": [
+  "react-dom/no-render-return-value": [
     2,
   ],
-  "react-hooks/static-components": [
+  "react-dom/no-script-url": [
     2,
   ],
-  "react-hooks/unsupported-syntax": [
+  "react-dom/no-string-style-prop": [
+    2,
+  ],
+  "react-dom/no-unknown-property": [
+    2,
+    {
+      "ignore": [],
+      "requireDataLowercase": false,
+    },
+  ],
+  "react-dom/no-unsafe-target-blank": [
+    2,
+    {
+      "allowReferrer": false,
+    },
+  ],
+  "react-dom/no-void-elements-with-children": [
+    2,
+  ],
+  "react-jsx/no-children-prop": [
+    2,
+  ],
+  "react-jsx/no-comment-textnodes": [
+    2,
+  ],
+  "react-jsx/no-namespace": [
+    2,
+  ],
+  "react-jsx/no-useless-fragment": [
+    2,
+    {
+      "allowEmptyFragment": false,
+      "allowExpressions": true,
+    },
+  ],
+  "react-x/error-boundaries": [
+    2,
+  ],
+  "react-x/exhaustive-deps": [
+    2,
+  ],
+  "react-x/globals": [
+    2,
+  ],
+  "react-x/immutability": [
+    2,
+  ],
+  "react-x/no-access-state-in-setstate": [
+    2,
+  ],
+  "react-x/no-array-index-key": [
+    2,
+  ],
+  "react-x/no-component-will-mount": [
+    2,
+  ],
+  "react-x/no-component-will-receive-props": [
+    2,
+  ],
+  "react-x/no-component-will-update": [
+    2,
+  ],
+  "react-x/no-nested-component-definitions": [
+    2,
+  ],
+  "react-x/no-set-state-in-component-did-update": [
+    2,
+  ],
+  "react-x/no-set-state-in-component-will-update": [
+    2,
+  ],
+  "react-x/no-unstable-context-value": [
+    2,
+  ],
+  "react-x/no-unused-class-component-members": [
+    2,
+  ],
+  "react-x/purity": [
+    2,
+  ],
+  "react-x/refs": [
+    2,
+  ],
+  "react-x/rules-of-hooks": [
+    2,
+  ],
+  "react-x/set-state-in-effect": [
+    2,
+  ],
+  "react-x/set-state-in-render": [
+    2,
+  ],
+  "react-x/static-components": [
+    2,
+  ],
+  "react-x/unsupported-syntax": [
     1,
   ],
-  "react-hooks/use-memo": [
-    2,
-  ],
-  "react-hooks/void-use-memo": [
+  "react-x/use-memo": [
     2,
   ],
   "react-you-might-not-need-an-effect/no-adjust-state-on-prop-change": [
@@ -3815,363 +4731,6 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "react-you-might-not-need-an-effect/no-reset-all-state-on-prop-change": [
     1,
-  ],
-  "react/boolean-prop-naming": [
-    0,
-    {
-      "message": "",
-      "propTypeNames": [
-        "bool",
-        "mutuallyExclusiveTrueProps",
-      ],
-      "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+",
-    },
-  ],
-  "react/button-has-type": [
-    2,
-    {
-      "button": true,
-      "reset": false,
-      "submit": true,
-    },
-  ],
-  "react/default-props-match-prop-types": [
-    2,
-    {
-      "allowRequiredDefaults": false,
-    },
-  ],
-  "react/destructuring-assignment": [
-    0,
-  ],
-  "react/display-name": [
-    0,
-    {
-      "ignoreTranspilerName": false,
-    },
-  ],
-  "react/forbid-component-props": [
-    0,
-    {
-      "forbid": [],
-    },
-  ],
-  "react/forbid-dom-props": [
-    0,
-    {
-      "forbid": [],
-    },
-  ],
-  "react/forbid-elements": [
-    0,
-    {
-      "forbid": [],
-    },
-  ],
-  "react/forbid-foreign-prop-types": [
-    1,
-    {
-      "allowInPropTypes": true,
-    },
-  ],
-  "react/forbid-prop-types": [
-    2,
-    {
-      "checkChildContextTypes": true,
-      "checkContextTypes": true,
-      "forbid": [
-        "any",
-        "array",
-        "object",
-      ],
-    },
-  ],
-  "react/function-component-definition": [
-    0,
-  ],
-  "react/jsx-boolean-value": [
-    2,
-    "always",
-  ],
-  "react/jsx-child-element-spacing": [
-    0,
-  ],
-  "react/jsx-curly-brace-presence": [
-    2,
-    {
-      "children": "never",
-      "props": "never",
-    },
-  ],
-  "react/jsx-filename-extension": [
-    1,
-    {
-      "allow": "as-needed",
-      "extensions": [
-        ".jsx",
-        ".tsx",
-      ],
-    },
-  ],
-  "react/jsx-fragments": [
-    1,
-    "element",
-  ],
-  "react/jsx-handler-names": [
-    0,
-    {
-      "eventHandlerPrefix": "handle",
-      "eventHandlerPropPrefix": "on",
-    },
-  ],
-  "react/jsx-key": [
-    0,
-  ],
-  "react/jsx-max-depth": [
-    0,
-  ],
-  "react/jsx-newline": [
-    0,
-  ],
-  "react/jsx-no-bind": [
-    2,
-    {
-      "allowArrowFunctions": true,
-      "allowBind": false,
-      "allowFunctions": false,
-      "ignoreDOMComponents": true,
-      "ignoreRefs": true,
-    },
-  ],
-  "react/jsx-no-comment-textnodes": [
-    2,
-  ],
-  "react/jsx-no-constructed-context-values": [
-    2,
-  ],
-  "react/jsx-no-duplicate-props": [
-    2,
-    {
-      "ignoreCase": true,
-    },
-  ],
-  "react/jsx-no-literals": [
-    0,
-    {
-      "noStrings": true,
-    },
-  ],
-  "react/jsx-no-script-url": [
-    2,
-    [
-      {
-        "name": "Link",
-        "props": [
-          "to",
-        ],
-      },
-    ],
-  ],
-  "react/jsx-no-target-blank": [
-    2,
-    {
-      "enforceDynamicLinks": "always",
-      "forms": false,
-      "links": true,
-    },
-  ],
-  "react/jsx-no-undef": [
-    2,
-  ],
-  "react/jsx-no-useless-fragment": [
-    2,
-    {
-      "allowExpressions": true,
-    },
-  ],
-  "react/jsx-one-expression-per-line": [
-    0,
-  ],
-  "react/jsx-pascal-case": [
-    2,
-    {
-      "allowAllCaps": true,
-      "ignore": [],
-    },
-  ],
-  "react/jsx-props-no-spreading": [
-    0,
-  ],
-  "react/jsx-sort-prop-types": [
-    0,
-  ],
-  "react/jsx-sort-props": [
-    0,
-    {
-      "callbacksLast": false,
-      "ignoreCase": true,
-      "noSortAlphabetically": false,
-      "reservedFirst": true,
-      "shorthandFirst": false,
-      "shorthandLast": false,
-    },
-  ],
-  "react/jsx-uses-react": [
-    0,
-  ],
-  "react/jsx-uses-vars": [
-    2,
-  ],
-  "react/no-access-state-in-setstate": [
-    2,
-  ],
-  "react/no-array-index-key": [
-    2,
-  ],
-  "react/no-arrow-function-lifecycle": [
-    2,
-  ],
-  "react/no-children-prop": [
-    2,
-  ],
-  "react/no-danger": [
-    1,
-  ],
-  "react/no-danger-with-children": [
-    2,
-  ],
-  "react/no-deprecated": [
-    2,
-  ],
-  "react/no-did-mount-set-state": [
-    0,
-  ],
-  "react/no-did-update-set-state": [
-    2,
-  ],
-  "react/no-direct-mutation-state": [
-    0,
-  ],
-  "react/no-find-dom-node": [
-    2,
-  ],
-  "react/no-invalid-html-attribute": [
-    2,
-  ],
-  "react/no-is-mounted": [
-    2,
-  ],
-  "react/no-multi-comp": [
-    0,
-  ],
-  "react/no-namespace": [
-    2,
-  ],
-  "react/no-redundant-should-component-update": [
-    2,
-  ],
-  "react/no-render-return-value": [
-    2,
-  ],
-  "react/no-set-state": [
-    0,
-  ],
-  "react/no-string-refs": [
-    2,
-  ],
-  "react/no-this-in-sfc": [
-    2,
-  ],
-  "react/no-typos": [
-    2,
-  ],
-  "react/no-unescaped-entities": [
-    2,
-  ],
-  "react/no-unknown-property": [
-    2,
-  ],
-  "react/no-unsafe": [
-    0,
-  ],
-  "react/no-unstable-nested-components": [
-    2,
-  ],
-  "react/no-unused-class-component-methods": [
-    2,
-  ],
-  "react/no-unused-prop-types": [
-    2,
-    {
-      "customValidators": [],
-      "skipShapeProps": true,
-    },
-  ],
-  "react/no-unused-state": [
-    2,
-  ],
-  "react/no-will-update-set-state": [
-    2,
-  ],
-  "react/prefer-es6-class": [
-    2,
-    "always",
-  ],
-  "react/prefer-exact-props": [
-    2,
-  ],
-  "react/prefer-read-only-props": [
-    0,
-  ],
-  "react/prefer-stateless-function": [
-    0,
-  ],
-  "react/prop-types": [
-    0,
-  ],
-  "react/react-in-jsx-scope": [
-    0,
-  ],
-  "react/require-default-props": [
-    0,
-  ],
-  "react/require-optimization": [
-    0,
-    {
-      "allowDecorators": [],
-    },
-  ],
-  "react/require-render-return": [
-    2,
-  ],
-  "react/self-closing-comp": [
-    2,
-  ],
-  "react/sort-comp": [
-    0,
-  ],
-  "react/sort-prop-types": [
-    0,
-    {
-      "callbacksLast": false,
-      "ignoreCase": true,
-      "requiredFirst": false,
-      "sortShapeProp": true,
-    },
-  ],
-  "react/state-in-constructor": [
-    2,
-    "never",
-  ],
-  "react/static-property-placement": [
-    2,
-    "static public field",
-  ],
-  "react/style-prop-object": [
-    2,
-  ],
-  "react/void-dom-elements-no-children": [
-    2,
   ],
   "require-atomic-updates": [
     0,
@@ -4251,12 +4810,65 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "name": "error",
     },
   ],
+  "unicorn/class-reference-in-static-methods": [
+    0,
+    {
+      "preferSuper": true,
+      "preferThis": true,
+    },
+  ],
+  "unicorn/comma-spacing": [
+    0,
+  ],
+  "unicorn/comment-content": [
+    0,
+    {
+      "checkUniformCase": true,
+      "extendDefaultReplacements": true,
+      "ignore": [],
+      "replacements": {},
+    },
+  ],
+  "unicorn/consistent-arrow-return-style": [
+    0,
+  ],
   "unicorn/consistent-assert": [
     0,
+  ],
+  "unicorn/consistent-boolean-name": [
+    0,
+    {
+      "checkArguments": "always",
+      "checkFields": "never",
+      "checkFunctions": "always",
+      "checkMethods": "never",
+      "checkVariables": "always",
+      "ignore": [],
+      "wrappers": {},
+    },
+  ],
+  "unicorn/consistent-class-member-order": [
+    0,
+    {
+      "order": [
+        "static-field",
+        "static-block",
+        "static-method",
+        "private-field",
+        "public-field",
+        "constructor",
+        "private-method",
+        "public-method",
+      ],
+    },
   ],
   "unicorn/consistent-compound-words": [
     2,
     {},
+  ],
+  "unicorn/consistent-conditional-object-spread": [
+    0,
+    "logical",
   ],
   "unicorn/consistent-date-clone": [
     2,
@@ -4270,21 +4882,50 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/consistent-existence-index-check": [
     2,
   ],
+  "unicorn/consistent-export-decorator-position": [
+    0,
+    "above",
+  ],
   "unicorn/consistent-function-scoping": [
     0,
     {
       "checkArrowFunctions": true,
     },
   ],
+  "unicorn/consistent-function-style": [
+    0,
+    {
+      "callbacks": "ignore",
+      "default": "ignore",
+      "namedExports": "ignore",
+      "namedFunctions": "ignore",
+      "objectProperties": "ignore",
+      "reassignedVariables": "ignore",
+      "typedVariables": "ignore",
+    },
+  ],
   "unicorn/consistent-json-file-read": [
     0,
     "string",
   ],
+  "unicorn/consistent-optional-chaining": [
+    2,
+  ],
   "unicorn/consistent-template-literal-escape": [
+    0,
+  ],
+  "unicorn/consistent-tuple-labels": [
     0,
   ],
   "unicorn/custom-error-definition": [
     0,
+  ],
+  "unicorn/default-export-style": [
+    0,
+    {
+      "classes": "inline",
+      "functions": "inline",
+    },
   ],
   "unicorn/dom-node-dataset": [
     2,
@@ -4322,12 +4963,34 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "non-zero": "greater-than",
     },
   ],
+  "unicorn/explicit-timer-delay": [
+    2,
+    "always",
+  ],
   "unicorn/filename-case": [
     0,
+  ],
+  "unicorn/id-match": [
+    0,
+    "^.+$",
+    {
+      "checkNamedSpecifiers": true,
+      "classFields": false,
+      "ignoreDestructuring": false,
+      "onlyDeclarations": false,
+      "properties": false,
+    },
   ],
   "unicorn/import-style": [
     2,
     {},
+  ],
+  "unicorn/indent": [
+    0,
+    {
+      "indent": "tab",
+      "tabWidth": 4,
+    },
   ],
   "unicorn/isolated-functions": [
     0,
@@ -4337,10 +5000,40 @@ exports[`итоговый резолв конфига eslint > src/components/so
       ],
       "functions": [
         "makeSynchronous",
+        "workerize",
       ],
       "overrideGlobals": {},
       "selectors": [],
     },
+  ],
+  "unicorn/iteration-fallback-style": [
+    0,
+    "guard",
+  ],
+  "unicorn/key-name-casing": [
+    0,
+    {
+      "PascalCase": false,
+      "SCREAMING_SNAKE_CASE": false,
+      "camelCase": true,
+      "ignore": [],
+      "kebab-case": false,
+      "snake_case": false,
+    },
+  ],
+  "unicorn/logical-assignment-operators": [
+    0,
+    "always",
+  ],
+  "unicorn/max-nested-calls": [
+    0,
+    {
+      "max": 3,
+    },
+  ],
+  "unicorn/name-replacements": [
+    0,
+    {},
   ],
   "unicorn/new-for-builtins": [
     2,
@@ -4349,6 +5042,9 @@ exports[`итоговый резолв конфига eslint > src/components/so
     2,
   ],
   "unicorn/no-accessor-recursion": [
+    2,
+  ],
+  "unicorn/no-accidental-bitwise-operator": [
     2,
   ],
   "unicorn/no-anonymous-default-export": [
@@ -4360,14 +5056,17 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "ignore": [],
     },
   ],
-  "unicorn/no-array-fill-with-reference-type": [
-    2,
+  "unicorn/no-array-concat-in-loop": [
+    0,
   ],
-  "unicorn/no-array-for-each": [
+  "unicorn/no-array-fill-with-reference-type": [
     2,
   ],
   "unicorn/no-array-from-fill": [
     2,
+  ],
+  "unicorn/no-array-front-mutation": [
+    0,
   ],
   "unicorn/no-array-method-this-argument": [
     2,
@@ -4390,26 +5089,86 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "allowExpressionStatement": true,
     },
   ],
+  "unicorn/no-array-sort-for-min-max": [
+    2,
+  ],
+  "unicorn/no-array-splice": [
+    0,
+  ],
+  "unicorn/no-asterisk-prefix-in-documentation-comments": [
+    0,
+  ],
+  "unicorn/no-async-iterator-callback": [
+    2,
+  ],
+  "unicorn/no-async-promise-finally": [
+    2,
+  ],
   "unicorn/no-await-expression-member": [
     0,
   ],
   "unicorn/no-await-in-promise-methods": [
     2,
   ],
+  "unicorn/no-barrel-files": [
+    0,
+  ],
   "unicorn/no-blob-to-file": [
     2,
   ],
+  "unicorn/no-boolean-sort-comparator": [
+    2,
+  ],
+  "unicorn/no-break-in-nested-loop": [
+    0,
+    {
+      "checkContinue": false,
+    },
+  ],
   "unicorn/no-canvas-to-image": [
+    2,
+  ],
+  "unicorn/no-chained-comparison": [
+    2,
+  ],
+  "unicorn/no-collection-bracket-access": [
+    2,
+  ],
+  "unicorn/no-computed-property-existence-check": [
+    0,
+  ],
+  "unicorn/no-conflicting-constraints": [
     2,
   ],
   "unicorn/no-confusing-array-splice": [
     0,
   ],
+  "unicorn/no-confusing-array-with": [
+    0,
+  ],
   "unicorn/no-console-spaces": [
     2,
   ],
+  "unicorn/no-constant-zero-expression": [
+    2,
+  ],
+  "unicorn/no-declarations-before-early-exit": [
+    0,
+  ],
   "unicorn/no-document-cookie": [
     2,
+  ],
+  "unicorn/no-double-comparison": [
+    2,
+  ],
+  "unicorn/no-duplicate-if-branches": [
+    0,
+  ],
+  "unicorn/no-duplicate-logical-operands": [
+    2,
+  ],
+  "unicorn/no-duplicate-loops": [
+    0,
   ],
   "unicorn/no-duplicate-set-values": [
     0,
@@ -4420,20 +5179,44 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "allowComments": false,
     },
   ],
+  "unicorn/no-empty-link-text": [
+    0,
+  ],
+  "unicorn/no-error-property-assignment": [
+    2,
+  ],
   "unicorn/no-exports-in-scripts": [
+    2,
+  ],
+  "unicorn/no-for-each": [
     2,
   ],
   "unicorn/no-for-loop": [
     0,
   ],
-  "unicorn/no-hex-escape": [
-    2,
+  "unicorn/no-global-object-property-assignment": [
+    0,
   ],
   "unicorn/no-immediate-mutation": [
     0,
+    {
+      "checkConditionals": false,
+    },
+  ],
+  "unicorn/no-impossible-length-comparison": [
+    2,
+  ],
+  "unicorn/no-incomplete-accessor-override": [
+    2,
   ],
   "unicorn/no-incorrect-query-selector": [
     0,
+  ],
+  "unicorn/no-incorrect-template-string-interpolation": [
+    0,
+  ],
+  "unicorn/no-ineffective-csp-directives": [
+    2,
   ],
   "unicorn/no-instanceof-builtins": [
     2,
@@ -4444,14 +5227,54 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "useErrorIsError": false,
     },
   ],
+  "unicorn/no-invalid-argument-count": [
+    2,
+    {},
+  ],
+  "unicorn/no-invalid-boolean-attribute-value": [
+    2,
+  ],
+  "unicorn/no-invalid-character-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-dom-token": [
+    2,
+  ],
   "unicorn/no-invalid-fetch-options": [
     2,
   ],
   "unicorn/no-invalid-file-input-accept": [
     0,
   ],
+  "unicorn/no-invalid-integrity": [
+    2,
+  ],
+  "unicorn/no-invalid-intl-options": [
+    2,
+  ],
+  "unicorn/no-invalid-property-descriptor": [
+    2,
+  ],
   "unicorn/no-invalid-remove-event-listener": [
     2,
+  ],
+  "unicorn/no-invalid-response-options": [
+    2,
+  ],
+  "unicorn/no-invalid-style-set-property": [
+    2,
+  ],
+  "unicorn/no-invalid-temporal-arithmetic": [
+    2,
+  ],
+  "unicorn/no-invalid-url-protocol-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-well-known-symbol-methods": [
+    2,
+  ],
+  "unicorn/no-javascript-url": [
+    0,
   ],
   "unicorn/no-keyword-prefix": [
     0,
@@ -4460,8 +5283,20 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-late-current-target-access": [
     0,
   ],
+  "unicorn/no-late-event-control": [
+    0,
+  ],
+  "unicorn/no-leading-empty-lines": [
+    0,
+  ],
   "unicorn/no-lonely-if": [
     2,
+  ],
+  "unicorn/no-loop-iterable-mutation": [
+    0,
+  ],
+  "unicorn/no-loss-of-precision": [
+    0,
   ],
   "unicorn/no-magic-array-flat-depth": [
     2,
@@ -4469,8 +5304,29 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-manually-wrapped-comments": [
     0,
   ],
+  "unicorn/no-mismatched-map-key": [
+    0,
+  ],
+  "unicorn/no-misrefactored-assignment": [
+    2,
+  ],
+  "unicorn/no-missing-local-resource": [
+    0,
+  ],
+  "unicorn/no-multiple-promise-resolver-calls": [
+    2,
+  ],
   "unicorn/no-named-default": [
     2,
+  ],
+  "unicorn/no-negated-array-predicate": [
+    2,
+  ],
+  "unicorn/no-negated-comparison": [
+    2,
+    {
+      "checkLogicalExpressions": false,
+    },
   ],
   "unicorn/no-negated-condition": [
     2,
@@ -4487,6 +5343,25 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-new-buffer": [
     2,
   ],
+  "unicorn/no-non-function-verb-prefix": [
+    0,
+    {
+      "ignore": [],
+      "verbs": [
+        "get",
+        "set",
+        "unset",
+        "delete",
+        "add",
+        "remove",
+        "destroy",
+        "create",
+      ],
+    },
+  ],
+  "unicorn/no-nonstandard-builtin-properties": [
+    2,
+  ],
   "unicorn/no-null": [
     0,
     {
@@ -4497,13 +5372,40 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-object-as-default-parameter": [
     2,
   ],
+  "unicorn/no-object-methods-with-collections": [
+    0,
+  ],
+  "unicorn/no-optional-chaining-on-undeclared-variable": [
+    0,
+  ],
+  "unicorn/no-prevent-default-in-passive-listener": [
+    2,
+  ],
   "unicorn/no-process-exit": [
     0,
+  ],
+  "unicorn/no-redundant-comparison": [
+    2,
+  ],
+  "unicorn/no-repeated-call-wrappers": [
+    0,
+  ],
+  "unicorn/no-return-array-push": [
+    0,
+  ],
+  "unicorn/no-selector-as-dom-name": [
+    0,
+  ],
+  "unicorn/no-shorthand-property-overrides": [
+    2,
   ],
   "unicorn/no-single-promise-in-promise-methods": [
     2,
   ],
   "unicorn/no-static-only-class": [
+    2,
+  ],
+  "unicorn/no-subtraction-comparison": [
     2,
   ],
   "unicorn/no-thenable": [
@@ -4515,14 +5417,36 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-this-outside-of-class": [
     0,
   ],
+  "unicorn/no-top-level-assignment-in-function": [
+    0,
+  ],
+  "unicorn/no-top-level-side-effects": [
+    0,
+    {
+      "allow": {},
+      "checkUnknownCalls": false,
+    },
+  ],
+  "unicorn/no-transition-all": [
+    2,
+  ],
   "unicorn/no-typeof-undefined": [
     2,
     {
       "checkGlobalVariables": false,
     },
   ],
+  "unicorn/no-uncalled-method": [
+    0,
+  ],
+  "unicorn/no-undeclared-class-members": [
+    0,
+  ],
   "unicorn/no-unnecessary-array-flat-depth": [
     2,
+  ],
+  "unicorn/no-unnecessary-array-flat-map": [
+    0,
   ],
   "unicorn/no-unnecessary-array-splice-count": [
     2,
@@ -4530,8 +5454,26 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-unnecessary-await": [
     2,
   ],
+  "unicorn/no-unnecessary-boolean-comparison": [
+    0,
+  ],
+  "unicorn/no-unnecessary-default-arguments": [
+    0,
+  ],
+  "unicorn/no-unnecessary-fetch-options": [
+    2,
+  ],
+  "unicorn/no-unnecessary-global-this": [
+    2,
+  ],
   "unicorn/no-unnecessary-nested-ternary": [
     2,
+  ],
+  "unicorn/no-unnecessary-parameters": [
+    0,
+    {
+      "minimumCallCount": 2,
+    },
   ],
   "unicorn/no-unnecessary-polyfills": [
     2,
@@ -4540,20 +5482,86 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-unnecessary-slice-end": [
     2,
   ],
+  "unicorn/no-unnecessary-splice": [
+    0,
+  ],
+  "unicorn/no-unnecessary-string-trim": [
+    2,
+  ],
   "unicorn/no-unreadable-array-destructuring": [
     2,
+    {
+      "maximumIgnoredElements": 1,
+    },
+  ],
+  "unicorn/no-unreadable-for-of-expression": [
+    0,
   ],
   "unicorn/no-unreadable-iife": [
     2,
   ],
-  "unicorn/no-unused-array-method-return": [
+  "unicorn/no-unreadable-new-expression": [
+    0,
+  ],
+  "unicorn/no-unreadable-object-destructuring": [
+    2,
+  ],
+  "unicorn/no-unsafe-buffer-conversion": [
+    2,
+  ],
+  "unicorn/no-unsafe-dom-html": [
+    0,
+  ],
+  "unicorn/no-unsafe-json-serialization": [
+    0,
+  ],
+  "unicorn/no-unsafe-promise-all-settled-values": [
+    2,
+  ],
+  "unicorn/no-unsafe-property-key": [
+    0,
+  ],
+  "unicorn/no-unsafe-sqlite-interpolation": [
+    2,
+  ],
+  "unicorn/no-unsafe-string-replacement": [
+    0,
+  ],
+  "unicorn/no-unused-builtin-method-return": [
+    2,
+  ],
+  "unicorn/no-unused-iterator-helper": [
     2,
   ],
   "unicorn/no-unused-properties": [
     0,
   ],
+  "unicorn/no-url-in-search-params": [
+    2,
+  ],
+  "unicorn/no-useless-boolean-cast": [
+    2,
+  ],
+  "unicorn/no-useless-coercion": [
+    2,
+  ],
   "unicorn/no-useless-collection-argument": [
     2,
+  ],
+  "unicorn/no-useless-compound-assignment": [
+    2,
+  ],
+  "unicorn/no-useless-concat": [
+    2,
+  ],
+  "unicorn/no-useless-continue": [
+    0,
+  ],
+  "unicorn/no-useless-delete-check": [
+    2,
+  ],
+  "unicorn/no-useless-else": [
+    0,
   ],
   "unicorn/no-useless-error-capture-stack-trace": [
     2,
@@ -4567,7 +5575,22 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-useless-length-check": [
     2,
   ],
+  "unicorn/no-useless-logical-operand": [
+    2,
+  ],
+  "unicorn/no-useless-override": [
+    2,
+  ],
   "unicorn/no-useless-promise-resolve-reject": [
+    2,
+  ],
+  "unicorn/no-useless-re-export": [
+    2,
+  ],
+  "unicorn/no-useless-recursion": [
+    0,
+  ],
+  "unicorn/no-useless-set-construction": [
     2,
   ],
   "unicorn/no-useless-spread": [
@@ -4576,12 +5599,21 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/no-useless-switch-case": [
     2,
   ],
+  "unicorn/no-useless-template-literals": [
+    2,
+  ],
   "unicorn/no-useless-undefined": [
     2,
     {
       "checkArguments": true,
       "checkArrowFunctionBody": true,
     },
+  ],
+  "unicorn/no-using-resource-escape": [
+    2,
+  ],
+  "unicorn/no-xor-as-exponentiation": [
+    2,
   ],
   "unicorn/no-zero-fractions": [
     2,
@@ -4615,6 +5647,16 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "onlyIfContainsSeparator": false,
     },
   ],
+  "unicorn/operator-assignment": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-abort-signal-any": [
+    0,
+  ],
+  "unicorn/prefer-abort-signal-timeout": [
+    0,
+  ],
   "unicorn/prefer-add-event-listener": [
     2,
     {
@@ -4623,6 +5665,12 @@ exports[`итоговый резолв конфига eslint > src/components/so
         "sax",
       ],
     },
+  ],
+  "unicorn/prefer-add-event-listener-options": [
+    0,
+  ],
+  "unicorn/prefer-aggregate-error": [
+    2,
   ],
   "unicorn/prefer-array-find": [
     2,
@@ -4639,11 +5687,26 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/prefer-array-flat-map": [
     2,
   ],
+  "unicorn/prefer-array-from-async": [
+    0,
+  ],
+  "unicorn/prefer-array-from-map": [
+    2,
+  ],
+  "unicorn/prefer-array-from-range": [
+    2,
+  ],
   "unicorn/prefer-array-index-of": [
     2,
   ],
+  "unicorn/prefer-array-iterable-methods": [
+    0,
+  ],
   "unicorn/prefer-array-last-methods": [
     2,
+  ],
+  "unicorn/prefer-array-slice": [
+    0,
   ],
   "unicorn/prefer-array-some": [
     2,
@@ -4655,10 +5718,19 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "getLastElementFunctions": [],
     },
   ],
+  "unicorn/prefer-await": [
+    0,
+  ],
   "unicorn/prefer-bigint-literals": [
     2,
   ],
   "unicorn/prefer-blob-reading-methods": [
+    2,
+  ],
+  "unicorn/prefer-block-statement-over-iife": [
+    0,
+  ],
+  "unicorn/prefer-boolean-return": [
     2,
   ],
   "unicorn/prefer-class-fields": [
@@ -4670,19 +5742,68 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/prefer-code-point": [
     2,
   ],
+  "unicorn/prefer-combined-guards": [
+    0,
+    {
+      "checkCompoundConditions": false,
+      "checkMultiStatementBodies": false,
+    },
+  ],
+  "unicorn/prefer-continue": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
   "unicorn/prefer-date-now": [
     2,
   ],
   "unicorn/prefer-default-parameters": [
     2,
+    {
+      "checkFallbackExpressions": true,
+    },
+  ],
+  "unicorn/prefer-direct-iteration": [
+    2,
+  ],
+  "unicorn/prefer-dispose": [
+    0,
   ],
   "unicorn/prefer-dom-node-append": [
     2,
   ],
+  "unicorn/prefer-dom-node-html-methods": [
+    0,
+    {
+      "checkGetHTML": true,
+      "checkSetHTML": false,
+    },
+  ],
   "unicorn/prefer-dom-node-remove": [
     2,
   ],
+  "unicorn/prefer-dom-node-replace-children": [
+    2,
+  ],
   "unicorn/prefer-dom-node-text-content": [
+    2,
+  ],
+  "unicorn/prefer-early-return": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
+  "unicorn/prefer-else-if": [
+    0,
+  ],
+  "unicorn/prefer-error-is-error": [
+    0,
+  ],
+  "unicorn/prefer-escaped-irregular-whitespace": [
     2,
   ],
   "unicorn/prefer-event-target": [
@@ -4694,14 +5815,35 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "checkUsedVariables": true,
     },
   ],
+  "unicorn/prefer-flat-math-min-max": [
+    2,
+  ],
   "unicorn/prefer-get-or-insert-computed": [
     0,
+  ],
+  "unicorn/prefer-global-number-constants": [
+    2,
   ],
   "unicorn/prefer-global-this": [
     0,
   ],
+  "unicorn/prefer-group-by": [
+    0,
+  ],
+  "unicorn/prefer-has-check": [
+    2,
+  ],
+  "unicorn/prefer-hoisting-branch-code": [
+    0,
+  ],
   "unicorn/prefer-https": [
     0,
+    {
+      "ignore": [],
+    },
+  ],
+  "unicorn/prefer-identifier-import-export-specifiers": [
+    2,
   ],
   "unicorn/prefer-import-meta-properties": [
     0,
@@ -4715,19 +5857,46 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "minimumComparisons": 3,
     },
   ],
+  "unicorn/prefer-iterable-in-constructor": [
+    2,
+  ],
   "unicorn/prefer-iterator-concat": [
+    0,
+  ],
+  "unicorn/prefer-iterator-helpers": [
+    2,
+  ],
+  "unicorn/prefer-iterator-to-array": [
     0,
   ],
   "unicorn/prefer-iterator-to-array-at-end": [
     2,
   ],
+  "unicorn/prefer-iterator-zip": [
+    0,
+  ],
+  "unicorn/prefer-json-import": [
+    0,
+  ],
   "unicorn/prefer-keyboard-event-key": [
     2,
+  ],
+  "unicorn/prefer-literal-ascii": [
+    2,
+  ],
+  "unicorn/prefer-location-assign": [
+    0,
   ],
   "unicorn/prefer-logical-operator-over-ternary": [
     2,
   ],
+  "unicorn/prefer-map-from-entries": [
+    2,
+  ],
   "unicorn/prefer-math-abs": [
+    2,
+  ],
+  "unicorn/prefer-math-constants": [
     2,
   ],
   "unicorn/prefer-math-min-max": [
@@ -4735,6 +5904,13 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "unicorn/prefer-math-trunc": [
     2,
+  ],
+  "unicorn/prefer-minimal-ternary": [
+    2,
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
   ],
   "unicorn/prefer-modern-dom-apis": [
     2,
@@ -4754,12 +5930,24 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/prefer-node-protocol": [
     1,
   ],
+  "unicorn/prefer-number-coercion": [
+    0,
+  ],
+  "unicorn/prefer-number-is-safe-integer": [
+    0,
+  ],
   "unicorn/prefer-number-properties": [
     2,
     {
       "checkInfinity": false,
-      "checkNaN": true,
+      "checkNaN": false,
     },
+  ],
+  "unicorn/prefer-object-define-properties": [
+    2,
+  ],
+  "unicorn/prefer-object-destructuring-defaults": [
+    0,
   ],
   "unicorn/prefer-object-from-entries": [
     2,
@@ -4767,7 +5955,28 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "functions": [],
     },
   ],
+  "unicorn/prefer-object-iterable-methods": [
+    2,
+  ],
+  "unicorn/prefer-observer-apis": [
+    0,
+  ],
   "unicorn/prefer-optional-catch-binding": [
+    2,
+  ],
+  "unicorn/prefer-path2d": [
+    2,
+  ],
+  "unicorn/prefer-private-class-fields": [
+    0,
+  ],
+  "unicorn/prefer-promise-static-methods": [
+    2,
+  ],
+  "unicorn/prefer-promise-try": [
+    0,
+  ],
+  "unicorn/prefer-promise-with-resolvers": [
     2,
   ],
   "unicorn/prefer-prototype-methods": [
@@ -4789,11 +5998,17 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/prefer-reflect-apply": [
     2,
   ],
+  "unicorn/prefer-regexp-escape": [
+    0,
+  ],
   "unicorn/prefer-regexp-test": [
     2,
   ],
   "unicorn/prefer-response-static-json": [
     2,
+  ],
+  "unicorn/prefer-scoped-selector": [
+    0,
   ],
   "unicorn/prefer-set-has": [
     2,
@@ -4801,17 +6016,48 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "minimumItems": 0,
     },
   ],
+  "unicorn/prefer-set-methods": [
+    0,
+  ],
   "unicorn/prefer-set-size": [
     2,
   ],
-  "unicorn/prefer-simple-condition-first": [
+  "unicorn/prefer-short-arrow-method": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-short-escape-sequences": [
     2,
+  ],
+  "unicorn/prefer-simple-condition-first": [
+    0,
+  ],
+  "unicorn/prefer-simple-sort-comparator": [
+    2,
+  ],
+  "unicorn/prefer-simplified-conditions": [
+    0,
+    {
+      "negatedConditions": "simplify",
+    },
+  ],
+  "unicorn/prefer-single-array-predicate": [
+    1,
   ],
   "unicorn/prefer-single-call": [
     2,
     {
       "ignore": [],
     },
+  ],
+  "unicorn/prefer-single-object-destructuring": [
+    0,
+  ],
+  "unicorn/prefer-single-replace": [
+    2,
+  ],
+  "unicorn/prefer-smaller-scope": [
+    0,
   ],
   "unicorn/prefer-split-limit": [
     2,
@@ -4859,9 +6105,30 @@ exports[`итоговый резолв конфига eslint > src/components/so
       "minimumCases": 3,
     },
   ],
-  "unicorn/prefer-ternary": [
+  "unicorn/prefer-temporal": [
+    0,
+    {
+      "checkDateNow": false,
+      "checkMethods": false,
+      "checkReferences": false,
+    },
+  ],
+  "unicorn/prefer-temporal-conversion": [
     2,
+  ],
+  "unicorn/prefer-ternary": [
+    0,
     "always",
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
+  ],
+  "unicorn/prefer-then-catch": [
+    0,
+  ],
+  "unicorn/prefer-toggle-attribute": [
+    2,
   ],
   "unicorn/prefer-top-level-await": [
     0,
@@ -4869,9 +6136,32 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/prefer-type-error": [
     2,
   ],
-  "unicorn/prevent-abbreviations": [
+  "unicorn/prefer-type-literal-last": [
     0,
-    {},
+  ],
+  "unicorn/prefer-uint8array-base64": [
+    0,
+  ],
+  "unicorn/prefer-uint8array-hex": [
+    0,
+  ],
+  "unicorn/prefer-unary-minus": [
+    2,
+  ],
+  "unicorn/prefer-unicode-code-point-escapes": [
+    0,
+  ],
+  "unicorn/prefer-url-can-parse": [
+    0,
+  ],
+  "unicorn/prefer-url-href": [
+    2,
+  ],
+  "unicorn/prefer-url-search-parameters": [
+    2,
+  ],
+  "unicorn/prefer-while-loop-condition": [
+    2,
   ],
   "unicorn/relative-url-style": [
     2,
@@ -4880,10 +6170,19 @@ exports[`итоговый резолв конфига eslint > src/components/so
   "unicorn/require-array-join-separator": [
     2,
   ],
+  "unicorn/require-array-sort-compare": [
+    0,
+  ],
   "unicorn/require-css-escape": [
     2,
     {
       "checkAllSelectors": false,
+    },
+  ],
+  "unicorn/require-frontmatter-fields": [
+    0,
+    {
+      "fields": [],
     },
   ],
   "unicorn/require-module-attributes": [
@@ -4900,6 +6199,19 @@ exports[`итоговый резолв конфига eslint > src/components/so
   ],
   "unicorn/require-post-message-target-origin": [
     0,
+  ],
+  "unicorn/require-proxy-trap-boolean-return": [
+    2,
+  ],
+  "unicorn/require-text-decoder-streaming": [
+    2,
+  ],
+  "unicorn/single-line-block-comment-style": [
+    0,
+    "multiline",
+    {
+      "ignore": [],
+    },
   ],
   "unicorn/string-content": [
     0,
@@ -4988,11 +6300,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "disable-comments",
   "import-x",
   "json",
-  "jsx-a11y",
+  "jsx-a11y-x",
   "markdown",
   "n",
-  "react",
-  "react-hooks",
+  "react-dom",
+  "react-jsx",
+  "react-x",
   "simple-import-sort",
   "unicorn",
 ]
@@ -5293,6 +6606,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "allowEmptyReject": true,
     },
   ],
+  "@typescript-eslint/require-array-sort-compare": [
+    2,
+  ],
   "@typescript-eslint/require-await": [
     0,
   ],
@@ -5596,6 +6912,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "init-declarations": [
     0,
+    "always",
   ],
   "max-classes-per-file": [
     2,
@@ -5607,6 +6924,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "max-nested-callbacks": [
     1,
+    10,
   ],
   "max-params": [
     0,
@@ -5673,6 +6991,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "no-constant-binary-expression": [
     2,
+    {
+      "checkRelationalComparisons": false,
+    },
   ],
   "no-constant-condition": [
     1,
@@ -5866,6 +7187,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "enforceConst": true,
       "ignore": [],
       "ignoreArrayIndexes": true,
+      "ignoreClassFieldInitialValues": false,
+      "ignoreDefaultValues": false,
+      "ignoreEnums": false,
+      "ignoreNumericLiteralTypes": false,
+      "ignoreReadonlyClassProperties": false,
+      "ignoreTypeIndexes": false,
     },
   ],
   "no-misleading-character-class": [
@@ -5930,6 +7257,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
     {
       "allowForLoopAfterthoughts": true,
     },
+  ],
+  "no-process-exit": [
+    0,
   ],
   "no-promise-executor-return": [
     2,
@@ -6076,7 +7406,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "no-shadow-restricted-names": [
     2,
     {
-      "reportGlobalThis": false,
+      "reportGlobalThis": true,
     },
   ],
   "no-sparse-arrays": [
@@ -6090,6 +7420,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "no-throw-literal": [
     0,
+  ],
+  "no-unassigned-vars": [
+    2,
   ],
   "no-undef": [
     0,
@@ -6121,6 +7454,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "no-unmodified-loop-condition": [
     0,
+    {
+      "checkConditionalExpressions": false,
+    },
   ],
   "no-unneeded-ternary": [
     2,
@@ -6172,7 +7508,11 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
     0,
     {
       "args": "after-used",
+      "caughtErrors": "all",
+      "ignoreClassWithStaticInitBlock": false,
       "ignoreRestSiblings": true,
+      "ignoreUsingDeclarations": false,
+      "reportUsedIgnorePattern": false,
       "vars": "all",
     },
   ],
@@ -6187,6 +7527,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "typedefs": true,
       "variables": true,
     },
+  ],
+  "no-useless-assignment": [
+    2,
   ],
   "no-useless-backreference": [
     2,
@@ -6305,59 +7648,50 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "prefer-template": [
     2,
   ],
+  "preserve-caught-error": [
+    2,
+    {
+      "errorClassNames": [],
+      "requireCatchParameter": false,
+    },
+  ],
   "radix": [
     2,
-    "always",
   ],
-  "react-hooks/config": [
+  "react-x/error-boundaries": [
     2,
   ],
-  "react-hooks/error-boundaries": [
+  "react-x/exhaustive-deps": [
     2,
   ],
-  "react-hooks/exhaustive-deps": [
+  "react-x/globals": [
     2,
   ],
-  "react-hooks/gating": [
+  "react-x/immutability": [
     2,
   ],
-  "react-hooks/globals": [
+  "react-x/purity": [
     2,
   ],
-  "react-hooks/immutability": [
+  "react-x/refs": [
     2,
   ],
-  "react-hooks/incompatible-library": [
+  "react-x/rules-of-hooks": [
+    2,
+  ],
+  "react-x/set-state-in-effect": [
+    2,
+  ],
+  "react-x/set-state-in-render": [
+    2,
+  ],
+  "react-x/static-components": [
+    2,
+  ],
+  "react-x/unsupported-syntax": [
     1,
   ],
-  "react-hooks/preserve-manual-memoization": [
-    2,
-  ],
-  "react-hooks/purity": [
-    2,
-  ],
-  "react-hooks/refs": [
-    2,
-  ],
-  "react-hooks/rules-of-hooks": [
-    2,
-  ],
-  "react-hooks/set-state-in-effect": [
-    2,
-  ],
-  "react-hooks/set-state-in-render": [
-    2,
-  ],
-  "react-hooks/static-components": [
-    2,
-  ],
-  "react-hooks/unsupported-syntax": [
-    1,
-  ],
-  "react-hooks/use-memo": [
-    2,
-  ],
-  "react-hooks/void-use-memo": [
+  "react-x/use-memo": [
     2,
   ],
   "require-atomic-updates": [
@@ -6438,12 +7772,65 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "name": "error",
     },
   ],
+  "unicorn/class-reference-in-static-methods": [
+    0,
+    {
+      "preferSuper": true,
+      "preferThis": true,
+    },
+  ],
+  "unicorn/comma-spacing": [
+    0,
+  ],
+  "unicorn/comment-content": [
+    0,
+    {
+      "checkUniformCase": true,
+      "extendDefaultReplacements": true,
+      "ignore": [],
+      "replacements": {},
+    },
+  ],
+  "unicorn/consistent-arrow-return-style": [
+    0,
+  ],
   "unicorn/consistent-assert": [
     0,
+  ],
+  "unicorn/consistent-boolean-name": [
+    0,
+    {
+      "checkArguments": "always",
+      "checkFields": "never",
+      "checkFunctions": "always",
+      "checkMethods": "never",
+      "checkVariables": "always",
+      "ignore": [],
+      "wrappers": {},
+    },
+  ],
+  "unicorn/consistent-class-member-order": [
+    0,
+    {
+      "order": [
+        "static-field",
+        "static-block",
+        "static-method",
+        "private-field",
+        "public-field",
+        "constructor",
+        "private-method",
+        "public-method",
+      ],
+    },
   ],
   "unicorn/consistent-compound-words": [
     2,
     {},
+  ],
+  "unicorn/consistent-conditional-object-spread": [
+    0,
+    "logical",
   ],
   "unicorn/consistent-date-clone": [
     2,
@@ -6457,21 +7844,50 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/consistent-existence-index-check": [
     2,
   ],
+  "unicorn/consistent-export-decorator-position": [
+    0,
+    "above",
+  ],
   "unicorn/consistent-function-scoping": [
     0,
     {
       "checkArrowFunctions": true,
     },
   ],
+  "unicorn/consistent-function-style": [
+    0,
+    {
+      "callbacks": "ignore",
+      "default": "ignore",
+      "namedExports": "ignore",
+      "namedFunctions": "ignore",
+      "objectProperties": "ignore",
+      "reassignedVariables": "ignore",
+      "typedVariables": "ignore",
+    },
+  ],
   "unicorn/consistent-json-file-read": [
     0,
     "string",
   ],
+  "unicorn/consistent-optional-chaining": [
+    2,
+  ],
   "unicorn/consistent-template-literal-escape": [
+    0,
+  ],
+  "unicorn/consistent-tuple-labels": [
     0,
   ],
   "unicorn/custom-error-definition": [
     0,
+  ],
+  "unicorn/default-export-style": [
+    0,
+    {
+      "classes": "inline",
+      "functions": "inline",
+    },
   ],
   "unicorn/dom-node-dataset": [
     2,
@@ -6509,12 +7925,34 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "non-zero": "greater-than",
     },
   ],
+  "unicorn/explicit-timer-delay": [
+    2,
+    "always",
+  ],
   "unicorn/filename-case": [
     0,
+  ],
+  "unicorn/id-match": [
+    0,
+    "^.+$",
+    {
+      "checkNamedSpecifiers": true,
+      "classFields": false,
+      "ignoreDestructuring": false,
+      "onlyDeclarations": false,
+      "properties": false,
+    },
   ],
   "unicorn/import-style": [
     2,
     {},
+  ],
+  "unicorn/indent": [
+    0,
+    {
+      "indent": "tab",
+      "tabWidth": 4,
+    },
   ],
   "unicorn/isolated-functions": [
     0,
@@ -6524,10 +7962,40 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       ],
       "functions": [
         "makeSynchronous",
+        "workerize",
       ],
       "overrideGlobals": {},
       "selectors": [],
     },
+  ],
+  "unicorn/iteration-fallback-style": [
+    0,
+    "guard",
+  ],
+  "unicorn/key-name-casing": [
+    0,
+    {
+      "PascalCase": false,
+      "SCREAMING_SNAKE_CASE": false,
+      "camelCase": true,
+      "ignore": [],
+      "kebab-case": false,
+      "snake_case": false,
+    },
+  ],
+  "unicorn/logical-assignment-operators": [
+    0,
+    "always",
+  ],
+  "unicorn/max-nested-calls": [
+    0,
+    {
+      "max": 3,
+    },
+  ],
+  "unicorn/name-replacements": [
+    0,
+    {},
   ],
   "unicorn/new-for-builtins": [
     2,
@@ -6536,6 +8004,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
     2,
   ],
   "unicorn/no-accessor-recursion": [
+    2,
+  ],
+  "unicorn/no-accidental-bitwise-operator": [
     2,
   ],
   "unicorn/no-anonymous-default-export": [
@@ -6547,14 +8018,17 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "ignore": [],
     },
   ],
-  "unicorn/no-array-fill-with-reference-type": [
-    2,
+  "unicorn/no-array-concat-in-loop": [
+    0,
   ],
-  "unicorn/no-array-for-each": [
+  "unicorn/no-array-fill-with-reference-type": [
     2,
   ],
   "unicorn/no-array-from-fill": [
     2,
+  ],
+  "unicorn/no-array-front-mutation": [
+    0,
   ],
   "unicorn/no-array-method-this-argument": [
     2,
@@ -6577,26 +8051,86 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "allowExpressionStatement": true,
     },
   ],
+  "unicorn/no-array-sort-for-min-max": [
+    2,
+  ],
+  "unicorn/no-array-splice": [
+    0,
+  ],
+  "unicorn/no-asterisk-prefix-in-documentation-comments": [
+    0,
+  ],
+  "unicorn/no-async-iterator-callback": [
+    2,
+  ],
+  "unicorn/no-async-promise-finally": [
+    2,
+  ],
   "unicorn/no-await-expression-member": [
     0,
   ],
   "unicorn/no-await-in-promise-methods": [
     2,
   ],
+  "unicorn/no-barrel-files": [
+    0,
+  ],
   "unicorn/no-blob-to-file": [
     2,
   ],
+  "unicorn/no-boolean-sort-comparator": [
+    2,
+  ],
+  "unicorn/no-break-in-nested-loop": [
+    0,
+    {
+      "checkContinue": false,
+    },
+  ],
   "unicorn/no-canvas-to-image": [
+    2,
+  ],
+  "unicorn/no-chained-comparison": [
+    2,
+  ],
+  "unicorn/no-collection-bracket-access": [
+    2,
+  ],
+  "unicorn/no-computed-property-existence-check": [
+    0,
+  ],
+  "unicorn/no-conflicting-constraints": [
     2,
   ],
   "unicorn/no-confusing-array-splice": [
     0,
   ],
+  "unicorn/no-confusing-array-with": [
+    0,
+  ],
   "unicorn/no-console-spaces": [
     2,
   ],
+  "unicorn/no-constant-zero-expression": [
+    2,
+  ],
+  "unicorn/no-declarations-before-early-exit": [
+    0,
+  ],
   "unicorn/no-document-cookie": [
     2,
+  ],
+  "unicorn/no-double-comparison": [
+    2,
+  ],
+  "unicorn/no-duplicate-if-branches": [
+    0,
+  ],
+  "unicorn/no-duplicate-logical-operands": [
+    2,
+  ],
+  "unicorn/no-duplicate-loops": [
+    0,
   ],
   "unicorn/no-duplicate-set-values": [
     0,
@@ -6607,20 +8141,44 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "allowComments": false,
     },
   ],
+  "unicorn/no-empty-link-text": [
+    0,
+  ],
+  "unicorn/no-error-property-assignment": [
+    2,
+  ],
   "unicorn/no-exports-in-scripts": [
+    2,
+  ],
+  "unicorn/no-for-each": [
     2,
   ],
   "unicorn/no-for-loop": [
     0,
   ],
-  "unicorn/no-hex-escape": [
-    2,
+  "unicorn/no-global-object-property-assignment": [
+    0,
   ],
   "unicorn/no-immediate-mutation": [
     0,
+    {
+      "checkConditionals": false,
+    },
+  ],
+  "unicorn/no-impossible-length-comparison": [
+    2,
+  ],
+  "unicorn/no-incomplete-accessor-override": [
+    2,
   ],
   "unicorn/no-incorrect-query-selector": [
     0,
+  ],
+  "unicorn/no-incorrect-template-string-interpolation": [
+    0,
+  ],
+  "unicorn/no-ineffective-csp-directives": [
+    2,
   ],
   "unicorn/no-instanceof-builtins": [
     2,
@@ -6631,14 +8189,54 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "useErrorIsError": false,
     },
   ],
+  "unicorn/no-invalid-argument-count": [
+    2,
+    {},
+  ],
+  "unicorn/no-invalid-boolean-attribute-value": [
+    2,
+  ],
+  "unicorn/no-invalid-character-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-dom-token": [
+    2,
+  ],
   "unicorn/no-invalid-fetch-options": [
     2,
   ],
   "unicorn/no-invalid-file-input-accept": [
     0,
   ],
+  "unicorn/no-invalid-integrity": [
+    2,
+  ],
+  "unicorn/no-invalid-intl-options": [
+    2,
+  ],
+  "unicorn/no-invalid-property-descriptor": [
+    2,
+  ],
   "unicorn/no-invalid-remove-event-listener": [
     2,
+  ],
+  "unicorn/no-invalid-response-options": [
+    2,
+  ],
+  "unicorn/no-invalid-style-set-property": [
+    2,
+  ],
+  "unicorn/no-invalid-temporal-arithmetic": [
+    2,
+  ],
+  "unicorn/no-invalid-url-protocol-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-well-known-symbol-methods": [
+    2,
+  ],
+  "unicorn/no-javascript-url": [
+    0,
   ],
   "unicorn/no-keyword-prefix": [
     0,
@@ -6647,8 +8245,20 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-late-current-target-access": [
     0,
   ],
+  "unicorn/no-late-event-control": [
+    0,
+  ],
+  "unicorn/no-leading-empty-lines": [
+    0,
+  ],
   "unicorn/no-lonely-if": [
     2,
+  ],
+  "unicorn/no-loop-iterable-mutation": [
+    0,
+  ],
+  "unicorn/no-loss-of-precision": [
+    0,
   ],
   "unicorn/no-magic-array-flat-depth": [
     2,
@@ -6656,8 +8266,29 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-manually-wrapped-comments": [
     0,
   ],
+  "unicorn/no-mismatched-map-key": [
+    0,
+  ],
+  "unicorn/no-misrefactored-assignment": [
+    2,
+  ],
+  "unicorn/no-missing-local-resource": [
+    0,
+  ],
+  "unicorn/no-multiple-promise-resolver-calls": [
+    2,
+  ],
   "unicorn/no-named-default": [
     2,
+  ],
+  "unicorn/no-negated-array-predicate": [
+    2,
+  ],
+  "unicorn/no-negated-comparison": [
+    2,
+    {
+      "checkLogicalExpressions": false,
+    },
   ],
   "unicorn/no-negated-condition": [
     2,
@@ -6674,6 +8305,25 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-new-buffer": [
     2,
   ],
+  "unicorn/no-non-function-verb-prefix": [
+    0,
+    {
+      "ignore": [],
+      "verbs": [
+        "get",
+        "set",
+        "unset",
+        "delete",
+        "add",
+        "remove",
+        "destroy",
+        "create",
+      ],
+    },
+  ],
+  "unicorn/no-nonstandard-builtin-properties": [
+    2,
+  ],
   "unicorn/no-null": [
     0,
     {
@@ -6684,13 +8334,40 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-object-as-default-parameter": [
     2,
   ],
+  "unicorn/no-object-methods-with-collections": [
+    0,
+  ],
+  "unicorn/no-optional-chaining-on-undeclared-variable": [
+    0,
+  ],
+  "unicorn/no-prevent-default-in-passive-listener": [
+    2,
+  ],
   "unicorn/no-process-exit": [
     0,
+  ],
+  "unicorn/no-redundant-comparison": [
+    2,
+  ],
+  "unicorn/no-repeated-call-wrappers": [
+    0,
+  ],
+  "unicorn/no-return-array-push": [
+    0,
+  ],
+  "unicorn/no-selector-as-dom-name": [
+    0,
+  ],
+  "unicorn/no-shorthand-property-overrides": [
+    2,
   ],
   "unicorn/no-single-promise-in-promise-methods": [
     2,
   ],
   "unicorn/no-static-only-class": [
+    2,
+  ],
+  "unicorn/no-subtraction-comparison": [
     2,
   ],
   "unicorn/no-thenable": [
@@ -6702,14 +8379,36 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-this-outside-of-class": [
     0,
   ],
+  "unicorn/no-top-level-assignment-in-function": [
+    0,
+  ],
+  "unicorn/no-top-level-side-effects": [
+    0,
+    {
+      "allow": {},
+      "checkUnknownCalls": false,
+    },
+  ],
+  "unicorn/no-transition-all": [
+    2,
+  ],
   "unicorn/no-typeof-undefined": [
     2,
     {
       "checkGlobalVariables": false,
     },
   ],
+  "unicorn/no-uncalled-method": [
+    0,
+  ],
+  "unicorn/no-undeclared-class-members": [
+    0,
+  ],
   "unicorn/no-unnecessary-array-flat-depth": [
     2,
+  ],
+  "unicorn/no-unnecessary-array-flat-map": [
+    0,
   ],
   "unicorn/no-unnecessary-array-splice-count": [
     2,
@@ -6717,8 +8416,26 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-unnecessary-await": [
     2,
   ],
+  "unicorn/no-unnecessary-boolean-comparison": [
+    0,
+  ],
+  "unicorn/no-unnecessary-default-arguments": [
+    0,
+  ],
+  "unicorn/no-unnecessary-fetch-options": [
+    2,
+  ],
+  "unicorn/no-unnecessary-global-this": [
+    2,
+  ],
   "unicorn/no-unnecessary-nested-ternary": [
     2,
+  ],
+  "unicorn/no-unnecessary-parameters": [
+    0,
+    {
+      "minimumCallCount": 2,
+    },
   ],
   "unicorn/no-unnecessary-polyfills": [
     2,
@@ -6727,20 +8444,86 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-unnecessary-slice-end": [
     2,
   ],
+  "unicorn/no-unnecessary-splice": [
+    0,
+  ],
+  "unicorn/no-unnecessary-string-trim": [
+    2,
+  ],
   "unicorn/no-unreadable-array-destructuring": [
     2,
+    {
+      "maximumIgnoredElements": 1,
+    },
+  ],
+  "unicorn/no-unreadable-for-of-expression": [
+    0,
   ],
   "unicorn/no-unreadable-iife": [
     2,
   ],
-  "unicorn/no-unused-array-method-return": [
+  "unicorn/no-unreadable-new-expression": [
+    0,
+  ],
+  "unicorn/no-unreadable-object-destructuring": [
+    2,
+  ],
+  "unicorn/no-unsafe-buffer-conversion": [
+    2,
+  ],
+  "unicorn/no-unsafe-dom-html": [
+    0,
+  ],
+  "unicorn/no-unsafe-json-serialization": [
+    0,
+  ],
+  "unicorn/no-unsafe-promise-all-settled-values": [
+    2,
+  ],
+  "unicorn/no-unsafe-property-key": [
+    0,
+  ],
+  "unicorn/no-unsafe-sqlite-interpolation": [
+    2,
+  ],
+  "unicorn/no-unsafe-string-replacement": [
+    0,
+  ],
+  "unicorn/no-unused-builtin-method-return": [
+    2,
+  ],
+  "unicorn/no-unused-iterator-helper": [
     2,
   ],
   "unicorn/no-unused-properties": [
     0,
   ],
+  "unicorn/no-url-in-search-params": [
+    2,
+  ],
+  "unicorn/no-useless-boolean-cast": [
+    2,
+  ],
+  "unicorn/no-useless-coercion": [
+    2,
+  ],
   "unicorn/no-useless-collection-argument": [
     2,
+  ],
+  "unicorn/no-useless-compound-assignment": [
+    2,
+  ],
+  "unicorn/no-useless-concat": [
+    2,
+  ],
+  "unicorn/no-useless-continue": [
+    0,
+  ],
+  "unicorn/no-useless-delete-check": [
+    2,
+  ],
+  "unicorn/no-useless-else": [
+    0,
   ],
   "unicorn/no-useless-error-capture-stack-trace": [
     2,
@@ -6754,7 +8537,22 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-useless-length-check": [
     2,
   ],
+  "unicorn/no-useless-logical-operand": [
+    2,
+  ],
+  "unicorn/no-useless-override": [
+    2,
+  ],
   "unicorn/no-useless-promise-resolve-reject": [
+    2,
+  ],
+  "unicorn/no-useless-re-export": [
+    2,
+  ],
+  "unicorn/no-useless-recursion": [
+    0,
+  ],
+  "unicorn/no-useless-set-construction": [
     2,
   ],
   "unicorn/no-useless-spread": [
@@ -6763,12 +8561,21 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-useless-switch-case": [
     2,
   ],
+  "unicorn/no-useless-template-literals": [
+    2,
+  ],
   "unicorn/no-useless-undefined": [
     2,
     {
       "checkArguments": true,
       "checkArrowFunctionBody": true,
     },
+  ],
+  "unicorn/no-using-resource-escape": [
+    2,
+  ],
+  "unicorn/no-xor-as-exponentiation": [
+    2,
   ],
   "unicorn/no-zero-fractions": [
     2,
@@ -6802,6 +8609,16 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "onlyIfContainsSeparator": false,
     },
   ],
+  "unicorn/operator-assignment": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-abort-signal-any": [
+    0,
+  ],
+  "unicorn/prefer-abort-signal-timeout": [
+    0,
+  ],
   "unicorn/prefer-add-event-listener": [
     2,
     {
@@ -6810,6 +8627,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
         "sax",
       ],
     },
+  ],
+  "unicorn/prefer-add-event-listener-options": [
+    0,
+  ],
+  "unicorn/prefer-aggregate-error": [
+    2,
   ],
   "unicorn/prefer-array-find": [
     2,
@@ -6826,11 +8649,26 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-array-flat-map": [
     2,
   ],
+  "unicorn/prefer-array-from-async": [
+    0,
+  ],
+  "unicorn/prefer-array-from-map": [
+    2,
+  ],
+  "unicorn/prefer-array-from-range": [
+    2,
+  ],
   "unicorn/prefer-array-index-of": [
     2,
   ],
+  "unicorn/prefer-array-iterable-methods": [
+    0,
+  ],
   "unicorn/prefer-array-last-methods": [
     2,
+  ],
+  "unicorn/prefer-array-slice": [
+    0,
   ],
   "unicorn/prefer-array-some": [
     2,
@@ -6842,10 +8680,19 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "getLastElementFunctions": [],
     },
   ],
+  "unicorn/prefer-await": [
+    0,
+  ],
   "unicorn/prefer-bigint-literals": [
     2,
   ],
   "unicorn/prefer-blob-reading-methods": [
+    2,
+  ],
+  "unicorn/prefer-block-statement-over-iife": [
+    0,
+  ],
+  "unicorn/prefer-boolean-return": [
     2,
   ],
   "unicorn/prefer-class-fields": [
@@ -6857,19 +8704,68 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-code-point": [
     2,
   ],
+  "unicorn/prefer-combined-guards": [
+    0,
+    {
+      "checkCompoundConditions": false,
+      "checkMultiStatementBodies": false,
+    },
+  ],
+  "unicorn/prefer-continue": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
   "unicorn/prefer-date-now": [
     2,
   ],
   "unicorn/prefer-default-parameters": [
     2,
+    {
+      "checkFallbackExpressions": true,
+    },
+  ],
+  "unicorn/prefer-direct-iteration": [
+    2,
+  ],
+  "unicorn/prefer-dispose": [
+    0,
   ],
   "unicorn/prefer-dom-node-append": [
     2,
   ],
+  "unicorn/prefer-dom-node-html-methods": [
+    0,
+    {
+      "checkGetHTML": true,
+      "checkSetHTML": false,
+    },
+  ],
   "unicorn/prefer-dom-node-remove": [
     2,
   ],
+  "unicorn/prefer-dom-node-replace-children": [
+    2,
+  ],
   "unicorn/prefer-dom-node-text-content": [
+    2,
+  ],
+  "unicorn/prefer-early-return": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
+  "unicorn/prefer-else-if": [
+    0,
+  ],
+  "unicorn/prefer-error-is-error": [
+    0,
+  ],
+  "unicorn/prefer-escaped-irregular-whitespace": [
     2,
   ],
   "unicorn/prefer-event-target": [
@@ -6881,14 +8777,35 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "checkUsedVariables": true,
     },
   ],
+  "unicorn/prefer-flat-math-min-max": [
+    2,
+  ],
   "unicorn/prefer-get-or-insert-computed": [
     0,
+  ],
+  "unicorn/prefer-global-number-constants": [
+    2,
   ],
   "unicorn/prefer-global-this": [
     0,
   ],
+  "unicorn/prefer-group-by": [
+    0,
+  ],
+  "unicorn/prefer-has-check": [
+    2,
+  ],
+  "unicorn/prefer-hoisting-branch-code": [
+    0,
+  ],
   "unicorn/prefer-https": [
     0,
+    {
+      "ignore": [],
+    },
+  ],
+  "unicorn/prefer-identifier-import-export-specifiers": [
+    2,
   ],
   "unicorn/prefer-import-meta-properties": [
     0,
@@ -6902,19 +8819,46 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "minimumComparisons": 3,
     },
   ],
+  "unicorn/prefer-iterable-in-constructor": [
+    2,
+  ],
   "unicorn/prefer-iterator-concat": [
+    0,
+  ],
+  "unicorn/prefer-iterator-helpers": [
+    2,
+  ],
+  "unicorn/prefer-iterator-to-array": [
     0,
   ],
   "unicorn/prefer-iterator-to-array-at-end": [
     2,
   ],
+  "unicorn/prefer-iterator-zip": [
+    0,
+  ],
+  "unicorn/prefer-json-import": [
+    0,
+  ],
   "unicorn/prefer-keyboard-event-key": [
     2,
+  ],
+  "unicorn/prefer-literal-ascii": [
+    2,
+  ],
+  "unicorn/prefer-location-assign": [
+    0,
   ],
   "unicorn/prefer-logical-operator-over-ternary": [
     2,
   ],
+  "unicorn/prefer-map-from-entries": [
+    2,
+  ],
   "unicorn/prefer-math-abs": [
+    2,
+  ],
+  "unicorn/prefer-math-constants": [
     2,
   ],
   "unicorn/prefer-math-min-max": [
@@ -6922,6 +8866,13 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "unicorn/prefer-math-trunc": [
     2,
+  ],
+  "unicorn/prefer-minimal-ternary": [
+    2,
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
   ],
   "unicorn/prefer-modern-dom-apis": [
     2,
@@ -6941,12 +8892,24 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-node-protocol": [
     1,
   ],
+  "unicorn/prefer-number-coercion": [
+    0,
+  ],
+  "unicorn/prefer-number-is-safe-integer": [
+    0,
+  ],
   "unicorn/prefer-number-properties": [
     2,
     {
       "checkInfinity": false,
-      "checkNaN": true,
+      "checkNaN": false,
     },
+  ],
+  "unicorn/prefer-object-define-properties": [
+    2,
+  ],
+  "unicorn/prefer-object-destructuring-defaults": [
+    0,
   ],
   "unicorn/prefer-object-from-entries": [
     2,
@@ -6954,7 +8917,28 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "functions": [],
     },
   ],
+  "unicorn/prefer-object-iterable-methods": [
+    2,
+  ],
+  "unicorn/prefer-observer-apis": [
+    0,
+  ],
   "unicorn/prefer-optional-catch-binding": [
+    2,
+  ],
+  "unicorn/prefer-path2d": [
+    2,
+  ],
+  "unicorn/prefer-private-class-fields": [
+    0,
+  ],
+  "unicorn/prefer-promise-static-methods": [
+    2,
+  ],
+  "unicorn/prefer-promise-try": [
+    0,
+  ],
+  "unicorn/prefer-promise-with-resolvers": [
     2,
   ],
   "unicorn/prefer-prototype-methods": [
@@ -6976,11 +8960,17 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-reflect-apply": [
     2,
   ],
+  "unicorn/prefer-regexp-escape": [
+    0,
+  ],
   "unicorn/prefer-regexp-test": [
     2,
   ],
   "unicorn/prefer-response-static-json": [
     2,
+  ],
+  "unicorn/prefer-scoped-selector": [
+    0,
   ],
   "unicorn/prefer-set-has": [
     2,
@@ -6988,17 +8978,48 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "minimumItems": 0,
     },
   ],
+  "unicorn/prefer-set-methods": [
+    0,
+  ],
   "unicorn/prefer-set-size": [
     2,
   ],
-  "unicorn/prefer-simple-condition-first": [
+  "unicorn/prefer-short-arrow-method": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-short-escape-sequences": [
     2,
+  ],
+  "unicorn/prefer-simple-condition-first": [
+    0,
+  ],
+  "unicorn/prefer-simple-sort-comparator": [
+    2,
+  ],
+  "unicorn/prefer-simplified-conditions": [
+    0,
+    {
+      "negatedConditions": "simplify",
+    },
+  ],
+  "unicorn/prefer-single-array-predicate": [
+    1,
   ],
   "unicorn/prefer-single-call": [
     2,
     {
       "ignore": [],
     },
+  ],
+  "unicorn/prefer-single-object-destructuring": [
+    0,
+  ],
+  "unicorn/prefer-single-replace": [
+    2,
+  ],
+  "unicorn/prefer-smaller-scope": [
+    0,
   ],
   "unicorn/prefer-split-limit": [
     2,
@@ -7046,9 +9067,30 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "minimumCases": 3,
     },
   ],
-  "unicorn/prefer-ternary": [
+  "unicorn/prefer-temporal": [
+    0,
+    {
+      "checkDateNow": false,
+      "checkMethods": false,
+      "checkReferences": false,
+    },
+  ],
+  "unicorn/prefer-temporal-conversion": [
     2,
+  ],
+  "unicorn/prefer-ternary": [
+    0,
     "always",
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
+  ],
+  "unicorn/prefer-then-catch": [
+    0,
+  ],
+  "unicorn/prefer-toggle-attribute": [
+    2,
   ],
   "unicorn/prefer-top-level-await": [
     0,
@@ -7056,9 +9098,32 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-type-error": [
     2,
   ],
-  "unicorn/prevent-abbreviations": [
+  "unicorn/prefer-type-literal-last": [
     0,
-    {},
+  ],
+  "unicorn/prefer-uint8array-base64": [
+    0,
+  ],
+  "unicorn/prefer-uint8array-hex": [
+    0,
+  ],
+  "unicorn/prefer-unary-minus": [
+    2,
+  ],
+  "unicorn/prefer-unicode-code-point-escapes": [
+    0,
+  ],
+  "unicorn/prefer-url-can-parse": [
+    0,
+  ],
+  "unicorn/prefer-url-href": [
+    2,
+  ],
+  "unicorn/prefer-url-search-parameters": [
+    2,
+  ],
+  "unicorn/prefer-while-loop-condition": [
+    2,
   ],
   "unicorn/relative-url-style": [
     2,
@@ -7067,10 +9132,19 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/require-array-join-separator": [
     2,
   ],
+  "unicorn/require-array-sort-compare": [
+    0,
+  ],
   "unicorn/require-css-escape": [
     2,
     {
       "checkAllSelectors": false,
+    },
+  ],
+  "unicorn/require-frontmatter-fields": [
+    0,
+    {
+      "fields": [],
     },
   ],
   "unicorn/require-module-attributes": [
@@ -7087,6 +9161,19 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "unicorn/require-post-message-target-origin": [
     0,
+  ],
+  "unicorn/require-proxy-trap-boolean-return": [
+    2,
+  ],
+  "unicorn/require-text-decoder-streaming": [
+    2,
+  ],
+  "unicorn/single-line-block-comment-style": [
+    0,
+    "multiline",
+    {
+      "ignore": [],
+    },
   ],
   "unicorn/string-content": [
     0,
@@ -7175,11 +9262,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "disable-comments",
   "import-x",
   "json",
-  "jsx-a11y",
+  "jsx-a11y-x",
   "markdown",
   "n",
-  "react",
-  "react-hooks",
+  "react-dom",
+  "react-jsx",
+  "react-x",
   "simple-import-sort",
   "unicorn",
 ]
@@ -7480,6 +9568,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "allowEmptyReject": true,
     },
   ],
+  "@typescript-eslint/require-array-sort-compare": [
+    2,
+  ],
   "@typescript-eslint/require-await": [
     0,
   ],
@@ -7783,6 +9874,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "init-declarations": [
     0,
+    "always",
   ],
   "max-classes-per-file": [
     2,
@@ -7794,6 +9886,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "max-nested-callbacks": [
     1,
+    10,
   ],
   "max-params": [
     0,
@@ -7860,6 +9953,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "no-constant-binary-expression": [
     2,
+    {
+      "checkRelationalComparisons": false,
+    },
   ],
   "no-constant-condition": [
     1,
@@ -8053,6 +10149,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "enforceConst": true,
       "ignore": [],
       "ignoreArrayIndexes": true,
+      "ignoreClassFieldInitialValues": false,
+      "ignoreDefaultValues": false,
+      "ignoreEnums": false,
+      "ignoreNumericLiteralTypes": false,
+      "ignoreReadonlyClassProperties": false,
+      "ignoreTypeIndexes": false,
     },
   ],
   "no-misleading-character-class": [
@@ -8117,6 +10219,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
     {
       "allowForLoopAfterthoughts": true,
     },
+  ],
+  "no-process-exit": [
+    0,
   ],
   "no-promise-executor-return": [
     2,
@@ -8291,7 +10396,7 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "no-shadow-restricted-names": [
     2,
     {
-      "reportGlobalThis": false,
+      "reportGlobalThis": true,
     },
   ],
   "no-sparse-arrays": [
@@ -8305,6 +10410,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "no-throw-literal": [
     0,
+  ],
+  "no-unassigned-vars": [
+    2,
   ],
   "no-undef": [
     0,
@@ -8336,6 +10444,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "no-unmodified-loop-condition": [
     0,
+    {
+      "checkConditionalExpressions": false,
+    },
   ],
   "no-unneeded-ternary": [
     2,
@@ -8387,7 +10498,11 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
     0,
     {
       "args": "after-used",
+      "caughtErrors": "all",
+      "ignoreClassWithStaticInitBlock": false,
       "ignoreRestSiblings": true,
+      "ignoreUsingDeclarations": false,
+      "reportUsedIgnorePattern": false,
       "vars": "all",
     },
   ],
@@ -8402,6 +10517,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "typedefs": true,
       "variables": true,
     },
+  ],
+  "no-useless-assignment": [
+    2,
   ],
   "no-useless-backreference": [
     2,
@@ -8520,59 +10638,50 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "prefer-template": [
     2,
   ],
+  "preserve-caught-error": [
+    2,
+    {
+      "errorClassNames": [],
+      "requireCatchParameter": false,
+    },
+  ],
   "radix": [
     2,
-    "always",
   ],
-  "react-hooks/config": [
+  "react-x/error-boundaries": [
     2,
   ],
-  "react-hooks/error-boundaries": [
+  "react-x/exhaustive-deps": [
     2,
   ],
-  "react-hooks/exhaustive-deps": [
+  "react-x/globals": [
     2,
   ],
-  "react-hooks/gating": [
+  "react-x/immutability": [
     2,
   ],
-  "react-hooks/globals": [
+  "react-x/purity": [
     2,
   ],
-  "react-hooks/immutability": [
+  "react-x/refs": [
     2,
   ],
-  "react-hooks/incompatible-library": [
+  "react-x/rules-of-hooks": [
+    2,
+  ],
+  "react-x/set-state-in-effect": [
+    2,
+  ],
+  "react-x/set-state-in-render": [
+    2,
+  ],
+  "react-x/static-components": [
+    2,
+  ],
+  "react-x/unsupported-syntax": [
     1,
   ],
-  "react-hooks/preserve-manual-memoization": [
-    2,
-  ],
-  "react-hooks/purity": [
-    2,
-  ],
-  "react-hooks/refs": [
-    2,
-  ],
-  "react-hooks/rules-of-hooks": [
-    2,
-  ],
-  "react-hooks/set-state-in-effect": [
-    2,
-  ],
-  "react-hooks/set-state-in-render": [
-    2,
-  ],
-  "react-hooks/static-components": [
-    2,
-  ],
-  "react-hooks/unsupported-syntax": [
-    1,
-  ],
-  "react-hooks/use-memo": [
-    2,
-  ],
-  "react-hooks/void-use-memo": [
+  "react-x/use-memo": [
     2,
   ],
   "require-atomic-updates": [
@@ -8653,12 +10762,65 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "name": "error",
     },
   ],
+  "unicorn/class-reference-in-static-methods": [
+    0,
+    {
+      "preferSuper": true,
+      "preferThis": true,
+    },
+  ],
+  "unicorn/comma-spacing": [
+    0,
+  ],
+  "unicorn/comment-content": [
+    0,
+    {
+      "checkUniformCase": true,
+      "extendDefaultReplacements": true,
+      "ignore": [],
+      "replacements": {},
+    },
+  ],
+  "unicorn/consistent-arrow-return-style": [
+    0,
+  ],
   "unicorn/consistent-assert": [
     0,
+  ],
+  "unicorn/consistent-boolean-name": [
+    0,
+    {
+      "checkArguments": "always",
+      "checkFields": "never",
+      "checkFunctions": "always",
+      "checkMethods": "never",
+      "checkVariables": "always",
+      "ignore": [],
+      "wrappers": {},
+    },
+  ],
+  "unicorn/consistent-class-member-order": [
+    0,
+    {
+      "order": [
+        "static-field",
+        "static-block",
+        "static-method",
+        "private-field",
+        "public-field",
+        "constructor",
+        "private-method",
+        "public-method",
+      ],
+    },
   ],
   "unicorn/consistent-compound-words": [
     2,
     {},
+  ],
+  "unicorn/consistent-conditional-object-spread": [
+    0,
+    "logical",
   ],
   "unicorn/consistent-date-clone": [
     2,
@@ -8672,21 +10834,50 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/consistent-existence-index-check": [
     2,
   ],
+  "unicorn/consistent-export-decorator-position": [
+    0,
+    "above",
+  ],
   "unicorn/consistent-function-scoping": [
     0,
     {
       "checkArrowFunctions": true,
     },
   ],
+  "unicorn/consistent-function-style": [
+    0,
+    {
+      "callbacks": "ignore",
+      "default": "ignore",
+      "namedExports": "ignore",
+      "namedFunctions": "ignore",
+      "objectProperties": "ignore",
+      "reassignedVariables": "ignore",
+      "typedVariables": "ignore",
+    },
+  ],
   "unicorn/consistent-json-file-read": [
     0,
     "string",
   ],
+  "unicorn/consistent-optional-chaining": [
+    2,
+  ],
   "unicorn/consistent-template-literal-escape": [
+    0,
+  ],
+  "unicorn/consistent-tuple-labels": [
     0,
   ],
   "unicorn/custom-error-definition": [
     0,
+  ],
+  "unicorn/default-export-style": [
+    0,
+    {
+      "classes": "inline",
+      "functions": "inline",
+    },
   ],
   "unicorn/dom-node-dataset": [
     2,
@@ -8724,12 +10915,34 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "non-zero": "greater-than",
     },
   ],
+  "unicorn/explicit-timer-delay": [
+    2,
+    "always",
+  ],
   "unicorn/filename-case": [
     0,
+  ],
+  "unicorn/id-match": [
+    0,
+    "^.+$",
+    {
+      "checkNamedSpecifiers": true,
+      "classFields": false,
+      "ignoreDestructuring": false,
+      "onlyDeclarations": false,
+      "properties": false,
+    },
   ],
   "unicorn/import-style": [
     2,
     {},
+  ],
+  "unicorn/indent": [
+    0,
+    {
+      "indent": "tab",
+      "tabWidth": 4,
+    },
   ],
   "unicorn/isolated-functions": [
     0,
@@ -8739,10 +10952,40 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       ],
       "functions": [
         "makeSynchronous",
+        "workerize",
       ],
       "overrideGlobals": {},
       "selectors": [],
     },
+  ],
+  "unicorn/iteration-fallback-style": [
+    0,
+    "guard",
+  ],
+  "unicorn/key-name-casing": [
+    0,
+    {
+      "PascalCase": false,
+      "SCREAMING_SNAKE_CASE": false,
+      "camelCase": true,
+      "ignore": [],
+      "kebab-case": false,
+      "snake_case": false,
+    },
+  ],
+  "unicorn/logical-assignment-operators": [
+    0,
+    "always",
+  ],
+  "unicorn/max-nested-calls": [
+    0,
+    {
+      "max": 3,
+    },
+  ],
+  "unicorn/name-replacements": [
+    0,
+    {},
   ],
   "unicorn/new-for-builtins": [
     2,
@@ -8751,6 +10994,9 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
     2,
   ],
   "unicorn/no-accessor-recursion": [
+    2,
+  ],
+  "unicorn/no-accidental-bitwise-operator": [
     2,
   ],
   "unicorn/no-anonymous-default-export": [
@@ -8762,14 +11008,17 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "ignore": [],
     },
   ],
-  "unicorn/no-array-fill-with-reference-type": [
-    2,
+  "unicorn/no-array-concat-in-loop": [
+    0,
   ],
-  "unicorn/no-array-for-each": [
+  "unicorn/no-array-fill-with-reference-type": [
     2,
   ],
   "unicorn/no-array-from-fill": [
     2,
+  ],
+  "unicorn/no-array-front-mutation": [
+    0,
   ],
   "unicorn/no-array-method-this-argument": [
     2,
@@ -8792,26 +11041,86 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "allowExpressionStatement": true,
     },
   ],
+  "unicorn/no-array-sort-for-min-max": [
+    2,
+  ],
+  "unicorn/no-array-splice": [
+    0,
+  ],
+  "unicorn/no-asterisk-prefix-in-documentation-comments": [
+    0,
+  ],
+  "unicorn/no-async-iterator-callback": [
+    2,
+  ],
+  "unicorn/no-async-promise-finally": [
+    2,
+  ],
   "unicorn/no-await-expression-member": [
     0,
   ],
   "unicorn/no-await-in-promise-methods": [
     2,
   ],
+  "unicorn/no-barrel-files": [
+    0,
+  ],
   "unicorn/no-blob-to-file": [
     2,
   ],
+  "unicorn/no-boolean-sort-comparator": [
+    2,
+  ],
+  "unicorn/no-break-in-nested-loop": [
+    0,
+    {
+      "checkContinue": false,
+    },
+  ],
   "unicorn/no-canvas-to-image": [
+    2,
+  ],
+  "unicorn/no-chained-comparison": [
+    2,
+  ],
+  "unicorn/no-collection-bracket-access": [
+    2,
+  ],
+  "unicorn/no-computed-property-existence-check": [
+    0,
+  ],
+  "unicorn/no-conflicting-constraints": [
     2,
   ],
   "unicorn/no-confusing-array-splice": [
     0,
   ],
+  "unicorn/no-confusing-array-with": [
+    0,
+  ],
   "unicorn/no-console-spaces": [
     2,
   ],
+  "unicorn/no-constant-zero-expression": [
+    2,
+  ],
+  "unicorn/no-declarations-before-early-exit": [
+    0,
+  ],
   "unicorn/no-document-cookie": [
     2,
+  ],
+  "unicorn/no-double-comparison": [
+    2,
+  ],
+  "unicorn/no-duplicate-if-branches": [
+    0,
+  ],
+  "unicorn/no-duplicate-logical-operands": [
+    2,
+  ],
+  "unicorn/no-duplicate-loops": [
+    0,
   ],
   "unicorn/no-duplicate-set-values": [
     0,
@@ -8822,20 +11131,44 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "allowComments": false,
     },
   ],
+  "unicorn/no-empty-link-text": [
+    0,
+  ],
+  "unicorn/no-error-property-assignment": [
+    2,
+  ],
   "unicorn/no-exports-in-scripts": [
+    2,
+  ],
+  "unicorn/no-for-each": [
     2,
   ],
   "unicorn/no-for-loop": [
     0,
   ],
-  "unicorn/no-hex-escape": [
-    2,
+  "unicorn/no-global-object-property-assignment": [
+    0,
   ],
   "unicorn/no-immediate-mutation": [
     0,
+    {
+      "checkConditionals": false,
+    },
+  ],
+  "unicorn/no-impossible-length-comparison": [
+    2,
+  ],
+  "unicorn/no-incomplete-accessor-override": [
+    2,
   ],
   "unicorn/no-incorrect-query-selector": [
     0,
+  ],
+  "unicorn/no-incorrect-template-string-interpolation": [
+    0,
+  ],
+  "unicorn/no-ineffective-csp-directives": [
+    2,
   ],
   "unicorn/no-instanceof-builtins": [
     2,
@@ -8846,14 +11179,54 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "useErrorIsError": false,
     },
   ],
+  "unicorn/no-invalid-argument-count": [
+    2,
+    {},
+  ],
+  "unicorn/no-invalid-boolean-attribute-value": [
+    2,
+  ],
+  "unicorn/no-invalid-character-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-dom-token": [
+    2,
+  ],
   "unicorn/no-invalid-fetch-options": [
     2,
   ],
   "unicorn/no-invalid-file-input-accept": [
     0,
   ],
+  "unicorn/no-invalid-integrity": [
+    2,
+  ],
+  "unicorn/no-invalid-intl-options": [
+    2,
+  ],
+  "unicorn/no-invalid-property-descriptor": [
+    2,
+  ],
   "unicorn/no-invalid-remove-event-listener": [
     2,
+  ],
+  "unicorn/no-invalid-response-options": [
+    2,
+  ],
+  "unicorn/no-invalid-style-set-property": [
+    2,
+  ],
+  "unicorn/no-invalid-temporal-arithmetic": [
+    2,
+  ],
+  "unicorn/no-invalid-url-protocol-comparison": [
+    2,
+  ],
+  "unicorn/no-invalid-well-known-symbol-methods": [
+    2,
+  ],
+  "unicorn/no-javascript-url": [
+    0,
   ],
   "unicorn/no-keyword-prefix": [
     0,
@@ -8862,8 +11235,20 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-late-current-target-access": [
     0,
   ],
+  "unicorn/no-late-event-control": [
+    0,
+  ],
+  "unicorn/no-leading-empty-lines": [
+    0,
+  ],
   "unicorn/no-lonely-if": [
     2,
+  ],
+  "unicorn/no-loop-iterable-mutation": [
+    0,
+  ],
+  "unicorn/no-loss-of-precision": [
+    0,
   ],
   "unicorn/no-magic-array-flat-depth": [
     2,
@@ -8871,8 +11256,29 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-manually-wrapped-comments": [
     0,
   ],
+  "unicorn/no-mismatched-map-key": [
+    0,
+  ],
+  "unicorn/no-misrefactored-assignment": [
+    2,
+  ],
+  "unicorn/no-missing-local-resource": [
+    0,
+  ],
+  "unicorn/no-multiple-promise-resolver-calls": [
+    2,
+  ],
   "unicorn/no-named-default": [
     2,
+  ],
+  "unicorn/no-negated-array-predicate": [
+    2,
+  ],
+  "unicorn/no-negated-comparison": [
+    2,
+    {
+      "checkLogicalExpressions": false,
+    },
   ],
   "unicorn/no-negated-condition": [
     2,
@@ -8889,6 +11295,25 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-new-buffer": [
     2,
   ],
+  "unicorn/no-non-function-verb-prefix": [
+    0,
+    {
+      "ignore": [],
+      "verbs": [
+        "get",
+        "set",
+        "unset",
+        "delete",
+        "add",
+        "remove",
+        "destroy",
+        "create",
+      ],
+    },
+  ],
+  "unicorn/no-nonstandard-builtin-properties": [
+    2,
+  ],
   "unicorn/no-null": [
     0,
     {
@@ -8899,13 +11324,40 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-object-as-default-parameter": [
     2,
   ],
+  "unicorn/no-object-methods-with-collections": [
+    0,
+  ],
+  "unicorn/no-optional-chaining-on-undeclared-variable": [
+    0,
+  ],
+  "unicorn/no-prevent-default-in-passive-listener": [
+    2,
+  ],
   "unicorn/no-process-exit": [
     0,
+  ],
+  "unicorn/no-redundant-comparison": [
+    2,
+  ],
+  "unicorn/no-repeated-call-wrappers": [
+    0,
+  ],
+  "unicorn/no-return-array-push": [
+    0,
+  ],
+  "unicorn/no-selector-as-dom-name": [
+    0,
+  ],
+  "unicorn/no-shorthand-property-overrides": [
+    2,
   ],
   "unicorn/no-single-promise-in-promise-methods": [
     2,
   ],
   "unicorn/no-static-only-class": [
+    2,
+  ],
+  "unicorn/no-subtraction-comparison": [
     2,
   ],
   "unicorn/no-thenable": [
@@ -8917,14 +11369,36 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-this-outside-of-class": [
     0,
   ],
+  "unicorn/no-top-level-assignment-in-function": [
+    0,
+  ],
+  "unicorn/no-top-level-side-effects": [
+    0,
+    {
+      "allow": {},
+      "checkUnknownCalls": false,
+    },
+  ],
+  "unicorn/no-transition-all": [
+    2,
+  ],
   "unicorn/no-typeof-undefined": [
     2,
     {
       "checkGlobalVariables": false,
     },
   ],
+  "unicorn/no-uncalled-method": [
+    0,
+  ],
+  "unicorn/no-undeclared-class-members": [
+    0,
+  ],
   "unicorn/no-unnecessary-array-flat-depth": [
     2,
+  ],
+  "unicorn/no-unnecessary-array-flat-map": [
+    0,
   ],
   "unicorn/no-unnecessary-array-splice-count": [
     2,
@@ -8932,8 +11406,26 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-unnecessary-await": [
     2,
   ],
+  "unicorn/no-unnecessary-boolean-comparison": [
+    0,
+  ],
+  "unicorn/no-unnecessary-default-arguments": [
+    0,
+  ],
+  "unicorn/no-unnecessary-fetch-options": [
+    2,
+  ],
+  "unicorn/no-unnecessary-global-this": [
+    2,
+  ],
   "unicorn/no-unnecessary-nested-ternary": [
     2,
+  ],
+  "unicorn/no-unnecessary-parameters": [
+    0,
+    {
+      "minimumCallCount": 2,
+    },
   ],
   "unicorn/no-unnecessary-polyfills": [
     2,
@@ -8942,20 +11434,86 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-unnecessary-slice-end": [
     2,
   ],
+  "unicorn/no-unnecessary-splice": [
+    0,
+  ],
+  "unicorn/no-unnecessary-string-trim": [
+    2,
+  ],
   "unicorn/no-unreadable-array-destructuring": [
     2,
+    {
+      "maximumIgnoredElements": 1,
+    },
+  ],
+  "unicorn/no-unreadable-for-of-expression": [
+    0,
   ],
   "unicorn/no-unreadable-iife": [
     2,
   ],
-  "unicorn/no-unused-array-method-return": [
+  "unicorn/no-unreadable-new-expression": [
+    0,
+  ],
+  "unicorn/no-unreadable-object-destructuring": [
+    2,
+  ],
+  "unicorn/no-unsafe-buffer-conversion": [
+    2,
+  ],
+  "unicorn/no-unsafe-dom-html": [
+    0,
+  ],
+  "unicorn/no-unsafe-json-serialization": [
+    0,
+  ],
+  "unicorn/no-unsafe-promise-all-settled-values": [
+    2,
+  ],
+  "unicorn/no-unsafe-property-key": [
+    0,
+  ],
+  "unicorn/no-unsafe-sqlite-interpolation": [
+    2,
+  ],
+  "unicorn/no-unsafe-string-replacement": [
+    0,
+  ],
+  "unicorn/no-unused-builtin-method-return": [
+    2,
+  ],
+  "unicorn/no-unused-iterator-helper": [
     2,
   ],
   "unicorn/no-unused-properties": [
     0,
   ],
+  "unicorn/no-url-in-search-params": [
+    2,
+  ],
+  "unicorn/no-useless-boolean-cast": [
+    2,
+  ],
+  "unicorn/no-useless-coercion": [
+    2,
+  ],
   "unicorn/no-useless-collection-argument": [
     2,
+  ],
+  "unicorn/no-useless-compound-assignment": [
+    2,
+  ],
+  "unicorn/no-useless-concat": [
+    2,
+  ],
+  "unicorn/no-useless-continue": [
+    0,
+  ],
+  "unicorn/no-useless-delete-check": [
+    2,
+  ],
+  "unicorn/no-useless-else": [
+    0,
   ],
   "unicorn/no-useless-error-capture-stack-trace": [
     2,
@@ -8969,7 +11527,22 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-useless-length-check": [
     2,
   ],
+  "unicorn/no-useless-logical-operand": [
+    2,
+  ],
+  "unicorn/no-useless-override": [
+    2,
+  ],
   "unicorn/no-useless-promise-resolve-reject": [
+    2,
+  ],
+  "unicorn/no-useless-re-export": [
+    2,
+  ],
+  "unicorn/no-useless-recursion": [
+    0,
+  ],
+  "unicorn/no-useless-set-construction": [
     2,
   ],
   "unicorn/no-useless-spread": [
@@ -8978,12 +11551,21 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/no-useless-switch-case": [
     2,
   ],
+  "unicorn/no-useless-template-literals": [
+    2,
+  ],
   "unicorn/no-useless-undefined": [
     2,
     {
       "checkArguments": true,
       "checkArrowFunctionBody": true,
     },
+  ],
+  "unicorn/no-using-resource-escape": [
+    2,
+  ],
+  "unicorn/no-xor-as-exponentiation": [
+    2,
   ],
   "unicorn/no-zero-fractions": [
     2,
@@ -9017,6 +11599,16 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "onlyIfContainsSeparator": false,
     },
   ],
+  "unicorn/operator-assignment": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-abort-signal-any": [
+    0,
+  ],
+  "unicorn/prefer-abort-signal-timeout": [
+    0,
+  ],
   "unicorn/prefer-add-event-listener": [
     2,
     {
@@ -9025,6 +11617,12 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
         "sax",
       ],
     },
+  ],
+  "unicorn/prefer-add-event-listener-options": [
+    0,
+  ],
+  "unicorn/prefer-aggregate-error": [
+    2,
   ],
   "unicorn/prefer-array-find": [
     2,
@@ -9041,11 +11639,26 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-array-flat-map": [
     2,
   ],
+  "unicorn/prefer-array-from-async": [
+    0,
+  ],
+  "unicorn/prefer-array-from-map": [
+    2,
+  ],
+  "unicorn/prefer-array-from-range": [
+    2,
+  ],
   "unicorn/prefer-array-index-of": [
     2,
   ],
+  "unicorn/prefer-array-iterable-methods": [
+    0,
+  ],
   "unicorn/prefer-array-last-methods": [
     2,
+  ],
+  "unicorn/prefer-array-slice": [
+    0,
   ],
   "unicorn/prefer-array-some": [
     2,
@@ -9057,10 +11670,19 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "getLastElementFunctions": [],
     },
   ],
+  "unicorn/prefer-await": [
+    0,
+  ],
   "unicorn/prefer-bigint-literals": [
     2,
   ],
   "unicorn/prefer-blob-reading-methods": [
+    2,
+  ],
+  "unicorn/prefer-block-statement-over-iife": [
+    0,
+  ],
+  "unicorn/prefer-boolean-return": [
     2,
   ],
   "unicorn/prefer-class-fields": [
@@ -9072,19 +11694,68 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-code-point": [
     2,
   ],
+  "unicorn/prefer-combined-guards": [
+    0,
+    {
+      "checkCompoundConditions": false,
+      "checkMultiStatementBodies": false,
+    },
+  ],
+  "unicorn/prefer-continue": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
   "unicorn/prefer-date-now": [
     2,
   ],
   "unicorn/prefer-default-parameters": [
     2,
+    {
+      "checkFallbackExpressions": true,
+    },
+  ],
+  "unicorn/prefer-direct-iteration": [
+    2,
+  ],
+  "unicorn/prefer-dispose": [
+    0,
   ],
   "unicorn/prefer-dom-node-append": [
     2,
   ],
+  "unicorn/prefer-dom-node-html-methods": [
+    0,
+    {
+      "checkGetHTML": true,
+      "checkSetHTML": false,
+    },
+  ],
   "unicorn/prefer-dom-node-remove": [
     2,
   ],
+  "unicorn/prefer-dom-node-replace-children": [
+    2,
+  ],
   "unicorn/prefer-dom-node-text-content": [
+    2,
+  ],
+  "unicorn/prefer-early-return": [
+    0,
+    {
+      "checkShortBodies": false,
+      "maximumStatements": 1,
+    },
+  ],
+  "unicorn/prefer-else-if": [
+    0,
+  ],
+  "unicorn/prefer-error-is-error": [
+    0,
+  ],
+  "unicorn/prefer-escaped-irregular-whitespace": [
     2,
   ],
   "unicorn/prefer-event-target": [
@@ -9096,14 +11767,35 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "checkUsedVariables": true,
     },
   ],
+  "unicorn/prefer-flat-math-min-max": [
+    2,
+  ],
   "unicorn/prefer-get-or-insert-computed": [
     0,
+  ],
+  "unicorn/prefer-global-number-constants": [
+    2,
   ],
   "unicorn/prefer-global-this": [
     0,
   ],
+  "unicorn/prefer-group-by": [
+    0,
+  ],
+  "unicorn/prefer-has-check": [
+    2,
+  ],
+  "unicorn/prefer-hoisting-branch-code": [
+    0,
+  ],
   "unicorn/prefer-https": [
     0,
+    {
+      "ignore": [],
+    },
+  ],
+  "unicorn/prefer-identifier-import-export-specifiers": [
+    2,
   ],
   "unicorn/prefer-import-meta-properties": [
     0,
@@ -9117,19 +11809,46 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "minimumComparisons": 3,
     },
   ],
+  "unicorn/prefer-iterable-in-constructor": [
+    2,
+  ],
   "unicorn/prefer-iterator-concat": [
+    0,
+  ],
+  "unicorn/prefer-iterator-helpers": [
+    2,
+  ],
+  "unicorn/prefer-iterator-to-array": [
     0,
   ],
   "unicorn/prefer-iterator-to-array-at-end": [
     2,
   ],
+  "unicorn/prefer-iterator-zip": [
+    0,
+  ],
+  "unicorn/prefer-json-import": [
+    0,
+  ],
   "unicorn/prefer-keyboard-event-key": [
     2,
+  ],
+  "unicorn/prefer-literal-ascii": [
+    2,
+  ],
+  "unicorn/prefer-location-assign": [
+    0,
   ],
   "unicorn/prefer-logical-operator-over-ternary": [
     2,
   ],
+  "unicorn/prefer-map-from-entries": [
+    2,
+  ],
   "unicorn/prefer-math-abs": [
+    2,
+  ],
+  "unicorn/prefer-math-constants": [
     2,
   ],
   "unicorn/prefer-math-min-max": [
@@ -9137,6 +11856,13 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "unicorn/prefer-math-trunc": [
     2,
+  ],
+  "unicorn/prefer-minimal-ternary": [
+    2,
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
   ],
   "unicorn/prefer-modern-dom-apis": [
     2,
@@ -9156,12 +11882,24 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-node-protocol": [
     1,
   ],
+  "unicorn/prefer-number-coercion": [
+    0,
+  ],
+  "unicorn/prefer-number-is-safe-integer": [
+    0,
+  ],
   "unicorn/prefer-number-properties": [
     2,
     {
       "checkInfinity": false,
-      "checkNaN": true,
+      "checkNaN": false,
     },
+  ],
+  "unicorn/prefer-object-define-properties": [
+    2,
+  ],
+  "unicorn/prefer-object-destructuring-defaults": [
+    0,
   ],
   "unicorn/prefer-object-from-entries": [
     2,
@@ -9169,7 +11907,28 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "functions": [],
     },
   ],
+  "unicorn/prefer-object-iterable-methods": [
+    2,
+  ],
+  "unicorn/prefer-observer-apis": [
+    0,
+  ],
   "unicorn/prefer-optional-catch-binding": [
+    2,
+  ],
+  "unicorn/prefer-path2d": [
+    2,
+  ],
+  "unicorn/prefer-private-class-fields": [
+    0,
+  ],
+  "unicorn/prefer-promise-static-methods": [
+    2,
+  ],
+  "unicorn/prefer-promise-try": [
+    0,
+  ],
+  "unicorn/prefer-promise-with-resolvers": [
     2,
   ],
   "unicorn/prefer-prototype-methods": [
@@ -9191,11 +11950,17 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-reflect-apply": [
     2,
   ],
+  "unicorn/prefer-regexp-escape": [
+    0,
+  ],
   "unicorn/prefer-regexp-test": [
     2,
   ],
   "unicorn/prefer-response-static-json": [
     2,
+  ],
+  "unicorn/prefer-scoped-selector": [
+    0,
   ],
   "unicorn/prefer-set-has": [
     2,
@@ -9203,17 +11968,48 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "minimumItems": 0,
     },
   ],
+  "unicorn/prefer-set-methods": [
+    0,
+  ],
   "unicorn/prefer-set-size": [
     2,
   ],
-  "unicorn/prefer-simple-condition-first": [
+  "unicorn/prefer-short-arrow-method": [
+    0,
+    "always",
+  ],
+  "unicorn/prefer-short-escape-sequences": [
     2,
+  ],
+  "unicorn/prefer-simple-condition-first": [
+    0,
+  ],
+  "unicorn/prefer-simple-sort-comparator": [
+    2,
+  ],
+  "unicorn/prefer-simplified-conditions": [
+    0,
+    {
+      "negatedConditions": "simplify",
+    },
+  ],
+  "unicorn/prefer-single-array-predicate": [
+    1,
   ],
   "unicorn/prefer-single-call": [
     2,
     {
       "ignore": [],
     },
+  ],
+  "unicorn/prefer-single-object-destructuring": [
+    0,
+  ],
+  "unicorn/prefer-single-replace": [
+    2,
+  ],
+  "unicorn/prefer-smaller-scope": [
+    0,
   ],
   "unicorn/prefer-split-limit": [
     2,
@@ -9261,9 +12057,30 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
       "minimumCases": 3,
     },
   ],
-  "unicorn/prefer-ternary": [
+  "unicorn/prefer-temporal": [
+    0,
+    {
+      "checkDateNow": false,
+      "checkMethods": false,
+      "checkReferences": false,
+    },
+  ],
+  "unicorn/prefer-temporal-conversion": [
     2,
+  ],
+  "unicorn/prefer-ternary": [
+    0,
     "always",
+    {
+      "checkComputedMemberAccess": false,
+      "checkVaryingBase": false,
+    },
+  ],
+  "unicorn/prefer-then-catch": [
+    0,
+  ],
+  "unicorn/prefer-toggle-attribute": [
+    2,
   ],
   "unicorn/prefer-top-level-await": [
     0,
@@ -9271,9 +12088,32 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/prefer-type-error": [
     2,
   ],
-  "unicorn/prevent-abbreviations": [
+  "unicorn/prefer-type-literal-last": [
     0,
-    {},
+  ],
+  "unicorn/prefer-uint8array-base64": [
+    0,
+  ],
+  "unicorn/prefer-uint8array-hex": [
+    0,
+  ],
+  "unicorn/prefer-unary-minus": [
+    2,
+  ],
+  "unicorn/prefer-unicode-code-point-escapes": [
+    0,
+  ],
+  "unicorn/prefer-url-can-parse": [
+    0,
+  ],
+  "unicorn/prefer-url-href": [
+    2,
+  ],
+  "unicorn/prefer-url-search-parameters": [
+    2,
+  ],
+  "unicorn/prefer-while-loop-condition": [
+    2,
   ],
   "unicorn/relative-url-style": [
     2,
@@ -9282,10 +12122,19 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   "unicorn/require-array-join-separator": [
     2,
   ],
+  "unicorn/require-array-sort-compare": [
+    0,
+  ],
   "unicorn/require-css-escape": [
     2,
     {
       "checkAllSelectors": false,
+    },
+  ],
+  "unicorn/require-frontmatter-fields": [
+    0,
+    {
+      "fields": [],
     },
   ],
   "unicorn/require-module-attributes": [
@@ -9302,6 +12151,19 @@ exports[`итоговый резолв конфига eslint > src/utils/helpers
   ],
   "unicorn/require-post-message-target-origin": [
     0,
+  ],
+  "unicorn/require-proxy-trap-boolean-return": [
+    2,
+  ],
+  "unicorn/require-text-decoder-streaming": [
+    2,
+  ],
+  "unicorn/single-line-block-comment-style": [
+    0,
+    "multiline",
+    {
+      "ignore": [],
+    },
   ],
   "unicorn/string-content": [
     0,

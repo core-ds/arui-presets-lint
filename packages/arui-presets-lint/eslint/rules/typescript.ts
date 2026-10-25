@@ -1,4 +1,3 @@
-import { type TSESLint } from '@typescript-eslint/utils';
 import { type Linter } from 'eslint';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -36,13 +35,13 @@ export const typescriptConfig: Linter.Config = {
     },
     rules: {
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslintrc/recommended-type-checked.ts
-        ...(tseslint.configs.recommendedTypeChecked.reduce(
+        ...tseslint.configs.recommendedTypeChecked.reduce<Linter.RulesRecord>(
             (acc, obj) => ({
                 ...acc,
                 ...obj?.rules,
             }),
             {},
-        ) as TSESLint.FlatConfig.Rules),
+        ),
 
         // Требовать явного указания типов возвращаемых данных и аргументов для методов публичных классов экспортируемых функций и классов
         // https://typescript-eslint.io/rules/explicit-module-boundary-types
@@ -58,6 +57,11 @@ export const typescriptConfig: Linter.Config = {
             'error',
             { default: 'array-simple', readonly: 'array-simple' },
         ],
+
+        // Требует компаратор при сортировке нестроковых массивов
+        // https://typescript-eslint.io/rules/require-array-sort-compare
+        '@typescript-eslint/require-array-sort-compare': 'error',
+
         // Обеспечивает консистентное написание определения типов
         // https://typescript-eslint.io/rules/consistent-type-assertions
         '@typescript-eslint/consistent-type-assertions': 'error',

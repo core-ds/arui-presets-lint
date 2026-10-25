@@ -14,9 +14,11 @@
 
 [Как я могу внести изменения?](./CONTRIBUTING.md)
 
-🚀 [Миграция на версию 11 с 9/10](./MIGRATION_GUIDE.md)
+🚀 [Миграция на версию 12 с 11 и предыдущих версий](./MIGRATION_GUIDE.md)
 
 ## Установка и обновление
+
+Требуется Node.js `^22.13.0 || >=24.0.0`.
 
 Установить библиотеку в проект нужно как dev dependency:
 
@@ -172,7 +174,6 @@ export default defineConfig(eslintConfig, [
 
 После настройки конфигов - нужно добавить скрипты для их запуска в package.json (для этого библиотека предоставляет удобные cli-алиасы):
 
-
 ```json
 {
     "scripts": {
@@ -188,7 +189,7 @@ export default defineConfig(eslintConfig, [
 }
 ```
 
-> ⚠️  Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
+> ⚠️ Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
 
 Чтобы eslint / stylelint / prettier / secretlint не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore / .secretlintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
@@ -212,7 +213,6 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
     }
 }
 ```
-
 
 ## [lefthook](https://github.com/evilmartians/lefthook)
 
