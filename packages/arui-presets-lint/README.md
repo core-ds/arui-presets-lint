@@ -208,6 +208,16 @@ arui-presets-lint scripts --concurrency 2
 arui-presets-lint scripts --concurrency off
 ```
 
+С `auto` ESLint сам выбирает число потоков: до 50 файлов проверка идёт в одном потоке, дальше — примерно поток на каждые 50 файлов, но не больше половины ядер процессора. Каждый поток заново загружает конфиг и плагины, а при анализе типов — и программу TypeScript, поэтому на небольших проектах многопоточность может замедлить проверку. В этом случае ESLint печатает предупреждение `ESLintPoorConcurrencyWarning` — отключите многопоточность в скрипте проекта:
+
+```json
+{
+    "scripts": {
+        "lint:scripts": "arui-presets-lint scripts --concurrency off"
+    }
+}
+```
+
 Чтобы eslint / stylelint / prettier / secretlint не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore / .secretlintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
 > Вместо файла .eslintignore рекомендуется использовать globalIgnores в конфиге eslint ([подробнее](https://eslint.org/docs/latest/use/configure/ignore)). Импортируем функцию globalIgnores из `arui-presets-lint` вот так:

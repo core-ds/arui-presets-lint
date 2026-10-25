@@ -80,7 +80,25 @@ yarn add -D arui-presets-lint@latest
 Если вы переопределяете или отключаете `pre-push.commands.check-scripts` / `check-styles`,
 отдельно настройте `pre-push.commands.check-format`: проверка Prettier перенесена в неё.
 
-## 7. Исправьте ошибки и проверьте проект
+## 7. Проверьте многопоточный запуск ESLint
+
+`arui-presets-lint scripts` и команды ESLint в Lefthook запускаются с `--concurrency auto`.
+На больших проектах это ускоряет проверку, на небольших может замедлить — тогда ESLint печатает
+предупреждение `ESLintPoorConcurrencyWarning`. В таком случае отключите многопоточность
+в скрипте проекта:
+
+```json
+{
+    "scripts": {
+        "lint:scripts": "arui-presets-lint scripts --concurrency off"
+    }
+}
+```
+
+В Lefthook обычно проверяется меньше 50 файлов, и ESLint сам работает в одном потоке.
+Подробнее — в разделе про CLI в [README](./README.md).
+
+## 8. Исправьте ошибки и проверьте проект
 
 ```sh
 yarn lint:scripts

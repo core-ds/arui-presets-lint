@@ -1,7 +1,7 @@
 import { ESLint, type Linter } from 'eslint';
 import fs from 'node:fs';
 import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, onTestFinished, vi } from 'vitest';
 
 import commitlintConfig from '../commitlint/index.js';
 import { defineConfig, eslintConfig } from '../eslint/index.js';
@@ -118,6 +118,32 @@ describe('импорты devDependencies в монорепозитории', () 
     });
 });
 
+describe('многопоточный запуск ESLint', () => {
+    // Собственный lint:scripts идёт с --concurrency off, а потребители получают auto:
+    // проверяем, что конфиг пакета загружается и работает в worker-потоках
+    it('проверяет файлы пакета в нескольких потоках', async () => {
+        // На четырёх файлах потоки не окупаются, и ESLint печатает ESLintPoorConcurrencyWarning -
+        // в выводе тестов это шум. ESLint запоминает emitWarning при создании, поэтому подменяем до него
+        const warningSpy = vi.spyOn(process, 'emitWarning').mockReturnValue();
+        onTestFinished(() => warningSpy.mockRestore());
+
+        // Конфиг берётся из eslint.config.mts: опции с плагинами в потоки не передать
+        const eslint = new ESLint({ cwd: packageRoot, concurrency: 2 });
+        // JS, JSX, JSON и Markdown без TypeScript: анализ типов сделал бы тест медленным,
+        // а загрузку всех плагинов пресета в потоках проверяют и эти файлы
+        const files = ['prettier/index.js', 'test/js-input.jsx', 'package.json', 'README.md'];
+
+        const results = await eslint.lintFiles(files.map((file) => path.join(packageRoot, file)));
+
+        expect(results).toHaveLength(files.length);
+        expect(results.every(({ fatalErrorCount }) => fatalErrorCount === 0)).toBe(true);
+        // Глушим только ожидаемое предупреждение: любое другое должно уронить тест
+        expect(warningSpy.mock.calls.map((call) => call[1] as unknown)).toEqual(
+            warningSpy.mock.calls.map(() => 'ESLintPoorConcurrencyWarning'),
+        );
+    }, 30_000);
+});
+
 describe('подключение публичных ESLint-конфигов', () => {
     it('принимает базовый конфиг из руководства по установке', async () => {
         const eslint = new ESLint({
@@ -151,6 +177,80 @@ describe('подключение публичных ESLint-конфигов', ()
                 'react-x/exhaustive-deps': [2],
             },
         });
+    });
+});
+
+describe('React и доступность в итоговом пресете', () => {
+    const eslint = new ESLint({
+        cwd: packageRoot,
+        overrideConfigFile: true,
+        overrideConfig: defineConfig(eslintConfig, {
+            // Проверяемым правилам React и доступности не нужен анализ типов TypeScript.
+            languageOptions: { parserOptions: { projectService: false } },
+        }),
+        ruleFilter: ({ ruleId }) => /^(react-(x|dom|jsx)|jsx-a11y-x)\//u.test(ruleId),
+    });
+
+    // .jsx и .tsx разбирают разные парсеры: правила должны подключаться к обоим скоупам
+    const scopeFiles = ['test/js-input.jsx', 'test/ts-input.tsx'];
+
+    it.each(scopeFiles)('находит ошибки React и доступности в %s', async (filePath) => {
+        const [result] = await eslint.lintText(
+            `export const Example = () => (
+                <main>
+                    <a href="https://example.com" target="_blank">Link</a>
+                    <button />
+                    <img src="image.png" />
+                    <span class="title" style="color: red">Text</span>
+                </main>
+            );`,
+            { filePath },
+        );
+
+        expect(result.fatalErrorCount).toBe(0);
+        expect(result.messages).toHaveLength(6);
+        expect(result.messages.map(({ ruleId }) => ruleId)).toEqual(
+            expect.arrayContaining([
+                'react-dom/no-missing-button-type',
+                'react-dom/no-string-style-prop',
+                'react-dom/no-unknown-property',
+                'react-dom/no-unsafe-target-blank',
+                'jsx-a11y-x/alt-text',
+                'jsx-a11y-x/control-has-associated-label',
+            ]),
+        );
+    });
+
+    it.each(scopeFiles)('принимает исправленные React и a11y атрибуты в %s', async (filePath) => {
+        const [result] = await eslint.lintText(
+            `export const Example = () => (
+                <main>
+                    <a href="https://example.com" target="_blank" rel="noreferrer">Link</a>
+                    <button type="button">Send</button>
+                    <img src="image.png" alt="Example" />
+                    <span className="title" style={{ color: 'red' }}>Text</span>
+                </main>
+            );`,
+            { filePath },
+        );
+
+        expect(result.messages).toEqual([]);
+    });
+
+    it('считает компоненты из settings jsx-a11y-x нативными элементами', async () => {
+        const lintRuleIds = async (code: string) => {
+            const [result] = await eslint.lintText(code, { filePath: 'test/js-input.jsx' });
+
+            return result.messages.map(({ ruleId }) => ruleId);
+        };
+        // Button сопоставлен с <button> в настройках пресета: интерактивному элементу
+        // нельзя назначать неинтерактивную роль. Несопоставленный компонент правило не видит
+        const rule = 'jsx-a11y-x/no-interactive-element-to-noninteractive-role';
+
+        expect(await lintRuleIds('export const A = () => <Button role="img" />;')).toContain(rule);
+        expect(await lintRuleIds('export const A = () => <Unmapped role="img" />;')).not.toContain(
+            rule,
+        );
     });
 });
 

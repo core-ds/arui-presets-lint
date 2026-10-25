@@ -28,7 +28,7 @@ export const bestPracticesConfig: Linter.Config = {
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-early-return.md
         'unicorn/prefer-early-return': 'off',
 
-        // Слишком агрессивно навязывает тренарники.
+        // Слишком агрессивно навязывает тернарники.
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-ternary.md
         'unicorn/prefer-ternary': 'off',
 
