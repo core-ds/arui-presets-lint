@@ -2,4 +2,4 @@
 'arui-presets-lint': major
 ---
 
-Пресет переведён на ESLint 10, React и Hooks — на eslint-plugin-react-x, доступность — на eslint-plugin-jsx-a11y-x; требуется Node.js 22.13+ в ветке 22 либо 24+.
+ESLint и Execa обновлены до 10; React и Hooks переведены на eslint-plugin-react-x, eslint-plugin-jsx-a11y — на eslint-plugin-jsx-a11y-x. В CLI и Lefthook включена многопоточность ESLint, на pre-push — параллельная проверка форматирования. Требуется Node.js 22.13+.
