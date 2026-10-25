@@ -80,7 +80,16 @@ describe('импорты devDependencies в монорепозитории', () 
         { location: 'корня монорепозитория', cwd: path.resolve(packageRoot, '../..') },
         { location: 'каталога пакета', cwd: packageRoot },
     ])('сохраняет ограничения при запуске из $location', async ({ cwd }) => {
-        const eslint = new ESLint({ cwd });
+        const eslint = new ESLint({
+            cwd,
+            ruleFilter: ({ ruleId }) => ruleId === 'import-x/no-extraneous-dependencies',
+            // Проверке путей devDependencies не нужен анализ типов TypeScript.
+            overrideConfig: {
+                languageOptions: {
+                    parserOptions: { projectService: false },
+                },
+            },
+        });
         const results = await eslint.lintFiles(
             ['test/configs.test.ts', 'test/rules/require-description.test.ts'].map((file) =>
                 path.join(packageRoot, file),
