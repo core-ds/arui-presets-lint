@@ -1,3 +1,9 @@
+## 11.6.0
+
+### Minor Changes
+
+- [#196](https://github.com/core-ds/arui-presets-lint/pull/196) [`e52c517`](https://github.com/core-ds/arui-presets-lint/commit/e52c5172e66bfbf30c5d7c7382e78ed8c1b0494e) Thanks [@KalashnikovTV](https://github.com/KalashnikovTV)! - Добавлен опциональный плагин `core-components` с правилом, требующим платформенные импорты (`desktop`/`mobile`) компонентов core-components. Глобально не подключается — импортируется в конфиг вручную.
+
 ## 11.5.0
 
 ### Minor Changes
