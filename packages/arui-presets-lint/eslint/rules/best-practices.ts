@@ -215,6 +215,10 @@ export const bestPracticesConfig: Linter.Config = {
         // https://eslint.org/docs/rules/consistent-return
         'consistent-return': 'error',
 
+        // Требует фигурные скобки в условиях и циклах, даже для одной инструкции
+        // https://eslint.org/docs/latest/rules/curly
+        curly: ['error', 'all'],
+
         // Требует ветку default в switch
         // https://eslint.org/docs/rules/default-case
         'default-case': 'off',

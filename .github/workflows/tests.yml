@@ -12,20 +12,20 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             # Прогоняем на всех поддерживаемых мажорах Node (см. engines в пакетах);
-            # не отменяем вторую джобу при падении первой, чтобы видеть,
+            # не отменяем остальные джобы при падении одной, чтобы видеть,
             # специфична ли поломка для конкретной версии
             fail-fast: false
             matrix:
-                node-version: [22, 24]
+                node-version: [22, 24, 26]
         steps:
             - name: Checkout Repo
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   fetch-depth: 0
 
             - name: Setup Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@v7
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: yarn

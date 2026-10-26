@@ -1,3 +1,25 @@
+## 11.4.0
+
+### Minor Changes
+
+- [#217](https://github.com/core-ds/arui-presets-lint/pull/217) [`2340128`](https://github.com/core-ds/arui-presets-lint/commit/23401284f0b3b56d883a9e266ea5ea8355040063) Thanks [@kiskv](https://github.com/kiskv)! - Обновлены зависимости: линтеры и их плагины подняты до последних patch- и minor-версий.
+
+### Patch Changes
+
+- [#217](https://github.com/core-ds/arui-presets-lint/pull/217) [`2340128`](https://github.com/core-ds/arui-presets-lint/commit/23401284f0b3b56d883a9e266ea5ea8355040063) Thanks [@kiskv](https://github.com/kiskv)! - secretlint обновлён до 13.0.7, где профайлер больше не замедляет прогон — cli-обёртка не отключает User Timing API при запуске `arui-presets-lint secretlint`.
+
+## 11.3.0
+
+### Minor Changes
+
+- [#218](https://github.com/core-ds/arui-presets-lint/pull/218) [`8d8760e`](https://github.com/core-ds/arui-presets-lint/commit/8d8760eaaba4186a9944f41048e7f63f8bc6e2cb) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - В eslint пресет добавлено правило `curly`, требующее фигурные скобки в условиях и циклах
+
+## 11.2.1
+
+### Patch Changes
+
+- [#212](https://github.com/core-ds/arui-presets-lint/pull/212) [`2563380`](https://github.com/core-ds/arui-presets-lint/commit/2563380f253f1bb9af1586396f715dfaae8444df) Thanks [@amodanov](https://github.com/amodanov)! - В пресет knip добавлена поддержка конфигурации `arui-scripts-artifacts.*` пакета `@alfalab/arui-scripts-artifacts`.
+
 ## 11.2.0
 
 ### Minor Changes
