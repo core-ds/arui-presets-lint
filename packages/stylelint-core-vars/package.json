@@ -32,7 +32,8 @@
     },
     "dependencies": {
         "@manypkg/get-packages": "^3.1.0",
-        "postcss": "^8.5.13"
+        "postcss": "^8.5.13",
+        "postcss-value-parser": "^4.2.0"
     },
     "devDependencies": {
         "@alfalab/core-components-vars": "7.0.0",
