@@ -8,7 +8,9 @@ export const getImportSourceString = (node: {
 }): string | null => {
     const { source } = node;
 
-    if (source?.type !== AST_NODE_TYPES.Literal) return null;
+    if (source?.type !== AST_NODE_TYPES.Literal) {
+        return null;
+    }
 
     return typeof source.value === 'string' ? source.value : null;
 };

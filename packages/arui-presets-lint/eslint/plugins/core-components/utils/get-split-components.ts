@@ -110,7 +110,9 @@ const resolveScopeDirs = memoize((base: string): string[] => {
     const localScopeDirs = fs.existsSync(scopeDir) ? [scopeDir] : [];
     const parent = path.dirname(base);
 
-    if (parent === base) return localScopeDirs;
+    if (parent === base) {
+        return localScopeDirs;
+    }
 
     return [...localScopeDirs, ...resolveScopeDirs(parent)];
 });
@@ -134,7 +136,9 @@ const isDeclarationFile = (fileName: string): boolean => /\.d\.(ts|mts|cts)$/.te
  * с платформой в имени (Component.desktop.js). Типы (.d.ts) не считаются.
  */
 const hasPlatformEntry = (componentDir: string, platform: PlatformName): boolean => {
-    if (fs.existsSync(path.join(componentDir, platform))) return true;
+    if (fs.existsSync(path.join(componentDir, platform))) {
+        return true;
+    }
 
     const pattern = platformNamePattern(platform);
 
@@ -162,7 +166,9 @@ const collectSplitComponents = (candidates: Iterable<SplitCandidate>): string[] 
     const splitComponents: string[] = [];
 
     for (const { component, dir } of candidates) {
-        if (isPlatformSplit(dir)) splitComponents.push(component);
+        if (isPlatformSplit(dir)) {
+            splitComponents.push(component);
+        }
     }
 
     return splitComponents.toSorted((a, b) => a.localeCompare(b));
@@ -176,9 +182,15 @@ const aggregatorCandidates = (coreComponentsDir: string): SplitCandidate[] => {
     const candidates: SplitCandidate[] = [];
 
     for (const entry of readDirSafe(coreComponentsDir)) {
-        if (statEntry(coreComponentsDir, entry.name)?.isDirectory() !== true) continue;
-        if (entry.name === 'node_modules') continue;
-        if ((PLATFORM_DIRS as readonly string[]).includes(entry.name)) continue;
+        if (statEntry(coreComponentsDir, entry.name)?.isDirectory() !== true) {
+            continue;
+        }
+        if (entry.name === 'node_modules') {
+            continue;
+        }
+        if ((PLATFORM_DIRS as readonly string[]).includes(entry.name)) {
+            continue;
+        }
 
         candidates.push({
             component: entry.name,
@@ -197,12 +209,18 @@ const standaloneCandidates = (scopeDir: string): SplitCandidate[] => {
     const candidates: SplitCandidate[] = [];
 
     for (const entry of readDirSafe(scopeDir)) {
-        if (!entry.name.startsWith(STANDALONE_NAME_PREFIX)) continue;
-        if (statEntry(scopeDir, entry.name)?.isDirectory() !== true) continue;
+        if (!entry.name.startsWith(STANDALONE_NAME_PREFIX)) {
+            continue;
+        }
+        if (statEntry(scopeDir, entry.name)?.isDirectory() !== true) {
+            continue;
+        }
 
         const component = entry.name.slice(STANDALONE_NAME_PREFIX.length);
 
-        if (component.length === 0) continue;
+        if (component.length === 0) {
+            continue;
+        }
 
         candidates.push({ component, dir: path.join(scopeDir, entry.name) });
     }
@@ -226,7 +244,9 @@ const getStandaloneCandidates = memoize(standaloneCandidates);
  */
 const getAggregatorSplitComponents = memoize(
     (coreComponentsDir: string | null): ReadonlySet<string> => {
-        if (coreComponentsDir === null) return new Set<string>();
+        if (coreComponentsDir === null) {
+            return new Set<string>();
+        }
 
         return new Set(collectSplitComponents(getAggregatorCandidates(coreComponentsDir)));
     },

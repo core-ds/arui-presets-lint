@@ -49,7 +49,9 @@ export const parseCoreComponentsSource = (source: string): ParsedSource | null =
     const prefix = `${CORE_COMPONENTS_PACKAGE}/`;
 
     // Ветка агрегатора: '@alfalab/core-components/<pkg>[/<segment>]'
-    if (!source.startsWith(prefix)) return null;
+    if (!source.startsWith(prefix)) {
+        return null;
+    }
 
     const [component, segment] = normalizeModulePath(source.slice(prefix.length)).split('/');
 

@@ -65,7 +65,9 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         let effectiveSplitComponents: SplitComponentsByForm | undefined;
 
         const withoutExclusions = (components: ReadonlySet<string>): ReadonlySet<string> => {
-            if (!excludedSplitComponents?.length) return components;
+            if (!excludedSplitComponents?.length) {
+                return components;
+            }
 
             const filtered = new Set(components);
 
@@ -77,7 +79,9 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         };
 
         const getEffectiveSplitComponents = (): SplitComponentsByForm => {
-            if (effectiveSplitComponents) return effectiveSplitComponents;
+            if (effectiveSplitComponents) {
+                return effectiveSplitComponents;
+            }
 
             // Без ручного списка автоопределение идёт раздельно по формам импорта:
             // агрегатор и отдельные подпакеты — разные установленные пакеты.
@@ -96,15 +100,23 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         const reportIfWrongPlatform = (node: TSESTree.Node, sourceValue: string) => {
             const parsed = parseCoreComponentsSource(sourceValue);
 
-            if (!parsed) return;
+            if (!parsed) {
+                return;
+            }
 
-            if (!parsed.component) return;
+            if (!parsed.component) {
+                return;
+            }
 
             const splitComponents = getEffectiveSplitComponents()[parsed.importForm];
 
-            if (!splitComponents.has(parsed.component)) return;
+            if (!splitComponents.has(parsed.component)) {
+                return;
+            }
 
-            if (parsed.platform) return;
+            if (parsed.platform) {
+                return;
+            }
 
             const packageBase =
                 parsed.importForm === 'standalone'
@@ -132,10 +144,14 @@ export const coreComponentsImportRule: TSESLint.RuleModule<
         ) => {
             const sourceValue = getImportSourceString(node);
 
-            if (sourceValue === null) return;
+            if (sourceValue === null) {
+                return;
+            }
 
             // Типы можно брать и с корня пакета
-            if (isTypeOnly) return;
+            if (isTypeOnly) {
+                return;
+            }
 
             reportIfWrongPlatform(node, sourceValue);
         };
