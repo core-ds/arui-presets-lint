@@ -1,3 +1,14 @@
+## 11.5.0
+
+### Minor Changes
+
+- [#225](https://github.com/core-ds/arui-presets-lint/pull/225) [`ee304c5`](https://github.com/core-ds/arui-presets-lint/commit/ee304c5ea428056986a3eacc90b83c751b44f5fc) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - в stylelint пресете включены предупреждения об устаревших CSS токенах
+
+### Patch Changes
+
+- Updated dependencies [[`ee304c5`](https://github.com/core-ds/arui-presets-lint/commit/ee304c5ea428056986a3eacc90b83c751b44f5fc)]:
+    - @alfalab/stylelint-core-vars@3.0.1
+
 ## 11.4.0
 
 ### Minor Changes
