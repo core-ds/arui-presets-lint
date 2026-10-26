@@ -1,5 +1,11 @@
 # stylelint-core-vars
 
+## 3.0.1
+
+### Patch Changes
+
+- [#225](https://github.com/core-ds/arui-presets-lint/pull/225) [`ee304c5`](https://github.com/core-ds/arui-presets-lint/commit/ee304c5ea428056986a3eacc90b83c751b44f5fc) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - исправлены поиск и автофикс устаревших CSS токенов в составных значениях
+
 ## 3.0.0
 
 ### Major Changes
