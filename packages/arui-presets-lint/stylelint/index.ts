@@ -5,7 +5,7 @@ export default {
     // https://stylelint.io/user-guide/configure/#reportdescriptionlessdisables
     reportDescriptionlessDisables: true,
 
-    // Запрещает отключения правил, которые больше не нужны
+    // Запрещает stylelint-disable для правил без нарушений
     // https://stylelint.io/user-guide/configure/#reportneedlessdisables
     reportNeedlessDisables: true,
 
