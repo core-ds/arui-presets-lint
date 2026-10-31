@@ -1,3 +1,26 @@
+## 11.7.0
+
+### Minor Changes
+
+- [#227](https://github.com/core-ds/arui-presets-lint/pull/227) [`a889eba`](https://github.com/core-ds/arui-presets-lint/commit/a889ebac3e99666e34642f79be0f1b11ea80e354) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - В stylelint пресете добавлены проверки свойств, значений и повторов css переменных, запрет !important, контроль отключений правил, обязательные кавычки в url() и строковая форма @import.
+
+## 11.6.0
+
+### Minor Changes
+
+- [#196](https://github.com/core-ds/arui-presets-lint/pull/196) [`e52c517`](https://github.com/core-ds/arui-presets-lint/commit/e52c5172e66bfbf30c5d7c7382e78ed8c1b0494e) Thanks [@KalashnikovTV](https://github.com/KalashnikovTV)! - Добавлен опциональный плагин `core-components` с правилом, требующим платформенные импорты (`desktop`/`mobile`) компонентов core-components. Глобально не подключается — импортируется в конфиг вручную.
+
+## 11.5.0
+
+### Minor Changes
+
+- [#225](https://github.com/core-ds/arui-presets-lint/pull/225) [`ee304c5`](https://github.com/core-ds/arui-presets-lint/commit/ee304c5ea428056986a3eacc90b83c751b44f5fc) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - в stylelint пресете включены предупреждения об устаревших CSS токенах
+
+### Patch Changes
+
+- Updated dependencies [[`ee304c5`](https://github.com/core-ds/arui-presets-lint/commit/ee304c5ea428056986a3eacc90b83c751b44f5fc)]:
+    - @alfalab/stylelint-core-vars@3.0.1
+
 ## 11.4.0
 
 ### Minor Changes

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import postcss from 'postcss';
+import valueParser from 'postcss-value-parser';
 
 import oldNewMap from './old-new-map.js';
 
@@ -267,35 +268,44 @@ export function findVars(
     return undefined;
 }
 
-export function findOldVars(cssValue: string, prop: string): SubstitutionResult | undefined {
-    const matches = /var\(([^),]+)/g.exec(cssValue);
-
-    if (!matches) {
-        return undefined;
-    }
-
-    const oldVar = matches[1];
-    const replacements = oldNewMap[oldVar];
-    if (!replacements) {
-        return undefined;
-    }
-
+export function findOldVars(cssValue: string, prop: string): SubstitutionResult[] {
+    const substitutions: SubstitutionResult[] = [];
     const variants = getColorVariants(prop);
 
-    let variables = replacements.filter((r) => variants.some((v) => r.includes(v)));
-    const fixable = variables.length === 1;
+    valueParser(cssValue).walk((node) => {
+        if (node.type !== 'function' || node.value !== 'var') {
+            return;
+        }
 
-    if (!variables.length) {
-        variables = replacements;
-    }
+        const token = node.nodes.find(
+            (child) => child.type !== 'space' && child.type !== 'comment',
+        );
 
-    return {
-        index: cssValue.indexOf(oldVar),
-        value: oldVar,
-        variables,
-        fixedValue: variables.length ? variables[0] : 'NON_FIXABLE',
-        fixable,
-    };
+        if (token?.type !== 'word' || !token.value.startsWith('--')) {
+            return;
+        }
+
+        const replacements = oldNewMap[token.value];
+
+        if (!replacements) {
+            return;
+        }
+
+        const chosen = replacements.filter((replacement) =>
+            variants.some((variant) => replacement.includes(variant)),
+        );
+        const variables = chosen.length ? chosen : replacements;
+
+        substitutions.push({
+            index: token.sourceIndex,
+            value: token.value,
+            variables,
+            fixedValue: variables[0] ?? token.value,
+            fixable: chosen.length === 1,
+        });
+    });
+
+    return substitutions;
 }
 
 export function findTypographyMixins(ruleProps: MixinPropsMap): MixinDef[] | null {
