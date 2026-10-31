@@ -19,7 +19,7 @@ const jsonRules: Linter.RulesRecord = {
     'json/no-unsafe-values': 'error',
 };
 
-const plugins = { json: jsonPlugin } as unknown as Linter.Config['plugins'];
+const plugins = { json: jsonPlugin };
 
 export const jsonConfig: Linter.Config[] = [
     {

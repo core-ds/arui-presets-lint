@@ -37,7 +37,7 @@ export const parseCoreComponentsSource = (source: string): ParsedSource | null =
     if (source.startsWith(STANDALONE_PREFIX)) {
         const [component, segment] = normalizeModulePath(
             source.slice(STANDALONE_PREFIX.length),
-        ).split('/');
+        ).split('/', 2);
 
         return {
             component,
@@ -53,7 +53,7 @@ export const parseCoreComponentsSource = (source: string): ParsedSource | null =
         return null;
     }
 
-    const [component, segment] = normalizeModulePath(source.slice(prefix.length)).split('/');
+    const [component, segment] = normalizeModulePath(source.slice(prefix.length)).split('/', 2);
 
     return { component, platform: isPlatform(segment) ? segment : null, importForm: 'aggregator' };
 };

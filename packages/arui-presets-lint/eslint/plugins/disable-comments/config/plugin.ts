@@ -1,4 +1,4 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type ESLint, type Rule } from 'eslint';
 
 import { requireDescriptionRule } from '../rule/index.js';
 
@@ -6,8 +6,9 @@ import { requireDescriptionRule } from '../rule/index.js';
  * Плагин, который можно импортировать отдельно.
  * Содержит лишь набор правил, без их активации.
  */
-export const disableCommentsPlugin: TSESLint.FlatConfig.Plugin = {
+export const disableCommentsPlugin: ESLint.Plugin = {
     rules: {
-        'require-description': requireDescriptionRule,
+        // TODO: старые типы контекста TSESLint; убрать после их адаптации к ESLint 10.
+        'require-description': requireDescriptionRule as unknown as Rule.RuleModule,
     },
 };

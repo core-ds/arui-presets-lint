@@ -6,17 +6,18 @@ import gitignore from 'eslint-config-flat-gitignore';
 import checkFilePlugin from 'eslint-plugin-check-file';
 import deMorgan from 'eslint-plugin-de-morgan';
 import { importX } from 'eslint-plugin-import-x';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y-x';
 import nodePlugin from 'eslint-plugin-n';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactDOMPlugin from 'eslint-plugin-react-dom';
+import reactJSXPlugin from 'eslint-plugin-react-jsx';
+import reactPlugin from 'eslint-plugin-react-x';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 import { disableCommentsConfig, disableCommentsPlugin } from './plugins/index.js';
-import { globalIgnores } from './config.js';
+import { defineConfig, globalIgnores } from './config.js';
 import { GLOBAL_SCRIPTS_SCOPE } from './constants.js';
 import {
     bestPracticesConfig,
@@ -33,7 +34,7 @@ import {
     variablesConfig,
 } from './rules.js';
 
-export const eslintConfig = [
+export const eslintConfig: Linter.Config[] = defineConfig([
     gitignore({
         files: ['.gitignore', '.eslintignore'],
         strict: false,
@@ -79,9 +80,10 @@ export const eslintConfig = [
             'import-x': importX,
             'simple-import-sort': simpleImportSortPlugin,
             'check-file': checkFilePlugin,
-            react: reactPlugin,
-            'react-hooks': reactHooksPlugin,
-            'jsx-a11y': jsxA11yPlugin,
+            'react-x': reactPlugin,
+            'react-dom': reactDOMPlugin,
+            'react-jsx': reactJSXPlugin,
+            'jsx-a11y-x': jsxA11yPlugin,
             unicorn: unicornPlugin,
             'disable-comments': disableCommentsPlugin,
             '@typescript-eslint': tseslint.plugin,
@@ -89,7 +91,7 @@ export const eslintConfig = [
             n: nodePlugin,
             json: jsonPlugin,
             markdown: markdownPlugin,
-        } as unknown as Linter.Config['plugins'],
+        },
     },
 
     /*
@@ -111,7 +113,7 @@ export const eslintConfig = [
     /*
         ☭.
     */
-] as Linter.Config;
+]);
 
 export { defineConfig, globalIgnores, globals } from './config.js';
 export * from './constants.js';

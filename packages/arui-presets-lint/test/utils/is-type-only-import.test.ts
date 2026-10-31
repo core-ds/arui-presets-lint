@@ -28,7 +28,9 @@ describe('isTypeOnlyImport', () => {
     });
 
     it('не считает смешанный импорт значения и типа типовым', () => {
-        expect(isTypeOnlyImport(parseImport("import { Button, type Props } from 'x';"))).toBe(false);
+        expect(isTypeOnlyImport(parseImport("import { Button, type Props } from 'x';"))).toBe(
+            false,
+        );
     });
 
     it('не считает импорт без спецификаторов (side-effect) типовым', () => {

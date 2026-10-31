@@ -1,4 +1,4 @@
-import { type TSESLint } from '@typescript-eslint/utils';
+import { type ESLint, type Rule } from 'eslint';
 
 import { coreComponentsImportRule } from '../rule/index.js';
 
@@ -6,8 +6,9 @@ import { coreComponentsImportRule } from '../rule/index.js';
  * Плагин, который можно импортировать отдельно.
  * Содержит лишь набор правил, без их активации.
  */
-export const coreComponentsPlugin: TSESLint.FlatConfig.Plugin = {
+export const coreComponentsPlugin: ESLint.Plugin = {
     rules: {
-        'core-components-imports': coreComponentsImportRule,
+        // TODO: старые типы контекста TSESLint; убрать после их адаптации к ESLint 10.
+        'core-components-imports': coreComponentsImportRule as unknown as Rule.RuleModule,
     },
 };

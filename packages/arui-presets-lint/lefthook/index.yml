@@ -6,7 +6,7 @@ pre-commit:
     commands:
         check-scripts:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc}'
-            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored
+            run: npx --no-install prettier --write {staged_files} --cache && npx --no-install eslint {staged_files} --no-warn-ignored --concurrency auto
             stage_fixed: true
         check-styles:
             glob: '*.{css}'
@@ -14,7 +14,7 @@ pre-commit:
             stage_fixed: true
         check-md:
             glob: '*.{md}'
-            run: npx --no-install eslint {staged_files} --no-warn-ignored
+            run: npx --no-install eslint {staged_files} --no-warn-ignored --concurrency auto
         check-secrets:
             run: npx --no-install secretlint {staged_files}
 pre-push:
@@ -22,13 +22,16 @@ pre-push:
     commands:
         check-scripts:
             glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc}'
-            run: npx --no-install prettier --check {push_files} --cache && npx --no-install eslint {push_files} --no-warn-ignored
+            run: npx --no-install eslint {push_files} --no-warn-ignored --concurrency auto
         check-styles:
             glob: '*.{css}'
-            run: npx --no-install prettier --check {push_files} --cache && npx --no-install stylelint {push_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
+            run: npx --no-install stylelint {push_files} --allow-empty-input --cache --cache-location="./node_modules/.cache/stylelint/.stylelintcache"
+        check-format:
+            glob: '*.{js,ts,jsx,tsx,mts,mjs,cjs,cts,ctsx,mtsx,cjsx,mjsx,json,json5,jsonc,css}'
+            run: npx --no-install prettier --check {push_files} --cache
         check-md:
             glob: '*.{md}'
-            run: npx --no-install eslint {push_files} --no-warn-ignored
+            run: npx --no-install eslint {push_files} --no-warn-ignored --concurrency auto
         check-secrets:
             run: npx --no-install secretlint {push_files}
         check-unused:

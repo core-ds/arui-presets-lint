@@ -90,7 +90,7 @@ function isVarsPackagedInstalled(): boolean {
     try {
         const rootPkgPath = require.resolve(`${CORE_COMPONENTS_PACKAGE}/package.json`);
         const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, 'utf8')) as { version: string };
-        const [coreComponentsVersion] = rootPkg.version.split('.');
+        const [coreComponentsVersion] = rootPkg.version.split('.', 1);
 
         if (Number.parseInt(coreComponentsVersion, 10) >= 49) {
             return resolveVarsPackage();

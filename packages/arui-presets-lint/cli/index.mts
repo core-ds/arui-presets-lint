@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execaCommand, ExecaError } from 'execa';
+import { execa, ExecaError } from 'execa';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,7 +12,7 @@ const cacheFolder = './node_modules/.cache';
 
 const commandsMap = {
     styles: `stylelint "**/*.css" --allow-empty-input --ignore-path .gitignore --ignore-path .stylelintignore --cache --cache-location="${cacheFolder}/stylelint/.stylelintcache"`,
-    scripts: 'eslint .',
+    scripts: 'eslint . --concurrency auto',
     format: `prettier --experimental-cli --write ${prettierParams}`,
     'format:check': `prettier --experimental-cli --check ${prettierParams}`,
     knip: `knip --no-config-hints --cache --cache-location="${cacheFolder}/knip"`,
@@ -38,7 +38,7 @@ if (enableEcho) {
 }
 
 try {
-    await execaCommand(exec, {
+    await execa(exec, {
         shell: true,
         preferLocal: true,
         localDir: packageRoot,
