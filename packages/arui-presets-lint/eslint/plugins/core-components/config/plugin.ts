@@ -8,7 +8,7 @@ import { coreComponentsImportRule } from '../rule/index.js';
  */
 export const coreComponentsPlugin: ESLint.Plugin = {
     rules: {
-        // TODO: старые типы контекста TSESLint; убрать после их адаптации к ESLint 10.
+        // TODO: старые типы контекста TSESLint; убрать после их адаптации типов ts-eslint к  ESLint 10.
         'core-components-imports': coreComponentsImportRule as unknown as Rule.RuleModule,
     },
 };
