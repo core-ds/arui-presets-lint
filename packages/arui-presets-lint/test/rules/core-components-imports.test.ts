@@ -326,7 +326,9 @@ describe('core-components-imports', () => {
                 );
 
                 for (const component of aggregator) {
-                    fs.mkdirSync(path.join(aggregateDir, component, 'desktop'), { recursive: true });
+                    fs.mkdirSync(path.join(aggregateDir, component, 'desktop'), {
+                        recursive: true,
+                    });
                     fs.mkdirSync(path.join(aggregateDir, component, 'mobile'), { recursive: true });
                 }
             }

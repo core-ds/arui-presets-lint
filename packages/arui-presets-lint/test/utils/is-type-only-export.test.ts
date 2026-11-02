@@ -4,7 +4,9 @@ import { describe, expect, it } from 'vitest';
 
 import { isTypeOnlyExport } from '../../eslint/plugins/core-components/utils/is-type-only-export.js';
 
-const parseExport = (code: string): TSESTree.ExportNamedDeclaration | TSESTree.ExportAllDeclaration => {
+const parseExport = (
+    code: string,
+): TSESTree.ExportNamedDeclaration | TSESTree.ExportAllDeclaration => {
     const { ast } = tseslint.parser.parseForESLint(code) as {
         ast: TSESTree.Program;
     };
@@ -22,9 +24,7 @@ describe('isTypeOnlyExport', () => {
     });
 
     it('считает export с несколькими type-спецификаторами типовым', () => {
-        expect(
-            isTypeOnlyExport(parseExport("export { type B, type C } from 'x';")),
-        ).toBe(true);
+        expect(isTypeOnlyExport(parseExport("export { type B, type C } from 'x';"))).toBe(true);
     });
 
     it('считает export type * from типовым', () => {
@@ -44,6 +44,8 @@ describe('isTypeOnlyExport', () => {
     });
 
     it('не считает смешанный экспорт значения и типа типовым', () => {
-        expect(isTypeOnlyExport(parseExport("export { Button, type Props } from 'x';"))).toBe(false);
+        expect(isTypeOnlyExport(parseExport("export { Button, type Props } from 'x';"))).toBe(
+            false,
+        );
     });
 });
