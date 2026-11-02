@@ -1,3 +1,9 @@
+## 11.8.0
+
+### Minor Changes
+
+- [#226](https://github.com/core-ds/arui-presets-lint/pull/226) [`80cf7e1`](https://github.com/core-ds/arui-presets-lint/commit/80cf7e13f38b815ac836ad55c6e15d42ae0fb162) Thanks [@dmitrbrvsk](https://github.com/dmitrbrvsk)! - В stylelint пресете добавлен единый порядок css свойств по группам
+
 ## 11.7.0
 
 ### Minor Changes
