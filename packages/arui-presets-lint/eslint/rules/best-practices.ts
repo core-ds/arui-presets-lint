@@ -16,6 +16,62 @@ export const bestPracticesConfig: Linter.Config = {
         // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
         ...unicornPlugin.configs.unopinionated.rules,
 
+        // Положение декораторов определяется соглашениями проекта и его транспилятором.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-export-decorator-position.md
+        'unicorn/consistent-export-decorator-position': 'off',
+
+        // Инициализация перед ранним выходом может быть намеренной.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-declarations-before-early-exit.md
+        'unicorn/no-declarations-before-early-exit': 'off',
+
+        // Структуру условий и ранних выходов выбирает проект.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-early-return.md
+        'unicorn/prefer-early-return': 'off',
+
+        // Слишком агрессивно навязывает тернарники.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-ternary.md
+        'unicorn/prefer-ternary': 'off',
+
+        // parseInt и parseFloat могут намеренно разбирать числовой префикс строки.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-number-coercion.md
+        'unicorn/prefer-number-coercion': 'off',
+
+        // Допускаем цепочки Promise и синхронные IIFE для локальной области видимости.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-await.md
+        'unicorn/prefer-await': 'off',
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-block-statement-over-iife.md
+        'unicorn/prefer-block-statement-over-iife': 'off',
+
+        // Поддержка новых API определяется runtime baseline проекта.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-add-event-listener-options.md
+        'unicorn/prefer-add-event-listener-options': 'off',
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-url-can-parse.md
+        'unicorn/prefer-url-can-parse': 'off',
+
+        // Форму Unicode escape-последовательностей выбирает проект.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-unicode-code-point-escapes.md
+        'unicorn/prefer-unicode-code-point-escapes': 'off',
+
+        // Дублирует @typescript-eslint/require-array-sort-compare.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-array-sort-compare.md
+        'unicorn/require-array-sort-compare': 'off',
+
+        // Частично дублирует de-morgan; поглощение a || (a && b) при off не проверяется.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-simplified-conditions.md
+        'unicorn/prefer-simplified-conditions': 'off',
+
+        // Объединение предикатов может менять порядок побочных эффектов.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-single-array-predicate.md
+        'unicorn/prefer-single-array-predicate': 'warn',
+
+        // Допускаем явное завершение итерации даже в последней ветке цикла.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-continue.md
+        'unicorn/no-useless-continue': 'off',
+
+        // Setup-модули могут регистрировать глобальные хелперы.
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-global-object-property-assignment.md
+        'unicorn/no-global-object-property-assignment': 'off',
+
         // Требует наличие оператора return в геттерах свойств
         // https://eslint.org/docs/rules/getter-return
         'getter-return': 'off',
@@ -601,11 +657,6 @@ export const bestPracticesConfig: Linter.Config = {
         // Запрет использования CommonJS
         // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-module.md
         'unicorn/prefer-module': 'off',
-
-        // Обеспечить правильный регистр для чисел
-        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/number-literal-case.md
-        // Отключено, так как управляется Prettier
-        'unicorn/number-literal-case': 'off',
 
         // Запретить запутанные многострочные выражения
         // https://eslint.org/docs/rules/no-unexpected-multiline

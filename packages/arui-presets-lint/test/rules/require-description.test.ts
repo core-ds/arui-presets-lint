@@ -85,6 +85,28 @@ describe('require-description', () => {
         });
     });
 
+    it('сохраняет позиции комментариев и подсказок до и после кода', async () => {
+        const code =
+            '\n/* eslint-disable no-console */\nconst value = 1;\n\n/* eslint-enable no-console */\n';
+        const { result } = await invalid({
+            code,
+            errors: [
+                { messageId: 'missingDescription', line: 2, column: 1 },
+                { messageId: 'missingDescription', line: 5, column: 1 },
+            ],
+        });
+
+        let output = code;
+        for (const message of result.messages.toReversed()) {
+            const suggestions = message.suggestions ?? [];
+            const { range, text } = suggestions[0].fix;
+            output = output.slice(0, range[0]) + text + output.slice(range[1]);
+        }
+
+        expect(output).toContain('\nconst value = 1;\n\n');
+        await valid(output);
+    });
+
     it('отсутствует описание для строкового комментария', async () => {
         const { result } = await invalid({
             code: '// eslint-disable-next-line no-console',

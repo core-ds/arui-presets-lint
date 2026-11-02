@@ -1,29 +1,31 @@
 import { type Linter } from 'eslint';
-import reactPlugin from 'eslint-plugin-react';
+import reactDOMPlugin from 'eslint-plugin-react-dom';
+import reactJSXPlugin from 'eslint-plugin-react-jsx';
+import reactPlugin from 'eslint-plugin-react-x';
 import reactYouMightNotNeedAnEffectPlugin from 'eslint-plugin-react-you-might-not-need-an-effect';
 
 import { REACT_SCRIPTS_SCOPE } from '../constants.js';
 
 export const reactConfig: Linter.Config = {
-    ...reactPlugin.configs.flat.recommended,
-
     name: 'arui-presets-lint/react',
     files: [REACT_SCRIPTS_SCOPE],
-    plugins: {
-        react: reactPlugin,
-        'react-you-might-not-need-an-effect': reactYouMightNotNeedAnEffectPlugin,
-    },
-
-    settings: {
-        react: {
-            pragma: 'React',
-            version: 'detect',
+    languageOptions: {
+        parserOptions: {
+            ecmaFeatures: { jsx: true },
         },
     },
+    plugins: {
+        'react-x': reactPlugin,
+        'react-dom': reactDOMPlugin,
+        'react-jsx': reactJSXPlugin,
+        'react-you-might-not-need-an-effect': reactYouMightNotNeedAnEffectPlugin,
+    },
+    settings: reactPlugin.configs.recommended.settings,
 
     rules: {
-        // https://github.com/jsx-eslint/eslint-plugin-react?tab=readme-ov-file#list-of-supported-rules
-        ...reactPlugin.configs.flat.recommended.rules,
+        // Переносим прежние проверки явно: recommended добавляет новые ограничения
+        // и дублирует правила из отдельного reactHooksConfig.
+        // https://eslint-react.xyz/docs/migrating-from-eslint-plugin-react
 
         // Эвристики поиска лишних useEffect: derived state, цепочки обновлений state,
         // логика обработчиков событий в эффектах и т.д. Все правила рекомендованного
@@ -57,412 +59,100 @@ export const reactConfig: Linter.Config = {
             },
         ],
 
-        // Предотвращает отсутствие displayName в определении React-компонента
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/display-name.md
-        'react/display-name': ['off', { ignoreTranspilerName: false }],
+        // Предупреждает об использовании dangerouslySetInnerHTML
+        // https://eslint-react.xyz/docs/rules/dom-no-dangerously-set-innerhtml
+        'react-dom/no-dangerously-set-innerhtml': 'warn',
 
-        // Запрещает определенные propTypes (any, array, object)
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
-        'react/forbid-prop-types': [
-            'error',
-            {
-                forbid: ['any', 'array', 'object'],
-                checkContextTypes: true,
-                checkChildContextTypes: true,
-            },
-        ],
+        // Запрещает устаревшие методы жизненного цикла
+        // https://eslint-react.xyz/docs/rules/no-component-will-mount
+        'react-x/no-component-will-mount': 'error',
+        // https://eslint-react.xyz/docs/rules/no-component-will-receive-props
+        'react-x/no-component-will-receive-props': 'error',
+        // https://eslint-react.xyz/docs/rules/no-component-will-update
+        'react-x/no-component-will-update': 'error',
 
-        // Запрещает некоторые пропсы на DOM-узлах
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-dom-props.md
-        'react/forbid-dom-props': ['off', { forbid: [] }],
+        // Запрещает устаревшие ReactDOM.render и ReactDOM.hydrate
+        // https://eslint-react.xyz/docs/rules/dom-no-render
+        'react-dom/no-render': 'error',
+        // https://eslint-react.xyz/docs/rules/dom-no-hydrate
+        'react-dom/no-hydrate': 'error',
 
-        // Обязывает корректную нотацию булевых атрибутов в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
-        'react/jsx-boolean-value': ['error', 'always'],
-
-        // Обязывает соглашения по именованию обработчиков событий в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
-        'react/jsx-handler-names': [
-            'off',
-            {
-                eventHandlerPrefix: 'handle',
-                eventHandlerPropPrefix: 'on',
-            },
-        ],
-
-        // Проверяет наличие key при рендере списков/итераторов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
-        // Отключено из-за большого числа ложных срабатываний
-        'react/jsx-key': 'off',
-
-        // Запрещает использование .bind() в пропсах JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-        'react/jsx-no-bind': [
-            'error',
-            {
-                ignoreRefs: true,
-                allowArrowFunctions: true,
-                allowFunctions: false,
-                allowBind: false,
-                ignoreDOMComponents: true,
-            },
-        ],
-
-        // Запрещает дублирующиеся пропсы в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-duplicate-props.md
-        'react/jsx-no-duplicate-props': ['error', { ignoreCase: true }],
-
-        // Запрещает не обернутые строки в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
-        'react/jsx-no-literals': ['off', { noStrings: true }],
-
-        // Запрещает необъявленные переменные в JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md
-        'react/jsx-no-undef': 'error',
-
-        // Требует PascalCase для пользовательских JSX-компонентов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
-        'react/jsx-pascal-case': [
-            'error',
-            {
-                allowAllCaps: true,
-                ignore: [],
-            },
-        ],
-
-        // Требует алфавитной сортировки propTypes
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md
-        'react/sort-prop-types': [
-            'off',
-            {
-                ignoreCase: true,
-                callbacksLast: false,
-                requiredFirst: false,
-                sortShapeProp: true,
-            },
-        ],
-
-        // Устарело в пользу react/jsx-sort-props
-        'react/jsx-sort-prop-types': 'off',
-
-        // Требует алфавитной сортировки пропсов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md
-        'react/jsx-sort-props': [
-            'off',
-            {
-                ignoreCase: true,
-                callbacksLast: false,
-                shorthandFirst: false,
-                shorthandLast: false,
-                noSortAlphabetically: false,
-                reservedFirst: true,
-            },
-        ],
-
-        // Предотвращает ложную пометку React как неиспользуемого. Выключено:
-        // с автоматическим JSX runtime (React 17+) импорт React в JSX-файлах не нужен
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
-        'react/jsx-uses-react': 'off',
-
-        // Предотвращает ложную пометку переменных, используемых в JSX, как неиспользуемых
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
-        'react/jsx-uses-vars': 'error',
-
-        // Запрещает опасные свойства JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-danger.md
-        'react/no-danger': 'warn',
-
-        // Запрещает устаревшие методы
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-deprecated.md
-        'react/no-deprecated': ['error'],
-
-        // Запрещает setState в componentDidMount (необходимо для серверного рендера)
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-did-mount-set-state.md
-        'react/no-did-mount-set-state': 'off',
-
-        // Запрещает setState в componentDidUpdate
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md
-        'react/no-did-update-set-state': 'error',
-
-        // Запрещает setState в componentWillUpdate
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-will-update-set-state.md
-        'react/no-will-update-set-state': 'error',
-
-        // Запрещает прямую мутацию this.state
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
-        'react/no-direct-mutation-state': 'off',
-
-        // Запрещает использование isMounted
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md
-        'react/no-is-mounted': 'error',
-
-        // Запрещает несколько определений компонентов в одном файле
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
-        'react/no-multi-comp': 'off',
-
-        // Запрещает использование setState
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-set-state.md
-        'react/no-set-state': 'off',
-
-        // Запрещает строковые рефы
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md
-        'react/no-string-refs': 'error',
+        // Запрещает setState в componentDidUpdate и componentWillUpdate
+        // https://eslint-react.xyz/docs/rules/no-set-state-in-component-did-update
+        'react-x/no-set-state-in-component-did-update': 'error',
+        // https://eslint-react.xyz/docs/rules/no-set-state-in-component-will-update
+        'react-x/no-set-state-in-component-will-update': 'error',
 
         // Запрещает неизвестные DOM-свойства
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
-        'react/no-unknown-property': 'error',
+        // https://eslint-react.xyz/docs/rules/dom-no-unknown-property
+        'react-dom/no-unknown-property': 'error',
 
-        // Требует классы ES6 вместо React.createClass
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md
-        'react/prefer-es6-class': ['error', 'always'],
-
-        // Требует функциональные компоненты, если не используются методы жизненного цикла, setState или ref
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
-        'react/prefer-stateless-function': 'off',
-
-        // Предотвращает отсутствие валидации пропсов в определении компонента
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prop-types.md
-        'react/prop-types': 'off',
-
-        // Предотвращает отсутствие импорта React при использовании JSX. Выключено:
-        // с автоматическим JSX runtime (React 17+) импорт не требуется, а на классическом
-        // runtime его отсутствие и так ломает сборку
-        // https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
-        'react/react-in-jsx-scope': 'off',
-
-        // Требует, чтобы методы render() что-то возвращали
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-render-return.md
-        'react/require-render-return': 'error',
-
-        // Предотвращает лишние закрывающие теги для компонентов без детей
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
-        'react/self-closing-comp': 'error',
-
-        // Требует порядок методов компонентов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
-        'react/sort-comp': 'off',
-
-        // Запрещает target="_blank" на ссылках (или требует защиту)
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
-        'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
-
-        // Только файлы .jsx могут содержать JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-        'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'], allow: 'as-needed' }],
+        // Требует noreferrer для внешних ссылок с target="_blank"
+        // https://eslint-react.xyz/docs/rules/dom-no-unsafe-target-blank
+        'react-dom/no-unsafe-target-blank': 'error',
 
         // Предотвращает попадание JS-комментариев в JSX как текста
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-comment-textnodes.md
-        'react/jsx-no-comment-textnodes': 'error',
+        // https://eslint-react.xyz/docs/rules/jsx-no-comment-textnodes
+        'react-jsx/no-comment-textnodes': 'error',
 
-        // Запрещает использование значения, возвращаемого React.render/ReactDOM.render
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-render-return-value.md
-        'react/no-render-return-value': 'error',
+        // Запрещает использование значения, возвращаемого ReactDOM.render
+        // https://eslint-react.xyz/docs/rules/dom-no-render-return-value
+        'react-dom/no-render-return-value': 'error',
 
-        // Требует shouldComponentUpdate или PureRenderMixin
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-optimization.md
-        'react/require-optimization': ['off', { allowDecorators: [] }],
+        // Запрещает использование findDOMNode
+        // https://eslint-react.xyz/docs/rules/dom-no-find-dom-node
+        'react-dom/no-find-dom-node': 'error',
 
-        // Предупреждает об использовании findDOMNode()
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-find-dom-node.md
-        'react/no-find-dom-node': 'error',
+        // Запрещает одновременную передачу children и dangerouslySetInnerHTML
+        // https://eslint-react.xyz/docs/rules/dom-no-dangerously-set-innerhtml-with-children
+        'react-dom/no-dangerously-set-innerhtml-with-children': 'error',
 
-        // Запрещает некоторые пропсы на компонентах
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-component-props.md
-        'react/forbid-component-props': ['off', { forbid: [] }],
-
-        // Запрещает некоторые элементы
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-elements.md
-        'react/forbid-elements': ['off', { forbid: [] }],
-
-        // Предотвращает проблемы с children и props.dangerouslySetInnerHTML
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-danger-with-children.md
-        'react/no-danger-with-children': 'error',
-
-        // Предотвращает неиспользуемые определения propTypes
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
-        'react/no-unused-prop-types': [
-            'error',
-            {
-                customValidators: [],
-                skipShapeProps: true,
-            },
-        ],
-
-        // Требует, чтобы значение пропа style было объектом или переменной
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md
-        'react/style-prop-object': 'error',
-
-        // Предотвращает недопустимые символы в разметке
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unescaped-entities.md
-        'react/no-unescaped-entities': 'error',
+        // Запрещает строковый style на DOM-элементах
+        // https://eslint-react.xyz/docs/rules/dom-no-string-style-prop
+        'react-dom/no-string-style-prop': 'error',
 
         // Запрещает передачу children через пропсы
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-children-prop.md
-        'react/no-children-prop': 'error',
+        // https://eslint-react.xyz/docs/rules/jsx-no-children-prop
+        'react-jsx/no-children-prop': 'error',
 
         // Запрещает использование индекса массива в ключах
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
-        'react/no-array-index-key': 'error',
-
-        // Требует defaultProps для каждого необязательного пропа
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
-        'react/require-default-props': 'off',
-
-        // Запрещает использовать неэкспортированные propTypes
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-foreign-prop-types.md
-        // Намеренно 'warn'; 'error' критичен только при удалении propTypes в продакшене
-        'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
+        // https://eslint-react.xyz/docs/rules/no-array-index-key
+        'react-x/no-array-index-key': 'error',
 
         // Запрещает дочерние элементы у «пустых» DOM-элементов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/void-dom-elements-no-children.md
-        'react/void-dom-elements-no-children': 'error',
-
-        // Требует, чтобы у всех defaultProps был соответствующий необязательный PropType
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md
-        'react/default-props-match-prop-types': ['error', { allowRequiredDefaults: false }],
-
-        // Запрещает shouldComponentUpdate при наследовании React.PureComponent
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-redundant-should-component-update.md
-        'react/no-redundant-should-component-update': 'error',
-
-        // Предотвращает неиспользуемые значения state
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-state.md
-        'react/no-unused-state': 'error',
-
-        // Обязывает единое именование для булевых пропсов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/boolean-prop-naming.md
-        'react/boolean-prop-naming': [
-            'off',
-            {
-                propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
-                rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
-                message: '',
-            },
-        ],
-
-        // Предотвращает типичные опечатки в стиле написания
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-typos.md
-        'react/no-typos': 'error',
-
-        // Обязывает/запрещает лишние фигурные скобки в пропсах и/или детях JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
-        'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-
-        // Один JSX-элемент на строку
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
-        'react/jsx-one-expression-per-line': 'off',
-
-        // Обязывает единообразно использовать деструктуризацию пропсов, state и context
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
-        'react/destructuring-assignment': 'off',
+        // https://eslint-react.xyz/docs/rules/dom-no-void-elements-with-children
+        'react-dom/no-void-elements-with-children': 'error',
 
         // Запрещает использовать this.state внутри this.setState
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-access-state-in-setstate.md
-        'react/no-access-state-in-setstate': 'error',
+        // https://eslint-react.xyz/docs/rules/no-access-state-in-setstate
+        'react-x/no-access-state-in-setstate': 'error',
 
-        // Запрещает button без явного атрибута type
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/button-has-type.md
-        'react/button-has-type': [
-            'error',
-            {
-                button: true,
-                submit: true,
-                reset: false,
-            },
-        ],
+        // Требует явный атрибут type у button
+        // https://eslint-react.xyz/docs/rules/dom-no-missing-button-type
+        'react-dom/no-missing-button-type': 'error',
 
-        // Гарантирует пробелы между инлайновыми тегами
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-child-element-spacing.md
-        'react/jsx-child-element-spacing': 'off',
-
-        // Запрещает использовать this в функциональных компонентах без состояния
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-this-in-sfc.md
-        'react/no-this-in-sfc': 'error',
-
-        // Проверяет максимальную вложенность JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-depth.md
-        'react/jsx-max-depth': 'off',
-
-        // Запрещает использование методов с префиксом UNSAFE_
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unsafe.md
-        'react/no-unsafe': 'off',
-
-        // Обязывает использовать краткую или стандартную форму фрагментов React
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
-        'react/jsx-fragments': ['warn', 'element'],
-
-        // Запрещает распыление пропсов JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
-        'react/jsx-props-no-spreading': 'off',
-
-        // Обязывает делать пропсы только для чтения
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-read-only-props.md
-        'react/prefer-read-only-props': 'off',
-
-        // Запрещает URL вида `javascript:`
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
-        'react/jsx-no-script-url': [
-            'error',
-            [
-                {
-                    name: 'Link',
-                    props: ['to'],
-                },
-            ],
-        ],
+        // Запрещает URL вида javascript: в JSX-атрибутах, включая Link.to
+        // https://eslint-react.xyz/docs/rules/dom-no-script-url
+        'react-dom/no-script-url': 'error',
 
         // Запрещает ненужные фрагменты, но разрешает одиночные выражения в них
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
-        'react/jsx-no-useless-fragment': [
-            'error',
-            {
-                allowExpressions: true,
-            },
-        ],
-
-        // Обязывает конкретный тип функции для функциональных компонентов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
-        'react/function-component-definition': 'off',
-
-        // Обязывает перевод строки после JSX-элементов и выражений
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-newline.md
-        'react/jsx-newline': 'off',
+        // https://eslint-react.xyz/docs/rules/jsx-no-useless-fragment
+        'react-jsx/no-useless-fragment': ['error', { allowExpressions: true }],
 
         // Предотвращает передачу нестабильных значений в контексты React
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
-        'react/jsx-no-constructed-context-values': 'error',
+        // https://eslint-react.xyz/docs/rules/no-unstable-context-value
+        'react-x/no-unstable-context-value': 'error',
 
         // Предотвращает создание нестабильных компонентов внутри компонентов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
-        'react/no-unstable-nested-components': 'error',
+        // https://eslint-react.xyz/docs/rules/no-nested-component-definitions
+        'react-x/no-nested-component-definitions': 'error',
 
-        // Требует не использовать пространства имен в элементах React
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
-        'react/no-namespace': 'error',
+        // Запрещает пространства имен в JSX
+        // https://eslint-react.xyz/docs/rules/jsx-no-namespace
+        'react-jsx/no-namespace': 'error',
 
-        // Предпочитать точные определения propTypes
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
-        'react/prefer-exact-props': 'error',
-
-        // Методы жизненного цикла должны быть методами прототипа, а не полями класса
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-arrow-function-lifecycle.md
-        'react/no-arrow-function-lifecycle': 'error',
-
-        // Предотвращает использование недопустимых атрибутов
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-invalid-html-attribute.md
-        'react/no-invalid-html-attribute': 'error',
-
-        // Предотвращает объявление неиспользуемых методов класса компонента
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-class-component-methods.md
-        'react/no-unused-class-component-methods': 'error',
-
-        // Определяет, где должны располагаться статические свойства компонента React
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
-        'react/static-property-placement': ['error', 'static public field'],
-
-        // Обеспечить соблюдение стиля инициализации состояния классового компонента
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
-        'react/state-in-constructor': ['error', 'never'],
+        // Предотвращает неиспользуемые методы и свойства классовых компонентов
+        // https://eslint-react.xyz/docs/rules/no-unused-class-component-members
+        'react-x/no-unused-class-component-members': 'error',
     },
 };

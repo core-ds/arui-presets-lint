@@ -47,9 +47,7 @@ export class CommentValidator {
         }
 
         const shouldIgnore = this.ignoredDirectives.has(directive.kind);
-        const hasValidInlineDescription = directive.description
-            ? isValidDescription(directive.description)
-            : false;
+        const hasValidInlineDescription = isValidDescription(directive.description ?? '');
 
         const hasValidAboveComment = Boolean(this.getMeaningfulAboveComment(comment));
 

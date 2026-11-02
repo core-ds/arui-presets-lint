@@ -6,7 +6,7 @@ import { GLOBAL_SCRIPTS_SCOPE } from '../constants.js';
 
 export const importsConfig: Linter.Config = {
     // https://github.com/un-ts/eslint-plugin-import-x/blob/master/src/config/flat/typescript.ts
-    ...(importX.flatConfigs.typescript as Linter.Config),
+    ...importX.flatConfigs.typescript,
     name: 'arui-presets-lint/imports',
     files: [GLOBAL_SCRIPTS_SCOPE],
     plugins: {

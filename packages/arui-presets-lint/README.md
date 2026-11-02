@@ -14,9 +14,11 @@
 
 [Как я могу внести изменения?](./CONTRIBUTING.md)
 
-🚀 [Миграция на версию 11 с 9/10](./MIGRATION_GUIDE.md)
+🚀 [Миграция на версию 12 с 11 и предыдущих версий](./MIGRATION_GUIDE.md)
 
 ## Установка и обновление
+
+Требуется Node.js `^22.13.0 || >=24.0.0`.
 
 Установить библиотеку в проект нужно как dev dependency:
 
@@ -172,6 +174,11 @@ export default defineConfig(eslintConfig, [
 
 После настройки конфигов - нужно добавить скрипты для их запуска в package.json (для этого библиотека предоставляет удобные cli-алиасы):
 
+Для параллельного запуска проверок установите [concurrently](https://github.com/open-cli-tools/concurrently) отдельно:
+
+```sh
+yarn add -D concurrently@latest
+```
 
 ```json
 {
@@ -180,7 +187,7 @@ export default defineConfig(eslintConfig, [
         "lint:scripts": "arui-presets-lint scripts",
         "format": "arui-presets-lint format",
         "format:check": "arui-presets-lint format:check",
-        "lint": "yarn lint:styles && yarn lint:scripts && yarn format:check && yarn lint:unused && yarn lint:secrets",
+        "lint": "concurrently yarn:lint:styles yarn:lint:scripts yarn:format:check yarn:lint:unused yarn:lint:secrets",
         "lint:fix": "yarn lint:styles --fix && yarn lint:scripts --fix && yarn format && yarn lint:unused --fix && yarn lint:secrets",
         "lint:unused": "arui-presets-lint knip",
         "lint:secrets": "arui-presets-lint secretlint"
@@ -188,7 +195,28 @@ export default defineConfig(eslintConfig, [
 }
 ```
 
-> ⚠️  Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
+> ⚠️ Не запускайте `lint:fix` автоматически - команда предназначена только для ручного запуска - она правит файлы (автофиксы линтеров, форматирование, удаление неиспользуемого кода в knip) и может что-то сломать. В CI используйте `lint`.
+
+> Не запускайте автофиксы линтеров (`--fix`) и `format` параллельно через `concurrently`: инструменты могут перезаписать одни и те же файлы и затереть правки друг друга. В `lint:fix` выполняйте команды последовательно через `&&`.
+
+`concurrently` запускает перечисленные скрипты одновременно, дожидается завершения всех и возвращает ненулевой код, если хотя бы один завершился с ошибкой. Флаги инструментов задавайте в соответствующих скриптах `lint:scripts`, `lint:styles` и остальных.
+
+В CLI и пресете Lefthook ESLint запускается с `--concurrency auto`. Для команды `scripts` можно переопределить число потоков или отключить многопоточность, если она замедляет проверку проекта:
+
+```sh
+arui-presets-lint scripts --concurrency 2
+arui-presets-lint scripts --concurrency off
+```
+
+С `auto` ESLint сам выбирает число потоков: до 50 файлов проверка идёт в одном потоке, дальше — примерно поток на каждые 50 файлов, но не больше половины ядер процессора. Каждый поток заново загружает конфиг и плагины, а при анализе типов — и программу TypeScript, поэтому на небольших проектах многопоточность может замедлить проверку. В этом случае ESLint печатает предупреждение `ESLintPoorConcurrencyWarning` — отключите многопоточность в скрипте проекта:
+
+```json
+{
+    "scripts": {
+        "lint:scripts": "arui-presets-lint scripts --concurrency off"
+    }
+}
+```
 
 Чтобы eslint / stylelint / prettier / secretlint не проверял конкретные файлы и папки, можно исключить их с помощью файлов .eslintignore / .stylelintignore / .prettierignore / .secretlintignore Прописывать там файлы, которые уже есть в .gitignore не требуется!
 
@@ -213,7 +241,6 @@ import { defineConfig, globalIgnores } from 'arui-presets-lint/eslint';
 }
 ```
 
-
 ## [lefthook](https://github.com/evilmartians/lefthook)
 
 > Lefthook настраивает гит-хуки в проекте согласно yml-конфигу
@@ -227,6 +254,8 @@ extends:
 ```
 
 Затем подключите хуки к репозиторию: `npx --no-install lefthook install`
+
+В `pre-push` форматирование проверяется командой `check-format` параллельно с линтерами. Если вы переопределяете или отключаете `check-scripts` / `check-styles`, настройте `check-format` отдельно. В `pre-commit` Prettier сначала форматирует файлы, затем запускаются соответствующие линтеры.
 
 Этот конфиг можно расширить специфичными для вашего проекта настройками, см. [документацию](https://lefthook.dev/configuration/) Примеры такого расширения:
 

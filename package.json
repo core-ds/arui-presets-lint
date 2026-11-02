@@ -16,15 +16,16 @@
         "@changesets/changelog-github": "0.7.0",
         "@changesets/cli": "2.31.1",
         "arui-presets-lint": "workspace:*",
+        "concurrently": "10.0.6",
         "eslint-config-turbo": "2.11.10",
         "tsx": "4.23.15",
         "turbo": "2.11.10"
     },
     "scripts": {
         "build": "turbo run build",
-        "test": "turbo run test && yarn lint:unused && yarn lint:secrets",
+        "test": "yarn build && concurrently \"turbo run test\" yarn:lint:unused yarn:lint:secrets",
         "test:unit": "turbo run test:unit",
-        "lint": "turbo run lint && yarn lint:unused && yarn lint:secrets",
+        "lint": "concurrently \"turbo run lint\" yarn:lint:unused yarn:lint:secrets",
         "lint:fix": "turbo run lint:fix && yarn lint:unused && yarn lint:secrets",
         "lint:unused": "tsx packages/arui-presets-lint/cli/index.mts knip",
         "lint:secrets": "tsx packages/arui-presets-lint/cli/index.mts secretlint",

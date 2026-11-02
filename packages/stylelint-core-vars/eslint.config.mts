@@ -14,12 +14,13 @@ export default defineConfig(eslintConfig, [
             'import-x/no-extraneous-dependencies': [
                 'error',
                 {
+                    // import-x разрешает относительные паттерны от cwd, а не от каталога конфига.
                     devDependencies: [
                         'test/**/*',
                         'vitest.config.ts',
                         'vitest.setup.ts',
                         'eslint.config.mts',
-                    ],
+                    ].map((pattern) => path.join(import.meta.dirname, pattern)),
                     // Пакет линтуется общими инструментами монорепозитория:
                     // arui-presets-lint объявлен в devDependencies корня,
                     // поэтому учитываем зависимости обоих манифестов

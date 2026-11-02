@@ -45,7 +45,7 @@ async function resolveWorkspaceDeps(deps: Deps | undefined): Promise<Deps | unde
     );
 
     for (const [i, [name]] of workspaceEntries.entries()) {
-        resolved[name] = `${versions[i]}`;
+        resolved[name] = versions[i];
     }
 
     return resolved;
