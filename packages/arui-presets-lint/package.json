@@ -48,6 +48,9 @@
     "engines": {
         "node": ">=22.12.0"
     },
+    "peerDependencies": {
+        "typescript": ">=4.8.4 <6.1.0"
+    },
     "devDependencies": {
         "@alfalab/core-components": "50.37.0",
         "@commitlint/types": "21.2.3",
