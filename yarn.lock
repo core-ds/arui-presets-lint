@@ -5740,6 +5740,8 @@ __metadata:
     typescript-eslint: "npm:8.72.0"
     vite: "npm:8.3.5"
     vitest: "npm:5.0.5"
+  peerDependencies:
+    typescript: ">=4.8.4 <6.1.0"
   bin:
     arui-presets-lint: cli/index.mjs
   languageName: unknown

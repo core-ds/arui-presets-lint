@@ -299,3 +299,9 @@ npx --no-install commitlint --print-config > commitlintconfig.txt
 3. Включить Prettier
     - [Расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
     - [Инструкция для Webstorm](https://prettier.io/docs/en/webstorm.html)
+
+## Плагины eslint
+
+- [Проверка устаревших компонентов дизайн-системы](./eslint/plugins/design-system/README.md)
+- [Проверка платформенных импортов core-components](./eslint/plugins/core-components/README.md)
+- [Проверка комментариев отключения правил ESLint](./eslint/plugins/disable-comments/README.md)
